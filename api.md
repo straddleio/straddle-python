@@ -82,14 +82,9 @@ from straddle.types import BridgeToken
 
 Methods:
 
-- <code title="post /v1/bridge/initialize">client.bridge.<a href="./src/straddle/resources/bridge/bridge.py">initialize</a>(\*\*<a href="src/straddle/types/bridge_initialize_params.py">params</a>) -> <a href="./src/straddle/types/bridge_token.py">BridgeToken</a></code>
-- <code title="post /v1/bridge/plaid">client.bridge.<a href="./src/straddle/resources/bridge/bridge.py">plaid</a>(\*\*<a href="src/straddle/types/bridge_plaid_params.py">params</a>) -> <a href="./src/straddle/types/paykey.py">Paykey</a></code>
-
-## BankAccount
-
-Methods:
-
-- <code title="post /v1/bridge/bank_account">client.bridge.bank_account.<a href="./src/straddle/resources/bridge/bank_account.py">create</a>(\*\*<a href="src/straddle/types/bridge/bank_account_create_params.py">params</a>) -> <a href="./src/straddle/types/paykey.py">Paykey</a></code>
+- <code title="post /v1/bridge/bank_account">client.bridge.<a href="./src/straddle/resources/bridge.py">bank_account</a>(\*\*<a href="src/straddle/types/bridge_bank_account_params.py">params</a>) -> <a href="./src/straddle/types/paykey.py">Paykey</a></code>
+- <code title="post /v1/bridge/initialize">client.bridge.<a href="./src/straddle/resources/bridge.py">initialize</a>(\*\*<a href="src/straddle/types/bridge_initialize_params.py">params</a>) -> <a href="./src/straddle/types/bridge_token.py">BridgeToken</a></code>
+- <code title="post /v1/bridge/plaid">client.bridge.<a href="./src/straddle/resources/bridge.py">plaid</a>(\*\*<a href="src/straddle/types/bridge_plaid_params.py">params</a>) -> <a href="./src/straddle/types/paykey.py">Paykey</a></code>
 
 # Customers
 

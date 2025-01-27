@@ -25,6 +25,7 @@ from ._utils import (
 )
 from ._version import __version__
 from .resources import (
+    bridge,
     charges,
     paykeys,
     payouts,
@@ -42,7 +43,6 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.bridge import bridge
 from .resources.accounts import accounts
 from .resources.customers import customers
 

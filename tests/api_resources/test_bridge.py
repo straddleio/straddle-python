@@ -9,13 +9,70 @@ import pytest
 
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
-from straddle.types import Paykey, BridgeToken
+from straddle.types import (
+    Paykey,
+    BridgeToken,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 class TestBridge:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    def test_method_bank_account(self, client: Straddle) -> None:
+        bridge = client.bridge.bank_account(
+            account_number="account_number",
+            account_type="checking",
+            customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            routing_number="xxxxxxxxx",
+        )
+        assert_matches_type(Paykey, bridge, path=["response"])
+
+    @parametrize
+    def test_method_bank_account_with_all_params(self, client: Straddle) -> None:
+        bridge = client.bridge.bank_account(
+            account_number="account_number",
+            account_type="checking",
+            customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            routing_number="xxxxxxxxx",
+            metadata={"foo": "string"},
+            correlation_id="Correlation-Id",
+            request_id="Request-Id",
+            straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(Paykey, bridge, path=["response"])
+
+    @parametrize
+    def test_raw_response_bank_account(self, client: Straddle) -> None:
+        response = client.bridge.with_raw_response.bank_account(
+            account_number="account_number",
+            account_type="checking",
+            customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            routing_number="xxxxxxxxx",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        bridge = response.parse()
+        assert_matches_type(Paykey, bridge, path=["response"])
+
+    @parametrize
+    def test_streaming_response_bank_account(self, client: Straddle) -> None:
+        with client.bridge.with_streaming_response.bank_account(
+            account_number="account_number",
+            account_type="checking",
+            customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            routing_number="xxxxxxxxx",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bridge = response.parse()
+            assert_matches_type(Paykey, bridge, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_initialize(self, client: Straddle) -> None:
@@ -107,6 +164,60 @@ class TestBridge:
 
 class TestAsyncBridge:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    async def test_method_bank_account(self, async_client: AsyncStraddle) -> None:
+        bridge = await async_client.bridge.bank_account(
+            account_number="account_number",
+            account_type="checking",
+            customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            routing_number="xxxxxxxxx",
+        )
+        assert_matches_type(Paykey, bridge, path=["response"])
+
+    @parametrize
+    async def test_method_bank_account_with_all_params(self, async_client: AsyncStraddle) -> None:
+        bridge = await async_client.bridge.bank_account(
+            account_number="account_number",
+            account_type="checking",
+            customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            routing_number="xxxxxxxxx",
+            metadata={"foo": "string"},
+            correlation_id="Correlation-Id",
+            request_id="Request-Id",
+            straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(Paykey, bridge, path=["response"])
+
+    @parametrize
+    async def test_raw_response_bank_account(self, async_client: AsyncStraddle) -> None:
+        response = await async_client.bridge.with_raw_response.bank_account(
+            account_number="account_number",
+            account_type="checking",
+            customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            routing_number="xxxxxxxxx",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        bridge = await response.parse()
+        assert_matches_type(Paykey, bridge, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_bank_account(self, async_client: AsyncStraddle) -> None:
+        async with async_client.bridge.with_streaming_response.bank_account(
+            account_number="account_number",
+            account_type="checking",
+            customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            routing_number="xxxxxxxxx",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            bridge = await response.parse()
+            assert_matches_type(Paykey, bridge, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_initialize(self, async_client: AsyncStraddle) -> None:
