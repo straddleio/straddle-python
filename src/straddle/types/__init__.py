@@ -44,6 +44,7 @@ from .bridge_initialize_params import BridgeInitializeParams as BridgeInitialize
 from .organization_list_params import OrganizationListParams as OrganizationListParams
 from .funding_event_list_params import FundingEventListParams as FundingEventListParams
 from .linked_bank_account_paged import LinkedBankAccountPaged as LinkedBankAccountPaged
+from .bridge_bank_account_params import BridgeBankAccountParams as BridgeBankAccountParams
 from .funding_event_summary_item import FundingEventSummaryItem as FundingEventSummaryItem
 from .linked_bank_account_unmask import LinkedBankAccountUnmask as LinkedBankAccountUnmask
 from .organization_create_params import OrganizationCreateParams as OrganizationCreateParams

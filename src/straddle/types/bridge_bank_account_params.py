@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
+from .._utils import PropertyInfo
 
-__all__ = ["BankAccountCreateParams"]
+__all__ = ["BridgeBankAccountParams"]
 
 
-class BankAccountCreateParams(TypedDict, total=False):
+class BridgeBankAccountParams(TypedDict, total=False):
     account_number: Required[str]
     """The bank account number."""
 
