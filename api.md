@@ -135,18 +135,6 @@ Methods:
 - <code title="get /v1/paykeys/{id}">client.paykeys.<a href="./src/straddle/resources/paykeys.py">get</a>(id) -> <a href="./src/straddle/types/paykey.py">Paykey</a></code>
 - <code title="get /v1/paykeys/{id}/unmasked">client.paykeys.<a href="./src/straddle/resources/paykeys.py">unmasked</a>(id) -> <a href="./src/straddle/types/paykey_unmasked.py">PaykeyUnmasked</a></code>
 
-# Reports
-
-Types:
-
-```python
-from straddle.types import ReportTotalCustomersByStatusResponse
-```
-
-Methods:
-
-- <code title="post /v1/reports/total_customers_by_status">client.reports.<a href="./src/straddle/resources/reports.py">total_customers_by_status</a>() -> <a href="./src/straddle/types/report_total_customers_by_status_response.py">ReportTotalCustomersByStatusResponse</a></code>
-
 # Charges
 
 Types:
