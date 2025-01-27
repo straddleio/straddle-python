@@ -12,7 +12,11 @@ _T = TypeVar("_T")
 
 
 class PageNumberSchemaMeta(BaseModel):
+    max_page_size: Optional[int] = None
+
     page_number: Optional[int] = None
+
+    page_size: Optional[int] = None
 
     total_items: Optional[int] = None
 
