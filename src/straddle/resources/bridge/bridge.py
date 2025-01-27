@@ -30,8 +30,8 @@ from .bank_account import (
     AsyncBankAccountResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
+from ...types.paykey import Paykey
 from ...types.bridge_token import BridgeToken
-from ...types.shared.paykey import Paykey
 
 __all__ = ["BridgeResource", "AsyncBridgeResource"]
 

@@ -23,7 +23,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.bridge import bank_account_create_params
-from ...types.shared.paykey import Paykey
+from ...types.paykey import Paykey
 
 __all__ = ["BankAccountResource", "AsyncBankAccountResource"]
 

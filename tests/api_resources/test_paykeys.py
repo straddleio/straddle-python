@@ -9,9 +9,8 @@ import pytest
 
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
-from straddle.types import PaykeyUnmasked
+from straddle.types import Paykey, PaykeyUnmasked
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
-from straddle.types.shared import Paykey
 from straddle.types.paykey_summary_paged import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
