@@ -1,9 +1,3 @@
-# Shared Types
-
-```python
-from straddle.types import Paykey
-```
-
 # Accounts
 
 Types:
@@ -89,13 +83,13 @@ from straddle.types import BridgeToken
 Methods:
 
 - <code title="post /v1/bridge/initialize">client.bridge.<a href="./src/straddle/resources/bridge/bridge.py">initialize</a>(\*\*<a href="src/straddle/types/bridge_initialize_params.py">params</a>) -> <a href="./src/straddle/types/bridge_token.py">BridgeToken</a></code>
-- <code title="post /v1/bridge/plaid">client.bridge.<a href="./src/straddle/resources/bridge/bridge.py">plaid</a>(\*\*<a href="src/straddle/types/bridge_plaid_params.py">params</a>) -> <a href="./src/straddle/types/shared/paykey.py">Paykey</a></code>
+- <code title="post /v1/bridge/plaid">client.bridge.<a href="./src/straddle/resources/bridge/bridge.py">plaid</a>(\*\*<a href="src/straddle/types/bridge_plaid_params.py">params</a>) -> <a href="./src/straddle/types/paykey.py">Paykey</a></code>
 
 ## BankAccount
 
 Methods:
 
-- <code title="post /v1/bridge/bank_account">client.bridge.bank_account.<a href="./src/straddle/resources/bridge/bank_account.py">create</a>(\*\*<a href="src/straddle/types/bridge/bank_account_create_params.py">params</a>) -> <a href="./src/straddle/types/shared/paykey.py">Paykey</a></code>
+- <code title="post /v1/bridge/bank_account">client.bridge.bank_account.<a href="./src/straddle/resources/bridge/bank_account.py">create</a>(\*\*<a href="src/straddle/types/bridge/bank_account_create_params.py">params</a>) -> <a href="./src/straddle/types/paykey.py">Paykey</a></code>
 
 # Customers
 
@@ -132,13 +126,13 @@ Methods:
 Types:
 
 ```python
-from straddle.types import PaykeySummaryPaged, PaykeyUnmasked
+from straddle.types import Paykey, PaykeySummaryPaged, PaykeyUnmasked
 ```
 
 Methods:
 
 - <code title="get /v1/paykeys">client.paykeys.<a href="./src/straddle/resources/paykeys.py">list</a>(\*\*<a href="src/straddle/types/paykey_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
-- <code title="get /v1/paykeys/{id}">client.paykeys.<a href="./src/straddle/resources/paykeys.py">get</a>(id) -> <a href="./src/straddle/types/shared/paykey.py">Paykey</a></code>
+- <code title="get /v1/paykeys/{id}">client.paykeys.<a href="./src/straddle/resources/paykeys.py">get</a>(id) -> <a href="./src/straddle/types/paykey.py">Paykey</a></code>
 - <code title="get /v1/paykeys/{id}/unmasked">client.paykeys.<a href="./src/straddle/resources/paykeys.py">unmasked</a>(id) -> <a href="./src/straddle/types/paykey_unmasked.py">PaykeyUnmasked</a></code>
 
 # Reports

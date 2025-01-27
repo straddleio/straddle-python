@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from .charge import Charge as Charge
+from .paykey import Paykey as Paykey
 from .payout import Payout as Payout
-from .shared import Paykey as Paykey
 from .account import Account as Account
 from .customer import Customer as Customer
 from .bridge_token import BridgeToken as BridgeToken

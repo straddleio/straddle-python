@@ -20,7 +20,7 @@ from .._response import (
 )
 from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.shared.paykey import Paykey
+from ..types.paykey import Paykey
 from ..types.paykey_unmasked import PaykeyUnmasked
 from ..types.paykey_summary_paged import Data
 
