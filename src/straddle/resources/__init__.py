@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .embed import (
+    EmbedResource,
+    AsyncEmbedResource,
+    EmbedResourceWithRawResponse,
+    AsyncEmbedResourceWithRawResponse,
+    EmbedResourceWithStreamingResponse,
+    AsyncEmbedResourceWithStreamingResponse,
+)
 from .bridge import (
     BridgeResource,
     AsyncBridgeResource,
@@ -32,14 +40,6 @@ from .payouts import (
     PayoutsResourceWithStreamingResponse,
     AsyncPayoutsResourceWithStreamingResponse,
 )
-from .accounts import (
-    AccountsResource,
-    AsyncAccountsResource,
-    AccountsResourceWithRawResponse,
-    AsyncAccountsResourceWithRawResponse,
-    AccountsResourceWithStreamingResponse,
-    AsyncAccountsResourceWithStreamingResponse,
-)
 from .payments import (
     PaymentsResource,
     AsyncPaymentsResource,
@@ -56,14 +56,6 @@ from .customers import (
     CustomersResourceWithStreamingResponse,
     AsyncCustomersResourceWithStreamingResponse,
 )
-from .organizations import (
-    OrganizationsResource,
-    AsyncOrganizationsResource,
-    OrganizationsResourceWithRawResponse,
-    AsyncOrganizationsResourceWithRawResponse,
-    OrganizationsResourceWithStreamingResponse,
-    AsyncOrganizationsResourceWithStreamingResponse,
-)
 from .funding_events import (
     FundingEventsResource,
     AsyncFundingEventsResource,
@@ -72,48 +64,14 @@ from .funding_events import (
     FundingEventsResourceWithStreamingResponse,
     AsyncFundingEventsResourceWithStreamingResponse,
 )
-from .representatives import (
-    RepresentativesResource,
-    AsyncRepresentativesResource,
-    RepresentativesResourceWithRawResponse,
-    AsyncRepresentativesResourceWithRawResponse,
-    RepresentativesResourceWithStreamingResponse,
-    AsyncRepresentativesResourceWithStreamingResponse,
-)
-from .linked_bank_accounts import (
-    LinkedBankAccountsResource,
-    AsyncLinkedBankAccountsResource,
-    LinkedBankAccountsResourceWithRawResponse,
-    AsyncLinkedBankAccountsResourceWithRawResponse,
-    LinkedBankAccountsResourceWithStreamingResponse,
-    AsyncLinkedBankAccountsResourceWithStreamingResponse,
-)
 
 __all__ = [
-    "AccountsResource",
-    "AsyncAccountsResource",
-    "AccountsResourceWithRawResponse",
-    "AsyncAccountsResourceWithRawResponse",
-    "AccountsResourceWithStreamingResponse",
-    "AsyncAccountsResourceWithStreamingResponse",
-    "LinkedBankAccountsResource",
-    "AsyncLinkedBankAccountsResource",
-    "LinkedBankAccountsResourceWithRawResponse",
-    "AsyncLinkedBankAccountsResourceWithRawResponse",
-    "LinkedBankAccountsResourceWithStreamingResponse",
-    "AsyncLinkedBankAccountsResourceWithStreamingResponse",
-    "OrganizationsResource",
-    "AsyncOrganizationsResource",
-    "OrganizationsResourceWithRawResponse",
-    "AsyncOrganizationsResourceWithRawResponse",
-    "OrganizationsResourceWithStreamingResponse",
-    "AsyncOrganizationsResourceWithStreamingResponse",
-    "RepresentativesResource",
-    "AsyncRepresentativesResource",
-    "RepresentativesResourceWithRawResponse",
-    "AsyncRepresentativesResourceWithRawResponse",
-    "RepresentativesResourceWithStreamingResponse",
-    "AsyncRepresentativesResourceWithStreamingResponse",
+    "EmbedResource",
+    "AsyncEmbedResource",
+    "EmbedResourceWithRawResponse",
+    "AsyncEmbedResourceWithRawResponse",
+    "EmbedResourceWithStreamingResponse",
+    "AsyncEmbedResourceWithStreamingResponse",
     "BridgeResource",
     "AsyncBridgeResource",
     "BridgeResourceWithRawResponse",

@@ -1,76 +1,78 @@
-# Accounts
+# Embed
+
+## Accounts
 
 Types:
 
 ```python
-from straddle.types import Account, AccountPaged
+from straddle.types.embed import Account, AccountPaged
 ```
 
 Methods:
 
-- <code title="post /v1/accounts">client.accounts.<a href="./src/straddle/resources/accounts/accounts.py">create</a>(\*\*<a href="src/straddle/types/account_create_params.py">params</a>) -> <a href="./src/straddle/types/account.py">Account</a></code>
-- <code title="put /v1/accounts/{account_id}">client.accounts.<a href="./src/straddle/resources/accounts/accounts.py">update</a>(account_id, \*\*<a href="src/straddle/types/account_update_params.py">params</a>) -> <a href="./src/straddle/types/account.py">Account</a></code>
-- <code title="get /v1/accounts">client.accounts.<a href="./src/straddle/resources/accounts/accounts.py">list</a>(\*\*<a href="src/straddle/types/account_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
-- <code title="get /v1/accounts/{account_id}">client.accounts.<a href="./src/straddle/resources/accounts/accounts.py">get</a>(account_id) -> <a href="./src/straddle/types/account.py">Account</a></code>
-- <code title="post /v1/accounts/{account_id}/onboard">client.accounts.<a href="./src/straddle/resources/accounts/accounts.py">onboard</a>(account_id, \*\*<a href="src/straddle/types/account_onboard_params.py">params</a>) -> <a href="./src/straddle/types/account.py">Account</a></code>
-- <code title="post /v1/accounts/{account_id}/simulate">client.accounts.<a href="./src/straddle/resources/accounts/accounts.py">simulate</a>(account_id, \*\*<a href="src/straddle/types/account_simulate_params.py">params</a>) -> <a href="./src/straddle/types/account.py">Account</a></code>
+- <code title="post /v1/accounts">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">create</a>(\*\*<a href="src/straddle/types/embed/account_create_params.py">params</a>) -> <a href="./src/straddle/types/embed/account.py">Account</a></code>
+- <code title="put /v1/accounts/{account_id}">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">update</a>(account_id, \*\*<a href="src/straddle/types/embed/account_update_params.py">params</a>) -> <a href="./src/straddle/types/embed/account.py">Account</a></code>
+- <code title="get /v1/accounts">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">list</a>(\*\*<a href="src/straddle/types/embed/account_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
+- <code title="get /v1/accounts/{account_id}">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">get</a>(account_id) -> <a href="./src/straddle/types/embed/account.py">Account</a></code>
+- <code title="post /v1/accounts/{account_id}/onboard">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">onboard</a>(account_id, \*\*<a href="src/straddle/types/embed/account_onboard_params.py">params</a>) -> <a href="./src/straddle/types/embed/account.py">Account</a></code>
+- <code title="post /v1/accounts/{account_id}/simulate">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">simulate</a>(account_id, \*\*<a href="src/straddle/types/embed/account_simulate_params.py">params</a>) -> <a href="./src/straddle/types/embed/account.py">Account</a></code>
 
-## CapabilityRequests
+### CapabilityRequests
 
 Types:
 
 ```python
-from straddle.types.accounts import CapabilityRequestPaged
+from straddle.types.embed.accounts import CapabilityRequestPaged
 ```
 
 Methods:
 
-- <code title="post /v1/accounts/{account_id}/capability_requests">client.accounts.capability_requests.<a href="./src/straddle/resources/accounts/capability_requests.py">create</a>(account_id, \*\*<a href="src/straddle/types/accounts/capability_request_create_params.py">params</a>) -> <a href="./src/straddle/types/accounts/capability_request_paged.py">CapabilityRequestPaged</a></code>
-- <code title="get /v1/accounts/{account_id}/capability_requests">client.accounts.capability_requests.<a href="./src/straddle/resources/accounts/capability_requests.py">list</a>(account_id, \*\*<a href="src/straddle/types/accounts/capability_request_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
+- <code title="post /v1/accounts/{account_id}/capability_requests">client.embed.accounts.capability_requests.<a href="./src/straddle/resources/embed/accounts/capability_requests.py">create</a>(account_id, \*\*<a href="src/straddle/types/embed/accounts/capability_request_create_params.py">params</a>) -> <a href="./src/straddle/types/embed/accounts/capability_request_paged.py">CapabilityRequestPaged</a></code>
+- <code title="get /v1/accounts/{account_id}/capability_requests">client.embed.accounts.capability_requests.<a href="./src/straddle/resources/embed/accounts/capability_requests.py">list</a>(account_id, \*\*<a href="src/straddle/types/embed/accounts/capability_request_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
 
-# LinkedBankAccounts
+## LinkedBankAccounts
 
 Types:
 
 ```python
-from straddle.types import LinkedBankAccount, LinkedBankAccountPaged, LinkedBankAccountUnmask
+from straddle.types.embed import LinkedBankAccount, LinkedBankAccountPaged, LinkedBankAccountUnmask
 ```
 
 Methods:
 
-- <code title="post /v1/linked_bank_accounts">client.linked_bank_accounts.<a href="./src/straddle/resources/linked_bank_accounts.py">create</a>(\*\*<a href="src/straddle/types/linked_bank_account_create_params.py">params</a>) -> <a href="./src/straddle/types/linked_bank_account.py">LinkedBankAccount</a></code>
-- <code title="put /v1/linked_bank_accounts/{linked_bank_account_id}">client.linked_bank_accounts.<a href="./src/straddle/resources/linked_bank_accounts.py">update</a>(linked_bank_account_id, \*\*<a href="src/straddle/types/linked_bank_account_update_params.py">params</a>) -> <a href="./src/straddle/types/linked_bank_account.py">LinkedBankAccount</a></code>
-- <code title="get /v1/linked_bank_accounts">client.linked_bank_accounts.<a href="./src/straddle/resources/linked_bank_accounts.py">list</a>(\*\*<a href="src/straddle/types/linked_bank_account_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
-- <code title="get /v1/linked_bank_accounts/{linked_bank_account_id}">client.linked_bank_accounts.<a href="./src/straddle/resources/linked_bank_accounts.py">get</a>(linked_bank_account_id) -> <a href="./src/straddle/types/linked_bank_account.py">LinkedBankAccount</a></code>
-- <code title="get /v1/linked_bank_accounts/{linked_bank_account_id}/unmask">client.linked_bank_accounts.<a href="./src/straddle/resources/linked_bank_accounts.py">unmask</a>(linked_bank_account_id) -> <a href="./src/straddle/types/linked_bank_account_unmask.py">LinkedBankAccountUnmask</a></code>
+- <code title="post /v1/linked_bank_accounts">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">create</a>(\*\*<a href="src/straddle/types/embed/linked_bank_account_create_params.py">params</a>) -> <a href="./src/straddle/types/embed/linked_bank_account.py">LinkedBankAccount</a></code>
+- <code title="put /v1/linked_bank_accounts/{linked_bank_account_id}">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">update</a>(linked_bank_account_id, \*\*<a href="src/straddle/types/embed/linked_bank_account_update_params.py">params</a>) -> <a href="./src/straddle/types/embed/linked_bank_account.py">LinkedBankAccount</a></code>
+- <code title="get /v1/linked_bank_accounts">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">list</a>(\*\*<a href="src/straddle/types/embed/linked_bank_account_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
+- <code title="get /v1/linked_bank_accounts/{linked_bank_account_id}">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">get</a>(linked_bank_account_id) -> <a href="./src/straddle/types/embed/linked_bank_account.py">LinkedBankAccount</a></code>
+- <code title="get /v1/linked_bank_accounts/{linked_bank_account_id}/unmask">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">unmask</a>(linked_bank_account_id) -> <a href="./src/straddle/types/embed/linked_bank_account_unmask.py">LinkedBankAccountUnmask</a></code>
 
-# Organizations
+## Organizations
 
 Types:
 
 ```python
-from straddle.types import Organization, OrganizationPaged
+from straddle.types.embed import Organization, OrganizationPaged
 ```
 
 Methods:
 
-- <code title="post /v1/organizations">client.organizations.<a href="./src/straddle/resources/organizations.py">create</a>(\*\*<a href="src/straddle/types/organization_create_params.py">params</a>) -> <a href="./src/straddle/types/organization.py">Organization</a></code>
-- <code title="get /v1/organizations">client.organizations.<a href="./src/straddle/resources/organizations.py">list</a>(\*\*<a href="src/straddle/types/organization_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
+- <code title="post /v1/organizations">client.embed.organizations.<a href="./src/straddle/resources/embed/organizations.py">create</a>(\*\*<a href="src/straddle/types/embed/organization_create_params.py">params</a>) -> <a href="./src/straddle/types/embed/organization.py">Organization</a></code>
+- <code title="get /v1/organizations">client.embed.organizations.<a href="./src/straddle/resources/embed/organizations.py">list</a>(\*\*<a href="src/straddle/types/embed/organization_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
 
-# Representatives
+## Representatives
 
 Types:
 
 ```python
-from straddle.types import Representative, RepresentativePaged
+from straddle.types.embed import Representative, RepresentativePaged
 ```
 
 Methods:
 
-- <code title="post /v1/representatives">client.representatives.<a href="./src/straddle/resources/representatives.py">create</a>(\*\*<a href="src/straddle/types/representative_create_params.py">params</a>) -> <a href="./src/straddle/types/representative.py">Representative</a></code>
-- <code title="put /v1/representatives/{representative_id}">client.representatives.<a href="./src/straddle/resources/representatives.py">update</a>(representative_id, \*\*<a href="src/straddle/types/representative_update_params.py">params</a>) -> <a href="./src/straddle/types/representative.py">Representative</a></code>
-- <code title="get /v1/representatives">client.representatives.<a href="./src/straddle/resources/representatives.py">list</a>(\*\*<a href="src/straddle/types/representative_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
-- <code title="get /v1/representatives/{representative_id}">client.representatives.<a href="./src/straddle/resources/representatives.py">get</a>(representative_id) -> <a href="./src/straddle/types/representative.py">Representative</a></code>
+- <code title="post /v1/representatives">client.embed.representatives.<a href="./src/straddle/resources/embed/representatives.py">create</a>(\*\*<a href="src/straddle/types/embed/representative_create_params.py">params</a>) -> <a href="./src/straddle/types/embed/representative.py">Representative</a></code>
+- <code title="put /v1/representatives/{representative_id}">client.embed.representatives.<a href="./src/straddle/resources/embed/representatives.py">update</a>(representative_id, \*\*<a href="src/straddle/types/embed/representative_update_params.py">params</a>) -> <a href="./src/straddle/types/embed/representative.py">Representative</a></code>
+- <code title="get /v1/representatives">client.embed.representatives.<a href="./src/straddle/resources/embed/representatives.py">list</a>(\*\*<a href="src/straddle/types/embed/representative_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
+- <code title="get /v1/representatives/{representative_id}">client.embed.representatives.<a href="./src/straddle/resources/embed/representatives.py">get</a>(representative_id) -> <a href="./src/straddle/types/embed/representative.py">Representative</a></code>
 
 # Bridge
 
