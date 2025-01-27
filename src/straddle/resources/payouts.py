@@ -139,54 +139,6 @@ class PayoutsResource(SyncAPIResource):
             cast_to=Payout,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
-        """Retrieves the details of an existing payout.
-
-        Supply the unique payout `id` to
-        retrieve the corresponding payout information.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._get(
-            f"/v1/payouts/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Payout,
-        )
-
     def update(
         self,
         id: str,
@@ -304,6 +256,54 @@ class PayoutsResource(SyncAPIResource):
         return self._put(
             f"/v1/payouts/{id}/cancel",
             body=maybe_transform({"reason": reason}, payout_cancel_params.PayoutCancelParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Payout,
+        )
+
+    def get(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Payout:
+        """Retrieves the details of an existing payout.
+
+        Supply the unique payout `id` to
+        retrieve the corresponding payout information.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            f"/v1/payouts/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -519,54 +519,6 @@ class AsyncPayoutsResource(AsyncAPIResource):
             cast_to=Payout,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
-        """Retrieves the details of an existing payout.
-
-        Supply the unique payout `id` to
-        retrieve the corresponding payout information.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._get(
-            f"/v1/payouts/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Payout,
-        )
-
     async def update(
         self,
         id: str,
@@ -690,6 +642,54 @@ class AsyncPayoutsResource(AsyncAPIResource):
             cast_to=Payout,
         )
 
+    async def get(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Payout:
+        """Retrieves the details of an existing payout.
+
+        Supply the unique payout `id` to
+        retrieve the corresponding payout information.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/payouts/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Payout,
+        )
+
     async def hold(
         self,
         id: str,
@@ -801,14 +801,14 @@ class PayoutsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             payouts.create,
         )
-        self.retrieve = to_raw_response_wrapper(
-            payouts.retrieve,
-        )
         self.update = to_raw_response_wrapper(
             payouts.update,
         )
         self.cancel = to_raw_response_wrapper(
             payouts.cancel,
+        )
+        self.get = to_raw_response_wrapper(
+            payouts.get,
         )
         self.hold = to_raw_response_wrapper(
             payouts.hold,
@@ -825,14 +825,14 @@ class AsyncPayoutsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             payouts.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
-            payouts.retrieve,
-        )
         self.update = async_to_raw_response_wrapper(
             payouts.update,
         )
         self.cancel = async_to_raw_response_wrapper(
             payouts.cancel,
+        )
+        self.get = async_to_raw_response_wrapper(
+            payouts.get,
         )
         self.hold = async_to_raw_response_wrapper(
             payouts.hold,
@@ -849,14 +849,14 @@ class PayoutsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             payouts.create,
         )
-        self.retrieve = to_streamed_response_wrapper(
-            payouts.retrieve,
-        )
         self.update = to_streamed_response_wrapper(
             payouts.update,
         )
         self.cancel = to_streamed_response_wrapper(
             payouts.cancel,
+        )
+        self.get = to_streamed_response_wrapper(
+            payouts.get,
         )
         self.hold = to_streamed_response_wrapper(
             payouts.hold,
@@ -873,14 +873,14 @@ class AsyncPayoutsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             payouts.create,
         )
-        self.retrieve = async_to_streamed_response_wrapper(
-            payouts.retrieve,
-        )
         self.update = async_to_streamed_response_wrapper(
             payouts.update,
         )
         self.cancel = async_to_streamed_response_wrapper(
             payouts.cancel,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            payouts.get,
         )
         self.hold = async_to_streamed_response_wrapper(
             payouts.hold,

@@ -47,55 +47,6 @@ class FundingEventsResource(SyncAPIResource):
         """
         return FundingEventsResourceWithStreamingResponse(self)
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FundingEventSummaryItem:
-        """Retrieves the details of an existing funding event.
-
-        Supply the unique funding
-        event `id`, and Straddle will return the individual transaction items that make
-        up the funding event.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._get(
-            f"/v1/funding_events/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=FundingEventSummaryItem,
-        )
-
     def list(
         self,
         *,
@@ -189,28 +140,7 @@ class FundingEventsResource(SyncAPIResource):
             model=Data,
         )
 
-
-class AsyncFundingEventsResource(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncFundingEventsResourceWithRawResponse:
-        """
-        This property can be used as a prefix for any HTTP method call to return
-        the raw response object instead of the parsed content.
-
-        For more information, see https://www.github.com/stainless-sdks/straddle-python#accessing-raw-response-data-eg-headers
-        """
-        return AsyncFundingEventsResourceWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncFundingEventsResourceWithStreamingResponse:
-        """
-        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
-
-        For more information, see https://www.github.com/stainless-sdks/straddle-python#with_streaming_response
-        """
-        return AsyncFundingEventsResourceWithStreamingResponse(self)
-
-    async def retrieve(
+    def get(
         self,
         id: str,
         *,
@@ -251,13 +181,34 @@ class AsyncFundingEventsResource(AsyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return await self._get(
+        return self._get(
             f"/v1/funding_events/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=FundingEventSummaryItem,
         )
+
+
+class AsyncFundingEventsResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncFundingEventsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/straddle-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncFundingEventsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncFundingEventsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/straddle-python#with_streaming_response
+        """
+        return AsyncFundingEventsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -352,16 +303,65 @@ class AsyncFundingEventsResource(AsyncAPIResource):
             model=Data,
         )
 
+    async def get(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> FundingEventSummaryItem:
+        """Retrieves the details of an existing funding event.
+
+        Supply the unique funding
+        event `id`, and Straddle will return the individual transaction items that make
+        up the funding event.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/funding_events/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=FundingEventSummaryItem,
+        )
+
 
 class FundingEventsResourceWithRawResponse:
     def __init__(self, funding_events: FundingEventsResource) -> None:
         self._funding_events = funding_events
 
-        self.retrieve = to_raw_response_wrapper(
-            funding_events.retrieve,
-        )
         self.list = to_raw_response_wrapper(
             funding_events.list,
+        )
+        self.get = to_raw_response_wrapper(
+            funding_events.get,
         )
 
 
@@ -369,11 +369,11 @@ class AsyncFundingEventsResourceWithRawResponse:
     def __init__(self, funding_events: AsyncFundingEventsResource) -> None:
         self._funding_events = funding_events
 
-        self.retrieve = async_to_raw_response_wrapper(
-            funding_events.retrieve,
-        )
         self.list = async_to_raw_response_wrapper(
             funding_events.list,
+        )
+        self.get = async_to_raw_response_wrapper(
+            funding_events.get,
         )
 
 
@@ -381,11 +381,11 @@ class FundingEventsResourceWithStreamingResponse:
     def __init__(self, funding_events: FundingEventsResource) -> None:
         self._funding_events = funding_events
 
-        self.retrieve = to_streamed_response_wrapper(
-            funding_events.retrieve,
-        )
         self.list = to_streamed_response_wrapper(
             funding_events.list,
+        )
+        self.get = to_streamed_response_wrapper(
+            funding_events.get,
         )
 
 
@@ -393,9 +393,9 @@ class AsyncFundingEventsResourceWithStreamingResponse:
     def __init__(self, funding_events: AsyncFundingEventsResource) -> None:
         self._funding_events = funding_events
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            funding_events.retrieve,
-        )
         self.list = async_to_streamed_response_wrapper(
             funding_events.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            funding_events.get,
         )
