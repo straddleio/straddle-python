@@ -10,7 +10,7 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ## Documentation
 
-The REST API documentation can be found on [docs.straddle.com](https://docs.straddle.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.straddle.io](https://docs.straddle.io). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
@@ -31,7 +31,9 @@ import os
 from straddle import Straddle
 
 client = Straddle(
-    bearer_token=os.environ.get("STRADDLE_BEARER_TOKEN"),  # This is the default and can be omitted
+    api_key=os.environ.get("STRADDLE_TOKEN"),  # This is the default and can be omitted
+    # defaults to "sandbox".
+    environment="production",
 )
 
 customer = client.customers.create(
@@ -44,10 +46,10 @@ customer = client.customers.create(
 print(customer.data)
 ```
 
-While you can provide a `bearer_token` keyword argument,
+While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `STRADDLE_BEARER_TOKEN="My Bearer Token"` to your `.env` file
-so that your Bearer Token is not stored in source control.
+to add `STRADDLE_TOKEN="My API Key"` to your `.env` file
+so that your API Key is not stored in source control.
 
 ## Async usage
 
@@ -59,7 +61,9 @@ import asyncio
 from straddle import AsyncStraddle
 
 client = AsyncStraddle(
-    bearer_token=os.environ.get("STRADDLE_BEARER_TOKEN"),  # This is the default and can be omitted
+    api_key=os.environ.get("STRADDLE_TOKEN"),  # This is the default and can be omitted
+    # defaults to "sandbox".
+    environment="production",
 )
 
 
