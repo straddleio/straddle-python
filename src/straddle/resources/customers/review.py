@@ -22,7 +22,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.customer import Customer
-from ...types.customers import review_update_params
+from ...types.customers import review_decision_params
 from ...types.customers.customer_review import CustomerReview
 
 __all__ = ["ReviewResource", "AsyncReviewResource"]
@@ -48,7 +48,7 @@ class ReviewResource(SyncAPIResource):
         """
         return ReviewResourceWithStreamingResponse(self)
 
-    def update(
+    def decision(
         self,
         id: str,
         *,
@@ -95,7 +95,7 @@ class ReviewResource(SyncAPIResource):
         }
         return self._patch(
             f"/v1/customers/{id}/review",
-            body=maybe_transform({"status": status}, review_update_params.ReviewUpdateParams),
+            body=maybe_transform({"status": status}, review_decision_params.ReviewDecisionParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -177,7 +177,7 @@ class AsyncReviewResource(AsyncAPIResource):
         """
         return AsyncReviewResourceWithStreamingResponse(self)
 
-    async def update(
+    async def decision(
         self,
         id: str,
         *,
@@ -224,7 +224,7 @@ class AsyncReviewResource(AsyncAPIResource):
         }
         return await self._patch(
             f"/v1/customers/{id}/review",
-            body=await async_maybe_transform({"status": status}, review_update_params.ReviewUpdateParams),
+            body=await async_maybe_transform({"status": status}, review_decision_params.ReviewDecisionParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -290,8 +290,8 @@ class ReviewResourceWithRawResponse:
     def __init__(self, review: ReviewResource) -> None:
         self._review = review
 
-        self.update = to_raw_response_wrapper(
-            review.update,
+        self.decision = to_raw_response_wrapper(
+            review.decision,
         )
         self.get = to_raw_response_wrapper(
             review.get,
@@ -302,8 +302,8 @@ class AsyncReviewResourceWithRawResponse:
     def __init__(self, review: AsyncReviewResource) -> None:
         self._review = review
 
-        self.update = async_to_raw_response_wrapper(
-            review.update,
+        self.decision = async_to_raw_response_wrapper(
+            review.decision,
         )
         self.get = async_to_raw_response_wrapper(
             review.get,
@@ -314,8 +314,8 @@ class ReviewResourceWithStreamingResponse:
     def __init__(self, review: ReviewResource) -> None:
         self._review = review
 
-        self.update = to_streamed_response_wrapper(
-            review.update,
+        self.decision = to_streamed_response_wrapper(
+            review.decision,
         )
         self.get = to_streamed_response_wrapper(
             review.get,
@@ -326,8 +326,8 @@ class AsyncReviewResourceWithStreamingResponse:
     def __init__(self, review: AsyncReviewResource) -> None:
         self._review = review
 
-        self.update = async_to_streamed_response_wrapper(
-            review.update,
+        self.decision = async_to_streamed_response_wrapper(
+            review.decision,
         )
         self.get = async_to_streamed_response_wrapper(
             review.get,

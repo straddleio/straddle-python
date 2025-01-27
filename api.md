@@ -118,7 +118,7 @@ from straddle.types.customers import CustomerReview
 
 Methods:
 
-- <code title="patch /v1/customers/{id}/review">client.customers.review.<a href="./src/straddle/resources/customers/review.py">update</a>(id, \*\*<a href="src/straddle/types/customers/review_update_params.py">params</a>) -> <a href="./src/straddle/types/customer.py">Customer</a></code>
+- <code title="patch /v1/customers/{id}/review">client.customers.review.<a href="./src/straddle/resources/customers/review.py">decision</a>(id, \*\*<a href="src/straddle/types/customers/review_decision_params.py">params</a>) -> <a href="./src/straddle/types/customer.py">Customer</a></code>
 - <code title="get /v1/customers/{id}/review">client.customers.review.<a href="./src/straddle/resources/customers/review.py">get</a>(id) -> <a href="./src/straddle/types/customers/customer_review.py">CustomerReview</a></code>
 
 # Paykeys

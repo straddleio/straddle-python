@@ -3,4 +3,4 @@
 from __future__ import annotations
 
 from .customer_review import CustomerReview as CustomerReview
-from .review_update_params import ReviewUpdateParams as ReviewUpdateParams
+from .review_decision_params import ReviewDecisionParams as ReviewDecisionParams

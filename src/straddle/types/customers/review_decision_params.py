@@ -6,10 +6,10 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["ReviewUpdateParams"]
+__all__ = ["ReviewDecisionParams"]
 
 
-class ReviewUpdateParams(TypedDict, total=False):
+class ReviewDecisionParams(TypedDict, total=False):
     status: Required[Literal["verified", "rejected"]]
     """The final status of the customer review."""
 
