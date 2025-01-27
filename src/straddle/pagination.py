@@ -34,19 +34,9 @@ class SyncPageNumberSchema(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        current_page = None
-        if self.meta is not None:
-            if self.meta.page_number is not None:
-                current_page = self.meta.page_number
-        if current_page is None:
-            current_page = 1
+        last_page = cast("int | None", self._options.params.get("page_number")) or 1
 
-        last_page = cast("int | None", self._options.params.get("page_number"))
-        if last_page is not None and current_page <= last_page:
-            # The API didn't return a new page in the last request
-            return None
-
-        return PageInfo(params={"page_number": current_page + 1})
+        return PageInfo(params={"page_number": last_page + 1})
 
 
 class AsyncPageNumberSchema(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
@@ -62,16 +52,6 @@ class AsyncPageNumberSchema(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        current_page = None
-        if self.meta is not None:
-            if self.meta.page_number is not None:
-                current_page = self.meta.page_number
-        if current_page is None:
-            current_page = 1
+        last_page = cast("int | None", self._options.params.get("page_number")) or 1
 
-        last_page = cast("int | None", self._options.params.get("page_number"))
-        if last_page is not None and current_page <= last_page:
-            # The API didn't return a new page in the last request
-            return None
-
-        return PageInfo(params={"page_number": current_page + 1})
+        return PageInfo(params={"page_number": last_page + 1})
