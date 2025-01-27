@@ -29,6 +29,7 @@ The full API of this library can be found in [api.md](api.md).
 ```python
 import os
 from straddle import Straddle
+from straddle._utils import parse_date
 
 client = Straddle(
     api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
@@ -36,14 +37,18 @@ client = Straddle(
     environment="sandbox",
 )
 
-customer = client.customers.create(
+charge = client.charges.create(
+    amount=0,
+    config={"balance_check": "required"},
+    consent_type="internet",
+    currency="currency",
+    description="Monthly subscription fee",
     device={"ip_address": "192.168.1.1"},
-    email="ron.swanson@pawnee.com",
-    name="Ron Swanson",
-    phone="+12128675309",
-    type="individual",
+    external_id="external_id",
+    paykey="paykey",
+    payment_date=parse_date("2019-12-27"),
 )
-print(customer.data)
+print(charge.data)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -59,6 +64,7 @@ Simply import `AsyncStraddle` instead of `Straddle` and use `await` with each AP
 import os
 import asyncio
 from straddle import AsyncStraddle
+from straddle._utils import parse_date
 
 client = AsyncStraddle(
     api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
@@ -68,14 +74,18 @@ client = AsyncStraddle(
 
 
 async def main() -> None:
-    customer = await client.customers.create(
+    charge = await client.charges.create(
+        amount=0,
+        config={"balance_check": "required"},
+        consent_type="internet",
+        currency="currency",
+        description="Monthly subscription fee",
         device={"ip_address": "192.168.1.1"},
-        email="ron.swanson@pawnee.com",
-        name="Ron Swanson",
-        phone="+12128675309",
-        type="individual",
+        external_id="external_id",
+        paykey="paykey",
+        payment_date=parse_date("2019-12-27"),
     )
-    print(customer.data)
+    print(charge.data)
 
 
 asyncio.run(main())
@@ -92,69 +102,6 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
-## Pagination
-
-List methods in the Straddle API are paginated.
-
-This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
-
-```python
-from straddle import Straddle
-
-client = Straddle()
-
-all_accounts = []
-# Automatically fetches more pages as needed.
-for account in client.accounts.list():
-    # Do something with account here
-    all_accounts.append(account)
-print(all_accounts)
-```
-
-Or, asynchronously:
-
-```python
-import asyncio
-from straddle import AsyncStraddle
-
-client = AsyncStraddle()
-
-
-async def main() -> None:
-    all_accounts = []
-    # Iterate through items across all pages, issuing requests as needed.
-    async for account in client.accounts.list():
-        all_accounts.append(account)
-    print(all_accounts)
-
-
-asyncio.run(main())
-```
-
-Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
-
-```python
-first_page = await client.accounts.list()
-if first_page.has_next_page():
-    print(f"will fetch next page using these details: {first_page.next_page_info()}")
-    next_page = await first_page.get_next_page()
-    print(f"number of items we just fetched: {len(next_page.data)}")
-
-# Remove `await` for non-async usage.
-```
-
-Or just work directly with the returned data:
-
-```python
-first_page = await client.accounts.list()
-
-print(f"page number: {first_page.meta.page_number}")  # => "page number: 1"
-for account in first_page.data:
-    print(account.id)
-
-# Remove `await` for non-async usage.
-```
-
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `straddle.APIConnectionError` is raised.
@@ -165,18 +112,24 @@ response), a subclass of `straddle.APIStatusError` is raised, containing `status
 All errors inherit from `straddle.APIError`.
 
 ```python
+from straddle._utils import parse_date
+
 import straddle
 from straddle import Straddle
 
 client = Straddle()
 
 try:
-    client.customers.create(
+    client.charges.create(
+        amount=0,
+        config={"balance_check": "required"},
+        consent_type="internet",
+        currency="currency",
+        description="Monthly subscription fee",
         device={"ip_address": "192.168.1.1"},
-        email="ron.swanson@pawnee.com",
-        name="Ron Swanson",
-        phone="+12128675309",
-        type="individual",
+        external_id="external_id",
+        paykey="paykey",
+        payment_date=parse_date("2019-12-27"),
     )
 except straddle.APIConnectionError as e:
     print("The server could not be reached")
@@ -211,6 +164,8 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
+from straddle._utils import parse_date
+
 from straddle import Straddle
 
 # Configure the default for all requests:
@@ -220,12 +175,16 @@ client = Straddle(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).customers.create(
+client.with_options(max_retries=5).charges.create(
+    amount=0,
+    config={"balance_check": "required"},
+    consent_type="internet",
+    currency="currency",
+    description="Monthly subscription fee",
     device={"ip_address": "192.168.1.1"},
-    email="ron.swanson@pawnee.com",
-    name="Ron Swanson",
-    phone="+12128675309",
-    type="individual",
+    external_id="external_id",
+    paykey="paykey",
+    payment_date=parse_date("2019-12-27"),
 )
 ```
 
@@ -235,6 +194,8 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
+from straddle._utils import parse_date
+
 from straddle import Straddle
 
 # Configure the default for all requests:
@@ -249,12 +210,16 @@ client = Straddle(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).customers.create(
+client.with_options(timeout=5.0).charges.create(
+    amount=0,
+    config={"balance_check": "required"},
+    consent_type="internet",
+    currency="currency",
+    description="Monthly subscription fee",
     device={"ip_address": "192.168.1.1"},
-    email="ron.swanson@pawnee.com",
-    name="Ron Swanson",
-    phone="+12128675309",
-    type="individual",
+    external_id="external_id",
+    paykey="paykey",
+    payment_date=parse_date("2019-12-27"),
 )
 ```
 
@@ -296,19 +261,25 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from straddle import Straddle
 
 client = Straddle()
-response = client.customers.with_raw_response.create(
+response = client.charges.with_raw_response.create(
+    amount=0,
+    config={
+        "balance_check": "required"
+    },
+    consent_type="internet",
+    currency="currency",
+    description="Monthly subscription fee",
     device={
         "ip_address": "192.168.1.1"
     },
-    email="ron.swanson@pawnee.com",
-    name="Ron Swanson",
-    phone="+12128675309",
-    type="individual",
+    external_id="external_id",
+    paykey="paykey",
+    payment_date=parse_date("2019-12-27"),
 )
 print(response.headers.get('X-My-Header'))
 
-customer = response.parse()  # get the object that `customers.create()` would have returned
-print(customer.data)
+charge = response.parse()  # get the object that `charges.create()` would have returned
+print(charge.data)
 ```
 
 These methods return an [`APIResponse`](https://github.com/stainless-sdks/straddle-python/tree/main/src/straddle/_response.py) object.
@@ -322,12 +293,16 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.customers.with_streaming_response.create(
+with client.charges.with_streaming_response.create(
+    amount=0,
+    config={"balance_check": "required"},
+    consent_type="internet",
+    currency="currency",
+    description="Monthly subscription fee",
     device={"ip_address": "192.168.1.1"},
-    email="ron.swanson@pawnee.com",
-    name="Ron Swanson",
-    phone="+12128675309",
-    type="individual",
+    external_id="external_id",
+    paykey="paykey",
+    payment_date=parse_date("2019-12-27"),
 ) as response:
     print(response.headers.get("X-My-Header"))
 

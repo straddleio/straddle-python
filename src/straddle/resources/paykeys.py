@@ -47,55 +47,6 @@ class PaykeysResource(SyncAPIResource):
         """
         return PaykeysResourceWithStreamingResponse(self)
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
-        """Retrieves the details of an existing paykey.
-
-        Supply the unique paykey `id` and
-        Straddle will return the corresponding paykey record , including the `paykey`
-        token value and masked bank account details.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._get(
-            f"/v1/paykeys/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Paykey,
-        )
-
     def list(
         self,
         *,
@@ -170,6 +121,55 @@ class PaykeysResource(SyncAPIResource):
             model=Data,
         )
 
+    def get(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Paykey:
+        """Retrieves the details of an existing paykey.
+
+        Supply the unique paykey `id` and
+        Straddle will return the corresponding paykey record , including the `paykey`
+        token value and masked bank account details.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            f"/v1/paykeys/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Paykey,
+        )
+
     def unmasked(
         self,
         id: str,
@@ -240,55 +240,6 @@ class AsyncPaykeysResource(AsyncAPIResource):
         For more information, see https://www.github.com/stainless-sdks/straddle-python#with_streaming_response
         """
         return AsyncPaykeysResourceWithStreamingResponse(self)
-
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
-        """Retrieves the details of an existing paykey.
-
-        Supply the unique paykey `id` and
-        Straddle will return the corresponding paykey record , including the `paykey`
-        token value and masked bank account details.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._get(
-            f"/v1/paykeys/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Paykey,
-        )
 
     def list(
         self,
@@ -364,6 +315,55 @@ class AsyncPaykeysResource(AsyncAPIResource):
             model=Data,
         )
 
+    async def get(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Paykey:
+        """Retrieves the details of an existing paykey.
+
+        Supply the unique paykey `id` and
+        Straddle will return the corresponding paykey record , including the `paykey`
+        token value and masked bank account details.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/paykeys/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Paykey,
+        )
+
     async def unmasked(
         self,
         id: str,
@@ -419,11 +419,11 @@ class PaykeysResourceWithRawResponse:
     def __init__(self, paykeys: PaykeysResource) -> None:
         self._paykeys = paykeys
 
-        self.retrieve = to_raw_response_wrapper(
-            paykeys.retrieve,
-        )
         self.list = to_raw_response_wrapper(
             paykeys.list,
+        )
+        self.get = to_raw_response_wrapper(
+            paykeys.get,
         )
         self.unmasked = to_raw_response_wrapper(
             paykeys.unmasked,
@@ -434,11 +434,11 @@ class AsyncPaykeysResourceWithRawResponse:
     def __init__(self, paykeys: AsyncPaykeysResource) -> None:
         self._paykeys = paykeys
 
-        self.retrieve = async_to_raw_response_wrapper(
-            paykeys.retrieve,
-        )
         self.list = async_to_raw_response_wrapper(
             paykeys.list,
+        )
+        self.get = async_to_raw_response_wrapper(
+            paykeys.get,
         )
         self.unmasked = async_to_raw_response_wrapper(
             paykeys.unmasked,
@@ -449,11 +449,11 @@ class PaykeysResourceWithStreamingResponse:
     def __init__(self, paykeys: PaykeysResource) -> None:
         self._paykeys = paykeys
 
-        self.retrieve = to_streamed_response_wrapper(
-            paykeys.retrieve,
-        )
         self.list = to_streamed_response_wrapper(
             paykeys.list,
+        )
+        self.get = to_streamed_response_wrapper(
+            paykeys.get,
         )
         self.unmasked = to_streamed_response_wrapper(
             paykeys.unmasked,
@@ -464,11 +464,11 @@ class AsyncPaykeysResourceWithStreamingResponse:
     def __init__(self, paykeys: AsyncPaykeysResource) -> None:
         self._paykeys = paykeys
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            paykeys.retrieve,
-        )
         self.list = async_to_streamed_response_wrapper(
             paykeys.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            paykeys.get,
         )
         self.unmasked = async_to_streamed_response_wrapper(
             paykeys.unmasked,

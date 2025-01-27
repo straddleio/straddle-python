@@ -23,6 +23,7 @@ from pydantic import ValidationError
 
 from straddle import Straddle, AsyncStraddle, APIResponseValidationError
 from straddle._types import Omit
+from straddle._utils import parse_date
 from straddle._models import BaseModel, FinalRequestOptions
 from straddle._constants import RAW_RESPONSE_HEADER
 from straddle._exceptions import StraddleError, APIStatusError, APITimeoutError, APIResponseValidationError
@@ -722,19 +723,23 @@ class TestStraddle:
     @mock.patch("straddle._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/v1/customers").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/v1/charges").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             self.client.post(
-                "/v1/customers",
+                "/v1/charges",
                 body=cast(
                     object,
                     dict(
+                        amount=0,
+                        config={"balance_check": "required"},
+                        consent_type="internet",
+                        currency="currency",
+                        description="Monthly subscription fee",
                         device={"ip_address": "192.168.1.1"},
-                        email="ron.swanson@pawnee.com",
-                        name="Ron Swanson",
-                        phone="+12128675309",
-                        type="individual",
+                        external_id="external_id",
+                        paykey="paykey",
+                        payment_date=parse_date("2019-12-27"),
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -746,19 +751,23 @@ class TestStraddle:
     @mock.patch("straddle._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/v1/customers").mock(return_value=httpx.Response(500))
+        respx_mock.post("/v1/charges").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             self.client.post(
-                "/v1/customers",
+                "/v1/charges",
                 body=cast(
                     object,
                     dict(
+                        amount=0,
+                        config={"balance_check": "required"},
+                        consent_type="internet",
+                        currency="currency",
+                        description="Monthly subscription fee",
                         device={"ip_address": "192.168.1.1"},
-                        email="ron.swanson@pawnee.com",
-                        name="Ron Swanson",
-                        phone="+12128675309",
-                        type="individual",
+                        external_id="external_id",
+                        paykey="paykey",
+                        payment_date=parse_date("2019-12-27"),
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -791,14 +800,18 @@ class TestStraddle:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/v1/customers").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
-        response = client.customers.with_raw_response.create(
+        response = client.charges.with_raw_response.create(
+            amount=0,
+            config={"balance_check": "required"},
+            consent_type="internet",
+            currency="currency",
+            description="Monthly subscription fee",
             device={"ip_address": "192.168.1.1"},
-            email="ron.swanson@pawnee.com",
-            name="Ron Swanson",
-            phone="+12128675309",
-            type="individual",
+            external_id="external_id",
+            paykey="paykey",
+            payment_date=parse_date("2019-12-27"),
         )
 
         assert response.retries_taken == failures_before_success
@@ -821,14 +834,18 @@ class TestStraddle:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/v1/customers").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
-        response = client.customers.with_raw_response.create(
+        response = client.charges.with_raw_response.create(
+            amount=0,
+            config={"balance_check": "required"},
+            consent_type="internet",
+            currency="currency",
+            description="Monthly subscription fee",
             device={"ip_address": "192.168.1.1"},
-            email="ron.swanson@pawnee.com",
-            name="Ron Swanson",
-            phone="+12128675309",
-            type="individual",
+            external_id="external_id",
+            paykey="paykey",
+            payment_date=parse_date("2019-12-27"),
             extra_headers={"x-stainless-retry-count": Omit()},
         )
 
@@ -851,14 +868,18 @@ class TestStraddle:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/v1/customers").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
-        response = client.customers.with_raw_response.create(
+        response = client.charges.with_raw_response.create(
+            amount=0,
+            config={"balance_check": "required"},
+            consent_type="internet",
+            currency="currency",
+            description="Monthly subscription fee",
             device={"ip_address": "192.168.1.1"},
-            email="ron.swanson@pawnee.com",
-            name="Ron Swanson",
-            phone="+12128675309",
-            type="individual",
+            external_id="external_id",
+            paykey="paykey",
+            payment_date=parse_date("2019-12-27"),
             extra_headers={"x-stainless-retry-count": "42"},
         )
 
@@ -1546,19 +1567,23 @@ class TestAsyncStraddle:
     @mock.patch("straddle._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/v1/customers").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/v1/charges").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             await self.client.post(
-                "/v1/customers",
+                "/v1/charges",
                 body=cast(
                     object,
                     dict(
+                        amount=0,
+                        config={"balance_check": "required"},
+                        consent_type="internet",
+                        currency="currency",
+                        description="Monthly subscription fee",
                         device={"ip_address": "192.168.1.1"},
-                        email="ron.swanson@pawnee.com",
-                        name="Ron Swanson",
-                        phone="+12128675309",
-                        type="individual",
+                        external_id="external_id",
+                        paykey="paykey",
+                        payment_date=parse_date("2019-12-27"),
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1570,19 +1595,23 @@ class TestAsyncStraddle:
     @mock.patch("straddle._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/v1/customers").mock(return_value=httpx.Response(500))
+        respx_mock.post("/v1/charges").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             await self.client.post(
-                "/v1/customers",
+                "/v1/charges",
                 body=cast(
                     object,
                     dict(
+                        amount=0,
+                        config={"balance_check": "required"},
+                        consent_type="internet",
+                        currency="currency",
+                        description="Monthly subscription fee",
                         device={"ip_address": "192.168.1.1"},
-                        email="ron.swanson@pawnee.com",
-                        name="Ron Swanson",
-                        phone="+12128675309",
-                        type="individual",
+                        external_id="external_id",
+                        paykey="paykey",
+                        payment_date=parse_date("2019-12-27"),
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1616,14 +1645,18 @@ class TestAsyncStraddle:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/v1/customers").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
-        response = await client.customers.with_raw_response.create(
+        response = await client.charges.with_raw_response.create(
+            amount=0,
+            config={"balance_check": "required"},
+            consent_type="internet",
+            currency="currency",
+            description="Monthly subscription fee",
             device={"ip_address": "192.168.1.1"},
-            email="ron.swanson@pawnee.com",
-            name="Ron Swanson",
-            phone="+12128675309",
-            type="individual",
+            external_id="external_id",
+            paykey="paykey",
+            payment_date=parse_date("2019-12-27"),
         )
 
         assert response.retries_taken == failures_before_success
@@ -1647,14 +1680,18 @@ class TestAsyncStraddle:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/v1/customers").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
-        response = await client.customers.with_raw_response.create(
+        response = await client.charges.with_raw_response.create(
+            amount=0,
+            config={"balance_check": "required"},
+            consent_type="internet",
+            currency="currency",
+            description="Monthly subscription fee",
             device={"ip_address": "192.168.1.1"},
-            email="ron.swanson@pawnee.com",
-            name="Ron Swanson",
-            phone="+12128675309",
-            type="individual",
+            external_id="external_id",
+            paykey="paykey",
+            payment_date=parse_date("2019-12-27"),
             extra_headers={"x-stainless-retry-count": Omit()},
         )
 
@@ -1678,14 +1715,18 @@ class TestAsyncStraddle:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/v1/customers").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
-        response = await client.customers.with_raw_response.create(
+        response = await client.charges.with_raw_response.create(
+            amount=0,
+            config={"balance_check": "required"},
+            consent_type="internet",
+            currency="currency",
+            description="Monthly subscription fee",
             device={"ip_address": "192.168.1.1"},
-            email="ron.swanson@pawnee.com",
-            name="Ron Swanson",
-            phone="+12128675309",
-            type="individual",
+            external_id="external_id",
+            paykey="paykey",
+            payment_date=parse_date("2019-12-27"),
             extra_headers={"x-stainless-retry-count": "42"},
         )
 

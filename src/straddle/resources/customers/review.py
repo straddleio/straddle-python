@@ -48,60 +48,6 @@ class ReviewResource(SyncAPIResource):
         """
         return ReviewResourceWithStreamingResponse(self)
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerReview:
-        """
-        Retrieves and analyzes the results of a customer's identity validation and fraud
-        score. This endpoint provides a comprehensive breakdown of the validation
-        outcome, including:
-
-        - Risk and correlation scores
-        - Reason codes for the decision
-        - Results of watchlist screening
-        - Any network alerts detected Use this endpoint to gain insights into the
-          verification process and make informed decisions about customer onboarding.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._get(
-            f"/v1/customers/{id}/review",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CustomerReview,
-        )
-
     def update(
         self,
         id: str,
@@ -156,28 +102,7 @@ class ReviewResource(SyncAPIResource):
             cast_to=Customer,
         )
 
-
-class AsyncReviewResource(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncReviewResourceWithRawResponse:
-        """
-        This property can be used as a prefix for any HTTP method call to return
-        the raw response object instead of the parsed content.
-
-        For more information, see https://www.github.com/stainless-sdks/straddle-python#accessing-raw-response-data-eg-headers
-        """
-        return AsyncReviewResourceWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncReviewResourceWithStreamingResponse:
-        """
-        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
-
-        For more information, see https://www.github.com/stainless-sdks/straddle-python#with_streaming_response
-        """
-        return AsyncReviewResourceWithStreamingResponse(self)
-
-    async def retrieve(
+    def get(
         self,
         id: str,
         *,
@@ -223,13 +148,34 @@ class AsyncReviewResource(AsyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return await self._get(
+        return self._get(
             f"/v1/customers/{id}/review",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=CustomerReview,
         )
+
+
+class AsyncReviewResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncReviewResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/stainless-sdks/straddle-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncReviewResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncReviewResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/stainless-sdks/straddle-python#with_streaming_response
+        """
+        return AsyncReviewResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -285,16 +231,70 @@ class AsyncReviewResource(AsyncAPIResource):
             cast_to=Customer,
         )
 
+    async def get(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> CustomerReview:
+        """
+        Retrieves and analyzes the results of a customer's identity validation and fraud
+        score. This endpoint provides a comprehensive breakdown of the validation
+        outcome, including:
+
+        - Risk and correlation scores
+        - Reason codes for the decision
+        - Results of watchlist screening
+        - Any network alerts detected Use this endpoint to gain insights into the
+          verification process and make informed decisions about customer onboarding.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/customers/{id}/review",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=CustomerReview,
+        )
+
 
 class ReviewResourceWithRawResponse:
     def __init__(self, review: ReviewResource) -> None:
         self._review = review
 
-        self.retrieve = to_raw_response_wrapper(
-            review.retrieve,
-        )
         self.update = to_raw_response_wrapper(
             review.update,
+        )
+        self.get = to_raw_response_wrapper(
+            review.get,
         )
 
 
@@ -302,11 +302,11 @@ class AsyncReviewResourceWithRawResponse:
     def __init__(self, review: AsyncReviewResource) -> None:
         self._review = review
 
-        self.retrieve = async_to_raw_response_wrapper(
-            review.retrieve,
-        )
         self.update = async_to_raw_response_wrapper(
             review.update,
+        )
+        self.get = async_to_raw_response_wrapper(
+            review.get,
         )
 
 
@@ -314,11 +314,11 @@ class ReviewResourceWithStreamingResponse:
     def __init__(self, review: ReviewResource) -> None:
         self._review = review
 
-        self.retrieve = to_streamed_response_wrapper(
-            review.retrieve,
-        )
         self.update = to_streamed_response_wrapper(
             review.update,
+        )
+        self.get = to_streamed_response_wrapper(
+            review.get,
         )
 
 
@@ -326,9 +326,9 @@ class AsyncReviewResourceWithStreamingResponse:
     def __init__(self, review: AsyncReviewResource) -> None:
         self._review = review
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            review.retrieve,
-        )
         self.update = async_to_streamed_response_wrapper(
             review.update,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            review.get,
         )

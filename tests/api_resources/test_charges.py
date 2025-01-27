@@ -95,54 +95,6 @@ class TestCharges:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_retrieve(self, client: Straddle) -> None:
-        charge = client.charges.retrieve(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-        assert_matches_type(Charge, charge, path=["response"])
-
-    @parametrize
-    def test_method_retrieve_with_all_params(self, client: Straddle) -> None:
-        charge = client.charges.retrieve(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            correlation_id="Correlation-Id",
-            request_id="Request-Id",
-            straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-        assert_matches_type(Charge, charge, path=["response"])
-
-    @parametrize
-    def test_raw_response_retrieve(self, client: Straddle) -> None:
-        response = client.charges.with_raw_response.retrieve(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        charge = response.parse()
-        assert_matches_type(Charge, charge, path=["response"])
-
-    @parametrize
-    def test_streaming_response_retrieve(self, client: Straddle) -> None:
-        with client.charges.with_streaming_response.retrieve(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            charge = response.parse()
-            assert_matches_type(Charge, charge, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_retrieve(self, client: Straddle) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.charges.with_raw_response.retrieve(
-                id="",
-            )
-
-    @parametrize
     def test_method_update(self, client: Straddle) -> None:
         charge = client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -252,6 +204,54 @@ class TestCharges:
     def test_path_params_cancel(self, client: Straddle) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.charges.with_raw_response.cancel(
+                id="",
+            )
+
+    @parametrize
+    def test_method_get(self, client: Straddle) -> None:
+        charge = client.charges.get(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(Charge, charge, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Straddle) -> None:
+        charge = client.charges.get(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            correlation_id="Correlation-Id",
+            request_id="Request-Id",
+            straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(Charge, charge, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Straddle) -> None:
+        response = client.charges.with_raw_response.get(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        charge = response.parse()
+        assert_matches_type(Charge, charge, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Straddle) -> None:
+        with client.charges.with_streaming_response.get(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            charge = response.parse()
+            assert_matches_type(Charge, charge, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Straddle) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.charges.with_raw_response.get(
                 id="",
             )
 
@@ -432,54 +432,6 @@ class TestAsyncCharges:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncStraddle) -> None:
-        charge = await async_client.charges.retrieve(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-        assert_matches_type(Charge, charge, path=["response"])
-
-    @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncStraddle) -> None:
-        charge = await async_client.charges.retrieve(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            correlation_id="Correlation-Id",
-            request_id="Request-Id",
-            straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-        assert_matches_type(Charge, charge, path=["response"])
-
-    @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncStraddle) -> None:
-        response = await async_client.charges.with_raw_response.retrieve(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        charge = await response.parse()
-        assert_matches_type(Charge, charge, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncStraddle) -> None:
-        async with async_client.charges.with_streaming_response.retrieve(
-            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            charge = await response.parse()
-            assert_matches_type(Charge, charge, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncStraddle) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.charges.with_raw_response.retrieve(
-                id="",
-            )
-
-    @parametrize
     async def test_method_update(self, async_client: AsyncStraddle) -> None:
         charge = await async_client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -589,6 +541,54 @@ class TestAsyncCharges:
     async def test_path_params_cancel(self, async_client: AsyncStraddle) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.charges.with_raw_response.cancel(
+                id="",
+            )
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncStraddle) -> None:
+        charge = await async_client.charges.get(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(Charge, charge, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncStraddle) -> None:
+        charge = await async_client.charges.get(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            correlation_id="Correlation-Id",
+            request_id="Request-Id",
+            straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(Charge, charge, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncStraddle) -> None:
+        response = await async_client.charges.with_raw_response.get(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        charge = await response.parse()
+        assert_matches_type(Charge, charge, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncStraddle) -> None:
+        async with async_client.charges.with_streaming_response.get(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            charge = await response.parse()
+            assert_matches_type(Charge, charge, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncStraddle) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.charges.with_raw_response.get(
                 id="",
             )
 

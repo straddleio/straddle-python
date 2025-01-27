@@ -139,53 +139,6 @@ class RepresentativesResource(SyncAPIResource):
             cast_to=Representative,
         )
 
-    def retrieve(
-        self,
-        representative_id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Representative:
-        """Retrieves the details of an existing representative.
-
-        Supply the unique
-        representative ID, and Straddle will return the corresponding representative
-        information.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not representative_id:
-            raise ValueError(f"Expected a non-empty value for `representative_id` but received {representative_id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "correlation-id": correlation_id,
-                    "request-id": request_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._get(
-            f"/v1/representatives/{representative_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Representative,
-        )
-
     def update(
         self,
         representative_id: str,
@@ -342,6 +295,53 @@ class RepresentativesResource(SyncAPIResource):
             model=Data,
         )
 
+    def get(
+        self,
+        representative_id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Representative:
+        """Retrieves the details of an existing representative.
+
+        Supply the unique
+        representative ID, and Straddle will return the corresponding representative
+        information.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not representative_id:
+            raise ValueError(f"Expected a non-empty value for `representative_id` but received {representative_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "correlation-id": correlation_id,
+                    "request-id": request_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            f"/v1/representatives/{representative_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Representative,
+        )
+
 
 class AsyncRepresentativesResource(AsyncAPIResource):
     @cached_property
@@ -441,53 +441,6 @@ class AsyncRepresentativesResource(AsyncAPIResource):
                 },
                 representative_create_params.RepresentativeCreateParams,
             ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Representative,
-        )
-
-    async def retrieve(
-        self,
-        representative_id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Representative:
-        """Retrieves the details of an existing representative.
-
-        Supply the unique
-        representative ID, and Straddle will return the corresponding representative
-        information.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not representative_id:
-            raise ValueError(f"Expected a non-empty value for `representative_id` but received {representative_id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "correlation-id": correlation_id,
-                    "request-id": request_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._get(
-            f"/v1/representatives/{representative_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -650,6 +603,53 @@ class AsyncRepresentativesResource(AsyncAPIResource):
             model=Data,
         )
 
+    async def get(
+        self,
+        representative_id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Representative:
+        """Retrieves the details of an existing representative.
+
+        Supply the unique
+        representative ID, and Straddle will return the corresponding representative
+        information.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not representative_id:
+            raise ValueError(f"Expected a non-empty value for `representative_id` but received {representative_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "correlation-id": correlation_id,
+                    "request-id": request_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/representatives/{representative_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Representative,
+        )
+
 
 class RepresentativesResourceWithRawResponse:
     def __init__(self, representatives: RepresentativesResource) -> None:
@@ -658,14 +658,14 @@ class RepresentativesResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             representatives.create,
         )
-        self.retrieve = to_raw_response_wrapper(
-            representatives.retrieve,
-        )
         self.update = to_raw_response_wrapper(
             representatives.update,
         )
         self.list = to_raw_response_wrapper(
             representatives.list,
+        )
+        self.get = to_raw_response_wrapper(
+            representatives.get,
         )
 
 
@@ -676,14 +676,14 @@ class AsyncRepresentativesResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             representatives.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
-            representatives.retrieve,
-        )
         self.update = async_to_raw_response_wrapper(
             representatives.update,
         )
         self.list = async_to_raw_response_wrapper(
             representatives.list,
+        )
+        self.get = async_to_raw_response_wrapper(
+            representatives.get,
         )
 
 
@@ -694,14 +694,14 @@ class RepresentativesResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             representatives.create,
         )
-        self.retrieve = to_streamed_response_wrapper(
-            representatives.retrieve,
-        )
         self.update = to_streamed_response_wrapper(
             representatives.update,
         )
         self.list = to_streamed_response_wrapper(
             representatives.list,
+        )
+        self.get = to_streamed_response_wrapper(
+            representatives.get,
         )
 
 
@@ -712,12 +712,12 @@ class AsyncRepresentativesResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             representatives.create,
         )
-        self.retrieve = async_to_streamed_response_wrapper(
-            representatives.retrieve,
-        )
         self.update = async_to_streamed_response_wrapper(
             representatives.update,
         )
         self.list = async_to_streamed_response_wrapper(
             representatives.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            representatives.get,
         )

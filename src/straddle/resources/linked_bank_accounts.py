@@ -117,55 +117,6 @@ class LinkedBankAccountsResource(SyncAPIResource):
             cast_to=LinkedBankAccount,
         )
 
-    def retrieve(
-        self,
-        linked_bank_account_id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LinkedBankAccount:
-        """
-        Retrieves the details of a linked bank account that has previously been created.
-        Supply the unique linked bank account `id`, and Straddle will return the
-        corresponding information. The response includes masked account details for
-        security purposes.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not linked_bank_account_id:
-            raise ValueError(
-                f"Expected a non-empty value for `linked_bank_account_id` but received {linked_bank_account_id!r}"
-            )
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "correlation-id": correlation_id,
-                    "request-id": request_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._get(
-            f"/v1/linked_bank_accounts/{linked_bank_account_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=LinkedBankAccount,
-        )
-
     def update(
         self,
         linked_bank_account_id: str,
@@ -302,6 +253,55 @@ class LinkedBankAccountsResource(SyncAPIResource):
             model=Data,
         )
 
+    def get(
+        self,
+        linked_bank_account_id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LinkedBankAccount:
+        """
+        Retrieves the details of a linked bank account that has previously been created.
+        Supply the unique linked bank account `id`, and Straddle will return the
+        corresponding information. The response includes masked account details for
+        security purposes.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not linked_bank_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `linked_bank_account_id` but received {linked_bank_account_id!r}"
+            )
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "correlation-id": correlation_id,
+                    "request-id": request_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            f"/v1/linked_bank_accounts/{linked_bank_account_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=LinkedBankAccount,
+        )
+
     def unmask(
         self,
         linked_bank_account_id: str,
@@ -429,55 +429,6 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
                 },
                 linked_bank_account_create_params.LinkedBankAccountCreateParams,
             ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=LinkedBankAccount,
-        )
-
-    async def retrieve(
-        self,
-        linked_bank_account_id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LinkedBankAccount:
-        """
-        Retrieves the details of a linked bank account that has previously been created.
-        Supply the unique linked bank account `id`, and Straddle will return the
-        corresponding information. The response includes masked account details for
-        security purposes.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not linked_bank_account_id:
-            raise ValueError(
-                f"Expected a non-empty value for `linked_bank_account_id` but received {linked_bank_account_id!r}"
-            )
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "correlation-id": correlation_id,
-                    "request-id": request_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._get(
-            f"/v1/linked_bank_accounts/{linked_bank_account_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -620,6 +571,55 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             model=Data,
         )
 
+    async def get(
+        self,
+        linked_bank_account_id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LinkedBankAccount:
+        """
+        Retrieves the details of a linked bank account that has previously been created.
+        Supply the unique linked bank account `id`, and Straddle will return the
+        corresponding information. The response includes masked account details for
+        security purposes.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not linked_bank_account_id:
+            raise ValueError(
+                f"Expected a non-empty value for `linked_bank_account_id` but received {linked_bank_account_id!r}"
+            )
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "correlation-id": correlation_id,
+                    "request-id": request_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/linked_bank_accounts/{linked_bank_account_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=LinkedBankAccount,
+        )
+
     async def unmask(
         self,
         linked_bank_account_id: str,
@@ -678,14 +678,14 @@ class LinkedBankAccountsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             linked_bank_accounts.create,
         )
-        self.retrieve = to_raw_response_wrapper(
-            linked_bank_accounts.retrieve,
-        )
         self.update = to_raw_response_wrapper(
             linked_bank_accounts.update,
         )
         self.list = to_raw_response_wrapper(
             linked_bank_accounts.list,
+        )
+        self.get = to_raw_response_wrapper(
+            linked_bank_accounts.get,
         )
         self.unmask = to_raw_response_wrapper(
             linked_bank_accounts.unmask,
@@ -699,14 +699,14 @@ class AsyncLinkedBankAccountsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             linked_bank_accounts.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
-            linked_bank_accounts.retrieve,
-        )
         self.update = async_to_raw_response_wrapper(
             linked_bank_accounts.update,
         )
         self.list = async_to_raw_response_wrapper(
             linked_bank_accounts.list,
+        )
+        self.get = async_to_raw_response_wrapper(
+            linked_bank_accounts.get,
         )
         self.unmask = async_to_raw_response_wrapper(
             linked_bank_accounts.unmask,
@@ -720,14 +720,14 @@ class LinkedBankAccountsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             linked_bank_accounts.create,
         )
-        self.retrieve = to_streamed_response_wrapper(
-            linked_bank_accounts.retrieve,
-        )
         self.update = to_streamed_response_wrapper(
             linked_bank_accounts.update,
         )
         self.list = to_streamed_response_wrapper(
             linked_bank_accounts.list,
+        )
+        self.get = to_streamed_response_wrapper(
+            linked_bank_accounts.get,
         )
         self.unmask = to_streamed_response_wrapper(
             linked_bank_accounts.unmask,
@@ -741,14 +741,14 @@ class AsyncLinkedBankAccountsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             linked_bank_accounts.create,
         )
-        self.retrieve = async_to_streamed_response_wrapper(
-            linked_bank_accounts.retrieve,
-        )
         self.update = async_to_streamed_response_wrapper(
             linked_bank_accounts.update,
         )
         self.list = async_to_streamed_response_wrapper(
             linked_bank_accounts.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            linked_bank_accounts.get,
         )
         self.unmask = async_to_streamed_response_wrapper(
             linked_bank_accounts.unmask,

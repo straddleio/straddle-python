@@ -142,55 +142,6 @@ class AccountsResource(SyncAPIResource):
             cast_to=Account,
         )
 
-    def retrieve(
-        self,
-        account_id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
-        """Retrieves the details of an account that has previously been created.
-
-        Supply the
-        unique account ID that was returned from your previous request, and Straddle
-        will return the corresponding account information.
-
-        Args:
-          account_id: The unique identifier of the account to retrieve.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "correlation-id": correlation_id,
-                    "request-id": request_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._get(
-            f"/v1/accounts/{account_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Account,
-        )
-
     def update(
         self,
         account_id: str,
@@ -321,6 +272,55 @@ class AccountsResource(SyncAPIResource):
                 ),
             ),
             model=Data,
+        )
+
+    def get(
+        self,
+        account_id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Account:
+        """Retrieves the details of an account that has previously been created.
+
+        Supply the
+        unique account ID that was returned from your previous request, and Straddle
+        will return the corresponding account information.
+
+        Args:
+          account_id: The unique identifier of the account to retrieve.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "correlation-id": correlation_id,
+                    "request-id": request_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            f"/v1/accounts/{account_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Account,
         )
 
     def onboard(
@@ -522,55 +522,6 @@ class AsyncAccountsResource(AsyncAPIResource):
             cast_to=Account,
         )
 
-    async def retrieve(
-        self,
-        account_id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
-        """Retrieves the details of an account that has previously been created.
-
-        Supply the
-        unique account ID that was returned from your previous request, and Straddle
-        will return the corresponding account information.
-
-        Args:
-          account_id: The unique identifier of the account to retrieve.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "correlation-id": correlation_id,
-                    "request-id": request_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._get(
-            f"/v1/accounts/{account_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Account,
-        )
-
     async def update(
         self,
         account_id: str,
@@ -703,6 +654,55 @@ class AsyncAccountsResource(AsyncAPIResource):
             model=Data,
         )
 
+    async def get(
+        self,
+        account_id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Account:
+        """Retrieves the details of an account that has previously been created.
+
+        Supply the
+        unique account ID that was returned from your previous request, and Straddle
+        will return the corresponding account information.
+
+        Args:
+          account_id: The unique identifier of the account to retrieve.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "correlation-id": correlation_id,
+                    "request-id": request_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/accounts/{account_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Account,
+        )
+
     async def onboard(
         self,
         account_id: str,
@@ -815,14 +815,14 @@ class AccountsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             accounts.create,
         )
-        self.retrieve = to_raw_response_wrapper(
-            accounts.retrieve,
-        )
         self.update = to_raw_response_wrapper(
             accounts.update,
         )
         self.list = to_raw_response_wrapper(
             accounts.list,
+        )
+        self.get = to_raw_response_wrapper(
+            accounts.get,
         )
         self.onboard = to_raw_response_wrapper(
             accounts.onboard,
@@ -843,14 +843,14 @@ class AsyncAccountsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             accounts.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
-            accounts.retrieve,
-        )
         self.update = async_to_raw_response_wrapper(
             accounts.update,
         )
         self.list = async_to_raw_response_wrapper(
             accounts.list,
+        )
+        self.get = async_to_raw_response_wrapper(
+            accounts.get,
         )
         self.onboard = async_to_raw_response_wrapper(
             accounts.onboard,
@@ -871,14 +871,14 @@ class AccountsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             accounts.create,
         )
-        self.retrieve = to_streamed_response_wrapper(
-            accounts.retrieve,
-        )
         self.update = to_streamed_response_wrapper(
             accounts.update,
         )
         self.list = to_streamed_response_wrapper(
             accounts.list,
+        )
+        self.get = to_streamed_response_wrapper(
+            accounts.get,
         )
         self.onboard = to_streamed_response_wrapper(
             accounts.onboard,
@@ -899,14 +899,14 @@ class AsyncAccountsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             accounts.create,
         )
-        self.retrieve = async_to_streamed_response_wrapper(
-            accounts.retrieve,
-        )
         self.update = async_to_streamed_response_wrapper(
             accounts.update,
         )
         self.list = async_to_streamed_response_wrapper(
             accounts.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            accounts.get,
         )
         self.onboard = async_to_streamed_response_wrapper(
             accounts.onboard,

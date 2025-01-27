@@ -145,54 +145,6 @@ class ChargesResource(SyncAPIResource):
             cast_to=Charge,
         )
 
-    def retrieve(
-        self,
-        id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
-        """Retrieves the details of an existing charge.
-
-        Supply the unique charge `id`, and
-        Straddle will return the corresponding charge information.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._get(
-            f"/v1/charges/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Charge,
-        )
-
     def update(
         self,
         id: str,
@@ -309,6 +261,54 @@ class ChargesResource(SyncAPIResource):
         return self._put(
             f"/v1/charges/{id}/cancel",
             body=maybe_transform({"reason": reason}, charge_cancel_params.ChargeCancelParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Charge,
+        )
+
+    def get(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Charge:
+        """Retrieves the details of an existing charge.
+
+        Supply the unique charge `id`, and
+        Straddle will return the corresponding charge information.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            f"/v1/charges/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -529,54 +529,6 @@ class AsyncChargesResource(AsyncAPIResource):
             cast_to=Charge,
         )
 
-    async def retrieve(
-        self,
-        id: str,
-        *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
-        """Retrieves the details of an existing charge.
-
-        Supply the unique charge `id`, and
-        Straddle will return the corresponding charge information.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._get(
-            f"/v1/charges/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=Charge,
-        )
-
     async def update(
         self,
         id: str,
@@ -699,6 +651,54 @@ class AsyncChargesResource(AsyncAPIResource):
             cast_to=Charge,
         )
 
+    async def get(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Charge:
+        """Retrieves the details of an existing charge.
+
+        Supply the unique charge `id`, and
+        Straddle will return the corresponding charge information.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/charges/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Charge,
+        )
+
     async def hold(
         self,
         id: str,
@@ -810,14 +810,14 @@ class ChargesResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             charges.create,
         )
-        self.retrieve = to_raw_response_wrapper(
-            charges.retrieve,
-        )
         self.update = to_raw_response_wrapper(
             charges.update,
         )
         self.cancel = to_raw_response_wrapper(
             charges.cancel,
+        )
+        self.get = to_raw_response_wrapper(
+            charges.get,
         )
         self.hold = to_raw_response_wrapper(
             charges.hold,
@@ -834,14 +834,14 @@ class AsyncChargesResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             charges.create,
         )
-        self.retrieve = async_to_raw_response_wrapper(
-            charges.retrieve,
-        )
         self.update = async_to_raw_response_wrapper(
             charges.update,
         )
         self.cancel = async_to_raw_response_wrapper(
             charges.cancel,
+        )
+        self.get = async_to_raw_response_wrapper(
+            charges.get,
         )
         self.hold = async_to_raw_response_wrapper(
             charges.hold,
@@ -858,14 +858,14 @@ class ChargesResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             charges.create,
         )
-        self.retrieve = to_streamed_response_wrapper(
-            charges.retrieve,
-        )
         self.update = to_streamed_response_wrapper(
             charges.update,
         )
         self.cancel = to_streamed_response_wrapper(
             charges.cancel,
+        )
+        self.get = to_streamed_response_wrapper(
+            charges.get,
         )
         self.hold = to_streamed_response_wrapper(
             charges.hold,
@@ -882,14 +882,14 @@ class AsyncChargesResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             charges.create,
         )
-        self.retrieve = async_to_streamed_response_wrapper(
-            charges.retrieve,
-        )
         self.update = async_to_streamed_response_wrapper(
             charges.update,
         )
         self.cancel = async_to_streamed_response_wrapper(
             charges.cancel,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            charges.get,
         )
         self.hold = async_to_streamed_response_wrapper(
             charges.hold,

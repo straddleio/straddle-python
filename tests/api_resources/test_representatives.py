@@ -110,53 +110,6 @@ class TestRepresentatives:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_method_retrieve(self, client: Straddle) -> None:
-        representative = client.representatives.retrieve(
-            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-        assert_matches_type(Representative, representative, path=["response"])
-
-    @parametrize
-    def test_method_retrieve_with_all_params(self, client: Straddle) -> None:
-        representative = client.representatives.retrieve(
-            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            correlation_id="correlation-id",
-            request_id="request-id",
-        )
-        assert_matches_type(Representative, representative, path=["response"])
-
-    @parametrize
-    def test_raw_response_retrieve(self, client: Straddle) -> None:
-        response = client.representatives.with_raw_response.retrieve(
-            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        representative = response.parse()
-        assert_matches_type(Representative, representative, path=["response"])
-
-    @parametrize
-    def test_streaming_response_retrieve(self, client: Straddle) -> None:
-        with client.representatives.with_streaming_response.retrieve(
-            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            representative = response.parse()
-            assert_matches_type(Representative, representative, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_retrieve(self, client: Straddle) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `representative_id` but received ''"):
-            client.representatives.with_raw_response.retrieve(
-                representative_id="",
-            )
-
-    @parametrize
     def test_method_update(self, client: Straddle) -> None:
         representative = client.representatives.update(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -299,6 +252,53 @@ class TestRepresentatives:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_get(self, client: Straddle) -> None:
+        representative = client.representatives.get(
+            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(Representative, representative, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Straddle) -> None:
+        representative = client.representatives.get(
+            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            correlation_id="correlation-id",
+            request_id="request-id",
+        )
+        assert_matches_type(Representative, representative, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Straddle) -> None:
+        response = client.representatives.with_raw_response.get(
+            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        representative = response.parse()
+        assert_matches_type(Representative, representative, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Straddle) -> None:
+        with client.representatives.with_streaming_response.get(
+            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            representative = response.parse()
+            assert_matches_type(Representative, representative, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Straddle) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `representative_id` but received ''"):
+            client.representatives.with_raw_response.get(
+                representative_id="",
+            )
+
 
 class TestAsyncRepresentatives:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -389,53 +389,6 @@ class TestAsyncRepresentatives:
             assert_matches_type(Representative, representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_retrieve(self, async_client: AsyncStraddle) -> None:
-        representative = await async_client.representatives.retrieve(
-            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-        assert_matches_type(Representative, representative, path=["response"])
-
-    @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncStraddle) -> None:
-        representative = await async_client.representatives.retrieve(
-            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            correlation_id="correlation-id",
-            request_id="request-id",
-        )
-        assert_matches_type(Representative, representative, path=["response"])
-
-    @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncStraddle) -> None:
-        response = await async_client.representatives.with_raw_response.retrieve(
-            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        representative = await response.parse()
-        assert_matches_type(Representative, representative, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncStraddle) -> None:
-        async with async_client.representatives.with_streaming_response.retrieve(
-            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            representative = await response.parse()
-            assert_matches_type(Representative, representative, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncStraddle) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `representative_id` but received ''"):
-            await async_client.representatives.with_raw_response.retrieve(
-                representative_id="",
-            )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncStraddle) -> None:
@@ -579,3 +532,50 @@ class TestAsyncRepresentatives:
             assert_matches_type(AsyncPageNumberSchema[Data], representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncStraddle) -> None:
+        representative = await async_client.representatives.get(
+            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(Representative, representative, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncStraddle) -> None:
+        representative = await async_client.representatives.get(
+            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            correlation_id="correlation-id",
+            request_id="request-id",
+        )
+        assert_matches_type(Representative, representative, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncStraddle) -> None:
+        response = await async_client.representatives.with_raw_response.get(
+            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        representative = await response.parse()
+        assert_matches_type(Representative, representative, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncStraddle) -> None:
+        async with async_client.representatives.with_streaming_response.get(
+            representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            representative = await response.parse()
+            assert_matches_type(Representative, representative, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncStraddle) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `representative_id` but received ''"):
+            await async_client.representatives.with_raw_response.get(
+                representative_id="",
+            )
