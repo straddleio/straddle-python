@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Union, Mapping
-from typing_extensions import Self, override
+from typing import Any, Dict, Union, Mapping, cast
+from typing_extensions import Self, Literal, override
 
 import httpx
 
@@ -47,6 +47,7 @@ from .resources.accounts import accounts
 from .resources.customers import customers
 
 __all__ = [
+    "ENVIRONMENTS",
     "Timeout",
     "Transport",
     "ProxiesTypes",
@@ -56,6 +57,11 @@ __all__ = [
     "Client",
     "AsyncClient",
 ]
+
+ENVIRONMENTS: Dict[str, str] = {
+    "sandbox": "https://{environment}.straddle.io",
+    "production": "https://{environment}.straddle.io",
+}
 
 
 class Straddle(SyncAPIClient):
@@ -75,13 +81,16 @@ class Straddle(SyncAPIClient):
     with_streaming_response: StraddleWithStreamedResponse
 
     # client options
-    bearer_token: str
+    api_key: str
+
+    _environment: Literal["sandbox", "production"] | NotGiven
 
     def __init__(
         self,
         *,
-        bearer_token: str | None = None,
-        base_url: str | httpx.URL | None = None,
+        api_key: str | None = None,
+        environment: Literal["sandbox", "production"] | NotGiven = NOT_GIVEN,
+        base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -102,20 +111,41 @@ class Straddle(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous straddle client instance.
 
-        This automatically infers the `bearer_token` argument from the `STRADDLE_BEARER_TOKEN` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `STRADDLE_TOKEN` environment variable if it is not provided.
         """
-        if bearer_token is None:
-            bearer_token = os.environ.get("STRADDLE_BEARER_TOKEN")
-        if bearer_token is None:
+        if api_key is None:
+            api_key = os.environ.get("STRADDLE_TOKEN")
+        if api_key is None:
             raise StraddleError(
-                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the STRADDLE_BEARER_TOKEN environment variable"
+                "The api_key client option must be set either by passing api_key to the client or by setting the STRADDLE_TOKEN environment variable"
             )
-        self.bearer_token = bearer_token
+        self.api_key = api_key
 
-        if base_url is None:
-            base_url = os.environ.get("STRADDLE_BASE_URL")
-        if base_url is None:
-            base_url = f"https://{environment}.straddle.io"
+        self._environment = environment
+
+        base_url_env = os.environ.get("STRADDLE_BASE_URL")
+        if is_given(base_url) and base_url is not None:
+            # cast required because mypy doesn't understand the type narrowing
+            base_url = cast("str | httpx.URL", base_url)  # pyright: ignore[reportUnnecessaryCast]
+        elif is_given(environment):
+            if base_url_env and base_url is not None:
+                raise ValueError(
+                    "Ambiguous URL; The `STRADDLE_BASE_URL` env var and the `environment` argument are given. If you want to use the environment, you must pass base_url=None",
+                )
+
+            try:
+                base_url = ENVIRONMENTS[environment]
+            except KeyError as exc:
+                raise ValueError(f"Unknown environment: {environment}") from exc
+        elif base_url_env is not None:
+            base_url = base_url_env
+        else:
+            self._environment = environment = "sandbox"
+
+            try:
+                base_url = ENVIRONMENTS[environment]
+            except KeyError as exc:
+                raise ValueError(f"Unknown environment: {environment}") from exc
 
         super().__init__(
             version=__version__,
@@ -151,8 +181,8 @@ class Straddle(SyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        bearer_token = self.bearer_token
-        return {"Authorization": f"Bearer {bearer_token}"}
+        api_key = self.api_key
+        return {"Authorization": f"Bearer {api_key}"}
 
     @property
     @override
@@ -166,7 +196,8 @@ class Straddle(SyncAPIClient):
     def copy(
         self,
         *,
-        bearer_token: str | None = None,
+        api_key: str | None = None,
+        environment: Literal["sandbox", "production"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -200,8 +231,9 @@ class Straddle(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            bearer_token=bearer_token or self.bearer_token,
+            api_key=api_key or self.api_key,
             base_url=base_url or self.base_url,
+            environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
@@ -265,13 +297,16 @@ class AsyncStraddle(AsyncAPIClient):
     with_streaming_response: AsyncStraddleWithStreamedResponse
 
     # client options
-    bearer_token: str
+    api_key: str
+
+    _environment: Literal["sandbox", "production"] | NotGiven
 
     def __init__(
         self,
         *,
-        bearer_token: str | None = None,
-        base_url: str | httpx.URL | None = None,
+        api_key: str | None = None,
+        environment: Literal["sandbox", "production"] | NotGiven = NOT_GIVEN,
+        base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -292,20 +327,41 @@ class AsyncStraddle(AsyncAPIClient):
     ) -> None:
         """Construct a new async straddle client instance.
 
-        This automatically infers the `bearer_token` argument from the `STRADDLE_BEARER_TOKEN` environment variable if it is not provided.
+        This automatically infers the `api_key` argument from the `STRADDLE_TOKEN` environment variable if it is not provided.
         """
-        if bearer_token is None:
-            bearer_token = os.environ.get("STRADDLE_BEARER_TOKEN")
-        if bearer_token is None:
+        if api_key is None:
+            api_key = os.environ.get("STRADDLE_TOKEN")
+        if api_key is None:
             raise StraddleError(
-                "The bearer_token client option must be set either by passing bearer_token to the client or by setting the STRADDLE_BEARER_TOKEN environment variable"
+                "The api_key client option must be set either by passing api_key to the client or by setting the STRADDLE_TOKEN environment variable"
             )
-        self.bearer_token = bearer_token
+        self.api_key = api_key
 
-        if base_url is None:
-            base_url = os.environ.get("STRADDLE_BASE_URL")
-        if base_url is None:
-            base_url = f"https://{environment}.straddle.io"
+        self._environment = environment
+
+        base_url_env = os.environ.get("STRADDLE_BASE_URL")
+        if is_given(base_url) and base_url is not None:
+            # cast required because mypy doesn't understand the type narrowing
+            base_url = cast("str | httpx.URL", base_url)  # pyright: ignore[reportUnnecessaryCast]
+        elif is_given(environment):
+            if base_url_env and base_url is not None:
+                raise ValueError(
+                    "Ambiguous URL; The `STRADDLE_BASE_URL` env var and the `environment` argument are given. If you want to use the environment, you must pass base_url=None",
+                )
+
+            try:
+                base_url = ENVIRONMENTS[environment]
+            except KeyError as exc:
+                raise ValueError(f"Unknown environment: {environment}") from exc
+        elif base_url_env is not None:
+            base_url = base_url_env
+        else:
+            self._environment = environment = "sandbox"
+
+            try:
+                base_url = ENVIRONMENTS[environment]
+            except KeyError as exc:
+                raise ValueError(f"Unknown environment: {environment}") from exc
 
         super().__init__(
             version=__version__,
@@ -341,8 +397,8 @@ class AsyncStraddle(AsyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        bearer_token = self.bearer_token
-        return {"Authorization": f"Bearer {bearer_token}"}
+        api_key = self.api_key
+        return {"Authorization": f"Bearer {api_key}"}
 
     @property
     @override
@@ -356,7 +412,8 @@ class AsyncStraddle(AsyncAPIClient):
     def copy(
         self,
         *,
-        bearer_token: str | None = None,
+        api_key: str | None = None,
+        environment: Literal["sandbox", "production"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -390,8 +447,9 @@ class AsyncStraddle(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            bearer_token=bearer_token or self.bearer_token,
+            api_key=api_key or self.api_key,
             base_url=base_url or self.base_url,
+            environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
