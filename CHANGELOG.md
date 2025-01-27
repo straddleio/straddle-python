@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2025-01-27)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/straddleio/straddle-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** Remove current page number ([#5](https://github.com/straddleio/straddle-python/issues/5)) ([c01fabf](https://github.com/straddleio/straddle-python/commit/c01fabff73042ef75452eaeac776b6b6ddc5ac38))
+
 ## 0.1.0-alpha.1 (2025-01-27)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/straddleio/straddle-python/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
