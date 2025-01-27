@@ -11,9 +11,10 @@ from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
 from straddle.types import (
     LinkedBankAccount,
-    LinkedBankAccountPaged,
     LinkedBankAccountUnmask,
 )
+from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
+from straddle.types.linked_bank_account_paged import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -209,7 +210,7 @@ class TestLinkedBankAccounts:
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
         linked_bank_account = client.linked_bank_accounts.list()
-        assert_matches_type(LinkedBankAccountPaged, linked_bank_account, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], linked_bank_account, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
@@ -222,7 +223,7 @@ class TestLinkedBankAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(LinkedBankAccountPaged, linked_bank_account, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], linked_bank_account, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
@@ -231,7 +232,7 @@ class TestLinkedBankAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         linked_bank_account = response.parse()
-        assert_matches_type(LinkedBankAccountPaged, linked_bank_account, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], linked_bank_account, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
@@ -240,7 +241,7 @@ class TestLinkedBankAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             linked_bank_account = response.parse()
-            assert_matches_type(LinkedBankAccountPaged, linked_bank_account, path=["response"])
+            assert_matches_type(SyncPageNumberSchema[Data], linked_bank_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -485,7 +486,7 @@ class TestAsyncLinkedBankAccounts:
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
         linked_bank_account = await async_client.linked_bank_accounts.list()
-        assert_matches_type(LinkedBankAccountPaged, linked_bank_account, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], linked_bank_account, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -498,7 +499,7 @@ class TestAsyncLinkedBankAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(LinkedBankAccountPaged, linked_bank_account, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], linked_bank_account, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
@@ -507,7 +508,7 @@ class TestAsyncLinkedBankAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         linked_bank_account = await response.parse()
-        assert_matches_type(LinkedBankAccountPaged, linked_bank_account, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], linked_bank_account, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
@@ -516,7 +517,7 @@ class TestAsyncLinkedBankAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             linked_bank_account = await response.parse()
-            assert_matches_type(LinkedBankAccountPaged, linked_bank_account, path=["response"])
+            assert_matches_type(AsyncPageNumberSchema[Data], linked_bank_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -9,8 +9,10 @@ import pytest
 
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
-from straddle.types import PaykeyUnmasked, PaykeySummaryPaged
+from straddle.types import PaykeyUnmasked
+from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from straddle.types.shared import Paykey
+from straddle.types.paykey_summary_paged import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -69,7 +71,7 @@ class TestPaykeys:
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
         paykey = client.paykeys.list()
-        assert_matches_type(PaykeySummaryPaged, paykey, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], paykey, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
@@ -84,7 +86,7 @@ class TestPaykeys:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PaykeySummaryPaged, paykey, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], paykey, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
@@ -93,7 +95,7 @@ class TestPaykeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         paykey = response.parse()
-        assert_matches_type(PaykeySummaryPaged, paykey, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], paykey, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
@@ -102,7 +104,7 @@ class TestPaykeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             paykey = response.parse()
-            assert_matches_type(PaykeySummaryPaged, paykey, path=["response"])
+            assert_matches_type(SyncPageNumberSchema[Data], paykey, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -209,7 +211,7 @@ class TestAsyncPaykeys:
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
         paykey = await async_client.paykeys.list()
-        assert_matches_type(PaykeySummaryPaged, paykey, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], paykey, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -224,7 +226,7 @@ class TestAsyncPaykeys:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(PaykeySummaryPaged, paykey, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], paykey, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
@@ -233,7 +235,7 @@ class TestAsyncPaykeys:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         paykey = await response.parse()
-        assert_matches_type(PaykeySummaryPaged, paykey, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], paykey, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
@@ -242,7 +244,7 @@ class TestAsyncPaykeys:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             paykey = await response.parse()
-            assert_matches_type(PaykeySummaryPaged, paykey, path=["response"])
+            assert_matches_type(AsyncPageNumberSchema[Data], paykey, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

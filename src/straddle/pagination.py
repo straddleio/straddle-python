@@ -1,24 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Any, List, Type, Generic, Mapping, TypeVar, Optional, cast
+from typing import List, Generic, TypeVar, Optional, cast
 from typing_extensions import override
 
-from httpx import Response
-
-from ._utils import is_mapping
 from ._models import BaseModel
 from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 
-__all__ = ["SyncPageNumberSchema", "AsyncPageNumberSchema"]
-
-_BaseModelT = TypeVar("_BaseModelT", bound=BaseModel)
+__all__ = ["PageNumberSchemaMeta", "SyncPageNumberSchema", "AsyncPageNumberSchema"]
 
 _T = TypeVar("_T")
 
 
+class PageNumberSchemaMeta(BaseModel):
+    page_number: Optional[int] = None
+
+    total_items: Optional[int] = None
+
+
 class SyncPageNumberSchema(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     data: List[_T]
-    meta: Optional[object] = None
+    meta: Optional[PageNumberSchemaMeta] = None
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -29,23 +30,24 @@ class SyncPageNumberSchema(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        last_page = cast("int | None", self._options.params.get("page_number")) or 1
+        current_page = None
+        if self.meta is not None:
+            if self.meta.page_number is not None:
+                current_page = self.meta.page_number
+        if current_page is None:
+            current_page = 1
 
-        return PageInfo(params={"page_number": last_page + 1})
+        last_page = cast("int | None", self._options.params.get("page_number"))
+        if last_page is not None and current_page <= last_page:
+            # The API didn't return a new page in the last request
+            return None
 
-    @classmethod
-    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
-        return cls.construct(
-            None,
-            **{
-                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"data": data}),
-            },
-        )
+        return PageInfo(params={"page_number": current_page + 1})
 
 
 class AsyncPageNumberSchema(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     data: List[_T]
-    meta: Optional[object] = None
+    meta: Optional[PageNumberSchemaMeta] = None
 
     @override
     def _get_page_items(self) -> List[_T]:
@@ -56,15 +58,16 @@ class AsyncPageNumberSchema(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        last_page = cast("int | None", self._options.params.get("page_number")) or 1
+        current_page = None
+        if self.meta is not None:
+            if self.meta.page_number is not None:
+                current_page = self.meta.page_number
+        if current_page is None:
+            current_page = 1
 
-        return PageInfo(params={"page_number": last_page + 1})
+        last_page = cast("int | None", self._options.params.get("page_number"))
+        if last_page is not None and current_page <= last_page:
+            # The API didn't return a new page in the last request
+            return None
 
-    @classmethod
-    def build(cls: Type[_BaseModelT], *, response: Response, data: object) -> _BaseModelT:  # noqa: ARG003
-        return cls.construct(
-            None,
-            **{
-                **(cast(Mapping[str, Any], data) if is_mapping(data) else {"data": data}),
-            },
-        )
+        return PageInfo(params={"page_number": current_page + 1})
