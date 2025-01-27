@@ -154,8 +154,6 @@ Or just work directly with the returned data:
 
 ```python
 first_page = await client.payments.list()
-
-print(f"page number: {first_page.meta.page_number}")  # => "page number: 1"
 for payment in first_page.data:
     print(payment.id)
 
