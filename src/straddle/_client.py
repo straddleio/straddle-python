@@ -28,7 +28,6 @@ from .resources import (
     charges,
     paykeys,
     payouts,
-    reports,
     payments,
     organizations,
     funding_events,
@@ -72,7 +71,6 @@ class Straddle(SyncAPIClient):
     bridge: bridge.BridgeResource
     customers: customers.CustomersResource
     paykeys: paykeys.PaykeysResource
-    reports: reports.ReportsResource
     charges: charges.ChargesResource
     funding_events: funding_events.FundingEventsResource
     payments: payments.PaymentsResource
@@ -165,7 +163,6 @@ class Straddle(SyncAPIClient):
         self.bridge = bridge.BridgeResource(self)
         self.customers = customers.CustomersResource(self)
         self.paykeys = paykeys.PaykeysResource(self)
-        self.reports = reports.ReportsResource(self)
         self.charges = charges.ChargesResource(self)
         self.funding_events = funding_events.FundingEventsResource(self)
         self.payments = payments.PaymentsResource(self)
@@ -288,7 +285,6 @@ class AsyncStraddle(AsyncAPIClient):
     bridge: bridge.AsyncBridgeResource
     customers: customers.AsyncCustomersResource
     paykeys: paykeys.AsyncPaykeysResource
-    reports: reports.AsyncReportsResource
     charges: charges.AsyncChargesResource
     funding_events: funding_events.AsyncFundingEventsResource
     payments: payments.AsyncPaymentsResource
@@ -381,7 +377,6 @@ class AsyncStraddle(AsyncAPIClient):
         self.bridge = bridge.AsyncBridgeResource(self)
         self.customers = customers.AsyncCustomersResource(self)
         self.paykeys = paykeys.AsyncPaykeysResource(self)
-        self.reports = reports.AsyncReportsResource(self)
         self.charges = charges.AsyncChargesResource(self)
         self.funding_events = funding_events.AsyncFundingEventsResource(self)
         self.payments = payments.AsyncPaymentsResource(self)
@@ -507,7 +502,6 @@ class StraddleWithRawResponse:
         self.bridge = bridge.BridgeResourceWithRawResponse(client.bridge)
         self.customers = customers.CustomersResourceWithRawResponse(client.customers)
         self.paykeys = paykeys.PaykeysResourceWithRawResponse(client.paykeys)
-        self.reports = reports.ReportsResourceWithRawResponse(client.reports)
         self.charges = charges.ChargesResourceWithRawResponse(client.charges)
         self.funding_events = funding_events.FundingEventsResourceWithRawResponse(client.funding_events)
         self.payments = payments.PaymentsResourceWithRawResponse(client.payments)
@@ -525,7 +519,6 @@ class AsyncStraddleWithRawResponse:
         self.bridge = bridge.AsyncBridgeResourceWithRawResponse(client.bridge)
         self.customers = customers.AsyncCustomersResourceWithRawResponse(client.customers)
         self.paykeys = paykeys.AsyncPaykeysResourceWithRawResponse(client.paykeys)
-        self.reports = reports.AsyncReportsResourceWithRawResponse(client.reports)
         self.charges = charges.AsyncChargesResourceWithRawResponse(client.charges)
         self.funding_events = funding_events.AsyncFundingEventsResourceWithRawResponse(client.funding_events)
         self.payments = payments.AsyncPaymentsResourceWithRawResponse(client.payments)
@@ -543,7 +536,6 @@ class StraddleWithStreamedResponse:
         self.bridge = bridge.BridgeResourceWithStreamingResponse(client.bridge)
         self.customers = customers.CustomersResourceWithStreamingResponse(client.customers)
         self.paykeys = paykeys.PaykeysResourceWithStreamingResponse(client.paykeys)
-        self.reports = reports.ReportsResourceWithStreamingResponse(client.reports)
         self.charges = charges.ChargesResourceWithStreamingResponse(client.charges)
         self.funding_events = funding_events.FundingEventsResourceWithStreamingResponse(client.funding_events)
         self.payments = payments.PaymentsResourceWithStreamingResponse(client.payments)
@@ -561,7 +553,6 @@ class AsyncStraddleWithStreamedResponse:
         self.bridge = bridge.AsyncBridgeResourceWithStreamingResponse(client.bridge)
         self.customers = customers.AsyncCustomersResourceWithStreamingResponse(client.customers)
         self.paykeys = paykeys.AsyncPaykeysResourceWithStreamingResponse(client.paykeys)
-        self.reports = reports.AsyncReportsResourceWithStreamingResponse(client.reports)
         self.charges = charges.AsyncChargesResourceWithStreamingResponse(client.charges)
         self.funding_events = funding_events.AsyncFundingEventsResourceWithStreamingResponse(client.funding_events)
         self.payments = payments.AsyncPaymentsResourceWithStreamingResponse(client.payments)

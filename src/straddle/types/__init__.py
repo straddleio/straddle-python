@@ -53,6 +53,3 @@ from .representative_update_params import RepresentativeUpdateParams as Represen
 from .linked_bank_account_list_params import LinkedBankAccountListParams as LinkedBankAccountListParams
 from .linked_bank_account_create_params import LinkedBankAccountCreateParams as LinkedBankAccountCreateParams
 from .linked_bank_account_update_params import LinkedBankAccountUpdateParams as LinkedBankAccountUpdateParams
-from .report_total_customers_by_status_response import (
-    ReportTotalCustomersByStatusResponse as ReportTotalCustomersByStatusResponse,
-)
