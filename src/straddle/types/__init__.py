@@ -18,7 +18,6 @@ from .organization_paged import OrganizationPaged as OrganizationPaged
 from .paykey_list_params import PaykeyListParams as PaykeyListParams
 from .payout_hold_params import PayoutHoldParams as PayoutHoldParams
 from .account_list_params import AccountListParams as AccountListParams
-from .bridge_plaid_params import BridgePlaidParams as BridgePlaidParams
 from .linked_bank_account import LinkedBankAccount as LinkedBankAccount
 from .payment_list_params import PaymentListParams as PaymentListParams
 from .charge_cancel_params import ChargeCancelParams as ChargeCancelParams
@@ -44,7 +43,6 @@ from .bridge_initialize_params import BridgeInitializeParams as BridgeInitialize
 from .organization_list_params import OrganizationListParams as OrganizationListParams
 from .funding_event_list_params import FundingEventListParams as FundingEventListParams
 from .linked_bank_account_paged import LinkedBankAccountPaged as LinkedBankAccountPaged
-from .bridge_bank_account_params import BridgeBankAccountParams as BridgeBankAccountParams
 from .funding_event_summary_item import FundingEventSummaryItem as FundingEventSummaryItem
 from .linked_bank_account_unmask import LinkedBankAccountUnmask as LinkedBankAccountUnmask
 from .organization_create_params import OrganizationCreateParams as OrganizationCreateParams

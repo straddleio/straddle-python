@@ -7,47 +7,46 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import bridge_plaid_params, bridge_initialize_params, bridge_bank_account_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
     maybe_transform,
     strip_not_given,
     async_maybe_transform,
 )
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
-from ..types.paykey import Paykey
-from ..types.bridge_token import BridgeToken
+from ..._base_client import make_request_options
+from ...types.bridge import link_plaid_params, link_bank_account_params
+from ...types.paykey import Paykey
 
-__all__ = ["BridgeResource", "AsyncBridgeResource"]
+__all__ = ["LinkResource", "AsyncLinkResource"]
 
 
-class BridgeResource(SyncAPIResource):
+class LinkResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BridgeResourceWithRawResponse:
+    def with_raw_response(self) -> LinkResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/straddle-python#accessing-raw-response-data-eg-headers
         """
-        return BridgeResourceWithRawResponse(self)
+        return LinkResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BridgeResourceWithStreamingResponse:
+    def with_streaming_response(self) -> LinkResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/straddle-python#with_streaming_response
         """
-        return BridgeResourceWithStreamingResponse(self)
+        return LinkResourceWithStreamingResponse(self)
 
     def bank_account(
         self,
@@ -110,60 +109,12 @@ class BridgeResource(SyncAPIResource):
                     "routing_number": routing_number,
                     "metadata": metadata,
                 },
-                bridge_bank_account_params.BridgeBankAccountParams,
+                link_bank_account_params.LinkBankAccountParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Paykey,
-        )
-
-    def initialize(
-        self,
-        *,
-        customer_id: str,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BridgeToken:
-        """
-        Use this endpoint to generate a session token for use in the Bridge widget.
-
-        Args:
-          customer_id: The Straddle generated unique identifier of the `customer` to create a bridge
-              token for.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._post(
-            "/v1/bridge/initialize",
-            body=maybe_transform({"customer_id": customer_id}, bridge_initialize_params.BridgeInitializeParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=BridgeToken,
         )
 
     def plaid(
@@ -223,7 +174,7 @@ class BridgeResource(SyncAPIResource):
                     "plaid_token": plaid_token,
                     "metadata": metadata,
                 },
-                bridge_plaid_params.BridgePlaidParams,
+                link_plaid_params.LinkPlaidParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -232,25 +183,25 @@ class BridgeResource(SyncAPIResource):
         )
 
 
-class AsyncBridgeResource(AsyncAPIResource):
+class AsyncLinkResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBridgeResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncLinkResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/stainless-sdks/straddle-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncBridgeResourceWithRawResponse(self)
+        return AsyncLinkResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBridgeResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncLinkResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/stainless-sdks/straddle-python#with_streaming_response
         """
-        return AsyncBridgeResourceWithStreamingResponse(self)
+        return AsyncLinkResourceWithStreamingResponse(self)
 
     async def bank_account(
         self,
@@ -313,62 +264,12 @@ class AsyncBridgeResource(AsyncAPIResource):
                     "routing_number": routing_number,
                     "metadata": metadata,
                 },
-                bridge_bank_account_params.BridgeBankAccountParams,
+                link_bank_account_params.LinkBankAccountParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Paykey,
-        )
-
-    async def initialize(
-        self,
-        *,
-        customer_id: str,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BridgeToken:
-        """
-        Use this endpoint to generate a session token for use in the Bridge widget.
-
-        Args:
-          customer_id: The Straddle generated unique identifier of the `customer` to create a bridge
-              token for.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._post(
-            "/v1/bridge/initialize",
-            body=await async_maybe_transform(
-                {"customer_id": customer_id}, bridge_initialize_params.BridgeInitializeParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=BridgeToken,
         )
 
     async def plaid(
@@ -428,7 +329,7 @@ class AsyncBridgeResource(AsyncAPIResource):
                     "plaid_token": plaid_token,
                     "metadata": metadata,
                 },
-                bridge_plaid_params.BridgePlaidParams,
+                link_plaid_params.LinkPlaidParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -437,61 +338,49 @@ class AsyncBridgeResource(AsyncAPIResource):
         )
 
 
-class BridgeResourceWithRawResponse:
-    def __init__(self, bridge: BridgeResource) -> None:
-        self._bridge = bridge
+class LinkResourceWithRawResponse:
+    def __init__(self, link: LinkResource) -> None:
+        self._link = link
 
         self.bank_account = to_raw_response_wrapper(
-            bridge.bank_account,
-        )
-        self.initialize = to_raw_response_wrapper(
-            bridge.initialize,
+            link.bank_account,
         )
         self.plaid = to_raw_response_wrapper(
-            bridge.plaid,
+            link.plaid,
         )
 
 
-class AsyncBridgeResourceWithRawResponse:
-    def __init__(self, bridge: AsyncBridgeResource) -> None:
-        self._bridge = bridge
+class AsyncLinkResourceWithRawResponse:
+    def __init__(self, link: AsyncLinkResource) -> None:
+        self._link = link
 
         self.bank_account = async_to_raw_response_wrapper(
-            bridge.bank_account,
-        )
-        self.initialize = async_to_raw_response_wrapper(
-            bridge.initialize,
+            link.bank_account,
         )
         self.plaid = async_to_raw_response_wrapper(
-            bridge.plaid,
+            link.plaid,
         )
 
 
-class BridgeResourceWithStreamingResponse:
-    def __init__(self, bridge: BridgeResource) -> None:
-        self._bridge = bridge
+class LinkResourceWithStreamingResponse:
+    def __init__(self, link: LinkResource) -> None:
+        self._link = link
 
         self.bank_account = to_streamed_response_wrapper(
-            bridge.bank_account,
-        )
-        self.initialize = to_streamed_response_wrapper(
-            bridge.initialize,
+            link.bank_account,
         )
         self.plaid = to_streamed_response_wrapper(
-            bridge.plaid,
+            link.plaid,
         )
 
 
-class AsyncBridgeResourceWithStreamingResponse:
-    def __init__(self, bridge: AsyncBridgeResource) -> None:
-        self._bridge = bridge
+class AsyncLinkResourceWithStreamingResponse:
+    def __init__(self, link: AsyncLinkResource) -> None:
+        self._link = link
 
         self.bank_account = async_to_streamed_response_wrapper(
-            bridge.bank_account,
-        )
-        self.initialize = async_to_streamed_response_wrapper(
-            bridge.initialize,
+            link.bank_account,
         )
         self.plaid = async_to_streamed_response_wrapper(
-            bridge.plaid,
+            link.plaid,
         )
