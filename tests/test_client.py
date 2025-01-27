@@ -340,7 +340,7 @@ class TestStraddle:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(StraddleError):
-            with update_env(**{"STRADDLE_TOKEN": Omit()}):
+            with update_env(**{"STRADDLE_API_KEY": Omit()}):
                 client2 = Straddle(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
@@ -561,9 +561,11 @@ class TestStraddle:
         # explicit environment arg requires explicitness
         with update_env(STRADDLE_BASE_URL="http://localhost:5000/from/env"):
             with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                Straddle(api_key=api_key, _strict_response_validation=True, environment="sandbox")
+                Straddle(api_key=api_key, _strict_response_validation=True, environment="production")
 
-            client = Straddle(base_url=None, api_key=api_key, _strict_response_validation=True, environment="sandbox")
+            client = Straddle(
+                base_url=None, api_key=api_key, _strict_response_validation=True, environment="production"
+            )
             assert str(client.base_url).startswith("https://{environment}.straddle.io")
 
     @pytest.mark.parametrize(
@@ -1148,7 +1150,7 @@ class TestAsyncStraddle:
         assert request.headers.get("Authorization") == f"Bearer {api_key}"
 
         with pytest.raises(StraddleError):
-            with update_env(**{"STRADDLE_TOKEN": Omit()}):
+            with update_env(**{"STRADDLE_API_KEY": Omit()}):
                 client2 = AsyncStraddle(base_url=base_url, api_key=None, _strict_response_validation=True)
             _ = client2
 
@@ -1371,10 +1373,10 @@ class TestAsyncStraddle:
         # explicit environment arg requires explicitness
         with update_env(STRADDLE_BASE_URL="http://localhost:5000/from/env"):
             with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                AsyncStraddle(api_key=api_key, _strict_response_validation=True, environment="sandbox")
+                AsyncStraddle(api_key=api_key, _strict_response_validation=True, environment="production")
 
             client = AsyncStraddle(
-                base_url=None, api_key=api_key, _strict_response_validation=True, environment="sandbox"
+                base_url=None, api_key=api_key, _strict_response_validation=True, environment="production"
             )
             assert str(client.base_url).startswith("https://{environment}.straddle.io")
 

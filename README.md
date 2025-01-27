@@ -31,9 +31,9 @@ import os
 from straddle import Straddle
 
 client = Straddle(
-    api_key=os.environ.get("STRADDLE_TOKEN"),  # This is the default and can be omitted
-    # defaults to "sandbox".
-    environment="production",
+    api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
+    # defaults to "production".
+    environment="sandbox",
 )
 
 customer = client.customers.create(
@@ -48,7 +48,7 @@ print(customer.data)
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `STRADDLE_TOKEN="My API Key"` to your `.env` file
+to add `STRADDLE_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
@@ -61,9 +61,9 @@ import asyncio
 from straddle import AsyncStraddle
 
 client = AsyncStraddle(
-    api_key=os.environ.get("STRADDLE_TOKEN"),  # This is the default and can be omitted
-    # defaults to "sandbox".
-    environment="production",
+    api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
+    # defaults to "production".
+    environment="sandbox",
 )
 
 
