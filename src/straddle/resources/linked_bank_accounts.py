@@ -26,9 +26,10 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.linked_bank_account import LinkedBankAccount
-from ..types.linked_bank_account_paged import LinkedBankAccountPaged
+from ..types.linked_bank_account_paged import Data
 from ..types.linked_bank_account_unmask import LinkedBankAccountUnmask
 
 __all__ = ["LinkedBankAccountsResource", "AsyncLinkedBankAccountsResource"]
@@ -243,7 +244,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LinkedBankAccountPaged:
+    ) -> SyncPageNumberSchema[Data]:
         """Returns a list of bank accounts associated with a specific Straddle account.
 
         The
@@ -279,8 +280,9 @@ class LinkedBankAccountsResource(SyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return self._get(
+        return self._get_api_list(
             "/v1/linked_bank_accounts",
+            page=SyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -297,7 +299,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
                     linked_bank_account_list_params.LinkedBankAccountListParams,
                 ),
             ),
-            cast_to=LinkedBankAccountPaged,
+            model=Data,
         )
 
     def unmask(
@@ -544,7 +546,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             cast_to=LinkedBankAccount,
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -560,7 +562,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LinkedBankAccountPaged:
+    ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """Returns a list of bank accounts associated with a specific Straddle account.
 
         The
@@ -596,14 +598,15 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return await self._get(
+        return self._get_api_list(
             "/v1/linked_bank_accounts",
+            page=AsyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "account_id": account_id,
                         "page_number": page_number,
@@ -614,7 +617,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
                     linked_bank_account_list_params.LinkedBankAccountListParams,
                 ),
             ),
-            cast_to=LinkedBankAccountPaged,
+            model=Data,
         )
 
     async def unmask(

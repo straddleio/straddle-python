@@ -27,9 +27,10 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.representative import Representative
-from ..types.representative_paged import RepresentativePaged
+from ..types.representative_paged import Data
 
 __all__ = ["RepresentativesResource", "AsyncRepresentativesResource"]
 
@@ -284,7 +285,7 @@ class RepresentativesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RepresentativePaged:
+    ) -> SyncPageNumberSchema[Data]:
         """
         Returns a list of representatives associated with a specific account or
         organization. The representatives are returned sorted by creation date, with the
@@ -319,8 +320,9 @@ class RepresentativesResource(SyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return self._get(
+        return self._get_api_list(
             "/v1/representatives",
+            page=SyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -337,7 +339,7 @@ class RepresentativesResource(SyncAPIResource):
                     representative_list_params.RepresentativeListParams,
                 ),
             ),
-            cast_to=RepresentativePaged,
+            model=Data,
         )
 
 
@@ -575,7 +577,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
             cast_to=Representative,
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -591,7 +593,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RepresentativePaged:
+    ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """
         Returns a list of representatives associated with a specific account or
         organization. The representatives are returned sorted by creation date, with the
@@ -626,14 +628,15 @@ class AsyncRepresentativesResource(AsyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return await self._get(
+        return self._get_api_list(
             "/v1/representatives",
+            page=AsyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "account_id": account_id,
                         "page_number": page_number,
@@ -644,7 +647,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
                     representative_list_params.RepresentativeListParams,
                 ),
             ),
-            cast_to=RepresentativePaged,
+            model=Data,
         )
 
 

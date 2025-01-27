@@ -22,9 +22,10 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.organization import Organization
-from ..types.organization_paged import OrganizationPaged
+from ..types.organization_paged import Data
 
 __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 
@@ -129,7 +130,7 @@ class OrganizationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrganizationPaged:
+    ) -> SyncPageNumberSchema[Data]:
         """Retrieves a list of organizations associated with your Straddle integration.
 
         The
@@ -167,8 +168,9 @@ class OrganizationsResource(SyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return self._get(
+        return self._get_api_list(
             "/v1/organizations",
+            page=SyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -186,7 +188,7 @@ class OrganizationsResource(SyncAPIResource):
                     organization_list_params.OrganizationListParams,
                 ),
             ),
-            cast_to=OrganizationPaged,
+            model=Data,
         )
 
 
@@ -273,7 +275,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             cast_to=Organization,
         )
 
-    async def list(
+    def list(
         self,
         *,
         external_id: str | NotGiven = NOT_GIVEN,
@@ -290,7 +292,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrganizationPaged:
+    ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """Retrieves a list of organizations associated with your Straddle integration.
 
         The
@@ -328,14 +330,15 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return await self._get(
+        return self._get_api_list(
             "/v1/organizations",
+            page=AsyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "external_id": external_id,
                         "name": name,
@@ -347,7 +350,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     organization_list_params.OrganizationListParams,
                 ),
             ),
-            cast_to=OrganizationPaged,
+            model=Data,
         )
 
 

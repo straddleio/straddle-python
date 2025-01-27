@@ -20,9 +20,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncPageNumberSchema, AsyncPageNumberSchema
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.accounts import capability_request_list_params, capability_request_create_params
-from ...types.accounts.capability_request_paged import CapabilityRequestPaged
+from ...types.accounts.capability_request_paged import Data, CapabilityRequestPaged
 
 __all__ = ["CapabilityRequestsResource", "AsyncCapabilityRequestsResource"]
 
@@ -144,7 +145,7 @@ class CapabilityRequestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CapabilityRequestPaged:
+    ) -> SyncPageNumberSchema[Data]:
         """Retrieves a list of capability requests associated with an account.
 
         The requests
@@ -185,8 +186,9 @@ class CapabilityRequestsResource(SyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return self._get(
+        return self._get_api_list(
             f"/v1/accounts/{account_id}/capability_requests",
+            page=SyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -205,7 +207,7 @@ class CapabilityRequestsResource(SyncAPIResource):
                     capability_request_list_params.CapabilityRequestListParams,
                 ),
             ),
-            cast_to=CapabilityRequestPaged,
+            model=Data,
         )
 
 
@@ -306,7 +308,7 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
             cast_to=CapabilityRequestPaged,
         )
 
-    async def list(
+    def list(
         self,
         account_id: str,
         *,
@@ -326,7 +328,7 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CapabilityRequestPaged:
+    ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """Retrieves a list of capability requests associated with an account.
 
         The requests
@@ -367,14 +369,15 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return await self._get(
+        return self._get_api_list(
             f"/v1/accounts/{account_id}/capability_requests",
+            page=AsyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "category": category,
                         "page_number": page_number,
@@ -387,7 +390,7 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
                     capability_request_list_params.CapabilityRequestListParams,
                 ),
             ),
-            cast_to=CapabilityRequestPaged,
+            model=Data,
         )
 
 

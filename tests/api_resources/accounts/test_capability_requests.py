@@ -9,9 +9,11 @@ import pytest
 
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
+from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from straddle.types.accounts import (
     CapabilityRequestPaged,
 )
+from straddle.types.accounts.capability_request_paged import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -89,7 +91,7 @@ class TestCapabilityRequests:
         capability_request = client.accounts.capability_requests.list(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CapabilityRequestPaged, capability_request, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], capability_request, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
@@ -105,7 +107,7 @@ class TestCapabilityRequests:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(CapabilityRequestPaged, capability_request, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], capability_request, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
@@ -116,7 +118,7 @@ class TestCapabilityRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         capability_request = response.parse()
-        assert_matches_type(CapabilityRequestPaged, capability_request, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], capability_request, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
@@ -127,7 +129,7 @@ class TestCapabilityRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             capability_request = response.parse()
-            assert_matches_type(CapabilityRequestPaged, capability_request, path=["response"])
+            assert_matches_type(SyncPageNumberSchema[Data], capability_request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -212,7 +214,7 @@ class TestAsyncCapabilityRequests:
         capability_request = await async_client.accounts.capability_requests.list(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CapabilityRequestPaged, capability_request, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], capability_request, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -228,7 +230,7 @@ class TestAsyncCapabilityRequests:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(CapabilityRequestPaged, capability_request, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], capability_request, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
@@ -239,7 +241,7 @@ class TestAsyncCapabilityRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         capability_request = await response.parse()
-        assert_matches_type(CapabilityRequestPaged, capability_request, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], capability_request, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
@@ -250,7 +252,7 @@ class TestAsyncCapabilityRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             capability_request = await response.parse()
-            assert_matches_type(CapabilityRequestPaged, capability_request, path=["response"])
+            assert_matches_type(AsyncPageNumberSchema[Data], capability_request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

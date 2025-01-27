@@ -31,10 +31,11 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncPageNumberSchema, AsyncPageNumberSchema
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.customer import Customer
 from ...types.customer_unmasked import CustomerUnmasked
-from ...types.customer_summary_paged import CustomerSummaryPaged
+from ...types.customer_summary_paged import Data
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
 
@@ -310,7 +311,7 @@ class CustomersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerSummaryPaged:
+    ) -> SyncPageNumberSchema[Data]:
         """Lists or searches customers connected to your account.
 
         All supported query
@@ -357,8 +358,9 @@ class CustomersResource(SyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return self._get(
+        return self._get_api_list(
             "/v1/customers",
+            page=SyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -382,7 +384,7 @@ class CustomersResource(SyncAPIResource):
                     customer_list_params.CustomerListParams,
                 ),
             ),
-            cast_to=CustomerSummaryPaged,
+            model=Data,
         )
 
     def delete(
@@ -733,7 +735,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             cast_to=Customer,
         )
 
-    async def list(
+    def list(
         self,
         *,
         created_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -757,7 +759,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerSummaryPaged:
+    ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """Lists or searches customers connected to your account.
 
         All supported query
@@ -804,14 +806,15 @@ class AsyncCustomersResource(AsyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        return await self._get(
+        return self._get_api_list(
             "/v1/customers",
+            page=AsyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "created_from": created_from,
                         "created_to": created_to,
@@ -829,7 +832,7 @@ class AsyncCustomersResource(AsyncAPIResource):
                     customer_list_params.CustomerListParams,
                 ),
             ),
-            cast_to=CustomerSummaryPaged,
+            model=Data,
         )
 
     async def delete(

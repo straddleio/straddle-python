@@ -9,7 +9,9 @@ import pytest
 
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
-from straddle.types import Organization, OrganizationPaged
+from straddle.types import Organization
+from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
+from straddle.types.organization_paged import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -62,7 +64,7 @@ class TestOrganizations:
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
         organization = client.organizations.list()
-        assert_matches_type(OrganizationPaged, organization, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], organization, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
@@ -76,7 +78,7 @@ class TestOrganizations:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(OrganizationPaged, organization, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], organization, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
@@ -85,7 +87,7 @@ class TestOrganizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         organization = response.parse()
-        assert_matches_type(OrganizationPaged, organization, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], organization, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
@@ -94,7 +96,7 @@ class TestOrganizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             organization = response.parse()
-            assert_matches_type(OrganizationPaged, organization, path=["response"])
+            assert_matches_type(SyncPageNumberSchema[Data], organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -147,7 +149,7 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
         organization = await async_client.organizations.list()
-        assert_matches_type(OrganizationPaged, organization, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], organization, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -161,7 +163,7 @@ class TestAsyncOrganizations:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(OrganizationPaged, organization, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], organization, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
@@ -170,7 +172,7 @@ class TestAsyncOrganizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         organization = await response.parse()
-        assert_matches_type(OrganizationPaged, organization, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], organization, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
@@ -179,6 +181,6 @@ class TestAsyncOrganizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             organization = await response.parse()
-            assert_matches_type(OrganizationPaged, organization, path=["response"])
+            assert_matches_type(AsyncPageNumberSchema[Data], organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True

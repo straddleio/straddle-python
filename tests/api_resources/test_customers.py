@@ -12,9 +12,10 @@ from tests.utils import assert_matches_type
 from straddle.types import (
     Customer,
     CustomerUnmasked,
-    CustomerSummaryPaged,
 )
 from straddle._utils import parse_date, parse_datetime
+from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
+from straddle.types.customer_summary_paged import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -229,7 +230,7 @@ class TestCustomers:
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
         customer = client.customers.list()
-        assert_matches_type(CustomerSummaryPaged, customer, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], customer, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
@@ -250,7 +251,7 @@ class TestCustomers:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerSummaryPaged, customer, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], customer, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
@@ -259,7 +260,7 @@ class TestCustomers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         customer = response.parse()
-        assert_matches_type(CustomerSummaryPaged, customer, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], customer, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
@@ -268,7 +269,7 @@ class TestCustomers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             customer = response.parse()
-            assert_matches_type(CustomerSummaryPaged, customer, path=["response"])
+            assert_matches_type(SyncPageNumberSchema[Data], customer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -579,7 +580,7 @@ class TestAsyncCustomers:
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
         customer = await async_client.customers.list()
-        assert_matches_type(CustomerSummaryPaged, customer, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], customer, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -600,7 +601,7 @@ class TestAsyncCustomers:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerSummaryPaged, customer, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], customer, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
@@ -609,7 +610,7 @@ class TestAsyncCustomers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         customer = await response.parse()
-        assert_matches_type(CustomerSummaryPaged, customer, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], customer, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
@@ -618,7 +619,7 @@ class TestAsyncCustomers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             customer = await response.parse()
-            assert_matches_type(CustomerSummaryPaged, customer, path=["response"])
+            assert_matches_type(AsyncPageNumberSchema[Data], customer, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
