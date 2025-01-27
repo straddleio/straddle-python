@@ -24,16 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import (
-    charges,
-    paykeys,
-    payouts,
-    payments,
-    organizations,
-    funding_events,
-    representatives,
-    linked_bank_accounts,
-)
+from .resources import charges, paykeys, payouts, payments, funding_events
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import StraddleError, APIStatusError
 from ._base_client import (
@@ -41,8 +32,8 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
+from .resources.embed import embed
 from .resources.bridge import bridge
-from .resources.accounts import accounts
 from .resources.customers import customers
 
 __all__ = [
@@ -64,10 +55,7 @@ ENVIRONMENTS: Dict[str, str] = {
 
 
 class Straddle(SyncAPIClient):
-    accounts: accounts.AccountsResource
-    linked_bank_accounts: linked_bank_accounts.LinkedBankAccountsResource
-    organizations: organizations.OrganizationsResource
-    representatives: representatives.RepresentativesResource
+    embed: embed.EmbedResource
     bridge: bridge.BridgeResource
     customers: customers.CustomersResource
     paykeys: paykeys.PaykeysResource
@@ -156,10 +144,7 @@ class Straddle(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.accounts = accounts.AccountsResource(self)
-        self.linked_bank_accounts = linked_bank_accounts.LinkedBankAccountsResource(self)
-        self.organizations = organizations.OrganizationsResource(self)
-        self.representatives = representatives.RepresentativesResource(self)
+        self.embed = embed.EmbedResource(self)
         self.bridge = bridge.BridgeResource(self)
         self.customers = customers.CustomersResource(self)
         self.paykeys = paykeys.PaykeysResource(self)
@@ -278,10 +263,7 @@ class Straddle(SyncAPIClient):
 
 
 class AsyncStraddle(AsyncAPIClient):
-    accounts: accounts.AsyncAccountsResource
-    linked_bank_accounts: linked_bank_accounts.AsyncLinkedBankAccountsResource
-    organizations: organizations.AsyncOrganizationsResource
-    representatives: representatives.AsyncRepresentativesResource
+    embed: embed.AsyncEmbedResource
     bridge: bridge.AsyncBridgeResource
     customers: customers.AsyncCustomersResource
     paykeys: paykeys.AsyncPaykeysResource
@@ -370,10 +352,7 @@ class AsyncStraddle(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.accounts = accounts.AsyncAccountsResource(self)
-        self.linked_bank_accounts = linked_bank_accounts.AsyncLinkedBankAccountsResource(self)
-        self.organizations = organizations.AsyncOrganizationsResource(self)
-        self.representatives = representatives.AsyncRepresentativesResource(self)
+        self.embed = embed.AsyncEmbedResource(self)
         self.bridge = bridge.AsyncBridgeResource(self)
         self.customers = customers.AsyncCustomersResource(self)
         self.paykeys = paykeys.AsyncPaykeysResource(self)
@@ -493,12 +472,7 @@ class AsyncStraddle(AsyncAPIClient):
 
 class StraddleWithRawResponse:
     def __init__(self, client: Straddle) -> None:
-        self.accounts = accounts.AccountsResourceWithRawResponse(client.accounts)
-        self.linked_bank_accounts = linked_bank_accounts.LinkedBankAccountsResourceWithRawResponse(
-            client.linked_bank_accounts
-        )
-        self.organizations = organizations.OrganizationsResourceWithRawResponse(client.organizations)
-        self.representatives = representatives.RepresentativesResourceWithRawResponse(client.representatives)
+        self.embed = embed.EmbedResourceWithRawResponse(client.embed)
         self.bridge = bridge.BridgeResourceWithRawResponse(client.bridge)
         self.customers = customers.CustomersResourceWithRawResponse(client.customers)
         self.paykeys = paykeys.PaykeysResourceWithRawResponse(client.paykeys)
@@ -510,12 +484,7 @@ class StraddleWithRawResponse:
 
 class AsyncStraddleWithRawResponse:
     def __init__(self, client: AsyncStraddle) -> None:
-        self.accounts = accounts.AsyncAccountsResourceWithRawResponse(client.accounts)
-        self.linked_bank_accounts = linked_bank_accounts.AsyncLinkedBankAccountsResourceWithRawResponse(
-            client.linked_bank_accounts
-        )
-        self.organizations = organizations.AsyncOrganizationsResourceWithRawResponse(client.organizations)
-        self.representatives = representatives.AsyncRepresentativesResourceWithRawResponse(client.representatives)
+        self.embed = embed.AsyncEmbedResourceWithRawResponse(client.embed)
         self.bridge = bridge.AsyncBridgeResourceWithRawResponse(client.bridge)
         self.customers = customers.AsyncCustomersResourceWithRawResponse(client.customers)
         self.paykeys = paykeys.AsyncPaykeysResourceWithRawResponse(client.paykeys)
@@ -527,12 +496,7 @@ class AsyncStraddleWithRawResponse:
 
 class StraddleWithStreamedResponse:
     def __init__(self, client: Straddle) -> None:
-        self.accounts = accounts.AccountsResourceWithStreamingResponse(client.accounts)
-        self.linked_bank_accounts = linked_bank_accounts.LinkedBankAccountsResourceWithStreamingResponse(
-            client.linked_bank_accounts
-        )
-        self.organizations = organizations.OrganizationsResourceWithStreamingResponse(client.organizations)
-        self.representatives = representatives.RepresentativesResourceWithStreamingResponse(client.representatives)
+        self.embed = embed.EmbedResourceWithStreamingResponse(client.embed)
         self.bridge = bridge.BridgeResourceWithStreamingResponse(client.bridge)
         self.customers = customers.CustomersResourceWithStreamingResponse(client.customers)
         self.paykeys = paykeys.PaykeysResourceWithStreamingResponse(client.paykeys)
@@ -544,12 +508,7 @@ class StraddleWithStreamedResponse:
 
 class AsyncStraddleWithStreamedResponse:
     def __init__(self, client: AsyncStraddle) -> None:
-        self.accounts = accounts.AsyncAccountsResourceWithStreamingResponse(client.accounts)
-        self.linked_bank_accounts = linked_bank_accounts.AsyncLinkedBankAccountsResourceWithStreamingResponse(
-            client.linked_bank_accounts
-        )
-        self.organizations = organizations.AsyncOrganizationsResourceWithStreamingResponse(client.organizations)
-        self.representatives = representatives.AsyncRepresentativesResourceWithStreamingResponse(client.representatives)
+        self.embed = embed.AsyncEmbedResourceWithStreamingResponse(client.embed)
         self.bridge = bridge.AsyncBridgeResourceWithStreamingResponse(client.bridge)
         self.customers = customers.AsyncCustomersResourceWithStreamingResponse(client.customers)
         self.paykeys = paykeys.AsyncPaykeysResourceWithStreamingResponse(client.paykeys)
