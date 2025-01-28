@@ -27,7 +27,6 @@ from .payout_release_params import PayoutReleaseParams as PayoutReleaseParams
 from .customer_create_params import CustomerCreateParams as CustomerCreateParams
 from .customer_summary_paged import CustomerSummaryPaged as CustomerSummaryPaged
 from .customer_update_params import CustomerUpdateParams as CustomerUpdateParams
-from .paykey_reveal_response import PaykeyRevealResponse as PaykeyRevealResponse
 from .bridge_initialize_params import BridgeInitializeParams as BridgeInitializeParams
 from .funding_event_list_params import FundingEventListParams as FundingEventListParams
 from .funding_event_summary_item import FundingEventSummaryItem as FundingEventSummaryItem
