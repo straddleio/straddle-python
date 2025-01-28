@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["PaykeySummaryPaged", "Data", "DataBankData", "DataStatusDetails", "Meta"]
+__all__ = ["LinkPlaidResponse", "Data", "DataBankData", "DataStatusDetails", "Meta"]
 
 
 class DataBankData(BaseModel):
@@ -74,6 +74,13 @@ class Data(BaseModel):
     institution_name: Optional[str] = None
     """Name of the financial institution."""
 
+    metadata: Optional[Dict[str, str]] = None
+    """Up to 20 additional user-defined key-value pairs.
+
+    Useful for storing additional information about the paykey in a structured
+    format.
+    """
+
     status_details: Optional[DataStatusDetails] = None
 
 
@@ -84,28 +91,9 @@ class Meta(BaseModel):
     api_request_timestamp: datetime
     """Timestamp for this API request, useful for troubleshooting."""
 
-    max_page_size: int
-    """Maximum allowed page size for this endpoint."""
 
-    page_number: int
-    """Page number for paginated results."""
-
-    page_size: int
-    """Number of items per page in this response."""
-
-    sort_by: str
-    """The field that the results were sorted by."""
-
-    sort_order: Literal["asc", "desc"]
-
-    total_items: int
-
-    total_pages: int
-    """The number of pages available."""
-
-
-class PaykeySummaryPaged(BaseModel):
-    data: List[Data]
+class LinkPlaidResponse(BaseModel):
+    data: Data
 
     meta: Meta
 

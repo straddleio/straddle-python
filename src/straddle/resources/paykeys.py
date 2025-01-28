@@ -66,17 +66,17 @@ class PaykeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPageNumberSchema[Data]:
-        """Returns a list of paykeys associated with a Straddle account.
+        """Searches or lists paykeys using various filters and criteria.
 
         This endpoint
-        supports advanced sorting and filtering options.
+        supports pagination and sorting options.
 
         Args:
           customer_id: Filter paykeys by related customer ID.
 
-          page_number: Page number for paginated results. Starts at 1.
+          page_number: Page number for paginated results. Starts at 1. Default: 1.
 
-          page_size: Number of results per page. Maximum: 1000.
+          page_size: Number of results per page. Default: 100. Maximum: 1000.
 
           status: Filter paykeys by their current status.
 
@@ -135,11 +135,11 @@ class PaykeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Paykey:
-        """Retrieves the details of an existing paykey.
+        """Retrieves the details of a paykey that has previously been created.
 
-        Supply the unique paykey `id` and
-        Straddle will return the corresponding paykey record , including the `paykey`
-        token value and masked bank account details.
+        Supply the
+        unique paykey ID that was returned from your previous request, and Straddle will
+        return the corresponding paykey information.
 
         Args:
           extra_headers: Send extra headers
@@ -184,12 +184,11 @@ class PaykeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaykeyUnmasked:
-        """Retrieves the unmasked details of an existing paykey.
-
-        Supply the unique paykey
-        `id` and Straddle will return the corresponding paykey record, including the
-        unmasked bank account details. This endpoint needs to be enabled by Straddle for
-        your account and should only be used when absolutely necessary.
+        """
+        Retrieves the details of a paykey that has previously been created, including
+        unmasked bank account fields. Supply the unique paykey ID that was returned from
+        your previous request, and Straddle will return the corresponding paykey
+        information.
 
         Args:
           extra_headers: Send extra headers
@@ -260,17 +259,17 @@ class AsyncPaykeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
-        """Returns a list of paykeys associated with a Straddle account.
+        """Searches or lists paykeys using various filters and criteria.
 
         This endpoint
-        supports advanced sorting and filtering options.
+        supports pagination and sorting options.
 
         Args:
           customer_id: Filter paykeys by related customer ID.
 
-          page_number: Page number for paginated results. Starts at 1.
+          page_number: Page number for paginated results. Starts at 1. Default: 1.
 
-          page_size: Number of results per page. Maximum: 1000.
+          page_size: Number of results per page. Default: 100. Maximum: 1000.
 
           status: Filter paykeys by their current status.
 
@@ -329,11 +328,11 @@ class AsyncPaykeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Paykey:
-        """Retrieves the details of an existing paykey.
+        """Retrieves the details of a paykey that has previously been created.
 
-        Supply the unique paykey `id` and
-        Straddle will return the corresponding paykey record , including the `paykey`
-        token value and masked bank account details.
+        Supply the
+        unique paykey ID that was returned from your previous request, and Straddle will
+        return the corresponding paykey information.
 
         Args:
           extra_headers: Send extra headers
@@ -378,12 +377,11 @@ class AsyncPaykeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PaykeyUnmasked:
-        """Retrieves the unmasked details of an existing paykey.
-
-        Supply the unique paykey
-        `id` and Straddle will return the corresponding paykey record, including the
-        unmasked bank account details. This endpoint needs to be enabled by Straddle for
-        your account and should only be used when absolutely necessary.
+        """
+        Retrieves the details of a paykey that has previously been created, including
+        unmasked bank account fields. Supply the unique paykey ID that was returned from
+        your previous request, and Straddle will return the corresponding paykey
+        information.
 
         Args:
           extra_headers: Send extra headers

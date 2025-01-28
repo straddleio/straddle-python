@@ -89,8 +89,7 @@ class BusinessProfile(TypedDict, total=False):
     website: Required[str]
     """URL of the business's primary marketing website."""
 
-    address: Optional[BusinessProfileAddress]
-    """The address object is optional. If provided, it must be a valid address."""
+    address: BusinessProfileAddress
 
     description: Optional[str]
     """A brief description of the business and its products or services."""

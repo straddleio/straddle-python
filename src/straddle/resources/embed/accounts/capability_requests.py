@@ -67,26 +67,12 @@ class CapabilityRequestsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CapabilityRequestPaged:
-        """Submits a request to enable a specific capability for an account.
+        """Submits a new request to enable a specific capability for an account.
 
         Use this
         endpoint to request additional features or services for an account.
 
         Args:
-          businesses: Allows the account to accept payments from businesses.
-
-          charges: The charges capability settings for the account.
-
-          individuals: Allows the account to accept payments from individuals.
-
-          internet: Allows the account to accept payments authorized via the internet or mobile
-              applications.
-
-          payouts: The payouts capability settings for the account.
-
-          signed_agreement: Allows the account to accept payments authorized by signed agreements or
-              contracts.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -129,12 +115,12 @@ class CapabilityRequestsResource(SyncAPIResource):
         self,
         account_id: str,
         *,
+        page_number: int,
+        page_size: int,
+        sort_by: str,
+        sort_order: Literal["asc", "desc"],
         category: Literal["payment_type", "customer_type", "consent_type"] | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: Literal["active", "inactive", "in_review", "rejected"] | NotGiven = NOT_GIVEN,
+        status: Literal["approved", "rejected", "reviewing"] | NotGiven = NOT_GIVEN,
         type: Literal["charges", "payouts", "individuals", "businesses", "signed_agreement", "internet"]
         | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -150,22 +136,28 @@ class CapabilityRequestsResource(SyncAPIResource):
 
         The requests
         are returned sorted by creation date, with the most recent requests appearing
-        first. This endpoint supports advanced sorting and filtering options.
+        first. This endpoint supports filtering options to help you track the status of
+        various capability requests.
 
         Args:
-          category: Filter capability requests by category.
+          page_number: Results page number. Starts at page 1. Default value: 1
 
-          page_number: Results page number. Starts at page 1.
+          page_size: Page size. Default value: 100. Max value: 1000
 
-          page_size: Page size.Max value: 1000
+          sort_by: Sort By. Default value: 'id'.
 
-          sort_by: Sort By.
+          sort_order: Sort Order. Default value: 'asc'.
 
-          sort_order: Sort Order.
+          category: Filter capability requests by category. Possible values: 'payment_type',
+              'customer_type', 'consent_type'.
 
-          status: Filter capability requests by their current status.
+          status: Filter capability requests by their current status. Possible values: 'active',
+              'inactive', 'in_review', 'rejected'.
 
-          type: Filter capability requests by the specific type of capability.
+          type:
+              Filter capability requests by the specific type of capability. Possible values:
+              'charges', 'payouts', 'individuals', 'businesses', 'signed_agreement',
+              'internet'.
 
           extra_headers: Send extra headers
 
@@ -196,11 +188,11 @@ class CapabilityRequestsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "category": category,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "category": category,
                         "status": status,
                         "type": type,
                     },
@@ -250,26 +242,12 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CapabilityRequestPaged:
-        """Submits a request to enable a specific capability for an account.
+        """Submits a new request to enable a specific capability for an account.
 
         Use this
         endpoint to request additional features or services for an account.
 
         Args:
-          businesses: Allows the account to accept payments from businesses.
-
-          charges: The charges capability settings for the account.
-
-          individuals: Allows the account to accept payments from individuals.
-
-          internet: Allows the account to accept payments authorized via the internet or mobile
-              applications.
-
-          payouts: The payouts capability settings for the account.
-
-          signed_agreement: Allows the account to accept payments authorized by signed agreements or
-              contracts.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -312,12 +290,12 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
         self,
         account_id: str,
         *,
+        page_number: int,
+        page_size: int,
+        sort_by: str,
+        sort_order: Literal["asc", "desc"],
         category: Literal["payment_type", "customer_type", "consent_type"] | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: Literal["active", "inactive", "in_review", "rejected"] | NotGiven = NOT_GIVEN,
+        status: Literal["approved", "rejected", "reviewing"] | NotGiven = NOT_GIVEN,
         type: Literal["charges", "payouts", "individuals", "businesses", "signed_agreement", "internet"]
         | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -333,22 +311,28 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
 
         The requests
         are returned sorted by creation date, with the most recent requests appearing
-        first. This endpoint supports advanced sorting and filtering options.
+        first. This endpoint supports filtering options to help you track the status of
+        various capability requests.
 
         Args:
-          category: Filter capability requests by category.
+          page_number: Results page number. Starts at page 1. Default value: 1
 
-          page_number: Results page number. Starts at page 1.
+          page_size: Page size. Default value: 100. Max value: 1000
 
-          page_size: Page size.Max value: 1000
+          sort_by: Sort By. Default value: 'id'.
 
-          sort_by: Sort By.
+          sort_order: Sort Order. Default value: 'asc'.
 
-          sort_order: Sort Order.
+          category: Filter capability requests by category. Possible values: 'payment_type',
+              'customer_type', 'consent_type'.
 
-          status: Filter capability requests by their current status.
+          status: Filter capability requests by their current status. Possible values: 'active',
+              'inactive', 'in_review', 'rejected'.
 
-          type: Filter capability requests by the specific type of capability.
+          type:
+              Filter capability requests by the specific type of capability. Possible values:
+              'charges', 'payouts', 'individuals', 'businesses', 'signed_agreement',
+              'internet'.
 
           extra_headers: Send extra headers
 
@@ -379,11 +363,11 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "category": category,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "category": category,
                         "status": status,
                         "type": type,
                     },

@@ -70,29 +70,17 @@ class FundingEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPageNumberSchema[Data]:
-        """Retrieves a list of funding events for your account.
-
-        This endpoint supports
-        advanced sorting and filtering options.
+        """
+        Search funding events.
 
         Args:
-          created_from: The start date of the range to filter by using the `YYYY-MM-DD` format.
+          created_from: Created from.
 
-          created_to: The end date of the range to filter by using the `YYYY-MM-DD` format.
+          created_to: Created to.
 
-          direction: Describes the direction of the funding event from the perspective of the
-              `linked_bank_account`.
+          page_number: Results page number. Starts at page 1. Default value: 1
 
-          event_type: The funding event types describes the direction and reason for the funding
-              event.
-
-          page_number: Results page number. Starts at page 1.
-
-          page_size: Results page size. Max value: 1000
-
-          sort_by: The field to sort the results by.
-
-          sort_order: The order in which to sort the results.
+          page_size: Results page size. Default value: 100. Max value: 1000
 
           trace_number: Trace number.
 
@@ -154,11 +142,8 @@ class FundingEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> FundingEventSummaryItem:
-        """Retrieves the details of an existing funding event.
-
-        Supply the unique funding
-        event `id`, and Straddle will return the individual transaction items that make
-        up the funding event.
+        """
+        Get a funding event by id.
 
         Args:
           extra_headers: Send extra headers
@@ -233,29 +218,17 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
-        """Retrieves a list of funding events for your account.
-
-        This endpoint supports
-        advanced sorting and filtering options.
+        """
+        Search funding events.
 
         Args:
-          created_from: The start date of the range to filter by using the `YYYY-MM-DD` format.
+          created_from: Created from.
 
-          created_to: The end date of the range to filter by using the `YYYY-MM-DD` format.
+          created_to: Created to.
 
-          direction: Describes the direction of the funding event from the perspective of the
-              `linked_bank_account`.
+          page_number: Results page number. Starts at page 1. Default value: 1
 
-          event_type: The funding event types describes the direction and reason for the funding
-              event.
-
-          page_number: Results page number. Starts at page 1.
-
-          page_size: Results page size. Max value: 1000
-
-          sort_by: The field to sort the results by.
-
-          sort_order: The order in which to sort the results.
+          page_size: Results page size. Default value: 100. Max value: 1000
 
           trace_number: Trace number.
 
@@ -317,11 +290,8 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> FundingEventSummaryItem:
-        """Retrieves the details of an existing funding event.
-
-        Supply the unique funding
-        event `id`, and Straddle will return the individual transaction items that make
-        up the funding event.
+        """
+        Get a funding event by id.
 
         Args:
           extra_headers: Send extra headers

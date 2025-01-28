@@ -72,7 +72,7 @@ class CustomersResource(SyncAPIResource):
         name: str,
         phone: str,
         type: Literal["individual", "business"],
-        address: Optional[customer_create_params.Address] | NotGiven = NOT_GIVEN,
+        address: customer_create_params.Address | NotGiven = NOT_GIVEN,
         compliance_profile: customer_create_params.ComplianceProfile | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
@@ -86,10 +86,10 @@ class CustomersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Customer:
-        """
-        Creates a new customer record and automatically initiates identity, fraud, and
-        risk assessment scores. This endpoint allows you to create a customer profile
-        and associate it with paykeys and payments.
+        """Creates a new customer record in Straddle.
+
+        This endpoint allows you to create a
+        customer profile and associate it with payments and paykeys.
 
         Args:
           email: The customer's email address.
@@ -97,12 +97,6 @@ class CustomersResource(SyncAPIResource):
           name: Full name of the individual or business name.
 
           phone: The customer's phone number in E.164 format. Mobile number is preferred.
-
-          address: An object containing the customer's address. This is optional, but if provided,
-              all required fields must be present.
-
-          compliance_profile: An object containing the customer's compliance profile. This is optional, but if
-              provided, all required fields must be present for the appropriate customer type.
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
@@ -158,8 +152,8 @@ class CustomersResource(SyncAPIResource):
         email: str,
         name: str,
         phone: str,
-        status: Literal["pending", "review", "verified", "inactive", "rejected"],
-        address: Optional[customer_update_params.Address] | NotGiven = NOT_GIVEN,
+        status: Literal["verified", "inactive", "rejected"],
+        address: customer_update_params.Address | NotGiven = NOT_GIVEN,
         compliance_profile: customer_update_params.ComplianceProfile | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
@@ -184,11 +178,6 @@ class CustomersResource(SyncAPIResource):
           name: The customer's full name or business name.
 
           phone: The customer's phone number in E.164 format.
-
-          address: An object containing the customer's address. This is optional, but if provided,
-              all required fields must be present.
-
-          compliance_profile: Compliance profile for individual customers
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
@@ -267,29 +256,29 @@ class CustomersResource(SyncAPIResource):
 
         All supported query
         parameters are optional. If none are provided, the response will include all
-        customers connected to your account. This endpoint supports advanced sorting and
-        filtering options.
+        customers connected to your account. This endpoint supports pagination and
+        sorting options.
 
         Args:
-          created_from: Start date for filtering by `created_at` date.
+          created_from: Start date for filtering by creation date.
 
-          created_to: End date for filtering by `created_at` date.
+          created_to: End date for filtering by creation date.
 
-          email: Filter customers by `email` address.
+          email: Filter customers by email address.
 
-          external_id: Filter by your system's `external_id`.
+          external_id: Filter by your system's customer identifier.
 
-          name: Filter customers by `name` (partial match).
+          name: Filter customers by name (partial match).
 
-          page_number: Page number for paginated results. Starts at 1.
+          page_number: Page number for paginated results. Starts at 1. Default: 1.
 
-          page_size: Number of results per page. Maximum: 1000.
+          page_size: Number of results per page. Default: 100. Maximum: 1000.
 
           search_text: General search term to filter customers.
 
-          status: Filter customers by their current `status`.
+          status: Filter customers by their current status.
 
-          types: Filter by customer type `individual` or `business`.
+          types: Filter by customer type ('individual' or 'business').
 
           extra_headers: Send extra headers
 
@@ -352,7 +341,7 @@ class CustomersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Customer:
-        """Permanently removes a customer record from Straddle.
+        """Permanently removes a customer record from the system.
 
         This action cannot be
         undone and should only be used to satisfy regulatory requirements or for privacy
@@ -401,11 +390,11 @@ class CustomersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Customer:
-        """Retrieves the details of an existing customer.
+        """Retrieves the details of a customer that has previously been created.
 
-        Supply the unique customer ID
-        that was returned from your 'create customer' request, and Straddle will return
-        the corresponding customer information.
+        Supply the
+        unique customer ID that was returned from your 'create customer' request, and
+        Straddle will return the corresponding customer information.
 
         Args:
           extra_headers: Send extra headers
@@ -450,13 +439,12 @@ class CustomersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CustomerUnmasked:
-        """Retrieves the unmasked details, including PII, of an existing customer.
-
-        Supply
-        the unique customer ID that was returned from your 'create customer' request,
-        and Straddle will return the corresponding customer information. This endpoint
-        needs to be enabled by Straddle and should only be used when absolutely
-        necessary.
+        """
+        Retrieves the unmasked details, including PII, of a customer that has previously
+        been created. Supply the unique customer ID that was returned from your 'create
+        customer' request, and Straddle will return the corresponding customer
+        information. This endpoint needs to be enabled by Straddle for your account and
+        should only be used when absolutely necessary.
 
         Args:
           extra_headers: Send extra headers
@@ -520,7 +508,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         name: str,
         phone: str,
         type: Literal["individual", "business"],
-        address: Optional[customer_create_params.Address] | NotGiven = NOT_GIVEN,
+        address: customer_create_params.Address | NotGiven = NOT_GIVEN,
         compliance_profile: customer_create_params.ComplianceProfile | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
@@ -534,10 +522,10 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Customer:
-        """
-        Creates a new customer record and automatically initiates identity, fraud, and
-        risk assessment scores. This endpoint allows you to create a customer profile
-        and associate it with paykeys and payments.
+        """Creates a new customer record in Straddle.
+
+        This endpoint allows you to create a
+        customer profile and associate it with payments and paykeys.
 
         Args:
           email: The customer's email address.
@@ -545,12 +533,6 @@ class AsyncCustomersResource(AsyncAPIResource):
           name: Full name of the individual or business name.
 
           phone: The customer's phone number in E.164 format. Mobile number is preferred.
-
-          address: An object containing the customer's address. This is optional, but if provided,
-              all required fields must be present.
-
-          compliance_profile: An object containing the customer's compliance profile. This is optional, but if
-              provided, all required fields must be present for the appropriate customer type.
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
@@ -606,8 +588,8 @@ class AsyncCustomersResource(AsyncAPIResource):
         email: str,
         name: str,
         phone: str,
-        status: Literal["pending", "review", "verified", "inactive", "rejected"],
-        address: Optional[customer_update_params.Address] | NotGiven = NOT_GIVEN,
+        status: Literal["verified", "inactive", "rejected"],
+        address: customer_update_params.Address | NotGiven = NOT_GIVEN,
         compliance_profile: customer_update_params.ComplianceProfile | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
@@ -632,11 +614,6 @@ class AsyncCustomersResource(AsyncAPIResource):
           name: The customer's full name or business name.
 
           phone: The customer's phone number in E.164 format.
-
-          address: An object containing the customer's address. This is optional, but if provided,
-              all required fields must be present.
-
-          compliance_profile: Compliance profile for individual customers
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
@@ -715,29 +692,29 @@ class AsyncCustomersResource(AsyncAPIResource):
 
         All supported query
         parameters are optional. If none are provided, the response will include all
-        customers connected to your account. This endpoint supports advanced sorting and
-        filtering options.
+        customers connected to your account. This endpoint supports pagination and
+        sorting options.
 
         Args:
-          created_from: Start date for filtering by `created_at` date.
+          created_from: Start date for filtering by creation date.
 
-          created_to: End date for filtering by `created_at` date.
+          created_to: End date for filtering by creation date.
 
-          email: Filter customers by `email` address.
+          email: Filter customers by email address.
 
-          external_id: Filter by your system's `external_id`.
+          external_id: Filter by your system's customer identifier.
 
-          name: Filter customers by `name` (partial match).
+          name: Filter customers by name (partial match).
 
-          page_number: Page number for paginated results. Starts at 1.
+          page_number: Page number for paginated results. Starts at 1. Default: 1.
 
-          page_size: Number of results per page. Maximum: 1000.
+          page_size: Number of results per page. Default: 100. Maximum: 1000.
 
           search_text: General search term to filter customers.
 
-          status: Filter customers by their current `status`.
+          status: Filter customers by their current status.
 
-          types: Filter by customer type `individual` or `business`.
+          types: Filter by customer type ('individual' or 'business').
 
           extra_headers: Send extra headers
 
@@ -800,7 +777,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Customer:
-        """Permanently removes a customer record from Straddle.
+        """Permanently removes a customer record from the system.
 
         This action cannot be
         undone and should only be used to satisfy regulatory requirements or for privacy
@@ -849,11 +826,11 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Customer:
-        """Retrieves the details of an existing customer.
+        """Retrieves the details of a customer that has previously been created.
 
-        Supply the unique customer ID
-        that was returned from your 'create customer' request, and Straddle will return
-        the corresponding customer information.
+        Supply the
+        unique customer ID that was returned from your 'create customer' request, and
+        Straddle will return the corresponding customer information.
 
         Args:
           extra_headers: Send extra headers
@@ -898,13 +875,12 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CustomerUnmasked:
-        """Retrieves the unmasked details, including PII, of an existing customer.
-
-        Supply
-        the unique customer ID that was returned from your 'create customer' request,
-        and Straddle will return the corresponding customer information. This endpoint
-        needs to be enabled by Straddle and should only be used when absolutely
-        necessary.
+        """
+        Retrieves the unmasked details, including PII, of a customer that has previously
+        been created. Supply the unique customer ID that was returned from your 'create
+        customer' request, and Straddle will return the corresponding customer
+        information. This endpoint needs to be enabled by Straddle for your account and
+        should only be used when absolutely necessary.
 
         Args:
           extra_headers: Send extra headers

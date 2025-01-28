@@ -24,11 +24,7 @@ class TermsOfService(TypedDict, total=False):
     """The datetime of when the terms of service were accepted, in ISO 8601 format."""
 
     agreement_type: Required[Literal["embedded", "direct"]]
-    """The type or version of the agreement accepted.
-
-    Use `embedded` unless your platform was specifically enabled for `direct`
-    agreements.
-    """
+    """The type or version of the agreement accepted. Possible values: 'embedded'."""
 
     accepted_ip: Optional[str]
     """The IP address from which the terms of service were accepted."""

@@ -11,10 +11,7 @@ __all__ = ["BridgeInitializeParams"]
 
 class BridgeInitializeParams(TypedDict, total=False):
     customer_id: Required[str]
-    """
-    The Straddle generated unique identifier of the `customer` to create a bridge
-    token for.
-    """
+    """Customer Id to create token for."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 
