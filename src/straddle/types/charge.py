@@ -21,11 +21,15 @@ __all__ = [
 
 class DataConfig(BaseModel):
     balance_check: Literal["required", "enabled", "disabled"]
+    """Defines whether to check the customer's balance before processing the charge."""
 
 
 class DataDevice(BaseModel):
     ip_address: str
-    """Ip address."""
+    """
+    The IP address of the device used when the customer authorized the charge or
+    payout. Use `0.0.0.0` to represent an offline consent interaction.
+    """
 
 
 class DataStatusDetails(BaseModel):
@@ -33,7 +37,7 @@ class DataStatusDetails(BaseModel):
     """The time the status change occurred."""
 
     message: str
-    """A human-readable description of the status."""
+    """A human-readable description of the current status."""
 
     reason: Literal[
         "insufficient_funds",
@@ -57,11 +61,16 @@ class DataStatusDetails(BaseModel):
         "other_network_return",
         "payout_refused",
     ]
+    """
+    A machine-readable identifier for the specific status, useful for programmatic
+    handling.
+    """
 
     source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
+    """Identifies the origin of the status change (e.g., `bank_decline`, `watchtower`).
 
-    code: Optional[str] = None
-    """The status code if applicable."""
+    This helps in tracking the cause of status updates.
+    """
 
 
 class DataStatusHistory(BaseModel):
@@ -93,10 +102,19 @@ class DataStatusHistory(BaseModel):
         "other_network_return",
         "payout_refused",
     ]
+    """
+    A machine-readable identifier for the specific status, useful for programmatic
+    handling.
+    """
 
     source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
+    """Identifies the origin of the status change (e.g., `bank_decline`, `watchtower`).
+
+    This helps in tracking the cause of status updates.
+    """
 
     status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+    """The current status of the `charge` or `payout`."""
 
     code: Optional[str] = None
     """The status code if applicable."""
@@ -104,89 +122,115 @@ class DataStatusHistory(BaseModel):
 
 class DataCustomerDetails(BaseModel):
     id: str
-    """Id."""
+    """Unique identifier for the customer."""
 
-    customer_type: Literal["unknown", "individual", "business"]
-
-    email: str
-    """Email."""
+    customer_type: Literal["individual", "business"]
+    """The type of customer."""
 
     name: str
-    """Name."""
-
-    phone: str
-    """Phone."""
+    """The name of the customer."""
 
 
 class DataPaykeyDetails(BaseModel):
     id: str
-    """Id."""
+    """Unique identifier for the paykey."""
 
     customer_id: str
-    """Customer id."""
+    """Unique identifier for the customer associated with the paykey."""
 
     label: str
-    """Label."""
+    """Human-readable label used to represent this paykey in a UI."""
 
     balance: Optional[int] = None
-    """Balance."""
+    """
+    The most recent balance of the bank account associated with the paykey in
+    dollars.
+    """
 
 
 class Data(BaseModel):
     id: str
-    """Id."""
+    """Unique identifier for the charge."""
 
     amount: int
-    """Amount."""
+    """The amount of the charge in cents."""
 
     config: DataConfig
+    """Configuration options for the charge."""
 
     consent_type: Literal["internet", "signed"]
+    """The channel or mechanism through which the payment was authorized.
 
-    created_at: datetime
-    """Created at."""
+    Use `internet` for payments made online or through a mobile app and `signed` for
+    signed agreements where there is a consent form or contract. Use `signed` for
+    PDF signatures.
+    """
 
     currency: str
-    """Currency."""
+    """The currency of the charge. Only USD is supported."""
 
     description: str
-    """Description."""
+    """An arbitrary description for the charge."""
 
     device: DataDevice
+    """Information about the device used when the customer authorized the payment."""
 
     external_id: str
-    """External id."""
+    """Unique identifier for the charge in your database.
+
+    This value must be unique across all charges.
+    """
 
     paykey: str
-    """Paykey."""
+    """Value of the `paykey` used for the charge."""
 
     payment_date: date
-    """Payment date."""
+    """The desired date on which the payment should be occur.
+
+    For charges, this means the date you want the customer to be debited on.
+    """
 
     status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+    """The current status of the charge."""
 
     status_details: DataStatusDetails
+    """Additional details about the current status of the charge."""
 
     status_history: List[DataStatusHistory]
-    """Status history."""
 
-    updated_at: datetime
-    """Updated at."""
+    created_at: Optional[datetime] = None
+    """Timestamp of when the charge was created."""
 
     customer_details: Optional[DataCustomerDetails] = None
+    """Information about the customer associated with the charge."""
 
     effective_at: Optional[datetime] = None
-    """Effective at."""
+    """
+    Timestamp of when the charge was effective in the customer's bank account,
+    otherwise known as the date on which the customer is debited.
+    """
 
     metadata: Optional[Dict[str, str]] = None
-    """Metadata."""
+    """Up to 20 additional user-defined key-value pairs.
+
+    Useful for storing additional information about the charge in a structured
+    format.
+    """
 
     paykey_details: Optional[DataPaykeyDetails] = None
+    """Information about the paykey used for the charge."""
 
     payment_rail: Optional[Literal["ach"]] = None
+    """The payment rail that the charge will be processed through."""
 
     processed_at: Optional[datetime] = None
-    """Processed at."""
+    """
+    Timestamp of when the charge was processed by Straddle and originated to the
+    payment rail.
+    """
+
+    updated_at: Optional[datetime] = None
+    """Timestamp of when the charge was last updated."""
 
 
 class Meta(BaseModel):
@@ -201,5 +245,14 @@ class Charge(BaseModel):
     data: Data
 
     meta: Meta
+    """Metadata about the API request, including an identifier and timestamp."""
 
     response_type: Literal["object", "array", "error", "none"]
+    """Indicates the structure of the returned content.
+
+    - "object" means the `data` field contains a single JSON object.
+    - "array" means the `data` field contains an array of objects.
+    - "error" means the `data` field contains an error object with details of the
+      issue.
+    - "none" means no data is returned.
+    """

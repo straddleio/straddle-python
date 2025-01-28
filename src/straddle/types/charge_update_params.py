@@ -13,16 +13,23 @@ __all__ = ["ChargeUpdateParams"]
 
 class ChargeUpdateParams(TypedDict, total=False):
     amount: Required[int]
-    """Amount."""
+    """The amount of the charge in cents."""
 
     description: Required[str]
-    """Description."""
+    """An arbitrary description for the charge."""
 
     payment_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
-    """Payment date."""
+    """The desired date on which the payment should be occur.
+
+    For charges, this means the date you want the customer to be debited on.
+    """
 
     metadata: Optional[Dict[str, str]]
-    """Metadata."""
+    """Up to 20 additional user-defined key-value pairs.
+
+    Useful for storing additional information about the charge in a structured
+    format.
+    """
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 

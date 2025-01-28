@@ -88,16 +88,10 @@ Methods:
 
 ## Link
 
-Types:
-
-```python
-from straddle.types.bridge import LinkBankAccountResponse, LinkPlaidResponse
-```
-
 Methods:
 
-- <code title="post /v1/bridge/bank_account">client.bridge.link.<a href="./src/straddle/resources/bridge/link.py">bank_account</a>(\*\*<a href="src/straddle/types/bridge/link_bank_account_params.py">params</a>) -> <a href="./src/straddle/types/bridge/link_bank_account_response.py">LinkBankAccountResponse</a></code>
-- <code title="post /v1/bridge/plaid">client.bridge.link.<a href="./src/straddle/resources/bridge/link.py">plaid</a>(\*\*<a href="src/straddle/types/bridge/link_plaid_params.py">params</a>) -> <a href="./src/straddle/types/bridge/link_plaid_response.py">LinkPlaidResponse</a></code>
+- <code title="post /v1/bridge/bank_account">client.bridge.link.<a href="./src/straddle/resources/bridge/link.py">bank_account</a>(\*\*<a href="src/straddle/types/bridge/link_bank_account_params.py">params</a>) -> <a href="./src/straddle/types/paykey.py">Paykey</a></code>
+- <code title="post /v1/bridge/plaid">client.bridge.link.<a href="./src/straddle/resources/bridge/link.py">plaid</a>(\*\*<a href="src/straddle/types/bridge/link_plaid_params.py">params</a>) -> <a href="./src/straddle/types/paykey.py">Paykey</a></code>
 
 # Customers
 

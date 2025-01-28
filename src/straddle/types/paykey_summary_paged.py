@@ -20,7 +20,7 @@ class DataBankData(BaseModel):
     account_type: Literal["checking", "savings"]
 
     routing_number: str
-    """Bank routing number."""
+    """The routing number of the bank account."""
 
 
 class DataStatusDetails(BaseModel):
@@ -34,7 +34,7 @@ class DataStatusDetails(BaseModel):
     """
 
     source: str
-    """Identifies the origin of the status change (e.g., 'bank_decline', 'watchtower').
+    """Identifies the origin of the status change (e.g., `bank_decline`, `watchtower`).
 
     This helps in tracking the cause of status updates.
     """
@@ -49,12 +49,6 @@ class Data(BaseModel):
 
     label: str
     """Human-readable label used to represent this paykey in a UI."""
-
-    paykey: str
-    """The tokenized paykey value.
-
-    This value is used to create payments and should be stored securely.
-    """
 
     source: Literal["bank_account", "straddle", "mx", "plaid"]
 
@@ -100,9 +94,6 @@ class Meta(BaseModel):
 
     total_items: int
 
-    total_pages: int
-    """The number of pages available."""
-
 
 class PaykeySummaryPaged(BaseModel):
     data: List[Data]
@@ -110,3 +101,11 @@ class PaykeySummaryPaged(BaseModel):
     meta: Meta
 
     response_type: Literal["object", "array", "error", "none"]
+    """Indicates the structure of the returned content.
+
+    - "object" means the `data` field contains a single JSON object.
+    - "array" means the `data` field contains an array of objects.
+    - "error" means the `data` field contains an error object with details of the
+      issue.
+    - "none" means no data is returned.
+    """

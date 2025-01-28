@@ -12,7 +12,7 @@ __all__ = ["LinkBankAccountParams"]
 
 class LinkBankAccountParams(TypedDict, total=False):
     account_number: Required[str]
-    """Bank account number."""
+    """The bank account number."""
 
     account_type: Required[Literal["checking", "savings"]]
 
@@ -20,7 +20,7 @@ class LinkBankAccountParams(TypedDict, total=False):
     """Unique identifier of the related customer object."""
 
     routing_number: Required[str]
-    """Bank routing number."""
+    """The routing number of the bank account."""
 
     metadata: Optional[Dict[str, str]]
     """Up to 20 additional user-defined key-value pairs.

@@ -79,22 +79,30 @@ class ChargesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
         """
-        Create a charge.
+        Use charges to collect money from a customer for the sale of goods or services.
 
         Args:
-          amount: Amount.
+          amount: The amount of the charge in cents.
 
-          currency: Currency.
+          consent_type: The channel or mechanism through which the payment was authorized. Use
+              `internet` for payments made online or through a mobile app and `signed` for
+              signed agreements where there is a consent form or contract. Use `signed` for
+              PDF signatures.
 
-          description: Description.
+          currency: The currency of the charge. Only USD is supported.
 
-          external_id: External id.
+          description: An arbitrary description for the charge.
 
-          paykey: Paykey.
+          external_id: Unique identifier for the charge in your database. This value must be unique
+              across all charges.
 
-          payment_date: Payment date.
+          paykey: Value of the `paykey` used for the charge.
 
-          metadata: Metadata.
+          payment_date: The desired date on which the payment should be occur. For charges, this means
+              the date you want the customer to be debited on.
+
+          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
+              information about the charge in a structured format.
 
           extra_headers: Send extra headers
 
@@ -156,16 +164,19 @@ class ChargesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
         """
-        Update a charge.
+        Change the values of parameters associated with a charge prior to processing.
+        The status of the charge must be `created`, `scheduled`, or `on_hold`.
 
         Args:
-          amount: Amount.
+          amount: The amount of the charge in cents.
 
-          description: Description.
+          description: An arbitrary description for the charge.
 
-          payment_date: Payment date.
+          payment_date: The desired date on which the payment should be occur. For charges, this means
+              the date you want the customer to be debited on.
 
-          metadata: Metadata.
+          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
+              information about the charge in a structured format.
 
           extra_headers: Send extra headers
 
@@ -219,11 +230,13 @@ class ChargesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
-        """
-        Cancel a charge.
+        """Cancel a charge to prevent it from being originated for processing.
+
+        The status
+        of the charge must be `created`, `scheduled`, or `on_hold`.
 
         Args:
-          reason: Reason.
+          reason: Details about why the charge status was updated.
 
           extra_headers: Send extra headers
 
@@ -268,8 +281,10 @@ class ChargesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
-        """
-        Get a charge by id.
+        """Retrieves the details of an existing charge.
+
+        Supply the unique charge `id`, and
+        Straddle will return the corresponding charge information.
 
         Args:
           extra_headers: Send extra headers
@@ -315,11 +330,13 @@ class ChargesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
-        """
-        Put a charge on hold.
+        """Place a charge on hold to prevent it from being originated for processing.
+
+        The
+        status of the charge must be `created` or `scheduled`.
 
         Args:
-          reason: Reason.
+          reason: Details about why the charge status was updated.
 
           extra_headers: Send extra headers
 
@@ -366,10 +383,11 @@ class ChargesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
         """
-        Release a charge from hold.
+        Release a charge from an `on_hold` status to allow it to be rescheduled for
+        processing.
 
         Args:
-          reason: Reason.
+          reason: Details about why the charge status was updated.
 
           extra_headers: Send extra headers
 
@@ -445,22 +463,30 @@ class AsyncChargesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
         """
-        Create a charge.
+        Use charges to collect money from a customer for the sale of goods or services.
 
         Args:
-          amount: Amount.
+          amount: The amount of the charge in cents.
 
-          currency: Currency.
+          consent_type: The channel or mechanism through which the payment was authorized. Use
+              `internet` for payments made online or through a mobile app and `signed` for
+              signed agreements where there is a consent form or contract. Use `signed` for
+              PDF signatures.
 
-          description: Description.
+          currency: The currency of the charge. Only USD is supported.
 
-          external_id: External id.
+          description: An arbitrary description for the charge.
 
-          paykey: Paykey.
+          external_id: Unique identifier for the charge in your database. This value must be unique
+              across all charges.
 
-          payment_date: Payment date.
+          paykey: Value of the `paykey` used for the charge.
 
-          metadata: Metadata.
+          payment_date: The desired date on which the payment should be occur. For charges, this means
+              the date you want the customer to be debited on.
+
+          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
+              information about the charge in a structured format.
 
           extra_headers: Send extra headers
 
@@ -522,16 +548,19 @@ class AsyncChargesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
         """
-        Update a charge.
+        Change the values of parameters associated with a charge prior to processing.
+        The status of the charge must be `created`, `scheduled`, or `on_hold`.
 
         Args:
-          amount: Amount.
+          amount: The amount of the charge in cents.
 
-          description: Description.
+          description: An arbitrary description for the charge.
 
-          payment_date: Payment date.
+          payment_date: The desired date on which the payment should be occur. For charges, this means
+              the date you want the customer to be debited on.
 
-          metadata: Metadata.
+          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
+              information about the charge in a structured format.
 
           extra_headers: Send extra headers
 
@@ -585,11 +614,13 @@ class AsyncChargesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
-        """
-        Cancel a charge.
+        """Cancel a charge to prevent it from being originated for processing.
+
+        The status
+        of the charge must be `created`, `scheduled`, or `on_hold`.
 
         Args:
-          reason: Reason.
+          reason: Details about why the charge status was updated.
 
           extra_headers: Send extra headers
 
@@ -634,8 +665,10 @@ class AsyncChargesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
-        """
-        Get a charge by id.
+        """Retrieves the details of an existing charge.
+
+        Supply the unique charge `id`, and
+        Straddle will return the corresponding charge information.
 
         Args:
           extra_headers: Send extra headers
@@ -681,11 +714,13 @@ class AsyncChargesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
-        """
-        Put a charge on hold.
+        """Place a charge on hold to prevent it from being originated for processing.
+
+        The
+        status of the charge must be `created` or `scheduled`.
 
         Args:
-          reason: Reason.
+          reason: Details about why the charge status was updated.
 
           extra_headers: Send extra headers
 
@@ -732,10 +767,11 @@ class AsyncChargesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Charge:
         """
-        Release a charge from hold.
+        Release a charge from an `on_hold` status to allow it to be rescheduled for
+        processing.
 
         Args:
-          reason: Reason.
+          reason: Details about why the charge status was updated.
 
           extra_headers: Send extra headers
 

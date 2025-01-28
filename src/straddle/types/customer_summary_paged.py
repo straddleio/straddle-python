@@ -62,9 +62,6 @@ class Meta(BaseModel):
 
     total_items: int
 
-    total_pages: int
-    """The number of pages available."""
-
 
 class CustomerSummaryPaged(BaseModel):
     data: List[Data]
@@ -72,3 +69,11 @@ class CustomerSummaryPaged(BaseModel):
     meta: Meta
 
     response_type: Literal["object", "array", "error", "none"]
+    """Indicates the structure of the returned content.
+
+    - "object" means the `data` field contains a single JSON object.
+    - "array" means the `data` field contains an array of objects.
+    - "error" means the `data` field contains an error object with details of the
+      issue.
+    - "none" means no data is returned.
+    """

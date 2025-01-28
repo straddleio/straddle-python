@@ -34,23 +34,27 @@ __all__ = [
 
 class DataStatusDetail(BaseModel):
     code: str
+    """
+    A machine-readable code for the specific status, useful for programmatic
+    handling.
+    """
 
     message: str
+    """A human-readable message describing the current status."""
 
     reason: Literal[
-        "unknown",
-        "unverified",
-        "new",
-        "in_review",
-        "pending",
-        "stuck",
-        "verified",
-        "failed_verification",
-        "disabled",
-        "terminated",
+        "unverified", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled", "terminated"
     ]
+    """
+    A machine-readable identifier for the specific status, useful for programmatic
+    handling.
+    """
 
     source: Literal["watchtower"]
+    """Identifies the origin of the status change (e.g., `bank_decline`, `watchtower`).
+
+    This helps in tracking the cause of status updates.
+    """
 
 
 class DataBusinessProfileAddress(BaseModel):
@@ -106,6 +110,7 @@ class DataBusinessProfile(BaseModel):
     """URL of the business's primary marketing website."""
 
     address: Optional[DataBusinessProfileAddress] = None
+    """The address object is optional. If provided, it must be a valid address."""
 
     description: Optional[str] = None
     """A brief description of the business and its products or services."""
@@ -137,8 +142,16 @@ class DataCapabilitiesConsentTypesSignedAgreement(BaseModel):
 
 class DataCapabilitiesConsentTypes(BaseModel):
     internet: DataCapabilitiesConsentTypesInternet
+    """
+    Whether the internet payment authorization capability is enabled for the
+    account.
+    """
 
     signed_agreement: DataCapabilitiesConsentTypesSignedAgreement
+    """
+    Whether the signed agreement payment authorization capability is enabled for the
+    account.
+    """
 
 
 class DataCapabilitiesCustomerTypesBusinesses(BaseModel):
@@ -179,30 +192,51 @@ class DataCapabilities(BaseModel):
 
 class DataSettingsCharges(BaseModel):
     daily_amount: int
+    """The maximum dollar amount of charges in a calendar day."""
 
-    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day", "unknown"]
+    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day"]
+    """The amount of time it takes for a charge to be funded.
+
+    This value is defined by Straddle.
+    """
 
     linked_bank_account_id: str
+    """The unique identifier of the linked bank account associated with charges.
+
+    This value is defined by Straddle.
+    """
 
     max_amount: int
+    """The maximum amount of a single charge."""
 
     monthly_amount: int
+    """The maximum dollar amount of charges in a calendar month."""
 
     monthly_count: int
+    """The maximum number of charges in a calendar month."""
 
 
 class DataSettingsPayouts(BaseModel):
     daily_amount: int
+    """The maximum dollar amount of payouts in a day."""
 
-    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day", "unknown"]
+    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day"]
+    """The amount of time it takes for a payout to be funded.
+
+    This value is defined by Straddle.
+    """
 
     linked_bank_account_id: str
+    """The unique identifier of the linked bank account to use for payouts."""
 
     max_amount: int
+    """The maximum amount of a single payout."""
 
     monthly_amount: int
+    """The maximum dollar amount of payouts in a month."""
 
     monthly_count: int
+    """The maximum number of payouts in a month."""
 
 
 class DataSettings(BaseModel):
@@ -216,7 +250,11 @@ class DataTermsOfService(BaseModel):
     """The datetime of when the terms of service were accepted, in ISO 8601 format."""
 
     agreement_type: Literal["embedded", "direct"]
-    """The type or version of the agreement accepted. Possible values: 'embedded'."""
+    """The type or version of the agreement accepted.
+
+    Use `embedded` unless your platform was specifically enabled for `direct`
+    agreements.
+    """
 
     accepted_ip: Optional[str] = None
     """The IP address from which the terms of service were accepted."""
@@ -235,19 +273,19 @@ class Data(BaseModel):
     access_level: Literal["standard", "managed"]
     """The access level granted to the account.
 
-    This is determined by your platform configuration. Possible values: 'managed',
-    'standard'.
+    This is determined by your platform configuration. Use `standard` unless
+    instructed otherwise by Straddle.
     """
 
     organization_id: str
     """The unique identifier of the organization this account belongs to."""
 
-    status: Literal["unknown", "created", "onboarding", "active", "rejected", "inactive"]
+    status: Literal["created", "onboarding", "active", "rejected", "inactive"]
     """The current status of the account (e.g., 'active', 'inactive', 'pending')."""
 
     status_detail: DataStatusDetail
 
-    type: Literal["unknown", "business"]
+    type: Literal["business"]
     """The type of account (e.g., 'individual', 'business')."""
 
     business_profile: Optional[DataBusinessProfile] = None
@@ -301,15 +339,24 @@ class Meta(BaseModel):
     """The order that the results were sorted by."""
 
     total_items: int
-
-    total_pages: int
-    """The number of pages available."""
+    """Total number of items returned in this response."""
 
 
 class AccountPaged(BaseModel):
     data: List[Data]
 
     meta: Meta
+    """
+    Metadata about the API request, including an identifier, timestamp, and
+    pagination details.
+    """
 
     response_type: Literal["object", "array", "error", "none"]
-    """Indicates the type of data returned."""
+    """Indicates the structure of the returned content.
+
+    - "object" means the `data` field contains a single JSON object.
+    - "array" means the `data` field contains an array of objects.
+    - "error" means the `data` field contains an error object with details of the
+      issue.
+    - "none" means no data is returned.
+    """

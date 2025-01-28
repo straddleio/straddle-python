@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -10,23 +10,23 @@ __all__ = ["OrganizationListParams"]
 
 
 class OrganizationListParams(TypedDict, total=False):
-    page_number: Required[int]
-    """Results page number. Starts at page 1. Default value: 1"""
-
-    page_size: Required[int]
-    """Page size. Default value: 100. Max value: 1000"""
-
-    sort_by: Required[str]
-    """Sort By. Default value: 'id'."""
-
-    sort_order: Required[Literal["asc", "desc"]]
-    """Sort Order. Default value: 'asc'."""
-
     external_id: str
     """List organizations by their external ID."""
 
     name: str
     """List organizations by name (partial match supported)."""
+
+    page_number: int
+    """Results page number. Starts at page 1."""
+
+    page_size: int
+    """Page size. Max value: 1000"""
+
+    sort_by: str
+    """Sort By."""
+
+    sort_order: Literal["asc", "desc"]
+    """Sort Order."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="correlation-id")]
 

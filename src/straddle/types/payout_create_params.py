@@ -13,29 +13,41 @@ __all__ = ["PayoutCreateParams", "Device"]
 
 class PayoutCreateParams(TypedDict, total=False):
     amount: Required[int]
-    """Amount."""
+    """The amount of the payout in cents."""
 
     currency: Required[str]
-    """Currency."""
+    """The currency of the payout. Only USD is supported."""
 
     description: Required[str]
-    """Description."""
+    """An arbitrary description for the payout."""
 
     device: Required[Device]
+    """Information about the device used when the customer authorized the payout."""
 
     external_id: Required[str]
-    """External id."""
+    """Unique identifier for the payout in your database.
+
+    This value must be unique across all payouts.
+    """
 
     paykey: Required[str]
-    """Paykey."""
+    """Value of the `paykey` used for the payout."""
 
     payment_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
-    """Payment date."""
+    """The desired date on which the payout should be occur.
+
+    For payouts, this means the date you want the funds to be sent from your bank
+    account.
+    """
 
     config: object
 
     metadata: Optional[Dict[str, str]]
-    """Metadata."""
+    """Up to 20 additional user-defined key-value pairs.
+
+    Useful for storing additional information about the payout in a structured
+    format.
+    """
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 
@@ -46,4 +58,7 @@ class PayoutCreateParams(TypedDict, total=False):
 
 class Device(TypedDict, total=False):
     ip_address: Required[str]
-    """Ip address."""
+    """
+    The IP address of the device used when the customer authorized the charge or
+    payout. Use `0.0.0.0` to represent an offline consent interaction.
+    """

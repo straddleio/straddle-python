@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -11,23 +11,36 @@ __all__ = ["FundingEventSummaryPaged", "Data", "Meta"]
 
 class Data(BaseModel):
     id: str
-    """Id."""
+    """Unique identifier for the funding event."""
 
     amount: int
-    """Amount."""
+    """The amount of the funding event in cents."""
 
     direction: Literal["deposit", "withdrawal"]
+    """
+    Describes the direction of the funding event from the perspective of the
+    `linked_bank_account`.
+    """
 
     event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"]
+    """
+    The funding event types describes the direction and reason for the funding
+    event.
+    """
 
     payment_count: int
-    """Payment count."""
-
-    trace_numbers: List[str]
-    """Trace number."""
+    """The number of payments associated with the funding event."""
 
     transfer_date: date
-    """Transfer date."""
+    """The date on which the funding event occurred.
+
+    For `deposits` and `returns`, this is the date the funds were credited to your
+    bank account. For `withdrawals` and `reversals`, this is the date the funds were
+    debited from your bank account.
+    """
+
+    trace_number: Optional[str] = None
+    """The trace number of the funding event."""
 
 
 class Meta(BaseModel):
@@ -53,9 +66,6 @@ class Meta(BaseModel):
 
     total_items: int
 
-    total_pages: int
-    """The number of pages available."""
-
 
 class FundingEventSummaryPaged(BaseModel):
     data: List[Data]
@@ -63,3 +73,11 @@ class FundingEventSummaryPaged(BaseModel):
     meta: Meta
 
     response_type: Literal["object", "array", "error", "none"]
+    """Indicates the structure of the returned content.
+
+    - "object" means the `data` field contains a single JSON object.
+    - "array" means the `data` field contains an array of objects.
+    - "error" means the `data` field contains an error object with details of the
+      issue.
+    - "none" means no data is returned.
+    """
