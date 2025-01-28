@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,6 +21,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import DataWrapper
 from ....pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from ....types.embed import (
     account_list_params,
@@ -40,6 +41,7 @@ from .capability_requests import (
 )
 from ....types.embed.account import Account
 from ....types.embed.account_paged import Data
+from ....types.embed.account_get_response import AccountGetResponse
 
 __all__ = ["AccountsResource", "AsyncAccountsResource"]
 
@@ -286,7 +288,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountGetResponse:
         """Retrieves the details of an account that has previously been created.
 
         Supply the
@@ -318,9 +320,13 @@ class AccountsResource(SyncAPIResource):
         return self._get(
             f"/v1/accounts/{account_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=DataWrapper[AccountGetResponse]._unwrapper,
             ),
-            cast_to=Account,
+            cast_to=cast(Type[AccountGetResponse], DataWrapper[AccountGetResponse]),
         )
 
     def onboard(
@@ -666,7 +672,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountGetResponse:
         """Retrieves the details of an account that has previously been created.
 
         Supply the
@@ -698,9 +704,13 @@ class AsyncAccountsResource(AsyncAPIResource):
         return await self._get(
             f"/v1/accounts/{account_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=DataWrapper[AccountGetResponse]._unwrapper,
             ),
-            cast_to=Account,
+            cast_to=cast(Type[AccountGetResponse], DataWrapper[AccountGetResponse]),
         )
 
     async def onboard(

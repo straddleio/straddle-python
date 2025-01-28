@@ -13,6 +13,7 @@ from straddle._utils import parse_datetime
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from straddle.types.embed import (
     Account,
+    AccountGetResponse,
 )
 from straddle.types.embed.account_paged import Data
 
@@ -245,7 +246,7 @@ class TestAccounts:
         account = client.embed.accounts.get(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Account, account, path=["response"])
+        assert_matches_type(AccountGetResponse, account, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Straddle) -> None:
@@ -254,7 +255,7 @@ class TestAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(Account, account, path=["response"])
+        assert_matches_type(AccountGetResponse, account, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Straddle) -> None:
@@ -265,7 +266,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(Account, account, path=["response"])
+        assert_matches_type(AccountGetResponse, account, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Straddle) -> None:
@@ -276,7 +277,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(Account, account, path=["response"])
+            assert_matches_type(AccountGetResponse, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -632,7 +633,7 @@ class TestAsyncAccounts:
         account = await async_client.embed.accounts.get(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Account, account, path=["response"])
+        assert_matches_type(AccountGetResponse, account, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -641,7 +642,7 @@ class TestAsyncAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(Account, account, path=["response"])
+        assert_matches_type(AccountGetResponse, account, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncStraddle) -> None:
@@ -652,7 +653,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(Account, account, path=["response"])
+        assert_matches_type(AccountGetResponse, account, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncStraddle) -> None:
@@ -663,7 +664,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(Account, account, path=["response"])
+            assert_matches_type(AccountGetResponse, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

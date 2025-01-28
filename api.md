@@ -5,7 +5,7 @@
 Types:
 
 ```python
-from straddle.types.embed import Account, AccountPaged
+from straddle.types.embed import Account, AccountPaged, AccountGetResponse
 ```
 
 Methods:
@@ -13,7 +13,7 @@ Methods:
 - <code title="post /v1/accounts">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">create</a>(\*\*<a href="src/straddle/types/embed/account_create_params.py">params</a>) -> <a href="./src/straddle/types/embed/account.py">Account</a></code>
 - <code title="put /v1/accounts/{account_id}">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">update</a>(account_id, \*\*<a href="src/straddle/types/embed/account_update_params.py">params</a>) -> <a href="./src/straddle/types/embed/account.py">Account</a></code>
 - <code title="get /v1/accounts">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">list</a>(\*\*<a href="src/straddle/types/embed/account_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
-- <code title="get /v1/accounts/{account_id}">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">get</a>(account_id) -> <a href="./src/straddle/types/embed/account.py">Account</a></code>
+- <code title="get /v1/accounts/{account_id}">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">get</a>(account_id) -> <a href="./src/straddle/types/embed/account_get_response.py">AccountGetResponse</a></code>
 - <code title="post /v1/accounts/{account_id}/onboard">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">onboard</a>(account_id, \*\*<a href="src/straddle/types/embed/account_onboard_params.py">params</a>) -> <a href="./src/straddle/types/embed/account.py">Account</a></code>
 - <code title="post /v1/accounts/{account_id}/simulate">client.embed.accounts.<a href="./src/straddle/resources/embed/accounts/accounts.py">simulate</a>(account_id, \*\*<a href="src/straddle/types/embed/account_simulate_params.py">params</a>) -> <a href="./src/straddle/types/embed/account.py">Account</a></code>
 
