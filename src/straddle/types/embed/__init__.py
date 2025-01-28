@@ -9,7 +9,6 @@ from .representative import Representative as Representative
 from .organization_paged import OrganizationPaged as OrganizationPaged
 from .account_list_params import AccountListParams as AccountListParams
 from .linked_bank_account import LinkedBankAccount as LinkedBankAccount
-from .account_get_response import AccountGetResponse as AccountGetResponse
 from .representative_paged import RepresentativePaged as RepresentativePaged
 from .account_create_params import AccountCreateParams as AccountCreateParams
 from .account_update_params import AccountUpdateParams as AccountUpdateParams
