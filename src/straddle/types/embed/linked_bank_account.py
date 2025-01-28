@@ -21,25 +21,12 @@ class DataBankAccount(BaseModel):
 
 class DataStatusDetail(BaseModel):
     code: str
-    """
-    A machine-readable code for the specific status, useful for programmatic
-    handling.
-    """
 
     message: str
-    """A human-readable message describing the current status."""
 
-    reason: Literal["unverified", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled"]
-    """
-    A machine-readable identifier for the specific status, useful for programmatic
-    handling.
-    """
+    reason: Literal["unverified", "new", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled"]
 
     source: Literal["watchtower"]
-    """Identifies the origin of the status change (e.g., `watchtower`).
-
-    This helps in tracking the cause of status updates.
-    """
 
 
 class Data(BaseModel):
@@ -47,7 +34,7 @@ class Data(BaseModel):
     """Unique identifier for the linked bank account."""
 
     account_id: str
-    """The unique identifier of the Straddle account related to this bank account."""
+    """The unique identifier of the Straddle account relatd to this bank account."""
 
     bank_account: DataBankAccount
 
@@ -55,7 +42,10 @@ class Data(BaseModel):
     """Timestamp of when the bank account object was created."""
 
     status: Literal["created", "onboarding", "active", "rejected", "inactive"]
-    """The current status of the linked bank account."""
+    """The current status of the linked bank account.
+
+    Possible values: 'created', 'onboarding', 'active', 'inactive', 'rejected'.
+    """
 
     status_detail: DataStatusDetail
 
@@ -82,14 +72,6 @@ class LinkedBankAccount(BaseModel):
     data: Data
 
     meta: Meta
-    """Metadata about the API request, including an identifier and timestamp."""
 
     response_type: Literal["object", "array", "error", "none"]
-    """Indicates the structure of the returned content.
-
-    - "object" means the `data` field contains a single JSON object.
-    - "array" means the `data` field contains an array of objects.
-    - "error" means the `data` field contains an error object with details of the
-      issue.
-    - "none" means no data is returned.
-    """
+    """Indicates the type of data returned."""

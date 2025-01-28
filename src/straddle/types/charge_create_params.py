@@ -13,47 +13,31 @@ __all__ = ["ChargeCreateParams", "Config", "Device"]
 
 class ChargeCreateParams(TypedDict, total=False):
     amount: Required[int]
-    """The amount of the charge in cents."""
+    """Amount."""
 
     config: Required[Config]
 
     consent_type: Required[Literal["internet", "signed"]]
-    """The channel or mechanism through which the payment was authorized.
-
-    Use `internet` for payments made online or through a mobile app and `signed` for
-    signed agreements where there is a consent form or contract. Use `signed` for
-    PDF signatures.
-    """
 
     currency: Required[str]
-    """The currency of the charge. Only USD is supported."""
+    """Currency."""
 
     description: Required[str]
-    """An arbitrary description for the charge."""
+    """Description."""
 
     device: Required[Device]
 
     external_id: Required[str]
-    """Unique identifier for the charge in your database.
-
-    This value must be unique across all charges.
-    """
+    """External id."""
 
     paykey: Required[str]
-    """Value of the `paykey` used for the charge."""
+    """Paykey."""
 
     payment_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
-    """The desired date on which the payment should be occur.
-
-    For charges, this means the date you want the customer to be debited on.
-    """
+    """Payment date."""
 
     metadata: Optional[Dict[str, str]]
-    """Up to 20 additional user-defined key-value pairs.
-
-    Useful for storing additional information about the charge in a structured
-    format.
-    """
+    """Metadata."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 
@@ -64,12 +48,8 @@ class ChargeCreateParams(TypedDict, total=False):
 
 class Config(TypedDict, total=False):
     balance_check: Required[Literal["required", "enabled", "disabled"]]
-    """Defines whether to check the customer's balance before processing the charge."""
 
 
 class Device(TypedDict, total=False):
     ip_address: Required[str]
-    """
-    The IP address of the device used when the customer authorized the charge or
-    payout. Use `0.0.0.0` to represent an offline consent interaction.
-    """
+    """Ip address."""

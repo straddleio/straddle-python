@@ -13,11 +13,14 @@ class Data(BaseModel):
     id: str
     """Straddle's unique identifier for the organization."""
 
+    created_at: datetime
+    """Timestamp of when the organization was created."""
+
     name: str
     """The name of the organization."""
 
-    created_at: Optional[datetime] = None
-    """Timestamp of when the organization was created."""
+    updated_at: datetime
+    """Timestamp of the most recent update to the organization."""
 
     external_id: Optional[str] = None
     """
@@ -31,9 +34,6 @@ class Data(BaseModel):
     Useful for storing additional information about the organization in a structured
     format.
     """
-
-    updated_at: Optional[datetime] = None
-    """Timestamp of the most recent update to the organization."""
 
 
 class Meta(BaseModel):
@@ -59,24 +59,15 @@ class Meta(BaseModel):
     """The order that the results were sorted by."""
 
     total_items: int
-    """Total number of items returned in this response."""
+
+    total_pages: int
+    """The number of pages available."""
 
 
 class OrganizationPaged(BaseModel):
     data: List[Data]
 
     meta: Meta
-    """
-    Metadata about the API request, including an identifier, timestamp, and
-    pagination details.
-    """
 
     response_type: Literal["object", "array", "error", "none"]
-    """Indicates the structure of the returned content.
-
-    - "object" means the `data` field contains a single JSON object.
-    - "array" means the `data` field contains an array of objects.
-    - "error" means the `data` field contains an error object with details of the
-      issue.
-    - "none" means no data is returned.
-    """
+    """Indicates the type of data returned."""

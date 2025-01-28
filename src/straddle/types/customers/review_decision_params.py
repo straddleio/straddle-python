@@ -11,7 +11,6 @@ __all__ = ["ReviewDecisionParams"]
 
 class ReviewDecisionParams(TypedDict, total=False):
     status: Required[Literal["verified", "rejected"]]
-    """The final status of the customer review."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 

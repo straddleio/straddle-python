@@ -39,7 +39,7 @@ class BankAccount(TypedDict, total=False):
     """
 
     account_number: Required[str]
-    """The bank account number."""
+    """Bank account number."""
 
     routing_number: Required[str]
-    """The routing number of the bank account."""
+    """Bank routing number."""

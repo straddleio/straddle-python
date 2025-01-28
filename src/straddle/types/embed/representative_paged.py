@@ -11,59 +11,24 @@ __all__ = ["RepresentativePaged", "Data", "DataRelationship", "DataStatusDetail"
 
 class DataRelationship(BaseModel):
     control: bool
-    """
-    Whether the representative has significant responsibility to control, manage, or
-    direct the organization. One representative must be identified under the control
-    prong for each legal entity.
-    """
 
     owner: bool
-    """
-    Whether the representative owns any percentage of of the equity interests of the
-    legal entity.
-    """
 
     primary: bool
-    """Whether the person is authorized as the primary representative of the account.
-
-    This is the person chosen by the business to provide information about
-    themselves, general information about the account, and who consented to the
-    services agreement.
-
-    There can be only one primary representative for an account at a time.
-    """
 
     percent_ownership: Optional[float] = None
-    """The percentage of ownership the representative has.
-
-    Required if 'Owner' is true.
-    """
 
     title: Optional[str] = None
-    """The job title of the representative."""
 
 
 class DataStatusDetail(BaseModel):
     code: str
-    """
-    A machine-readable code for the specific status, useful for programmatic
-    handling.
-    """
 
     message: str
-    """A human-readable message describing the current status."""
 
-    reason: Literal["unverified", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled"]
-    """
-    A machine-readable identifier for the specific status, useful for programmatic
-    handling.
-    """
+    reason: Literal["unverified", "new", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled"]
 
     source: Literal["watchtower"]
-    """Identifies the origin of the status change (e.g., `watchtower`).
-
-    This helps in tracking the cause of status updates.
-    """
 
 
 class Data(BaseModel):
@@ -140,24 +105,15 @@ class Meta(BaseModel):
     """The order that the results were sorted by."""
 
     total_items: int
-    """Total number of items returned in this response."""
+
+    total_pages: int
+    """The number of pages available."""
 
 
 class RepresentativePaged(BaseModel):
     data: List[Data]
 
     meta: Meta
-    """
-    Metadata about the API request, including an identifier, timestamp, and
-    pagination details.
-    """
 
     response_type: Literal["object", "array", "error", "none"]
-    """Indicates the structure of the returned content.
-
-    - "object" means the `data` field contains a single JSON object.
-    - "array" means the `data` field contains an array of objects.
-    - "error" means the `data` field contains an error object with details of the
-      issue.
-    - "none" means no data is returned.
-    """
+    """Indicates the type of data returned."""
