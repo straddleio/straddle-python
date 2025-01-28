@@ -23,6 +23,7 @@ from .._base_client import AsyncPaginator, make_request_options
 from ..types.paykey import Paykey
 from ..types.paykey_unmasked import PaykeyUnmasked
 from ..types.paykey_summary_paged import Data
+from ..types.paykey_reveal_response import PaykeyRevealResponse
 
 __all__ = ["PaykeysResource", "AsyncPaykeysResource"]
 
@@ -168,6 +169,55 @@ class PaykeysResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Paykey,
+        )
+
+    def reveal(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PaykeyRevealResponse:
+        """
+        Retrieves the details of a paykey that has previously been created, including
+        unmasked bank account fields. Supply the unique paykey ID that was returned from
+        your previous request, and Straddle will return the corresponding paykey
+        information.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            f"/v1/paykeys/{id}/reveal",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PaykeyRevealResponse,
         )
 
     def unmasked(
@@ -364,6 +414,55 @@ class AsyncPaykeysResource(AsyncAPIResource):
             cast_to=Paykey,
         )
 
+    async def reveal(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PaykeyRevealResponse:
+        """
+        Retrieves the details of a paykey that has previously been created, including
+        unmasked bank account fields. Supply the unique paykey ID that was returned from
+        your previous request, and Straddle will return the corresponding paykey
+        information.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/paykeys/{id}/reveal",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PaykeyRevealResponse,
+        )
+
     async def unmasked(
         self,
         id: str,
@@ -425,6 +524,9 @@ class PaykeysResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             paykeys.get,
         )
+        self.reveal = to_raw_response_wrapper(
+            paykeys.reveal,
+        )
         self.unmasked = to_raw_response_wrapper(
             paykeys.unmasked,
         )
@@ -439,6 +541,9 @@ class AsyncPaykeysResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             paykeys.get,
+        )
+        self.reveal = async_to_raw_response_wrapper(
+            paykeys.reveal,
         )
         self.unmasked = async_to_raw_response_wrapper(
             paykeys.unmasked,
@@ -455,6 +560,9 @@ class PaykeysResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             paykeys.get,
         )
+        self.reveal = to_streamed_response_wrapper(
+            paykeys.reveal,
+        )
         self.unmasked = to_streamed_response_wrapper(
             paykeys.unmasked,
         )
@@ -469,6 +577,9 @@ class AsyncPaykeysResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             paykeys.get,
+        )
+        self.reveal = async_to_streamed_response_wrapper(
+            paykeys.reveal,
         )
         self.unmasked = async_to_streamed_response_wrapper(
             paykeys.unmasked,

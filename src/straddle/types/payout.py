@@ -66,6 +66,9 @@ class DataStatusDetails(BaseModel):
     This helps in tracking the cause of status updates.
     """
 
+    code: Optional[str] = None
+    """The status code if applicable."""
+
 
 class DataStatusHistory(BaseModel):
     changed_at: datetime
@@ -118,11 +121,17 @@ class DataCustomerDetails(BaseModel):
     id: str
     """Unique identifier for the customer."""
 
-    customer_type: Literal["individual", "business"]
+    customer_type: Literal["individual", "business", "unknown"]
     """The type of customer."""
+
+    email: str
+    """Email."""
 
     name: str
     """The name of the customer."""
+
+    phone: str
+    """Phone."""
 
 
 class DataPaykeyDetails(BaseModel):
@@ -148,6 +157,9 @@ class Data(BaseModel):
 
     amount: int
     """The amount of the payout in cents."""
+
+    config: object
+    """Configuration for the payout."""
 
     currency: str
     """The currency of the payout. Only USD is supported."""
@@ -182,9 +194,6 @@ class Data(BaseModel):
 
     status_history: List[DataStatusHistory]
     """History of the status changes for the payout."""
-
-    config: Optional[object] = None
-    """Configuration for the payout."""
 
     created_at: Optional[datetime] = None
     """The time the payout was created."""

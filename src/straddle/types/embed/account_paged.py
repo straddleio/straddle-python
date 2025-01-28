@@ -43,7 +43,16 @@ class DataStatusDetail(BaseModel):
     """A human-readable message describing the current status."""
 
     reason: Literal[
-        "unverified", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled", "terminated"
+        "unverified",
+        "in_review",
+        "pending",
+        "stuck",
+        "verified",
+        "failed_verification",
+        "disabled",
+        "terminated",
+        "unknown",
+        "new",
     ]
     """
     A machine-readable identifier for the specific status, useful for programmatic
@@ -194,7 +203,7 @@ class DataSettingsCharges(BaseModel):
     daily_amount: int
     """The maximum dollar amount of charges in a calendar day."""
 
-    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day"]
+    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day", "unknown"]
     """The amount of time it takes for a charge to be funded.
 
     This value is defined by Straddle.
@@ -220,7 +229,7 @@ class DataSettingsPayouts(BaseModel):
     daily_amount: int
     """The maximum dollar amount of payouts in a day."""
 
-    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day"]
+    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day", "unknown"]
     """The amount of time it takes for a payout to be funded.
 
     This value is defined by Straddle.
@@ -280,12 +289,12 @@ class Data(BaseModel):
     organization_id: str
     """The unique identifier of the organization this account belongs to."""
 
-    status: Literal["created", "onboarding", "active", "rejected", "inactive"]
+    status: Literal["created", "onboarding", "active", "rejected", "inactive", "unknown"]
     """The current status of the account (e.g., 'active', 'inactive', 'pending')."""
 
     status_detail: DataStatusDetail
 
-    type: Literal["business"]
+    type: Literal["business", "unknown"]
     """The type of account (e.g., 'individual', 'business')."""
 
     business_profile: Optional[DataBusinessProfile] = None
@@ -340,6 +349,9 @@ class Meta(BaseModel):
 
     total_items: int
     """Total number of items returned in this response."""
+
+    total_pages: int
+    """The number of pages available."""
 
 
 class AccountPaged(BaseModel):
