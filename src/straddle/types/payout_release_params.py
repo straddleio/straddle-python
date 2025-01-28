@@ -11,7 +11,7 @@ __all__ = ["PayoutReleaseParams"]
 
 class PayoutReleaseParams(TypedDict, total=False):
     reason: Required[str]
-    """Reason."""
+    """Details about why the payout status was updated."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 

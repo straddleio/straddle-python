@@ -29,7 +29,7 @@ class TestLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         )
         assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
@@ -41,7 +41,7 @@ class TestLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
             metadata={"foo": "string"},
             correlation_id="correlation-id",
@@ -56,7 +56,7 @@ class TestLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         )
 
@@ -72,7 +72,7 @@ class TestLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         ) as response:
             assert not response.is_closed
@@ -90,7 +90,7 @@ class TestLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         )
         assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
@@ -102,7 +102,7 @@ class TestLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
             metadata={"foo": "string"},
             correlation_id="correlation-id",
@@ -117,7 +117,7 @@ class TestLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         )
 
@@ -133,7 +133,7 @@ class TestLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         ) as response:
             assert not response.is_closed
@@ -154,28 +154,23 @@ class TestLinkedBankAccounts:
                 bank_account={
                     "account_holder": "account_holder",
                     "account_number": "account_number",
-                    "routing_number": "routing_number",
+                    "routing_number": "xxxxxxxxx",
                 },
             )
 
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
-        linked_bank_account = client.embed.linked_bank_accounts.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        linked_bank_account = client.embed.linked_bank_accounts.list()
         assert_matches_type(SyncPageNumberSchema[Data], linked_bank_account, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
         linked_bank_account = client.embed.linked_bank_accounts.list(
+            account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page_number=0,
             page_size=0,
             sort_by="sort_by",
             sort_order="asc",
-            account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -183,12 +178,7 @@ class TestLinkedBankAccounts:
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
-        response = client.embed.linked_bank_accounts.with_raw_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        response = client.embed.linked_bank_accounts.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -197,12 +187,7 @@ class TestLinkedBankAccounts:
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
-        with client.embed.linked_bank_accounts.with_streaming_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        ) as response:
+        with client.embed.linked_bank_accounts.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -320,7 +305,7 @@ class TestAsyncLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         )
         assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
@@ -332,7 +317,7 @@ class TestAsyncLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
             metadata={"foo": "string"},
             correlation_id="correlation-id",
@@ -347,7 +332,7 @@ class TestAsyncLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         )
 
@@ -363,7 +348,7 @@ class TestAsyncLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         ) as response:
             assert not response.is_closed
@@ -381,7 +366,7 @@ class TestAsyncLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         )
         assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
@@ -393,7 +378,7 @@ class TestAsyncLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
             metadata={"foo": "string"},
             correlation_id="correlation-id",
@@ -408,7 +393,7 @@ class TestAsyncLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         )
 
@@ -424,7 +409,7 @@ class TestAsyncLinkedBankAccounts:
             bank_account={
                 "account_holder": "account_holder",
                 "account_number": "account_number",
-                "routing_number": "routing_number",
+                "routing_number": "xxxxxxxxx",
             },
         ) as response:
             assert not response.is_closed
@@ -445,28 +430,23 @@ class TestAsyncLinkedBankAccounts:
                 bank_account={
                     "account_holder": "account_holder",
                     "account_number": "account_number",
-                    "routing_number": "routing_number",
+                    "routing_number": "xxxxxxxxx",
                 },
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
-        linked_bank_account = await async_client.embed.linked_bank_accounts.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        linked_bank_account = await async_client.embed.linked_bank_accounts.list()
         assert_matches_type(AsyncPageNumberSchema[Data], linked_bank_account, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
         linked_bank_account = await async_client.embed.linked_bank_accounts.list(
+            account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page_number=0,
             page_size=0,
             sort_by="sort_by",
             sort_order="asc",
-            account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -474,12 +454,7 @@ class TestAsyncLinkedBankAccounts:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
-        response = await async_client.embed.linked_bank_accounts.with_raw_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        response = await async_client.embed.linked_bank_accounts.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -488,12 +463,7 @@ class TestAsyncLinkedBankAccounts:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
-        async with async_client.embed.linked_bank_accounts.with_streaming_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        ) as response:
+        async with async_client.embed.linked_bank_accounts.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

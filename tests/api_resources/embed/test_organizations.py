@@ -63,23 +63,18 @@ class TestOrganizations:
 
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
-        organization = client.embed.organizations.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        organization = client.embed.organizations.list()
         assert_matches_type(SyncPageNumberSchema[Data], organization, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
         organization = client.embed.organizations.list(
+            external_id="external_id",
+            name="name",
             page_number=0,
             page_size=0,
             sort_by="sort_by",
             sort_order="asc",
-            external_id="external_id",
-            name="name",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -87,12 +82,7 @@ class TestOrganizations:
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
-        response = client.embed.organizations.with_raw_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        response = client.embed.organizations.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -101,12 +91,7 @@ class TestOrganizations:
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
-        with client.embed.organizations.with_streaming_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        ) as response:
+        with client.embed.organizations.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -163,23 +148,18 @@ class TestAsyncOrganizations:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
-        organization = await async_client.embed.organizations.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        organization = await async_client.embed.organizations.list()
         assert_matches_type(AsyncPageNumberSchema[Data], organization, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
         organization = await async_client.embed.organizations.list(
+            external_id="external_id",
+            name="name",
             page_number=0,
             page_size=0,
             sort_by="sort_by",
             sort_order="asc",
-            external_id="external_id",
-            name="name",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -187,12 +167,7 @@ class TestAsyncOrganizations:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
-        response = await async_client.embed.organizations.with_raw_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        response = await async_client.embed.organizations.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -201,12 +176,7 @@ class TestAsyncOrganizations:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
-        async with async_client.embed.organizations.with_streaming_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        ) as response:
+        async with async_client.embed.organizations.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

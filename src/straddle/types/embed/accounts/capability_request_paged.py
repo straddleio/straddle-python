@@ -19,24 +19,19 @@ class Data(BaseModel):
     category: Literal["payment_type", "customer_type", "consent_type"]
     """The category of the requested capability.
 
-    Possible values: 'payment_type', 'customer_type', 'consent_type'.
+    Use `payment_type` for charges and payouts, `customer_type` to define
+    `individuals` or `businesses`, and `consent_type` for `signed_agreement` or
+    `internet` payment authorization.
     """
 
     created_at: datetime
     """Timestamp of when the capability request was created."""
 
-    status: Literal["approved", "rejected", "reviewing"]
-    """The current status of the capability request.
-
-    Possible values: 'active', 'inactive', 'in_review', 'rejected'.
-    """
+    status: Literal["active", "inactive", "in_review", "rejected"]
+    """The current status of the capability request."""
 
     type: Literal["charges", "payouts", "individuals", "businesses", "signed_agreement", "internet"]
-    """The specific type of capability being requested within the category.
-
-    Possible values: 'charges', 'payouts', 'individuals', 'businesses',
-    'signed_agreement', 'internet'.
-    """
+    """The specific type of capability being requested within the category."""
 
     updated_at: datetime
     """Timestamp of the most recent update to the capability request."""
@@ -68,15 +63,24 @@ class Meta(BaseModel):
     """The order that the results were sorted by."""
 
     total_items: int
-
-    total_pages: int
-    """The number of pages available."""
+    """Total number of items returned in this response."""
 
 
 class CapabilityRequestPaged(BaseModel):
     data: List[Data]
 
     meta: Meta
+    """
+    Metadata about the API request, including an identifier, timestamp, and
+    pagination details.
+    """
 
     response_type: Literal["object", "array", "error", "none"]
-    """Indicates the type of data returned."""
+    """Indicates the structure of the returned content.
+
+    - "object" means the `data` field contains a single JSON object.
+    - "array" means the `data` field contains an array of objects.
+    - "error" means the `data` field contains an error object with details of the
+      issue.
+    - "none" means no data is returned.
+    """

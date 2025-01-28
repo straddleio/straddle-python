@@ -15,10 +15,10 @@ class PaykeyListParams(TypedDict, total=False):
     """Filter paykeys by related customer ID."""
 
     page_number: int
-    """Page number for paginated results. Starts at 1. Default: 1."""
+    """Page number for paginated results. Starts at 1."""
 
     page_size: int
-    """Number of results per page. Default: 100. Maximum: 1000."""
+    """Number of results per page. Maximum: 1000."""
 
     sort_by: Literal["institution_name", "expires_at", "created_at"]
 

@@ -11,7 +11,7 @@ __all__ = ["PaykeyUnmasked", "Data", "DataBankData", "DataStatusDetails", "Meta"
 
 class DataBankData(BaseModel):
     account_number: str
-    """Bank account number.
+    """The bank account number.
 
     This value is masked by default for security reasons. Use the /unmask endpoint
     to access the unmasked value.
@@ -20,7 +20,7 @@ class DataBankData(BaseModel):
     account_type: Literal["checking", "savings"]
 
     routing_number: str
-    """Bank routing number."""
+    """The routing number of the bank account."""
 
 
 class DataStatusDetails(BaseModel):
@@ -34,7 +34,7 @@ class DataStatusDetails(BaseModel):
     """
 
     source: str
-    """Identifies the origin of the status change (e.g., 'bank_decline', 'watchtower').
+    """Identifies the origin of the status change (e.g., `bank_decline`, `watchtower`).
 
     This helps in tracking the cause of status updates.
     """
@@ -96,5 +96,14 @@ class PaykeyUnmasked(BaseModel):
     data: Data
 
     meta: Meta
+    """Metadata about the API request, including an identifier and timestamp."""
 
     response_type: Literal["object", "array", "error", "none"]
+    """Indicates the structure of the returned content.
+
+    - "object" means the `data` field contains a single JSON object.
+    - "array" means the `data` field contains an array of objects.
+    - "error" means the `data` field contains an error object with details of the
+      issue.
+    - "none" means no data is returned.
+    """

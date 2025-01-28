@@ -13,71 +13,73 @@ __all__ = ["PaymentListParams"]
 
 class PaymentListParams(TypedDict, total=False):
     customer_id: str
-    """Customer id."""
+    """Search using the `customer_id` of a `charge` or `payout`."""
 
     default_page_size: int
 
     default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"]
+    """The field to sort the results by."""
 
     default_sort_order: Literal["asc", "desc"]
 
     external_id: str
-    """External id."""
+    """Search using the `external_id` of a `charge` or `payout`."""
 
     funding_id: str
-    """Funding id."""
+    """Search using the `funding_id` of a `charge` or `payout`."""
 
     max_amount: int
-    """Maximum amount."""
+    """Search using a maximum `amount` of a `charge` or `payout`."""
 
     max_created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Maximum created at."""
+    """Search using the latest `created_at` date of a `charge` or `payout`."""
 
     max_effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Maximum effective at."""
+    """Search using the latest `effective_date` of a `charge` or `payout`."""
 
     max_payment_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
-    """Maximum payment date."""
+    """Search using the latest `payment_date` of a `charge` or `payout`."""
 
     min_amount: int
-    """Minimum amount."""
+    """Search using the minimum `amount of a `charge`or`payout`."""
 
     min_created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Minimum created at."""
+    """Search using the earliest `created_at` date of a `charge` or `payout`."""
 
     min_effective_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """Minimum effective at."""
+    """Search using the earliest `effective_date` of a `charge` or `payout`."""
 
     min_payment_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
-    """Minimum payment date."""
+    """Search using the earliest ` `of a `charge` or `payout`."""
 
     page_number: int
-    """Results page number. Starts at page 1. Default value: 1"""
+    """Results page number. Starts at page 1."""
 
     page_size: int
-    """Results page size. Default value: 100. Max value: 1000"""
+    """Results page size. Max value: 1000"""
 
     paykey: str
-    """Paykey."""
+    """Search using the `paykey` of a `charge` or `payout`."""
 
     paykey_id: str
-    """Paykey id."""
+    """Search using the `paykey_id` of a `charge` or `payout`."""
 
     payment_id: str
-    """Payment id."""
+    """Search using the `id` of a `charge` or `payout`."""
 
     payment_status: List[
         Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
     ]
-    """Payment status."""
+    """Search by the status of a `charge` or `payout`."""
 
     payment_type: List[Literal["charge", "payout"]]
-    """Payment type."""
+    """Search by the type of a `charge` or `payout`."""
 
     search_text: str
-    """Search text."""
+    """Search using a text string associated with a `charge` or `payout`."""
 
     sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"]
+    """The field to sort the results by."""
 
     sort_order: Literal["asc", "desc"]
 

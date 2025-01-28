@@ -26,10 +26,10 @@ class TestAccounts:
     def test_method_create(self, client: Straddle) -> None:
         account = client.embed.accounts.create(
             access_level="standard",
-            account_type="unknown",
+            account_type="business",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -39,17 +39,17 @@ class TestAccounts:
     def test_method_create_with_all_params(self, client: Straddle) -> None:
         account = client.embed.accounts.create(
             access_level="standard",
-            account_type="unknown",
+            account_type="business",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
                 "address": {
                     "city": "city",
                     "country": "country",
                     "line1": "line1",
                     "line2": "line2",
-                    "postal_code": "postal_code",
-                    "state": "state",
+                    "postal_code": "21029-1360",
+                    "state": "SE",
                 },
                 "description": "description",
                 "industry": {
@@ -58,13 +58,13 @@ class TestAccounts:
                     "sector": "sector",
                 },
                 "legal_name": "legal_name",
-                "phone": "phone",
+                "phone": "+46991022",
                 "support_channels": {
-                    "email": "email",
-                    "phone": "phone",
-                    "url": "url",
+                    "email": "dev@stainlessapi.com",
+                    "phone": "+46991022",
+                    "url": "https://example.com",
                 },
-                "tax_id": "tax_id",
+                "tax_id": "210297980",
                 "use_case": "use_case",
             },
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -79,10 +79,10 @@ class TestAccounts:
     def test_raw_response_create(self, client: Straddle) -> None:
         response = client.embed.accounts.with_raw_response.create(
             access_level="standard",
-            account_type="unknown",
+            account_type="business",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -96,10 +96,10 @@ class TestAccounts:
     def test_streaming_response_create(self, client: Straddle) -> None:
         with client.embed.accounts.with_streaming_response.create(
             access_level="standard",
-            account_type="unknown",
+            account_type="business",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -117,7 +117,7 @@ class TestAccounts:
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
         )
         assert_matches_type(Account, account, path=["response"])
@@ -128,14 +128,14 @@ class TestAccounts:
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
                 "address": {
                     "city": "city",
                     "country": "country",
                     "line1": "line1",
                     "line2": "line2",
-                    "postal_code": "postal_code",
-                    "state": "state",
+                    "postal_code": "21029-1360",
+                    "state": "SE",
                 },
                 "description": "description",
                 "industry": {
@@ -144,13 +144,13 @@ class TestAccounts:
                     "sector": "sector",
                 },
                 "legal_name": "legal_name",
-                "phone": "phone",
+                "phone": "+46991022",
                 "support_channels": {
-                    "email": "email",
-                    "phone": "phone",
-                    "url": "url",
+                    "email": "dev@stainlessapi.com",
+                    "phone": "+46991022",
+                    "url": "https://example.com",
                 },
-                "tax_id": "tax_id",
+                "tax_id": "210297980",
                 "use_case": "use_case",
             },
             external_id="external_id",
@@ -166,7 +166,7 @@ class TestAccounts:
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
         )
 
@@ -181,7 +181,7 @@ class TestAccounts:
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
         ) as response:
             assert not response.is_closed
@@ -199,17 +199,13 @@ class TestAccounts:
                 account_id="",
                 business_profile={
                     "name": "name",
-                    "website": "website",
+                    "website": "https://example.com",
                 },
             )
 
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
-        account = client.embed.accounts.list(
-            page_number=0,
-            page_size=0,
-            sort_order="asc",
-        )
+        account = client.embed.accounts.list()
         assert_matches_type(SyncPageNumberSchema[Data], account, path=["response"])
 
     @parametrize
@@ -217,9 +213,8 @@ class TestAccounts:
         account = client.embed.accounts.list(
             page_number=0,
             page_size=0,
-            sort_order="asc",
-            search_text="search_text",
             sort_by="sort_by",
+            sort_order="asc",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -227,11 +222,7 @@ class TestAccounts:
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
-        response = client.embed.accounts.with_raw_response.list(
-            page_number=0,
-            page_size=0,
-            sort_order="asc",
-        )
+        response = client.embed.accounts.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -240,11 +231,7 @@ class TestAccounts:
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
-        with client.embed.accounts.with_streaming_response.list(
-            page_number=0,
-            page_size=0,
-            sort_order="asc",
-        ) as response:
+        with client.embed.accounts.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -426,10 +413,10 @@ class TestAsyncAccounts:
     async def test_method_create(self, async_client: AsyncStraddle) -> None:
         account = await async_client.embed.accounts.create(
             access_level="standard",
-            account_type="unknown",
+            account_type="business",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -439,17 +426,17 @@ class TestAsyncAccounts:
     async def test_method_create_with_all_params(self, async_client: AsyncStraddle) -> None:
         account = await async_client.embed.accounts.create(
             access_level="standard",
-            account_type="unknown",
+            account_type="business",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
                 "address": {
                     "city": "city",
                     "country": "country",
                     "line1": "line1",
                     "line2": "line2",
-                    "postal_code": "postal_code",
-                    "state": "state",
+                    "postal_code": "21029-1360",
+                    "state": "SE",
                 },
                 "description": "description",
                 "industry": {
@@ -458,13 +445,13 @@ class TestAsyncAccounts:
                     "sector": "sector",
                 },
                 "legal_name": "legal_name",
-                "phone": "phone",
+                "phone": "+46991022",
                 "support_channels": {
-                    "email": "email",
-                    "phone": "phone",
-                    "url": "url",
+                    "email": "dev@stainlessapi.com",
+                    "phone": "+46991022",
+                    "url": "https://example.com",
                 },
-                "tax_id": "tax_id",
+                "tax_id": "210297980",
                 "use_case": "use_case",
             },
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -479,10 +466,10 @@ class TestAsyncAccounts:
     async def test_raw_response_create(self, async_client: AsyncStraddle) -> None:
         response = await async_client.embed.accounts.with_raw_response.create(
             access_level="standard",
-            account_type="unknown",
+            account_type="business",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -496,10 +483,10 @@ class TestAsyncAccounts:
     async def test_streaming_response_create(self, async_client: AsyncStraddle) -> None:
         async with async_client.embed.accounts.with_streaming_response.create(
             access_level="standard",
-            account_type="unknown",
+            account_type="business",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -517,7 +504,7 @@ class TestAsyncAccounts:
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
         )
         assert_matches_type(Account, account, path=["response"])
@@ -528,14 +515,14 @@ class TestAsyncAccounts:
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
                 "address": {
                     "city": "city",
                     "country": "country",
                     "line1": "line1",
                     "line2": "line2",
-                    "postal_code": "postal_code",
-                    "state": "state",
+                    "postal_code": "21029-1360",
+                    "state": "SE",
                 },
                 "description": "description",
                 "industry": {
@@ -544,13 +531,13 @@ class TestAsyncAccounts:
                     "sector": "sector",
                 },
                 "legal_name": "legal_name",
-                "phone": "phone",
+                "phone": "+46991022",
                 "support_channels": {
-                    "email": "email",
-                    "phone": "phone",
-                    "url": "url",
+                    "email": "dev@stainlessapi.com",
+                    "phone": "+46991022",
+                    "url": "https://example.com",
                 },
-                "tax_id": "tax_id",
+                "tax_id": "210297980",
                 "use_case": "use_case",
             },
             external_id="external_id",
@@ -566,7 +553,7 @@ class TestAsyncAccounts:
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
         )
 
@@ -581,7 +568,7 @@ class TestAsyncAccounts:
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             business_profile={
                 "name": "name",
-                "website": "website",
+                "website": "https://example.com",
             },
         ) as response:
             assert not response.is_closed
@@ -599,17 +586,13 @@ class TestAsyncAccounts:
                 account_id="",
                 business_profile={
                     "name": "name",
-                    "website": "website",
+                    "website": "https://example.com",
                 },
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
-        account = await async_client.embed.accounts.list(
-            page_number=0,
-            page_size=0,
-            sort_order="asc",
-        )
+        account = await async_client.embed.accounts.list()
         assert_matches_type(AsyncPageNumberSchema[Data], account, path=["response"])
 
     @parametrize
@@ -617,9 +600,8 @@ class TestAsyncAccounts:
         account = await async_client.embed.accounts.list(
             page_number=0,
             page_size=0,
-            sort_order="asc",
-            search_text="search_text",
             sort_by="sort_by",
+            sort_order="asc",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -627,11 +609,7 @@ class TestAsyncAccounts:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
-        response = await async_client.embed.accounts.with_raw_response.list(
-            page_number=0,
-            page_size=0,
-            sort_order="asc",
-        )
+        response = await async_client.embed.accounts.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -640,11 +618,7 @@ class TestAsyncAccounts:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
-        async with async_client.embed.accounts.with_streaming_response.list(
-            page_number=0,
-            page_size=0,
-            sort_order="asc",
-        ) as response:
+        async with async_client.embed.accounts.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
