@@ -50,12 +50,6 @@ class Data(BaseModel):
     label: str
     """Human-readable label used to represent this paykey in a UI."""
 
-    paykey: str
-    """The tokenized paykey value.
-
-    This value is used to create payments and should be stored securely.
-    """
-
     source: Literal["bank_account", "straddle", "mx", "plaid"]
 
     status: Literal["pending", "active", "inactive", "rejected"]
@@ -99,9 +93,6 @@ class Meta(BaseModel):
     sort_order: Literal["asc", "desc"]
 
     total_items: int
-
-    total_pages: int
-    """The number of pages available."""
 
 
 class PaykeySummaryPaged(BaseModel):

@@ -222,10 +222,8 @@ class RepresentativesResource(SyncAPIResource):
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
-        organization_id: str | NotGiven = NOT_GIVEN,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        platform_id: str | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -282,10 +280,8 @@ class RepresentativesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "account_id": account_id,
-                        "organization_id": organization_id,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "platform_id": platform_id,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
                     },
@@ -534,10 +530,8 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
-        organization_id: str | NotGiven = NOT_GIVEN,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
-        platform_id: str | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -594,10 +588,8 @@ class AsyncRepresentativesResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "account_id": account_id,
-                        "organization_id": organization_id,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "platform_id": platform_id,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
                     },
