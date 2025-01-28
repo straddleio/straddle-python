@@ -16,6 +16,8 @@ class AccountListParams(TypedDict, total=False):
     page_size: int
     """Page size. Default value: 100. Max value: 1000"""
 
+    search_text: str
+
     sort_by: str
     """Sort By. Default value: 'id'."""
 

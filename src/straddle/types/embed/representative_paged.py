@@ -53,7 +53,7 @@ class DataStatusDetail(BaseModel):
     message: str
     """A human-readable message describing the current status."""
 
-    reason: Literal["unverified", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled"]
+    reason: Literal["unverified", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled", "new"]
     """
     A machine-readable identifier for the specific status, useful for programmatic
     handling.
@@ -141,6 +141,9 @@ class Meta(BaseModel):
 
     total_items: int
     """Total number of items returned in this response."""
+
+    total_pages: int
+    """The number of pages available."""
 
 
 class RepresentativePaged(BaseModel):

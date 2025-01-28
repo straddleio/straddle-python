@@ -62,6 +62,9 @@ class Meta(BaseModel):
 
     total_items: int
 
+    total_pages: int
+    """The number of pages available."""
+
 
 class CustomerSummaryPaged(BaseModel):
     data: List[Data]
