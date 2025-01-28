@@ -213,7 +213,6 @@ class TestAccounts:
         account = client.embed.accounts.list(
             page_number=0,
             page_size=0,
-            search_text="search_text",
             sort_by="sort_by",
             sort_order="asc",
             correlation_id="correlation-id",
@@ -601,7 +600,6 @@ class TestAsyncAccounts:
         account = await async_client.embed.accounts.list(
             page_number=0,
             page_size=0,
-            search_text="search_text",
             sort_by="sort_by",
             sort_order="asc",
             correlation_id="correlation-id",
