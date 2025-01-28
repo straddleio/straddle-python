@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2025-01-28)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/straddleio/straddle-python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Features
+
+* **api:** api update ([#10](https://github.com/straddleio/straddle-python/issues/10)) ([26ccbe0](https://github.com/straddleio/straddle-python/commit/26ccbe04110831d2faf214e5b2dd30a587dbe72a))
+* **api:** api update ([#12](https://github.com/straddleio/straddle-python/issues/12)) ([1690d13](https://github.com/straddleio/straddle-python/commit/1690d13a7a90ec9cf14ae1a78c635c3e839a9fb9))
+* **api:** Release Updates to SDK based on Open API Spec ([#11](https://github.com/straddleio/straddle-python/issues/11)) ([a6886a0](https://github.com/straddleio/straddle-python/commit/a6886a01575980ddbf29479c7b00fc409c16c97f))
+* **api:** Release Updates to SDK based on Open API Spec ([#8](https://github.com/straddleio/straddle-python/issues/8)) ([731974f](https://github.com/straddleio/straddle-python/commit/731974f6db0ad41d26c65c351b7cd64a48ed3358))
+
+
+### Bug Fixes
+
+* **sdk:** Fix Environment to point to correct URLs ([#13](https://github.com/straddleio/straddle-python/issues/13)) ([515a3b4](https://github.com/straddleio/straddle-python/commit/515a3b4e54029416e0db82d472905e9225739994))
+
 ## 0.1.0-alpha.2 (2025-01-27)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/straddleio/straddle-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
