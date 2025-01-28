@@ -12,7 +12,7 @@ __all__ = ["ChargeHoldParams"]
 
 class ChargeHoldParams(TypedDict, total=False):
     reason: Optional[str]
-    """Details about why the charge status was updated."""
+    """Reason."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 

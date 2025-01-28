@@ -77,27 +77,22 @@ class PayoutsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
         """
-        Use payouts to send money to your customers.
+        Create a payout.
 
         Args:
-          amount: The amount of the payout in cents.
+          amount: Amount.
 
-          currency: The currency of the payout. Only USD is supported.
+          currency: Currency.
 
-          description: An arbitrary description for the payout.
+          description: Description.
 
-          device: Information about the device used when the customer authorized the payout.
+          external_id: External id.
 
-          external_id: Unique identifier for the payout in your database. This value must be unique
-              across all payouts.
+          paykey: Paykey.
 
-          paykey: Value of the `paykey` used for the payout.
+          payment_date: Payment date.
 
-          payment_date: The desired date on which the payout should be occur. For payouts, this means
-              the date you want the funds to be sent from your bank account.
-
-          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
-              information about the payout in a structured format.
+          metadata: Metadata.
 
           extra_headers: Send extra headers
 
@@ -157,21 +152,17 @@ class PayoutsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
-        """Update the details of a payout prior to processing.
-
-        The status of the payout
-        must be `created`, `scheduled`, or `on_hold`.
+        """
+        Update a payout.
 
         Args:
-          amount: The amount of the payout in cents.
+          amount: Amount.
 
-          description: An arbitrary description for the payout.
+          description: Description.
 
-          payment_date: The desired date on which the payment should be occur. For payouts, this means
-              the date you want the funds to be sent from your bank account.
+          payment_date: Payment date.
 
-          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
-              information about the payout in a structured format.
+          metadata: Metadata.
 
           extra_headers: Send extra headers
 
@@ -225,13 +216,11 @@ class PayoutsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
-        """Cancel a payout to prevent it from being processed.
-
-        The status of the payout
-        must be `created`, `scheduled`, or `on_hold`.
+        """
+        Cancel a payout.
 
         Args:
-          reason: Details about why the payout status was updated.
+          reason: Reason.
 
           extra_headers: Send extra headers
 
@@ -276,10 +265,8 @@ class PayoutsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
-        """Retrieves the details of an existing payout.
-
-        Supply the unique payout `id` to
-        retrieve the corresponding payout information.
+        """
+        Get a payout by id.
 
         Args:
           extra_headers: Send extra headers
@@ -325,13 +312,11 @@ class PayoutsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
-        """Hold a payout to prevent it from being processed.
-
-        The status of the payout must
-        be `created`, `scheduled`, or `on_hold`.
+        """
+        Put a payout on hold.
 
         Args:
-          reason: Details about why the payout status was updated.
+          reason: Reason.
 
           extra_headers: Send extra headers
 
@@ -378,11 +363,10 @@ class PayoutsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
         """
-        Release a payout from a `hold` status to allow it to be rescheduled for
-        processing.
+        Release a payout from hold.
 
         Args:
-          reason: Details about why the payout status was updated.
+          reason: Reason.
 
           extra_headers: Send extra headers
 
@@ -457,27 +441,22 @@ class AsyncPayoutsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
         """
-        Use payouts to send money to your customers.
+        Create a payout.
 
         Args:
-          amount: The amount of the payout in cents.
+          amount: Amount.
 
-          currency: The currency of the payout. Only USD is supported.
+          currency: Currency.
 
-          description: An arbitrary description for the payout.
+          description: Description.
 
-          device: Information about the device used when the customer authorized the payout.
+          external_id: External id.
 
-          external_id: Unique identifier for the payout in your database. This value must be unique
-              across all payouts.
+          paykey: Paykey.
 
-          paykey: Value of the `paykey` used for the payout.
+          payment_date: Payment date.
 
-          payment_date: The desired date on which the payout should be occur. For payouts, this means
-              the date you want the funds to be sent from your bank account.
-
-          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
-              information about the payout in a structured format.
+          metadata: Metadata.
 
           extra_headers: Send extra headers
 
@@ -537,21 +516,17 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
-        """Update the details of a payout prior to processing.
-
-        The status of the payout
-        must be `created`, `scheduled`, or `on_hold`.
+        """
+        Update a payout.
 
         Args:
-          amount: The amount of the payout in cents.
+          amount: Amount.
 
-          description: An arbitrary description for the payout.
+          description: Description.
 
-          payment_date: The desired date on which the payment should be occur. For payouts, this means
-              the date you want the funds to be sent from your bank account.
+          payment_date: Payment date.
 
-          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
-              information about the payout in a structured format.
+          metadata: Metadata.
 
           extra_headers: Send extra headers
 
@@ -605,13 +580,11 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
-        """Cancel a payout to prevent it from being processed.
-
-        The status of the payout
-        must be `created`, `scheduled`, or `on_hold`.
+        """
+        Cancel a payout.
 
         Args:
-          reason: Details about why the payout status was updated.
+          reason: Reason.
 
           extra_headers: Send extra headers
 
@@ -656,10 +629,8 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
-        """Retrieves the details of an existing payout.
-
-        Supply the unique payout `id` to
-        retrieve the corresponding payout information.
+        """
+        Get a payout by id.
 
         Args:
           extra_headers: Send extra headers
@@ -705,13 +676,11 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
-        """Hold a payout to prevent it from being processed.
-
-        The status of the payout must
-        be `created`, `scheduled`, or `on_hold`.
+        """
+        Put a payout on hold.
 
         Args:
-          reason: Details about why the payout status was updated.
+          reason: Reason.
 
           extra_headers: Send extra headers
 
@@ -758,11 +727,10 @@ class AsyncPayoutsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Payout:
         """
-        Release a payout from a `hold` status to allow it to be rescheduled for
-        processing.
+        Release a payout from hold.
 
         Args:
-          reason: Details about why the payout status was updated.
+          reason: Reason.
 
           extra_headers: Send extra headers
 

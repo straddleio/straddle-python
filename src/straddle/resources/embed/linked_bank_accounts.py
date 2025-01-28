@@ -70,12 +70,11 @@ class LinkedBankAccountsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LinkedBankAccount:
-        """Creates a new linked bank account associated with a Straddle account.
+        """Creates a new linked bank account for a Straddle account.
 
-        This
-        endpoint allows you to associate external bank accounts with a Straddle account
-        for various payment operations such as payment deposits, payout withdrawals, and
-        more.
+        This endpoint allows
+        you to associate external bank accounts with a Straddle account for various
+        payment operations such as payment deposits, payout withdrawals, and more.
 
         Args:
           account_id: The unique identifier of the Straddle account to associate this bank account
@@ -182,11 +181,11 @@ class LinkedBankAccountsResource(SyncAPIResource):
     def list(
         self,
         *,
+        page_number: int,
+        page_size: int,
+        sort_by: str,
+        sort_order: Literal["asc", "desc"],
         account_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -204,15 +203,15 @@ class LinkedBankAccountsResource(SyncAPIResource):
         accounts with multiple linked bank accounts.
 
         Args:
+          page_number: Results page number. Starts at page 1. Default value: 1
+
+          page_size: Page size. Default value: 100. Max value: 1000
+
+          sort_by: Sort By. Default value: 'id'.
+
+          sort_order: Sort Order. Default value: 'asc'.
+
           account_id: The unique identifier of the related account.
-
-          page_number: Results page number. Starts at page 1.
-
-          page_size: Page size. Max value: 1000
-
-          sort_by: Sort By.
-
-          sort_order: Sort Order.
 
           extra_headers: Send extra headers
 
@@ -241,11 +240,11 @@ class LinkedBankAccountsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "account_id": account_id,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "account_id": account_id,
                     },
                     linked_bank_account_list_params.LinkedBankAccountListParams,
                 ),
@@ -268,7 +267,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
     ) -> LinkedBankAccount:
         """
         Retrieves the details of a linked bank account that has previously been created.
-        Supply the unique linked bank account `id`, and Straddle will return the
+        Supply the unique linked bank account ID, and Straddle will return the
         corresponding information. The response includes masked account details for
         security purposes.
 
@@ -317,10 +316,9 @@ class LinkedBankAccountsResource(SyncAPIResource):
     ) -> LinkedBankAccountUnmask:
         """
         Retrieves the unmasked details of a linked bank account that has previously been
-        created. Supply the unique linked bank account `id`, and Straddle will return
-        the corresponding information, including sensitive details. This endpoint needs
-        to be enabled by Straddle for your account and should only be used when
-        absolutely necessary.
+        created. Supply the unique linked bank account ID, and Straddle will return the
+        corresponding information, including sensitive details. This endpoint requires
+        additional authentication and should be used with caution.
 
         Args:
           extra_headers: Send extra headers
@@ -388,12 +386,11 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LinkedBankAccount:
-        """Creates a new linked bank account associated with a Straddle account.
+        """Creates a new linked bank account for a Straddle account.
 
-        This
-        endpoint allows you to associate external bank accounts with a Straddle account
-        for various payment operations such as payment deposits, payout withdrawals, and
-        more.
+        This endpoint allows
+        you to associate external bank accounts with a Straddle account for various
+        payment operations such as payment deposits, payout withdrawals, and more.
 
         Args:
           account_id: The unique identifier of the Straddle account to associate this bank account
@@ -500,11 +497,11 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        page_number: int,
+        page_size: int,
+        sort_by: str,
+        sort_order: Literal["asc", "desc"],
         account_id: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -522,15 +519,15 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         accounts with multiple linked bank accounts.
 
         Args:
+          page_number: Results page number. Starts at page 1. Default value: 1
+
+          page_size: Page size. Default value: 100. Max value: 1000
+
+          sort_by: Sort By. Default value: 'id'.
+
+          sort_order: Sort Order. Default value: 'asc'.
+
           account_id: The unique identifier of the related account.
-
-          page_number: Results page number. Starts at page 1.
-
-          page_size: Page size. Max value: 1000
-
-          sort_by: Sort By.
-
-          sort_order: Sort Order.
 
           extra_headers: Send extra headers
 
@@ -559,11 +556,11 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "account_id": account_id,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "account_id": account_id,
                     },
                     linked_bank_account_list_params.LinkedBankAccountListParams,
                 ),
@@ -586,7 +583,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
     ) -> LinkedBankAccount:
         """
         Retrieves the details of a linked bank account that has previously been created.
-        Supply the unique linked bank account `id`, and Straddle will return the
+        Supply the unique linked bank account ID, and Straddle will return the
         corresponding information. The response includes masked account details for
         security purposes.
 
@@ -635,10 +632,9 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
     ) -> LinkedBankAccountUnmask:
         """
         Retrieves the unmasked details of a linked bank account that has previously been
-        created. Supply the unique linked bank account `id`, and Straddle will return
-        the corresponding information, including sensitive details. This endpoint needs
-        to be enabled by Straddle for your account and should only be used when
-        absolutely necessary.
+        created. Supply the unique linked bank account ID, and Straddle will return the
+        corresponding information, including sensitive details. This endpoint requires
+        additional authentication and should be used with caution.
 
         Args:
           extra_headers: Send extra headers

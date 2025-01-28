@@ -27,8 +27,8 @@ class TestCharges:
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
-            description="Monthly subscription fee",
-            device={"ip_address": "192.168.1.1"},
+            description="description",
+            device={"ip_address": "ip_address"},
             external_id="external_id",
             paykey="paykey",
             payment_date=parse_date("2019-12-27"),
@@ -42,8 +42,8 @@ class TestCharges:
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
-            description="Monthly subscription fee",
-            device={"ip_address": "192.168.1.1"},
+            description="description",
+            device={"ip_address": "ip_address"},
             external_id="external_id",
             paykey="paykey",
             payment_date=parse_date("2019-12-27"),
@@ -61,8 +61,8 @@ class TestCharges:
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
-            description="Monthly subscription fee",
-            device={"ip_address": "192.168.1.1"},
+            description="description",
+            device={"ip_address": "ip_address"},
             external_id="external_id",
             paykey="paykey",
             payment_date=parse_date("2019-12-27"),
@@ -80,8 +80,8 @@ class TestCharges:
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
-            description="Monthly subscription fee",
-            device={"ip_address": "192.168.1.1"},
+            description="description",
+            device={"ip_address": "ip_address"},
             external_id="external_id",
             paykey="paykey",
             payment_date=parse_date("2019-12-27"),
@@ -99,7 +99,7 @@ class TestCharges:
         charge = client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             amount=0,
-            description="Monthly subscription fee",
+            description="description",
             payment_date=parse_date("2019-12-27"),
         )
         assert_matches_type(Charge, charge, path=["response"])
@@ -109,7 +109,7 @@ class TestCharges:
         charge = client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             amount=0,
-            description="Monthly subscription fee",
+            description="description",
             payment_date=parse_date("2019-12-27"),
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
@@ -123,7 +123,7 @@ class TestCharges:
         response = client.charges.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             amount=0,
-            description="Monthly subscription fee",
+            description="description",
             payment_date=parse_date("2019-12-27"),
         )
 
@@ -137,7 +137,7 @@ class TestCharges:
         with client.charges.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             amount=0,
-            description="Monthly subscription fee",
+            description="description",
             payment_date=parse_date("2019-12-27"),
         ) as response:
             assert not response.is_closed
@@ -154,7 +154,7 @@ class TestCharges:
             client.charges.with_raw_response.update(
                 id="",
                 amount=0,
-                description="Monthly subscription fee",
+                description="description",
                 payment_date=parse_date("2019-12-27"),
             )
 
@@ -364,8 +364,8 @@ class TestAsyncCharges:
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
-            description="Monthly subscription fee",
-            device={"ip_address": "192.168.1.1"},
+            description="description",
+            device={"ip_address": "ip_address"},
             external_id="external_id",
             paykey="paykey",
             payment_date=parse_date("2019-12-27"),
@@ -379,8 +379,8 @@ class TestAsyncCharges:
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
-            description="Monthly subscription fee",
-            device={"ip_address": "192.168.1.1"},
+            description="description",
+            device={"ip_address": "ip_address"},
             external_id="external_id",
             paykey="paykey",
             payment_date=parse_date("2019-12-27"),
@@ -398,8 +398,8 @@ class TestAsyncCharges:
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
-            description="Monthly subscription fee",
-            device={"ip_address": "192.168.1.1"},
+            description="description",
+            device={"ip_address": "ip_address"},
             external_id="external_id",
             paykey="paykey",
             payment_date=parse_date("2019-12-27"),
@@ -417,8 +417,8 @@ class TestAsyncCharges:
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
-            description="Monthly subscription fee",
-            device={"ip_address": "192.168.1.1"},
+            description="description",
+            device={"ip_address": "ip_address"},
             external_id="external_id",
             paykey="paykey",
             payment_date=parse_date("2019-12-27"),
@@ -436,7 +436,7 @@ class TestAsyncCharges:
         charge = await async_client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             amount=0,
-            description="Monthly subscription fee",
+            description="description",
             payment_date=parse_date("2019-12-27"),
         )
         assert_matches_type(Charge, charge, path=["response"])
@@ -446,7 +446,7 @@ class TestAsyncCharges:
         charge = await async_client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             amount=0,
-            description="Monthly subscription fee",
+            description="description",
             payment_date=parse_date("2019-12-27"),
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
@@ -460,7 +460,7 @@ class TestAsyncCharges:
         response = await async_client.charges.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             amount=0,
-            description="Monthly subscription fee",
+            description="description",
             payment_date=parse_date("2019-12-27"),
         )
 
@@ -474,7 +474,7 @@ class TestAsyncCharges:
         async with async_client.charges.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             amount=0,
-            description="Monthly subscription fee",
+            description="description",
             payment_date=parse_date("2019-12-27"),
         ) as response:
             assert not response.is_closed
@@ -491,7 +491,7 @@ class TestAsyncCharges:
             await async_client.charges.with_raw_response.update(
                 id="",
                 amount=0,
-                description="Monthly subscription fee",
+                description="description",
                 payment_date=parse_date("2019-12-27"),
             )
 

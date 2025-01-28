@@ -18,14 +18,13 @@ __all__ = [
 
 class AccountCreateParams(TypedDict, total=False):
     access_level: Required[Literal["standard", "managed"]]
-    """The access level granted to the account.
+    """The desired access level for the new account.
 
-    This is determined by your platform configuration. Use `standard` unless
-    instructed otherwise by Straddle.
+    Possible values: 'managed', 'standard'.
     """
 
-    account_type: Required[Literal["business"]]
-    """The type of account to be created. Currently, only `business` is supported."""
+    account_type: Required[Literal["unknown", "business"]]
+    """The type of account to be created. Currently only 'business' is supported."""
 
     business_profile: Required[BusinessProfile]
 
@@ -102,8 +101,7 @@ class BusinessProfile(TypedDict, total=False):
     website: Required[str]
     """URL of the business's primary marketing website."""
 
-    address: Optional[BusinessProfileAddress]
-    """The address object is optional. If provided, it must be a valid address."""
+    address: BusinessProfileAddress
 
     description: Optional[str]
     """A brief description of the business and its products or services."""

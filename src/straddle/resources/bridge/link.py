@@ -23,7 +23,8 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.bridge import link_plaid_params, link_bank_account_params
-from ...types.paykey import Paykey
+from ...types.bridge.link_plaid_response import LinkPlaidResponse
+from ...types.bridge.link_bank_account_response import LinkBankAccountResponse
 
 __all__ = ["LinkResource", "AsyncLinkResource"]
 
@@ -65,18 +66,19 @@ class LinkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
-        """
-        Use Bridge to create a new paykey using a bank routing and account number as the
-        source. This endpoint allows you to create a secure payment token linked to a
-        specific bank account.
+    ) -> LinkBankAccountResponse:
+        """Creates a new paykey using a bank routing and account number as the source.
+
+        This
+        endpoint allows you to create a secure payment token linked to a specific bank
+        account.
 
         Args:
-          account_number: The bank account number.
+          account_number: Bank account number.
 
           customer_id: Unique identifier of the related customer object.
 
-          routing_number: The routing number of the bank account.
+          routing_number: Bank routing number.
 
           metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
               information about the paykey in a structured format.
@@ -114,7 +116,7 @@ class LinkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Paykey,
+            cast_to=LinkBankAccountResponse,
         )
 
     def plaid(
@@ -132,12 +134,12 @@ class LinkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
-        """Use Bridge to create a new paykey using a Plaid token as the source.
+    ) -> LinkPlaidResponse:
+        """Creates a new paykey using a Plaid token as the source.
 
-        This
-        endpoint allows you to create a secure payment token linked to a bank account
-        authenticated through Plaid.
+        This endpoint allows you
+        to create a secure payment token linked to a bank account authenticated through
+        Plaid.
 
         Args:
           customer_id: Unique identifier of the related customer object.
@@ -179,7 +181,7 @@ class LinkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Paykey,
+            cast_to=LinkPlaidResponse,
         )
 
 
@@ -220,18 +222,19 @@ class AsyncLinkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
-        """
-        Use Bridge to create a new paykey using a bank routing and account number as the
-        source. This endpoint allows you to create a secure payment token linked to a
-        specific bank account.
+    ) -> LinkBankAccountResponse:
+        """Creates a new paykey using a bank routing and account number as the source.
+
+        This
+        endpoint allows you to create a secure payment token linked to a specific bank
+        account.
 
         Args:
-          account_number: The bank account number.
+          account_number: Bank account number.
 
           customer_id: Unique identifier of the related customer object.
 
-          routing_number: The routing number of the bank account.
+          routing_number: Bank routing number.
 
           metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
               information about the paykey in a structured format.
@@ -269,7 +272,7 @@ class AsyncLinkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Paykey,
+            cast_to=LinkBankAccountResponse,
         )
 
     async def plaid(
@@ -287,12 +290,12 @@ class AsyncLinkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
-        """Use Bridge to create a new paykey using a Plaid token as the source.
+    ) -> LinkPlaidResponse:
+        """Creates a new paykey using a Plaid token as the source.
 
-        This
-        endpoint allows you to create a secure payment token linked to a bank account
-        authenticated through Plaid.
+        This endpoint allows you
+        to create a secure payment token linked to a bank account authenticated through
+        Plaid.
 
         Args:
           customer_id: Unique identifier of the related customer object.
@@ -334,7 +337,7 @@ class AsyncLinkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Paykey,
+            cast_to=LinkPlaidResponse,
         )
 
 

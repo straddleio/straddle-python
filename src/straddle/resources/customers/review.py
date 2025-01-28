@@ -63,16 +63,13 @@ class ReviewResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Customer:
-        """Updates the status of a customer's identity decision.
+        """Updates the decision of a customer's identity validation.
 
-        This endpoint allows you
-        to modify the outcome of a customer risk screening and is useful for correcting
-        or updating the status of a customer's verification. Note that this endpoint is
-        only available for customers with a current status of `review`.
+        This endpoint allows
+        you to modify the outcome of a customer decision and is useful for correcting or
+        updating the status of a customer's verification.
 
         Args:
-          status: The final status of the customer review.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -116,16 +113,14 @@ class ReviewResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CustomerReview:
-        """
-        Retrieves and analyzes the results of a customer's identity validation and fraud
-        score. This endpoint provides a comprehensive breakdown of the validation
-        outcome, including:
+        """Retrieves and analyzes the results of a customer's identity validation.
 
-        - Risk and correlation scores
-        - Reason codes for the decision
-        - Results of watchlist screening
-        - Any network alerts detected Use this endpoint to gain insights into the
-          verification process and make informed decisions about customer onboarding.
+        This
+        endpoint provides a comprehensive breakdown of the validation outcome,
+        including:<br />- Risk and correlation scores<br />- Reason codes for the
+        decision<br />- Results of watchlist screening<br />- Any network alerts
+        detected<br />Use this endpoint to gain insights into the verification process
+        and make informed decisions about customer onboarding.
 
         Args:
           extra_headers: Send extra headers
@@ -192,16 +187,13 @@ class AsyncReviewResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Customer:
-        """Updates the status of a customer's identity decision.
+        """Updates the decision of a customer's identity validation.
 
-        This endpoint allows you
-        to modify the outcome of a customer risk screening and is useful for correcting
-        or updating the status of a customer's verification. Note that this endpoint is
-        only available for customers with a current status of `review`.
+        This endpoint allows
+        you to modify the outcome of a customer decision and is useful for correcting or
+        updating the status of a customer's verification.
 
         Args:
-          status: The final status of the customer review.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -245,16 +237,14 @@ class AsyncReviewResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CustomerReview:
-        """
-        Retrieves and analyzes the results of a customer's identity validation and fraud
-        score. This endpoint provides a comprehensive breakdown of the validation
-        outcome, including:
+        """Retrieves and analyzes the results of a customer's identity validation.
 
-        - Risk and correlation scores
-        - Reason codes for the decision
-        - Results of watchlist screening
-        - Any network alerts detected Use this endpoint to gain insights into the
-          verification process and make informed decisions about customer onboarding.
+        This
+        endpoint provides a comprehensive breakdown of the validation outcome,
+        including:<br />- Risk and correlation scores<br />- Reason codes for the
+        decision<br />- Results of watchlist screening<br />- Any network alerts
+        detected<br />Use this endpoint to gain insights into the verification process
+        and make informed decisions about customer onboarding.
 
         Args:
           extra_headers: Send extra headers

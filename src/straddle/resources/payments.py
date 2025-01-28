@@ -87,51 +87,46 @@ class PaymentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncPageNumberSchema[Data]:
         """
-        Search for payments, including `charges` and `payouts`, using a variety of
-        criteria. This endpoint supports advanced sorting and filtering options.
+        Search payments.
 
         Args:
-          customer_id: Search using the `customer_id` of a `charge` or `payout`.
+          customer_id: Customer id.
 
-          default_sort: The field to sort the results by.
+          external_id: External id.
 
-          external_id: Search using the `external_id` of a `charge` or `payout`.
+          funding_id: Funding id.
 
-          funding_id: Search using the `funding_id` of a `charge` or `payout`.
+          max_amount: Maximum amount.
 
-          max_amount: Search using a maximum `amount` of a `charge` or `payout`.
+          max_created_at: Maximum created at.
 
-          max_created_at: Search using the latest `created_at` date of a `charge` or `payout`.
+          max_effective_at: Maximum effective at.
 
-          max_effective_at: Search using the latest `effective_date` of a `charge` or `payout`.
+          max_payment_date: Maximum payment date.
 
-          max_payment_date: Search using the latest `payment_date` of a `charge` or `payout`.
+          min_amount: Minimum amount.
 
-          min_amount: Search using the minimum `amount of a `charge`or`payout`.
+          min_created_at: Minimum created at.
 
-          min_created_at: Search using the earliest `created_at` date of a `charge` or `payout`.
+          min_effective_at: Minimum effective at.
 
-          min_effective_at: Search using the earliest `effective_date` of a `charge` or `payout`.
+          min_payment_date: Minimum payment date.
 
-          min_payment_date: Search using the earliest ` `of a `charge` or `payout`.
+          page_number: Results page number. Starts at page 1. Default value: 1
 
-          page_number: Results page number. Starts at page 1.
+          page_size: Results page size. Default value: 100. Max value: 1000
 
-          page_size: Results page size. Max value: 1000
+          paykey: Paykey.
 
-          paykey: Search using the `paykey` of a `charge` or `payout`.
+          paykey_id: Paykey id.
 
-          paykey_id: Search using the `paykey_id` of a `charge` or `payout`.
+          payment_id: Payment id.
 
-          payment_id: Search using the `id` of a `charge` or `payout`.
+          payment_status: Payment status.
 
-          payment_status: Search by the status of a `charge` or `payout`.
+          payment_type: Payment type.
 
-          payment_type: Search by the type of a `charge` or `payout`.
-
-          search_text: Search using a text string associated with a `charge` or `payout`.
-
-          sort_by: The field to sort the results by.
+          search_text: Search text.
 
           extra_headers: Send extra headers
 
@@ -254,51 +249,46 @@ class AsyncPaymentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """
-        Search for payments, including `charges` and `payouts`, using a variety of
-        criteria. This endpoint supports advanced sorting and filtering options.
+        Search payments.
 
         Args:
-          customer_id: Search using the `customer_id` of a `charge` or `payout`.
+          customer_id: Customer id.
 
-          default_sort: The field to sort the results by.
+          external_id: External id.
 
-          external_id: Search using the `external_id` of a `charge` or `payout`.
+          funding_id: Funding id.
 
-          funding_id: Search using the `funding_id` of a `charge` or `payout`.
+          max_amount: Maximum amount.
 
-          max_amount: Search using a maximum `amount` of a `charge` or `payout`.
+          max_created_at: Maximum created at.
 
-          max_created_at: Search using the latest `created_at` date of a `charge` or `payout`.
+          max_effective_at: Maximum effective at.
 
-          max_effective_at: Search using the latest `effective_date` of a `charge` or `payout`.
+          max_payment_date: Maximum payment date.
 
-          max_payment_date: Search using the latest `payment_date` of a `charge` or `payout`.
+          min_amount: Minimum amount.
 
-          min_amount: Search using the minimum `amount of a `charge`or`payout`.
+          min_created_at: Minimum created at.
 
-          min_created_at: Search using the earliest `created_at` date of a `charge` or `payout`.
+          min_effective_at: Minimum effective at.
 
-          min_effective_at: Search using the earliest `effective_date` of a `charge` or `payout`.
+          min_payment_date: Minimum payment date.
 
-          min_payment_date: Search using the earliest ` `of a `charge` or `payout`.
+          page_number: Results page number. Starts at page 1. Default value: 1
 
-          page_number: Results page number. Starts at page 1.
+          page_size: Results page size. Default value: 100. Max value: 1000
 
-          page_size: Results page size. Max value: 1000
+          paykey: Paykey.
 
-          paykey: Search using the `paykey` of a `charge` or `payout`.
+          paykey_id: Paykey id.
 
-          paykey_id: Search using the `paykey_id` of a `charge` or `payout`.
+          payment_id: Payment id.
 
-          payment_id: Search using the `id` of a `charge` or `payout`.
+          payment_status: Payment status.
 
-          payment_status: Search by the status of a `charge` or `payout`.
+          payment_type: Payment type.
 
-          payment_type: Search by the type of a `charge` or `payout`.
-
-          search_text: Search using a text string associated with a `charge` or `payout`.
-
-          sort_by: The field to sort the results by.
+          search_text: Search text.
 
           extra_headers: Send extra headers
 
