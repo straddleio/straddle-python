@@ -72,6 +72,9 @@ class DataStatusDetails(BaseModel):
     This helps in tracking the cause of status updates.
     """
 
+    code: Optional[str] = None
+    """The status code if applicable."""
+
 
 class DataStatusHistory(BaseModel):
     changed_at: datetime
@@ -124,11 +127,17 @@ class DataCustomerDetails(BaseModel):
     id: str
     """Unique identifier for the customer."""
 
-    customer_type: Literal["individual", "business"]
+    customer_type: Literal["individual", "business", "unknown"]
     """The type of customer."""
+
+    email: str
+    """Email."""
 
     name: str
     """The name of the customer."""
+
+    phone: str
+    """Phone."""
 
 
 class DataPaykeyDetails(BaseModel):
@@ -166,6 +175,9 @@ class Data(BaseModel):
     PDF signatures.
     """
 
+    created_at: Optional[datetime] = None
+    """Timestamp of when the charge was created."""
+
     currency: str
     """The currency of the charge. Only USD is supported."""
 
@@ -197,9 +209,10 @@ class Data(BaseModel):
     """Additional details about the current status of the charge."""
 
     status_history: List[DataStatusHistory]
+    """Status history."""
 
-    created_at: Optional[datetime] = None
-    """Timestamp of when the charge was created."""
+    updated_at: Optional[datetime] = None
+    """Timestamp of when the charge was last updated."""
 
     customer_details: Optional[DataCustomerDetails] = None
     """Information about the customer associated with the charge."""
@@ -228,9 +241,6 @@ class Data(BaseModel):
     Timestamp of when the charge was processed by Straddle and originated to the
     payment rail.
     """
-
-    updated_at: Optional[datetime] = None
-    """Timestamp of when the charge was last updated."""
 
 
 class Meta(BaseModel):

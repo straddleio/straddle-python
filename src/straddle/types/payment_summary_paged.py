@@ -49,16 +49,25 @@ class DataStatusDetails(BaseModel):
     This helps in tracking the cause of status updates.
     """
 
+    code: Optional[str] = None
+    """The status code if applicable."""
+
 
 class DataCustomerDetails(BaseModel):
     id: str
     """Unique identifier for the customer."""
 
-    customer_type: Literal["individual", "business"]
+    customer_type: Literal["individual", "business", "unknown"]
     """The type of customer."""
+
+    email: str
+    """Email."""
 
     name: str
     """The name of the customer."""
+
+    phone: str
+    """Phone."""
 
 
 class DataPaykeyDetails(BaseModel):
@@ -165,6 +174,9 @@ class Meta(BaseModel):
     sort_order: Literal["asc", "desc"]
 
     total_items: int
+
+    total_pages: int
+    """The number of pages available."""
 
 
 class PaymentSummaryPaged(BaseModel):

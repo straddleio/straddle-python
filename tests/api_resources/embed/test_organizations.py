@@ -100,6 +100,53 @@ class TestOrganizations:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_get(self, client: Straddle) -> None:
+        organization = client.embed.organizations.get(
+            organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(Organization, organization, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Straddle) -> None:
+        organization = client.embed.organizations.get(
+            organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            correlation_id="correlation-id",
+            request_id="request-id",
+        )
+        assert_matches_type(Organization, organization, path=["response"])
+
+    @parametrize
+    def test_raw_response_get(self, client: Straddle) -> None:
+        response = client.embed.organizations.with_raw_response.get(
+            organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        organization = response.parse()
+        assert_matches_type(Organization, organization, path=["response"])
+
+    @parametrize
+    def test_streaming_response_get(self, client: Straddle) -> None:
+        with client.embed.organizations.with_streaming_response.get(
+            organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            organization = response.parse()
+            assert_matches_type(Organization, organization, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_get(self, client: Straddle) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `organization_id` but received ''"):
+            client.embed.organizations.with_raw_response.get(
+                organization_id="",
+            )
+
 
 class TestAsyncOrganizations:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -184,3 +231,50 @@ class TestAsyncOrganizations:
             assert_matches_type(AsyncPageNumberSchema[Data], organization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_get(self, async_client: AsyncStraddle) -> None:
+        organization = await async_client.embed.organizations.get(
+            organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(Organization, organization, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncStraddle) -> None:
+        organization = await async_client.embed.organizations.get(
+            organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            correlation_id="correlation-id",
+            request_id="request-id",
+        )
+        assert_matches_type(Organization, organization, path=["response"])
+
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncStraddle) -> None:
+        response = await async_client.embed.organizations.with_raw_response.get(
+            organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        organization = await response.parse()
+        assert_matches_type(Organization, organization, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncStraddle) -> None:
+        async with async_client.embed.organizations.with_streaming_response.get(
+            organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            organization = await response.parse()
+            assert_matches_type(Organization, organization, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncStraddle) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `organization_id` but received ''"):
+            await async_client.embed.organizations.with_raw_response.get(
+                organization_id="",
+            )

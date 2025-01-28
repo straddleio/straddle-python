@@ -27,7 +27,7 @@ class Data(BaseModel):
     created_at: datetime
     """Timestamp of when the capability request was created."""
 
-    status: Literal["active", "inactive", "in_review", "rejected"]
+    status: Literal["active", "inactive", "in_review", "rejected", "approved", "reviewing"]
     """The current status of the capability request."""
 
     type: Literal["charges", "payouts", "individuals", "businesses", "signed_agreement", "internet"]
@@ -64,6 +64,9 @@ class Meta(BaseModel):
 
     total_items: int
     """Total number of items returned in this response."""
+
+    total_pages: int
+    """The number of pages available."""
 
 
 class CapabilityRequestPaged(BaseModel):
