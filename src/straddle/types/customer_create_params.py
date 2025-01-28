@@ -86,7 +86,7 @@ class Address(TypedDict, total=False):
     zip: Required[str]
     """Zip or postal code."""
 
-    address2: str
+    address2: Optional[str]
     """Secondary address line (e.g., apartment, suite, unit, or building)."""
 
 
@@ -97,6 +97,23 @@ class ComplianceProfileIndividualComplianceProfile(TypedDict, total=False):
     ssn: Required[str]
     """Social Security Number in the format XXX-XX-XXXX."""
 
+    ein: Optional[str]
+    """Full 9-digit Employer Identification Number for businesses.
+
+    This data is required to trigger Patriot Act compliant KYB verification. Only
+    valid where customer type is 'business'.
+    """
+
+    legal_business_name: Optional[str]
+    """The official name of the business.
+
+    This name should be correlated with the ein value. Only valid where customer
+    type is 'business'.
+    """
+
+    website: Optional[str]
+    """URL of the company's official website."""
+
 
 class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
     ein: Required[str]
@@ -106,6 +123,20 @@ class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
     """The official registered name of the business.
 
     This name should be correlated with the `ein` value.
+    """
+
+    dob: Optional[str]
+    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if SSN is provided. Only valid where customer type is 'individual'.
+    """
+
+    ssn: Optional[str]
+    """Full 9-digit Social Security Number or government identifier for individuals.
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if DOB is provided. Only valid where customer type is 'individual'.
     """
 
     website: str

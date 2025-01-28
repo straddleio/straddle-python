@@ -13,11 +13,14 @@ class Data(BaseModel):
     id: str
     """Straddle's unique identifier for the organization."""
 
+    created_at: datetime
+    """Timestamp of when the organization was created."""
+
     name: str
     """The name of the organization."""
 
-    created_at: Optional[datetime] = None
-    """Timestamp of when the organization was created."""
+    updated_at: datetime
+    """Timestamp of the most recent update to the organization."""
 
     external_id: Optional[str] = None
     """
@@ -31,9 +34,6 @@ class Data(BaseModel):
     Useful for storing additional information about the organization in a structured
     format.
     """
-
-    updated_at: Optional[datetime] = None
-    """Timestamp of the most recent update to the organization."""
 
 
 class Meta(BaseModel):
@@ -60,6 +60,9 @@ class Meta(BaseModel):
 
     total_items: int
     """Total number of items returned in this response."""
+
+    total_pages: int
+    """The number of pages available."""
 
 
 class OrganizationPaged(BaseModel):
