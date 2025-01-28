@@ -65,10 +65,11 @@ class OrganizationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Organization:
-        """Creates a new organization in the Straddle system.
+        """Creates a new organization related to your Straddle integration.
 
-        Organizations can be used to
-        group related accounts and manage permissions across multiple users.
+        Organizations
+        can be used to group related accounts and manage permissions across multiple
+        users.
 
         Args:
           name: The name of the organization.
@@ -115,12 +116,12 @@ class OrganizationsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int,
-        page_size: int,
-        sort_by: str,
-        sort_order: Literal["asc", "desc"],
         external_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        sort_by: str | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -134,21 +135,21 @@ class OrganizationsResource(SyncAPIResource):
 
         The
         organizations are returned sorted by creation date, with the most recently
-        created organizations appearing first. This endpoint supports filtering options
-        to help you find specific organizations.
+        created organizations appearing first. This endpoint supports advanced sorting
+        and filtering options to help you find specific organizations.
 
         Args:
-          page_number: Results page number. Starts at page 1. Default value: 1
-
-          page_size: Page size. Default value: 100. Max value: 1000
-
-          sort_by: Sort By. Default value: 'id'.
-
-          sort_order: Sort Order. Default value: 'asc'.
-
           external_id: List organizations by their external ID.
 
           name: List organizations by name (partial match supported).
+
+          page_number: Results page number. Starts at page 1.
+
+          page_size: Page size. Max value: 1000
+
+          sort_by: Sort By.
+
+          sort_order: Sort Order.
 
           extra_headers: Send extra headers
 
@@ -177,12 +178,12 @@ class OrganizationsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "external_id": external_id,
+                        "name": name,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
-                        "external_id": external_id,
-                        "name": name,
                     },
                     organization_list_params.OrganizationListParams,
                 ),
@@ -226,10 +227,11 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Organization:
-        """Creates a new organization in the Straddle system.
+        """Creates a new organization related to your Straddle integration.
 
-        Organizations can be used to
-        group related accounts and manage permissions across multiple users.
+        Organizations
+        can be used to group related accounts and manage permissions across multiple
+        users.
 
         Args:
           name: The name of the organization.
@@ -276,12 +278,12 @@ class AsyncOrganizationsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page_number: int,
-        page_size: int,
-        sort_by: str,
-        sort_order: Literal["asc", "desc"],
         external_id: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
+        sort_by: str | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -295,21 +297,21 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
         The
         organizations are returned sorted by creation date, with the most recently
-        created organizations appearing first. This endpoint supports filtering options
-        to help you find specific organizations.
+        created organizations appearing first. This endpoint supports advanced sorting
+        and filtering options to help you find specific organizations.
 
         Args:
-          page_number: Results page number. Starts at page 1. Default value: 1
-
-          page_size: Page size. Default value: 100. Max value: 1000
-
-          sort_by: Sort By. Default value: 'id'.
-
-          sort_order: Sort Order. Default value: 'asc'.
-
           external_id: List organizations by their external ID.
 
           name: List organizations by name (partial match supported).
+
+          page_number: Results page number. Starts at page 1.
+
+          page_size: Page size. Max value: 1000
+
+          sort_by: Sort By.
+
+          sort_order: Sort Order.
 
           extra_headers: Send extra headers
 
@@ -338,12 +340,12 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "external_id": external_id,
+                        "name": name,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
-                        "external_id": external_id,
-                        "name": name,
                     },
                     organization_list_params.OrganizationListParams,
                 ),

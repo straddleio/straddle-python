@@ -13,7 +13,7 @@ from straddle.types import (
     Customer,
     CustomerUnmasked,
 )
-from straddle._utils import parse_datetime
+from straddle._utils import parse_date, parse_datetime
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from straddle.types.customer_summary_paged import Data
 
@@ -26,10 +26,10 @@ class TestCustomers:
     @parametrize
     def test_method_create(self, client: Straddle) -> None:
         customer = client.customers.create(
-            device={"ip_address": "x"},
-            email="email",
-            name="name",
-            phone="phone",
+            device={"ip_address": "192.168.1.1"},
+            email="ron.swanson@pawnee.com",
+            name="Ron Swanson",
+            phone="+12128675309",
             type="individual",
         )
         assert_matches_type(Customer, customer, path=["response"])
@@ -37,26 +37,23 @@ class TestCustomers:
     @parametrize
     def test_method_create_with_all_params(self, client: Straddle) -> None:
         customer = client.customers.create(
-            device={"ip_address": "x"},
-            email="email",
-            name="name",
-            phone="phone",
+            device={"ip_address": "192.168.1.1"},
+            email="ron.swanson@pawnee.com",
+            name="Ron Swanson",
+            phone="+12128675309",
             type="individual",
             address={
-                "address1": "address1",
-                "city": "city",
-                "state": "state",
-                "zip": "zip",
+                "address1": "123 Main St",
+                "city": "Anytown",
+                "state": "CA",
+                "zip": "94105",
                 "address2": "address2",
             },
             compliance_profile={
-                "dob": "dob",
-                "ein": "ein",
-                "legal_business_name": "legal_business_name",
-                "ssn": "ssn",
-                "website": "website",
+                "dob": parse_date("2019-12-27"),
+                "ssn": "210-69-1329",
             },
-            external_id="external_id",
+            external_id="customer_123",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
             request_id="Request-Id",
@@ -67,10 +64,10 @@ class TestCustomers:
     @parametrize
     def test_raw_response_create(self, client: Straddle) -> None:
         response = client.customers.with_raw_response.create(
-            device={"ip_address": "x"},
-            email="email",
-            name="name",
-            phone="phone",
+            device={"ip_address": "192.168.1.1"},
+            email="ron.swanson@pawnee.com",
+            name="Ron Swanson",
+            phone="+12128675309",
             type="individual",
         )
 
@@ -82,10 +79,10 @@ class TestCustomers:
     @parametrize
     def test_streaming_response_create(self, client: Straddle) -> None:
         with client.customers.with_streaming_response.create(
-            device={"ip_address": "x"},
-            email="email",
-            name="name",
-            phone="phone",
+            device={"ip_address": "192.168.1.1"},
+            email="ron.swanson@pawnee.com",
+            name="Ron Swanson",
+            phone="+12128675309",
             type="individual",
         ) as response:
             assert not response.is_closed
@@ -100,11 +97,11 @@ class TestCustomers:
     def test_method_update(self, client: Straddle) -> None:
         customer = client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            device={"ip_address": "x"},
-            email="email",
+            device={"ip_address": "192.168.1.1"},
+            email="dev@stainlessapi.com",
             name="name",
-            phone="phone",
-            status="verified",
+            phone="+46991022",
+            status="pending",
         )
         assert_matches_type(Customer, customer, path=["response"])
 
@@ -112,24 +109,21 @@ class TestCustomers:
     def test_method_update_with_all_params(self, client: Straddle) -> None:
         customer = client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            device={"ip_address": "x"},
-            email="email",
+            device={"ip_address": "192.168.1.1"},
+            email="dev@stainlessapi.com",
             name="name",
-            phone="phone",
-            status="verified",
+            phone="+46991022",
+            status="pending",
             address={
-                "address1": "address1",
-                "city": "city",
-                "state": "state",
-                "zip": "zip",
+                "address1": "123 Main St",
+                "city": "Anytown",
+                "state": "CA",
+                "zip": "94105",
                 "address2": "address2",
             },
             compliance_profile={
-                "dob": "dob",
-                "ein": "ein",
-                "legal_business_name": "legal_business_name",
-                "ssn": "ssn",
-                "website": "website",
+                "dob": parse_date("2019-12-27"),
+                "ssn": "210-69-1329",
             },
             external_id="external_id",
             metadata={"foo": "string"},
@@ -143,11 +137,11 @@ class TestCustomers:
     def test_raw_response_update(self, client: Straddle) -> None:
         response = client.customers.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            device={"ip_address": "x"},
-            email="email",
+            device={"ip_address": "192.168.1.1"},
+            email="dev@stainlessapi.com",
             name="name",
-            phone="phone",
-            status="verified",
+            phone="+46991022",
+            status="pending",
         )
 
         assert response.is_closed is True
@@ -159,11 +153,11 @@ class TestCustomers:
     def test_streaming_response_update(self, client: Straddle) -> None:
         with client.customers.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            device={"ip_address": "x"},
-            email="email",
+            device={"ip_address": "192.168.1.1"},
+            email="dev@stainlessapi.com",
             name="name",
-            phone="phone",
-            status="verified",
+            phone="+46991022",
+            status="pending",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -178,11 +172,11 @@ class TestCustomers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.customers.with_raw_response.update(
                 id="",
-                device={"ip_address": "x"},
-                email="email",
+                device={"ip_address": "192.168.1.1"},
+                email="dev@stainlessapi.com",
                 name="name",
-                phone="phone",
-                status="verified",
+                phone="+46991022",
+                status="pending",
             )
 
     @parametrize
@@ -382,10 +376,10 @@ class TestAsyncCustomers:
     @parametrize
     async def test_method_create(self, async_client: AsyncStraddle) -> None:
         customer = await async_client.customers.create(
-            device={"ip_address": "x"},
-            email="email",
-            name="name",
-            phone="phone",
+            device={"ip_address": "192.168.1.1"},
+            email="ron.swanson@pawnee.com",
+            name="Ron Swanson",
+            phone="+12128675309",
             type="individual",
         )
         assert_matches_type(Customer, customer, path=["response"])
@@ -393,26 +387,23 @@ class TestAsyncCustomers:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStraddle) -> None:
         customer = await async_client.customers.create(
-            device={"ip_address": "x"},
-            email="email",
-            name="name",
-            phone="phone",
+            device={"ip_address": "192.168.1.1"},
+            email="ron.swanson@pawnee.com",
+            name="Ron Swanson",
+            phone="+12128675309",
             type="individual",
             address={
-                "address1": "address1",
-                "city": "city",
-                "state": "state",
-                "zip": "zip",
+                "address1": "123 Main St",
+                "city": "Anytown",
+                "state": "CA",
+                "zip": "94105",
                 "address2": "address2",
             },
             compliance_profile={
-                "dob": "dob",
-                "ein": "ein",
-                "legal_business_name": "legal_business_name",
-                "ssn": "ssn",
-                "website": "website",
+                "dob": parse_date("2019-12-27"),
+                "ssn": "210-69-1329",
             },
-            external_id="external_id",
+            external_id="customer_123",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
             request_id="Request-Id",
@@ -423,10 +414,10 @@ class TestAsyncCustomers:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStraddle) -> None:
         response = await async_client.customers.with_raw_response.create(
-            device={"ip_address": "x"},
-            email="email",
-            name="name",
-            phone="phone",
+            device={"ip_address": "192.168.1.1"},
+            email="ron.swanson@pawnee.com",
+            name="Ron Swanson",
+            phone="+12128675309",
             type="individual",
         )
 
@@ -438,10 +429,10 @@ class TestAsyncCustomers:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStraddle) -> None:
         async with async_client.customers.with_streaming_response.create(
-            device={"ip_address": "x"},
-            email="email",
-            name="name",
-            phone="phone",
+            device={"ip_address": "192.168.1.1"},
+            email="ron.swanson@pawnee.com",
+            name="Ron Swanson",
+            phone="+12128675309",
             type="individual",
         ) as response:
             assert not response.is_closed
@@ -456,11 +447,11 @@ class TestAsyncCustomers:
     async def test_method_update(self, async_client: AsyncStraddle) -> None:
         customer = await async_client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            device={"ip_address": "x"},
-            email="email",
+            device={"ip_address": "192.168.1.1"},
+            email="dev@stainlessapi.com",
             name="name",
-            phone="phone",
-            status="verified",
+            phone="+46991022",
+            status="pending",
         )
         assert_matches_type(Customer, customer, path=["response"])
 
@@ -468,24 +459,21 @@ class TestAsyncCustomers:
     async def test_method_update_with_all_params(self, async_client: AsyncStraddle) -> None:
         customer = await async_client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            device={"ip_address": "x"},
-            email="email",
+            device={"ip_address": "192.168.1.1"},
+            email="dev@stainlessapi.com",
             name="name",
-            phone="phone",
-            status="verified",
+            phone="+46991022",
+            status="pending",
             address={
-                "address1": "address1",
-                "city": "city",
-                "state": "state",
-                "zip": "zip",
+                "address1": "123 Main St",
+                "city": "Anytown",
+                "state": "CA",
+                "zip": "94105",
                 "address2": "address2",
             },
             compliance_profile={
-                "dob": "dob",
-                "ein": "ein",
-                "legal_business_name": "legal_business_name",
-                "ssn": "ssn",
-                "website": "website",
+                "dob": parse_date("2019-12-27"),
+                "ssn": "210-69-1329",
             },
             external_id="external_id",
             metadata={"foo": "string"},
@@ -499,11 +487,11 @@ class TestAsyncCustomers:
     async def test_raw_response_update(self, async_client: AsyncStraddle) -> None:
         response = await async_client.customers.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            device={"ip_address": "x"},
-            email="email",
+            device={"ip_address": "192.168.1.1"},
+            email="dev@stainlessapi.com",
             name="name",
-            phone="phone",
-            status="verified",
+            phone="+46991022",
+            status="pending",
         )
 
         assert response.is_closed is True
@@ -515,11 +503,11 @@ class TestAsyncCustomers:
     async def test_streaming_response_update(self, async_client: AsyncStraddle) -> None:
         async with async_client.customers.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            device={"ip_address": "x"},
-            email="email",
+            device={"ip_address": "192.168.1.1"},
+            email="dev@stainlessapi.com",
             name="name",
-            phone="phone",
-            status="verified",
+            phone="+46991022",
+            status="pending",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -534,11 +522,11 @@ class TestAsyncCustomers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.customers.with_raw_response.update(
                 id="",
-                device={"ip_address": "x"},
-                email="email",
+                device={"ip_address": "192.168.1.1"},
+                email="dev@stainlessapi.com",
                 name="name",
-                phone="phone",
-                status="verified",
+                phone="+46991022",
+                status="pending",
             )
 
     @parametrize

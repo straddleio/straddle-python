@@ -26,17 +26,17 @@ class TestRepresentatives:
     def test_method_create(self, client: Straddle) -> None:
         representative = client.embed.representatives.create(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
             first_name="first_name",
             last_name="last_name",
-            mobile_number="mobile_number",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         )
         assert_matches_type(Representative, representative, path=["response"])
 
@@ -44,11 +44,11 @@ class TestRepresentatives:
     def test_method_create_with_all_params(self, client: Straddle) -> None:
         representative = client.embed.representatives.create(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
             first_name="first_name",
             last_name="last_name",
-            mobile_number="mobile_number",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
@@ -56,7 +56,7 @@ class TestRepresentatives:
                 "percent_ownership": 0,
                 "title": "title",
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
             external_id="external_id",
             correlation_id="correlation-id",
             request_id="request-id",
@@ -67,17 +67,17 @@ class TestRepresentatives:
     def test_raw_response_create(self, client: Straddle) -> None:
         response = client.embed.representatives.with_raw_response.create(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
             first_name="first_name",
             last_name="last_name",
-            mobile_number="mobile_number",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         )
 
         assert response.is_closed is True
@@ -89,17 +89,17 @@ class TestRepresentatives:
     def test_streaming_response_create(self, client: Straddle) -> None:
         with client.embed.representatives.with_streaming_response.create(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
             first_name="first_name",
             last_name="last_name",
-            mobile_number="mobile_number",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -113,17 +113,17 @@ class TestRepresentatives:
     def test_method_update(self, client: Straddle) -> None:
         representative = client.embed.representatives.update(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
-            first_name="first_name",
-            last_name="last_name",
-            mobile_number="mobile_number",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
+            first_name="Ron",
+            last_name="Swanson",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         )
         assert_matches_type(Representative, representative, path=["response"])
 
@@ -131,11 +131,11 @@ class TestRepresentatives:
     def test_method_update_with_all_params(self, client: Straddle) -> None:
         representative = client.embed.representatives.update(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
-            first_name="first_name",
-            last_name="last_name",
-            mobile_number="mobile_number",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
+            first_name="Ron",
+            last_name="Swanson",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
@@ -143,7 +143,7 @@ class TestRepresentatives:
                 "percent_ownership": 0,
                 "title": "title",
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
             external_id="external_id",
             correlation_id="correlation-id",
             request_id="request-id",
@@ -154,17 +154,17 @@ class TestRepresentatives:
     def test_raw_response_update(self, client: Straddle) -> None:
         response = client.embed.representatives.with_raw_response.update(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
-            first_name="first_name",
-            last_name="last_name",
-            mobile_number="mobile_number",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
+            first_name="Ron",
+            last_name="Swanson",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         )
 
         assert response.is_closed is True
@@ -176,17 +176,17 @@ class TestRepresentatives:
     def test_streaming_response_update(self, client: Straddle) -> None:
         with client.embed.representatives.with_streaming_response.update(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
-            first_name="first_name",
-            last_name="last_name",
-            mobile_number="mobile_number",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
+            first_name="Ron",
+            last_name="Swanson",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -201,39 +201,32 @@ class TestRepresentatives:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `representative_id` but received ''"):
             client.embed.representatives.with_raw_response.update(
                 representative_id="",
-                dob=parse_date("2019-12-27"),
-                email="email",
-                first_name="first_name",
-                last_name="last_name",
-                mobile_number="mobile_number",
+                dob=parse_date("1980-01-01"),
+                email="ron.swanson@pawnee.com",
+                first_name="Ron",
+                last_name="Swanson",
+                mobile_number="+12128675309",
                 relationship={
                     "control": True,
                     "owner": True,
                     "primary": True,
                 },
-                ssn_last4="ssn_last4",
+                ssn_last4="1234",
             )
 
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
-        representative = client.embed.representatives.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        representative = client.embed.representatives.list()
         assert_matches_type(SyncPageNumberSchema[Data], representative, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
         representative = client.embed.representatives.list(
+            account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page_number=0,
             page_size=0,
             sort_by="sort_by",
             sort_order="asc",
-            account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            platform_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -241,12 +234,7 @@ class TestRepresentatives:
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
-        response = client.embed.representatives.with_raw_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        response = client.embed.representatives.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -255,12 +243,7 @@ class TestRepresentatives:
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
-        with client.embed.representatives.with_streaming_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        ) as response:
+        with client.embed.representatives.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -324,17 +307,17 @@ class TestAsyncRepresentatives:
     async def test_method_create(self, async_client: AsyncStraddle) -> None:
         representative = await async_client.embed.representatives.create(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
             first_name="first_name",
             last_name="last_name",
-            mobile_number="mobile_number",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         )
         assert_matches_type(Representative, representative, path=["response"])
 
@@ -342,11 +325,11 @@ class TestAsyncRepresentatives:
     async def test_method_create_with_all_params(self, async_client: AsyncStraddle) -> None:
         representative = await async_client.embed.representatives.create(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
             first_name="first_name",
             last_name="last_name",
-            mobile_number="mobile_number",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
@@ -354,7 +337,7 @@ class TestAsyncRepresentatives:
                 "percent_ownership": 0,
                 "title": "title",
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
             external_id="external_id",
             correlation_id="correlation-id",
             request_id="request-id",
@@ -365,17 +348,17 @@ class TestAsyncRepresentatives:
     async def test_raw_response_create(self, async_client: AsyncStraddle) -> None:
         response = await async_client.embed.representatives.with_raw_response.create(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
             first_name="first_name",
             last_name="last_name",
-            mobile_number="mobile_number",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         )
 
         assert response.is_closed is True
@@ -387,17 +370,17 @@ class TestAsyncRepresentatives:
     async def test_streaming_response_create(self, async_client: AsyncStraddle) -> None:
         async with async_client.embed.representatives.with_streaming_response.create(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
             first_name="first_name",
             last_name="last_name",
-            mobile_number="mobile_number",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -411,17 +394,17 @@ class TestAsyncRepresentatives:
     async def test_method_update(self, async_client: AsyncStraddle) -> None:
         representative = await async_client.embed.representatives.update(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
-            first_name="first_name",
-            last_name="last_name",
-            mobile_number="mobile_number",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
+            first_name="Ron",
+            last_name="Swanson",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         )
         assert_matches_type(Representative, representative, path=["response"])
 
@@ -429,11 +412,11 @@ class TestAsyncRepresentatives:
     async def test_method_update_with_all_params(self, async_client: AsyncStraddle) -> None:
         representative = await async_client.embed.representatives.update(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
-            first_name="first_name",
-            last_name="last_name",
-            mobile_number="mobile_number",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
+            first_name="Ron",
+            last_name="Swanson",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
@@ -441,7 +424,7 @@ class TestAsyncRepresentatives:
                 "percent_ownership": 0,
                 "title": "title",
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
             external_id="external_id",
             correlation_id="correlation-id",
             request_id="request-id",
@@ -452,17 +435,17 @@ class TestAsyncRepresentatives:
     async def test_raw_response_update(self, async_client: AsyncStraddle) -> None:
         response = await async_client.embed.representatives.with_raw_response.update(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
-            first_name="first_name",
-            last_name="last_name",
-            mobile_number="mobile_number",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
+            first_name="Ron",
+            last_name="Swanson",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         )
 
         assert response.is_closed is True
@@ -474,17 +457,17 @@ class TestAsyncRepresentatives:
     async def test_streaming_response_update(self, async_client: AsyncStraddle) -> None:
         async with async_client.embed.representatives.with_streaming_response.update(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            dob=parse_date("2019-12-27"),
-            email="email",
-            first_name="first_name",
-            last_name="last_name",
-            mobile_number="mobile_number",
+            dob=parse_date("1980-01-01"),
+            email="ron.swanson@pawnee.com",
+            first_name="Ron",
+            last_name="Swanson",
+            mobile_number="+12128675309",
             relationship={
                 "control": True,
                 "owner": True,
                 "primary": True,
             },
-            ssn_last4="ssn_last4",
+            ssn_last4="1234",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -499,39 +482,32 @@ class TestAsyncRepresentatives:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `representative_id` but received ''"):
             await async_client.embed.representatives.with_raw_response.update(
                 representative_id="",
-                dob=parse_date("2019-12-27"),
-                email="email",
-                first_name="first_name",
-                last_name="last_name",
-                mobile_number="mobile_number",
+                dob=parse_date("1980-01-01"),
+                email="ron.swanson@pawnee.com",
+                first_name="Ron",
+                last_name="Swanson",
+                mobile_number="+12128675309",
                 relationship={
                     "control": True,
                     "owner": True,
                     "primary": True,
                 },
-                ssn_last4="ssn_last4",
+                ssn_last4="1234",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
-        representative = await async_client.embed.representatives.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        representative = await async_client.embed.representatives.list()
         assert_matches_type(AsyncPageNumberSchema[Data], representative, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
         representative = await async_client.embed.representatives.list(
+            account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page_number=0,
             page_size=0,
             sort_by="sort_by",
             sort_order="asc",
-            account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            platform_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -539,12 +515,7 @@ class TestAsyncRepresentatives:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
-        response = await async_client.embed.representatives.with_raw_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        )
+        response = await async_client.embed.representatives.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -553,12 +524,7 @@ class TestAsyncRepresentatives:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
-        async with async_client.embed.representatives.with_streaming_response.list(
-            page_number=0,
-            page_size=0,
-            sort_by="sort_by",
-            sort_order="asc",
-        ) as response:
+        async with async_client.embed.representatives.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

@@ -72,7 +72,7 @@ class AccountsResource(SyncAPIResource):
         self,
         *,
         access_level: Literal["standard", "managed"],
-        account_type: Literal["unknown", "business"],
+        account_type: Literal["business"],
         business_profile: account_create_params.BusinessProfile,
         organization_id: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -93,10 +93,10 @@ class AccountsResource(SyncAPIResource):
         business information and access levels.
 
         Args:
-          access_level: The desired access level for the new account. Possible values: 'managed',
-              'standard'.
+          access_level: The access level granted to the account. This is determined by your platform
+              configuration. Use `standard` unless instructed otherwise by Straddle.
 
-          account_type: The type of account to be created. Currently only 'business' is supported.
+          account_type: The type of account to be created. Currently, only `business` is supported.
 
           organization_id: The unique identifier of the organization related to this account.
 
@@ -208,11 +208,10 @@ class AccountsResource(SyncAPIResource):
     def list(
         self,
         *,
-        page_number: int,
-        page_size: int,
-        sort_order: Literal["asc", "desc"],
-        search_text: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -224,14 +223,16 @@ class AccountsResource(SyncAPIResource):
     ) -> SyncPageNumberSchema[Data]:
         """
         Returns a list of accounts associated with your Straddle platform integration.
-        <br /> <br /> The accounts are returned sorted by creation date, with the most
-        recently created accounts appearing first. This endpoint supports pagination and
-        sorting options to help you efficiently manage large numbers of accounts.
+        The accounts are returned sorted by creation date, with the most recently
+        created accounts appearing first. This endpoint supports advanced sorting and
+        filtering options.
 
         Args:
           page_number: Results page number. Starts at page 1. Default value: 1
 
           page_size: Page size. Default value: 100. Max value: 1000
+
+          sort_by: Sort By. Default value: 'id'.
 
           sort_order: Sort Order. Default value: 'asc'.
 
@@ -264,9 +265,8 @@ class AccountsResource(SyncAPIResource):
                     {
                         "page_number": page_number,
                         "page_size": page_size,
-                        "sort_order": sort_order,
-                        "search_text": search_text,
                         "sort_by": sort_by,
+                        "sort_order": sort_order,
                     },
                     account_list_params.AccountListParams,
                 ),
@@ -452,7 +452,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         self,
         *,
         access_level: Literal["standard", "managed"],
-        account_type: Literal["unknown", "business"],
+        account_type: Literal["business"],
         business_profile: account_create_params.BusinessProfile,
         organization_id: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -473,10 +473,10 @@ class AsyncAccountsResource(AsyncAPIResource):
         business information and access levels.
 
         Args:
-          access_level: The desired access level for the new account. Possible values: 'managed',
-              'standard'.
+          access_level: The access level granted to the account. This is determined by your platform
+              configuration. Use `standard` unless instructed otherwise by Straddle.
 
-          account_type: The type of account to be created. Currently only 'business' is supported.
+          account_type: The type of account to be created. Currently, only `business` is supported.
 
           organization_id: The unique identifier of the organization related to this account.
 
@@ -588,11 +588,10 @@ class AsyncAccountsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        page_number: int,
-        page_size: int,
-        sort_order: Literal["asc", "desc"],
-        search_text: str | NotGiven = NOT_GIVEN,
+        page_number: int | NotGiven = NOT_GIVEN,
+        page_size: int | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -604,14 +603,16 @@ class AsyncAccountsResource(AsyncAPIResource):
     ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """
         Returns a list of accounts associated with your Straddle platform integration.
-        <br /> <br /> The accounts are returned sorted by creation date, with the most
-        recently created accounts appearing first. This endpoint supports pagination and
-        sorting options to help you efficiently manage large numbers of accounts.
+        The accounts are returned sorted by creation date, with the most recently
+        created accounts appearing first. This endpoint supports advanced sorting and
+        filtering options.
 
         Args:
           page_number: Results page number. Starts at page 1. Default value: 1
 
           page_size: Page size. Default value: 100. Max value: 1000
+
+          sort_by: Sort By. Default value: 'id'.
 
           sort_order: Sort Order. Default value: 'asc'.
 
@@ -644,9 +645,8 @@ class AsyncAccountsResource(AsyncAPIResource):
                     {
                         "page_number": page_number,
                         "page_size": page_size,
-                        "sort_order": sort_order,
-                        "search_text": search_text,
                         "sort_by": sort_by,
+                        "sort_order": sort_order,
                     },
                     account_list_params.AccountListParams,
                 ),

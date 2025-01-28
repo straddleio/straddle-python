@@ -13,14 +13,11 @@ class Data(BaseModel):
     id: str
     """Straddle's unique identifier for the organization."""
 
-    created_at: datetime
-    """Timestamp of when the organization was created."""
-
     name: str
     """The name of the organization."""
 
-    updated_at: datetime
-    """Timestamp of the most recent update to the organization."""
+    created_at: Optional[datetime] = None
+    """Timestamp of when the organization was created."""
 
     external_id: Optional[str] = None
     """
@@ -35,6 +32,9 @@ class Data(BaseModel):
     format.
     """
 
+    updated_at: Optional[datetime] = None
+    """Timestamp of the most recent update to the organization."""
+
 
 class Meta(BaseModel):
     api_request_id: str
@@ -48,6 +48,14 @@ class Organization(BaseModel):
     data: Data
 
     meta: Meta
+    """Metadata about the API request, including an identifier and timestamp."""
 
     response_type: Literal["object", "array", "error", "none"]
-    """Indicates the type of data returned."""
+    """Indicates the structure of the returned content.
+
+    - "object" means the `data` field contains a single JSON object.
+    - "array" means the `data` field contains an array of objects.
+    - "error" means the `data` field contains an error object with details of the
+      issue.
+    - "none" means no data is returned.
+    """

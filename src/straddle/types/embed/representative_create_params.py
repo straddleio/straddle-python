@@ -65,8 +65,9 @@ class Relationship(TypedDict, total=False):
 
     This is the person chosen by the business to provide information about
     themselves, general information about the account, and who consented to the
-    services agreement. <br /> There can be only one primary representative for an
-    account at a time.
+    services agreement.
+
+    There can be only one primary representative for an account at a time.
     """
 
     percent_ownership: Optional[float]

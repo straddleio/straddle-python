@@ -72,10 +72,11 @@ class BridgeResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BridgeToken:
         """
-        Create a JWT token to use in the bridge widget
+        Use this endpoint to generate a session token for use in the Bridge widget.
 
         Args:
-          customer_id: Customer Id to create token for.
+          customer_id: The Straddle generated unique identifier of the `customer` to create a bridge
+              token for.
 
           extra_headers: Send extra headers
 
@@ -144,10 +145,11 @@ class AsyncBridgeResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BridgeToken:
         """
-        Create a JWT token to use in the bridge widget
+        Use this endpoint to generate a session token for use in the Bridge widget.
 
         Args:
-          customer_id: Customer Id to create token for.
+          customer_id: The Straddle generated unique identifier of the `customer` to create a bridge
+              token for.
 
           extra_headers: Send extra headers
 

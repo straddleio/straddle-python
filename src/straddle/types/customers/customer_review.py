@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from datetime import datetime
-from typing_extensions import Literal
+from typing import Dict, List, Union, Optional
+from datetime import date, datetime
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
@@ -12,6 +12,8 @@ __all__ = [
     "DataCustomerDetails",
     "DataCustomerDetailsAddress",
     "DataCustomerDetailsComplianceProfile",
+    "DataCustomerDetailsComplianceProfileIndividualComplianceProfile",
+    "DataCustomerDetailsComplianceProfileBusinessComplianceProfile",
     "DataCustomerDetailsDevice",
     "DataIdentityDetails",
     "DataIdentityDetailsBreakdown",
@@ -45,48 +47,39 @@ class DataCustomerDetailsAddress(BaseModel):
     """Secondary address line (e.g., apartment, suite, unit, or building)."""
 
 
-class DataCustomerDetailsComplianceProfile(BaseModel):
-    dob: Optional[str] = None
-    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+class DataCustomerDetailsComplianceProfileIndividualComplianceProfile(BaseModel):
+    dob: date
+    """Date of birth in YYYY-MM-DD format."""
 
-    This data is required to trigger Patriot Act compliant Know Your Customer (KYC)
-    verification. Required if SSN is provided. Only valid where customer type is
-    'individual'.
-    """
+    ssn: str
+    """Social Security Number in the format XXX-XX-XXXX."""
 
-    ein: Optional[str] = None
-    """Full 9-digit Employer Identification Number for businesses.
 
-    This data is required to trigger Patriot Act compliant Know Your Business (KYB)
-    verification. Only valid where customer type is 'business'.
-    """
+class DataCustomerDetailsComplianceProfileBusinessComplianceProfile(BaseModel):
+    ein: str
+    """Employer Identification Number in the format XX-XXXXXXX."""
 
-    legal_business_name: Optional[str] = None
-    """The official name of the business.
+    legal_business_name: str
+    """The official registered name of the business.
 
-    This name should be correlated with the ein value. Only valid where customer
-    type is 'business'.
-    """
-
-    ssn: Optional[str] = None
-    """Full 9-digit Social Security Number or government identifier for individuals.
-
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if DOB is provided. Only valid where customer type is 'individual'.
+    This name should be correlated with the `ein` value.
     """
 
     website: Optional[str] = None
-    """URL of the company's official website.
+    """Business website URL."""
 
-    Only valid where customer type is 'business'.
-    """
+
+DataCustomerDetailsComplianceProfile: TypeAlias = Union[
+    DataCustomerDetailsComplianceProfileIndividualComplianceProfile,
+    DataCustomerDetailsComplianceProfileBusinessComplianceProfile,
+]
 
 
 class DataCustomerDetailsDevice(BaseModel):
     ip_address: str
     """The customer's IP address at the time of profile creation.
 
-    Use '0.0.0.0' to represent an offline customer registration.
+    Use `0.0.0.0` to represent an offline customer registration.
     """
 
 
@@ -116,6 +109,7 @@ class DataCustomerDetails(BaseModel):
     address: Optional[DataCustomerDetailsAddress] = None
 
     compliance_profile: Optional[DataCustomerDetailsComplianceProfile] = None
+    """Compliance profile for individual customers"""
 
     device: Optional[DataCustomerDetailsDevice] = None
 
@@ -338,5 +332,14 @@ class CustomerReview(BaseModel):
     data: Data
 
     meta: Meta
+    """Metadata about the API request, including an identifier and timestamp."""
 
     response_type: Literal["object", "array", "error", "none"]
+    """Indicates the structure of the returned content.
+
+    - "object" means the `data` field contains a single JSON object.
+    - "array" means the `data` field contains an array of objects.
+    - "error" means the `data` field contains an error object with details of the
+      issue.
+    - "none" means no data is returned.
+    """

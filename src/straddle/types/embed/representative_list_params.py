@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -10,24 +10,20 @@ __all__ = ["RepresentativeListParams"]
 
 
 class RepresentativeListParams(TypedDict, total=False):
-    page_number: Required[int]
-    """Results page number. Starts at page 1. Default value: 1"""
-
-    page_size: Required[int]
-    """Page size. Default value: 100. Max value: 1000"""
-
-    sort_by: Required[str]
-    """Sort By. Default value: 'id'."""
-
-    sort_order: Required[Literal["asc", "desc"]]
-    """Sort Order. Default value: 'asc'."""
-
     account_id: str
     """The unique identifier of the account to list representatives for."""
 
-    organization_id: str
+    page_number: int
+    """Results page number. Starts at page 1."""
 
-    platform_id: str
+    page_size: int
+    """Page size. Max value: 1000"""
+
+    sort_by: str
+    """Sort By."""
+
+    sort_order: Literal["asc", "desc"]
+    """Sort Order."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="correlation-id")]
 

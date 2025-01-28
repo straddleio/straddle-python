@@ -13,16 +13,24 @@ __all__ = ["PayoutUpdateParams"]
 
 class PayoutUpdateParams(TypedDict, total=False):
     amount: Required[int]
-    """Amount."""
+    """The amount of the payout in cents."""
 
     description: Required[str]
-    """Description."""
+    """An arbitrary description for the payout."""
 
     payment_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
-    """Payment date."""
+    """The desired date on which the payment should be occur.
+
+    For payouts, this means the date you want the funds to be sent from your bank
+    account.
+    """
 
     metadata: Optional[Dict[str, str]]
-    """Metadata."""
+    """Up to 20 additional user-defined key-value pairs.
+
+    Useful for storing additional information about the payout in a structured
+    format.
+    """
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 
