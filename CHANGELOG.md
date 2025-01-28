@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2025-01-28)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/straddleio/straddle-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+* **sdk:** Add unwrap response ([#17](https://github.com/straddleio/straddle-python/issues/17)) ([dda7f97](https://github.com/straddleio/straddle-python/commit/dda7f9752cec074b048971a924fcaecdde991810))
+* **sdk:** Remove wrapper ([#18](https://github.com/straddleio/straddle-python/issues/18)) ([9a5735c](https://github.com/straddleio/straddle-python/commit/9a5735c2bb91f28f8367b495e2afbce4ea1fcf67))
+
+
+### Bug Fixes
+
+* **sdk:** Fix contact field ([#15](https://github.com/straddleio/straddle-python/issues/15)) ([7d26929](https://github.com/straddleio/straddle-python/commit/7d26929db83a2bd7a5c00886bbbabd1a77ee5a69))
+
 ## 0.1.0-alpha.3 (2025-01-28)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/straddleio/straddle-python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
