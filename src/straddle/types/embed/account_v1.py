@@ -43,7 +43,6 @@ class DataStatusDetail(BaseModel):
         "failed_verification",
         "disabled",
         "terminated",
-        "unknown",
         "new",
     ]
     """
@@ -96,7 +95,7 @@ class DataSettingsCharges(BaseModel):
     daily_amount: int
     """The maximum dollar amount of charges in a calendar day."""
 
-    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day", "unknown"]
+    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day"]
     """The amount of time it takes for a charge to be funded.
 
     This value is defined by Straddle.
@@ -122,7 +121,7 @@ class DataSettingsPayouts(BaseModel):
     daily_amount: int
     """The maximum dollar amount of payouts in a day."""
 
-    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day", "unknown"]
+    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day"]
     """The amount of time it takes for a payout to be funded.
 
     This value is defined by Straddle.
@@ -161,12 +160,12 @@ class Data(BaseModel):
     organization_id: str
     """The unique identifier of the organization this account belongs to."""
 
-    status: Literal["created", "onboarding", "active", "rejected", "inactive", "unknown"]
+    status: Literal["created", "onboarding", "active", "rejected", "inactive"]
     """The current status of the account (e.g., 'active', 'inactive', 'pending')."""
 
     status_detail: DataStatusDetail
 
-    type: Literal["business", "unknown"]
+    type: Literal["business"]
     """The type of account (e.g., 'individual', 'business')."""
 
     business_profile: Optional[BusinessProfileV1] = None
