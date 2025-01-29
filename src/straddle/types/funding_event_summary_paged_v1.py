@@ -31,6 +31,9 @@ class Data(BaseModel):
     payment_count: int
     """The number of payments associated with the funding event."""
 
+    trace_numbers: List[str]
+    """Trace number."""
+
     transfer_date: date
     """The date on which the funding event occurred.
 
@@ -65,6 +68,9 @@ class Meta(BaseModel):
     sort_order: Literal["asc", "desc"]
 
     total_items: int
+
+    total_pages: int
+    """The number of pages available."""
 
 
 class FundingEventSummaryPagedV1(BaseModel):

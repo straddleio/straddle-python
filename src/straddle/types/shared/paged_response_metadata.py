@@ -32,3 +32,6 @@ class PagedResponseMetadata(BaseModel):
 
     total_items: int
     """Total number of items returned in this response."""
+
+    total_pages: int
+    """The number of pages available."""

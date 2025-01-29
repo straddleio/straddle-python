@@ -84,6 +84,7 @@ Methods:
 
 - <code title="post /v1/organizations">client.embed.organizations.<a href="./src/straddle/resources/embed/organizations.py">create</a>(\*\*<a href="src/straddle/types/embed/organization_create_params.py">params</a>) -> <a href="./src/straddle/types/embed/organization_v1.py">OrganizationV1</a></code>
 - <code title="get /v1/organizations">client.embed.organizations.<a href="./src/straddle/resources/embed/organizations.py">list</a>(\*\*<a href="src/straddle/types/embed/organization_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
+- <code title="get /v1/organizations/{organization_id}">client.embed.organizations.<a href="./src/straddle/resources/embed/organizations.py">get</a>(organization_id) -> <a href="./src/straddle/types/embed/organization_v1.py">OrganizationV1</a></code>
 
 ## Representatives
 
@@ -99,6 +100,7 @@ Methods:
 - <code title="put /v1/representatives/{representative_id}">client.embed.representatives.<a href="./src/straddle/resources/embed/representatives.py">update</a>(representative_id, \*\*<a href="src/straddle/types/embed/representative_update_params.py">params</a>) -> <a href="./src/straddle/types/embed/representative.py">Representative</a></code>
 - <code title="get /v1/representatives">client.embed.representatives.<a href="./src/straddle/resources/embed/representatives.py">list</a>(\*\*<a href="src/straddle/types/embed/representative_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
 - <code title="get /v1/representatives/{representative_id}">client.embed.representatives.<a href="./src/straddle/resources/embed/representatives.py">get</a>(representative_id) -> <a href="./src/straddle/types/embed/representative.py">Representative</a></code>
+- <code title="get /v1/representatives/{representative_id}/unmask">client.embed.representatives.<a href="./src/straddle/resources/embed/representatives.py">unmask</a>(representative_id) -> <a href="./src/straddle/types/embed/representative.py">Representative</a></code>
 
 # Bridge
 
@@ -160,13 +162,14 @@ Methods:
 Types:
 
 ```python
-from straddle.types import PaykeySummaryPagedV1, PaykeyUnmaskedV1, PaykeyV1
+from straddle.types import PaykeySummaryPagedV1, PaykeyUnmaskedV1, PaykeyV1, PaykeyRevealResponse
 ```
 
 Methods:
 
 - <code title="get /v1/paykeys">client.paykeys.<a href="./src/straddle/resources/paykeys.py">list</a>(\*\*<a href="src/straddle/types/paykey_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
 - <code title="get /v1/paykeys/{id}">client.paykeys.<a href="./src/straddle/resources/paykeys.py">get</a>(id) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
+- <code title="get /v1/paykeys/{id}/reveal">client.paykeys.<a href="./src/straddle/resources/paykeys.py">reveal</a>(id) -> <a href="./src/straddle/types/paykey_reveal_response.py">PaykeyRevealResponse</a></code>
 - <code title="get /v1/paykeys/{id}/unmasked">client.paykeys.<a href="./src/straddle/resources/paykeys.py">unmasked</a>(id) -> <a href="./src/straddle/types/paykey_unmasked_v1.py">PaykeyUnmaskedV1</a></code>
 
 # Charges

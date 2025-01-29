@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import date
 from typing_extensions import Literal
 
@@ -31,6 +31,9 @@ class Data(BaseModel):
 
     payment_count: int
     """The number of payments associated with the funding event."""
+
+    trace_numbers: List[str]
+    """Trace number."""
 
     transfer_date: date
     """The date on which the funding event occurred.

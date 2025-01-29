@@ -84,6 +84,9 @@ class Data(BaseModel):
     PDF signatures.
     """
 
+    created_at: Optional[datetime] = None
+    """Timestamp of when the charge was created."""
+
     currency: str
     """The currency of the charge. Only USD is supported."""
 
@@ -115,9 +118,10 @@ class Data(BaseModel):
     """Additional details about the current status of the charge."""
 
     status_history: List[DataStatusHistory]
+    """Status history."""
 
-    created_at: Optional[datetime] = None
-    """Timestamp of when the charge was created."""
+    updated_at: Optional[datetime] = None
+    """Timestamp of when the charge was last updated."""
 
     customer_details: Optional[CustomerDetailsV1] = None
     """Information about the customer associated with the charge."""
@@ -146,9 +150,6 @@ class Data(BaseModel):
     Timestamp of when the charge was processed by Straddle and originated to the
     payment rail.
     """
-
-    updated_at: Optional[datetime] = None
-    """Timestamp of when the charge was last updated."""
 
 
 class ChargeV1(BaseModel):

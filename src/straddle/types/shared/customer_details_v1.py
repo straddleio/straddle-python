@@ -11,8 +11,14 @@ class CustomerDetailsV1(BaseModel):
     id: str
     """Unique identifier for the customer."""
 
-    customer_type: Literal["individual", "business"]
+    customer_type: Literal["individual", "business", "unknown"]
     """The type of customer."""
+
+    email: str
+    """Email."""
 
     name: str
     """The name of the customer."""
+
+    phone: str
+    """Phone."""
