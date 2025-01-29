@@ -5,8 +5,9 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..shared.response_metadata import ResponseMetadata
 
-__all__ = ["Representative", "Data", "DataRelationship", "DataStatusDetail", "Meta"]
+__all__ = ["Representative", "Data", "DataRelationship", "DataStatusDetail"]
 
 
 class DataRelationship(BaseModel):
@@ -53,7 +54,7 @@ class DataStatusDetail(BaseModel):
     message: str
     """A human-readable message describing the current status."""
 
-    reason: Literal["unverified", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled"]
+    reason: Literal["unverified", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled", "new"]
     """
     A machine-readable identifier for the specific status, useful for programmatic
     handling.
@@ -117,18 +118,10 @@ class Data(BaseModel):
     """
 
 
-class Meta(BaseModel):
-    api_request_id: str
-    """Unique identifier for this API request, useful for troubleshooting."""
-
-    api_request_timestamp: datetime
-    """Timestamp for this API request, useful for troubleshooting."""
-
-
 class Representative(BaseModel):
     data: Data
 
-    meta: Meta
+    meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
     response_type: Literal["object", "array", "error", "none"]

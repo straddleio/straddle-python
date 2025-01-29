@@ -30,7 +30,8 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.charge import Charge
+from ..types.charge_v1 import ChargeV1
+from ..types.shared_params.device_info_v1 import DeviceInfoV1
 
 __all__ = ["ChargesResource", "AsyncChargesResource"]
 
@@ -63,7 +64,7 @@ class ChargesResource(SyncAPIResource):
         consent_type: Literal["internet", "signed"],
         currency: str,
         description: str,
-        device: charge_create_params.Device,
+        device: DeviceInfoV1,
         external_id: str,
         paykey: str,
         payment_date: Union[str, date],
@@ -77,7 +78,7 @@ class ChargesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """
         Use charges to collect money from a customer for the sale of goods or services.
 
@@ -142,7 +143,7 @@ class ChargesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
     def update(
@@ -162,7 +163,7 @@ class ChargesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """
         Change the values of parameters associated with a charge prior to processing.
         The status of the charge must be `created`, `scheduled`, or `on_hold`.
@@ -212,7 +213,7 @@ class ChargesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
     def cancel(
@@ -229,7 +230,7 @@ class ChargesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """Cancel a charge to prevent it from being originated for processing.
 
         The status
@@ -264,7 +265,7 @@ class ChargesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
     def get(
@@ -280,7 +281,7 @@ class ChargesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """Retrieves the details of an existing charge.
 
         Supply the unique charge `id`, and
@@ -312,7 +313,7 @@ class ChargesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
     def hold(
@@ -329,7 +330,7 @@ class ChargesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """Place a charge on hold to prevent it from being originated for processing.
 
         The
@@ -364,7 +365,7 @@ class ChargesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
     def release(
@@ -381,7 +382,7 @@ class ChargesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """
         Release a charge from an `on_hold` status to allow it to be rescheduled for
         processing.
@@ -415,7 +416,7 @@ class ChargesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
 
@@ -447,7 +448,7 @@ class AsyncChargesResource(AsyncAPIResource):
         consent_type: Literal["internet", "signed"],
         currency: str,
         description: str,
-        device: charge_create_params.Device,
+        device: DeviceInfoV1,
         external_id: str,
         paykey: str,
         payment_date: Union[str, date],
@@ -461,7 +462,7 @@ class AsyncChargesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """
         Use charges to collect money from a customer for the sale of goods or services.
 
@@ -526,7 +527,7 @@ class AsyncChargesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
     async def update(
@@ -546,7 +547,7 @@ class AsyncChargesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """
         Change the values of parameters associated with a charge prior to processing.
         The status of the charge must be `created`, `scheduled`, or `on_hold`.
@@ -596,7 +597,7 @@ class AsyncChargesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
     async def cancel(
@@ -613,7 +614,7 @@ class AsyncChargesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """Cancel a charge to prevent it from being originated for processing.
 
         The status
@@ -648,7 +649,7 @@ class AsyncChargesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
     async def get(
@@ -664,7 +665,7 @@ class AsyncChargesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """Retrieves the details of an existing charge.
 
         Supply the unique charge `id`, and
@@ -696,7 +697,7 @@ class AsyncChargesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
     async def hold(
@@ -713,7 +714,7 @@ class AsyncChargesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """Place a charge on hold to prevent it from being originated for processing.
 
         The
@@ -748,7 +749,7 @@ class AsyncChargesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
     async def release(
@@ -765,7 +766,7 @@ class AsyncChargesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Charge:
+    ) -> ChargeV1:
         """
         Release a charge from an `on_hold` status to allow it to be rescheduled for
         processing.
@@ -799,7 +800,7 @@ class AsyncChargesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Charge,
+            cast_to=ChargeV1,
         )
 
 

@@ -13,11 +13,15 @@ class RepresentativeListParams(TypedDict, total=False):
     account_id: str
     """The unique identifier of the account to list representatives for."""
 
+    organization_id: str
+
     page_number: int
     """Results page number. Starts at page 1."""
 
     page_size: int
     """Page size. Max value: 1000"""
+
+    platform_id: str
 
     sort_by: str
     """Sort By."""

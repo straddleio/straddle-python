@@ -7,11 +7,11 @@ from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
+from .device_unmasked_v1_param import DeviceUnmaskedV1Param
+from .customer_address_v1_param import CustomerAddressV1Param
 
 __all__ = [
     "CustomerUpdateParams",
-    "Device",
-    "Address",
     "ComplianceProfile",
     "ComplianceProfileIndividualComplianceProfile",
     "ComplianceProfileBusinessComplianceProfile",
@@ -19,7 +19,7 @@ __all__ = [
 
 
 class CustomerUpdateParams(TypedDict, total=False):
-    device: Required[Device]
+    device: Required[DeviceUnmaskedV1Param]
 
     email: Required[str]
     """The customer's email address."""
@@ -32,7 +32,7 @@ class CustomerUpdateParams(TypedDict, total=False):
 
     status: Required[Literal["pending", "review", "verified", "inactive", "rejected"]]
 
-    address: Optional[Address]
+    address: Optional[CustomerAddressV1Param]
     """An object containing the customer's address.
 
     This is optional, but if provided, all required fields must be present.
@@ -61,37 +61,29 @@ class CustomerUpdateParams(TypedDict, total=False):
     straddle_account_id: Annotated[str, PropertyInfo(alias="Straddle-Account-Id")]
 
 
-class Device(TypedDict, total=False):
-    ip_address: Required[str]
-    """The customer's IP address at the time of profile creation.
-
-    Use `0.0.0.0` to represent an offline customer registration.
-    """
-
-
-class Address(TypedDict, total=False):
-    address1: Required[str]
-    """Primary address line (e.g., street, PO Box)."""
-
-    city: Required[str]
-    """City, district, suburb, town, or village."""
-
-    state: Required[str]
-    """Two-letter state code."""
-
-    zip: Required[str]
-    """Zip or postal code."""
-
-    address2: str
-    """Secondary address line (e.g., apartment, suite, unit, or building)."""
-
-
 class ComplianceProfileIndividualComplianceProfile(TypedDict, total=False):
     dob: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
     """Date of birth in YYYY-MM-DD format."""
 
     ssn: Required[str]
     """Social Security Number in the format XXX-XX-XXXX."""
+
+    ein: Optional[str]
+    """Full 9-digit Employer Identification Number for businesses.
+
+    This data is required to trigger Patriot Act compliant KYB verification. Only
+    valid where customer type is 'business'.
+    """
+
+    legal_business_name: Optional[str]
+    """The official name of the business.
+
+    This name should be correlated with the ein value. Only valid where customer
+    type is 'business'.
+    """
+
+    website: Optional[str]
+    """URL of the company's official website."""
 
 
 class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
@@ -102,6 +94,20 @@ class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
     """The official registered name of the business.
 
     This name should be correlated with the `ein` value.
+    """
+
+    dob: Optional[str]
+    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if SSN is provided. Only valid where customer type is 'individual'.
+    """
+
+    ssn: Optional[str]
+    """Full 9-digit Social Security Number or government identifier for individuals.
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if DOB is provided. Only valid where customer type is 'individual'.
     """
 
     website: str

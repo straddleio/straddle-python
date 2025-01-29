@@ -24,8 +24,8 @@ from ..._response import (
 from ...pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from ...types.embed import organization_list_params, organization_create_params
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.embed.organization import Organization
-from ...types.embed.organization_paged import Data
+from ...types.embed.organization_v1 import OrganizationV1
+from ...types.embed.organization_paged_v1 import Data
 
 __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 
@@ -64,7 +64,7 @@ class OrganizationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Organization:
+    ) -> OrganizationV1:
         """Creates a new organization related to your Straddle integration.
 
         Organizations
@@ -110,7 +110,7 @@ class OrganizationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Organization,
+            cast_to=OrganizationV1,
         )
 
     def list(
@@ -191,6 +191,52 @@ class OrganizationsResource(SyncAPIResource):
             model=Data,
         )
 
+    def get(
+        self,
+        organization_id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OrganizationV1:
+        """
+        Retrieves the details of an Organization that has previously been created.
+        Supply the unique organization ID that was returned from your previous request,
+        and Straddle will return the corresponding organization information.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not organization_id:
+            raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "correlation-id": correlation_id,
+                    "request-id": request_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            f"/v1/organizations/{organization_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=OrganizationV1,
+        )
+
 
 class AsyncOrganizationsResource(AsyncAPIResource):
     @cached_property
@@ -226,7 +272,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Organization:
+    ) -> OrganizationV1:
         """Creates a new organization related to your Straddle integration.
 
         Organizations
@@ -272,7 +318,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Organization,
+            cast_to=OrganizationV1,
         )
 
     def list(
@@ -353,6 +399,52 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             model=Data,
         )
 
+    async def get(
+        self,
+        organization_id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OrganizationV1:
+        """
+        Retrieves the details of an Organization that has previously been created.
+        Supply the unique organization ID that was returned from your previous request,
+        and Straddle will return the corresponding organization information.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not organization_id:
+            raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "correlation-id": correlation_id,
+                    "request-id": request_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/organizations/{organization_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=OrganizationV1,
+        )
+
 
 class OrganizationsResourceWithRawResponse:
     def __init__(self, organizations: OrganizationsResource) -> None:
@@ -363,6 +455,9 @@ class OrganizationsResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             organizations.list,
+        )
+        self.get = to_raw_response_wrapper(
+            organizations.get,
         )
 
 
@@ -376,6 +471,9 @@ class AsyncOrganizationsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             organizations.list,
         )
+        self.get = async_to_raw_response_wrapper(
+            organizations.get,
+        )
 
 
 class OrganizationsResourceWithStreamingResponse:
@@ -388,6 +486,9 @@ class OrganizationsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             organizations.list,
         )
+        self.get = to_streamed_response_wrapper(
+            organizations.get,
+        )
 
 
 class AsyncOrganizationsResourceWithStreamingResponse:
@@ -399,4 +500,7 @@ class AsyncOrganizationsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             organizations.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            organizations.get,
         )

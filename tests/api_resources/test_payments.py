@@ -11,7 +11,7 @@ from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
 from straddle._utils import parse_date, parse_datetime
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
-from straddle.types.payment_summary_paged import Data
+from straddle.types.payment_summary_paged_v1 import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

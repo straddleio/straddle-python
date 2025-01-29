@@ -38,8 +38,10 @@ from .capability_requests import (
     CapabilityRequestsResourceWithStreamingResponse,
     AsyncCapabilityRequestsResourceWithStreamingResponse,
 )
-from ....types.embed.account import Account
-from ....types.embed.account_paged import Data
+from ....types.embed.account_v1 import AccountV1
+from ....types.embed.account_paged_v1 import Data
+from ....types.embed.business_profile_v1_param import BusinessProfileV1Param
+from ....types.embed.terms_of_service_v1_param import TermsOfServiceV1Param
 
 __all__ = ["AccountsResource", "AsyncAccountsResource"]
 
@@ -73,7 +75,7 @@ class AccountsResource(SyncAPIResource):
         *,
         access_level: Literal["standard", "managed"],
         account_type: Literal["business"],
-        business_profile: account_create_params.BusinessProfile,
+        business_profile: BusinessProfileV1Param,
         organization_id: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
@@ -85,7 +87,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountV1:
         """Creates a new account associated with your Straddle platform integration.
 
         This
@@ -139,14 +141,14 @@ class AccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Account,
+            cast_to=AccountV1,
         )
 
     def update(
         self,
         account_id: str,
         *,
-        business_profile: account_update_params.BusinessProfile,
+        business_profile: BusinessProfileV1Param,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -157,7 +159,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountV1:
         """Updates an existing account's information.
 
         This endpoint allows you to update
@@ -202,7 +204,7 @@ class AccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Account,
+            cast_to=AccountV1,
         )
 
     def list(
@@ -210,6 +212,7 @@ class AccountsResource(SyncAPIResource):
         *,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
+        search_text: str | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -265,6 +268,7 @@ class AccountsResource(SyncAPIResource):
                     {
                         "page_number": page_number,
                         "page_size": page_size,
+                        "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
                     },
@@ -286,7 +290,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountV1:
         """Retrieves the details of an account that has previously been created.
 
         Supply the
@@ -320,14 +324,14 @@ class AccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Account,
+            cast_to=AccountV1,
         )
 
     def onboard(
         self,
         account_id: str,
         *,
-        terms_of_service: account_onboard_params.TermsOfService,
+        terms_of_service: TermsOfServiceV1Param,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -336,7 +340,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountV1:
         """Initiates the onboarding process for a new account.
 
         This endpoint can only be
@@ -369,7 +373,7 @@ class AccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Account,
+            cast_to=AccountV1,
         )
 
     def simulate(
@@ -385,7 +389,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountV1:
         """Simulte the status transitions for sandbox accounts.
 
         This endpoint can only be
@@ -420,7 +424,7 @@ class AccountsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"final_status": final_status}, account_simulate_params.AccountSimulateParams),
             ),
-            cast_to=Account,
+            cast_to=AccountV1,
         )
 
 
@@ -453,7 +457,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         *,
         access_level: Literal["standard", "managed"],
         account_type: Literal["business"],
-        business_profile: account_create_params.BusinessProfile,
+        business_profile: BusinessProfileV1Param,
         organization_id: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
@@ -465,7 +469,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountV1:
         """Creates a new account associated with your Straddle platform integration.
 
         This
@@ -519,14 +523,14 @@ class AsyncAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Account,
+            cast_to=AccountV1,
         )
 
     async def update(
         self,
         account_id: str,
         *,
-        business_profile: account_update_params.BusinessProfile,
+        business_profile: BusinessProfileV1Param,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -537,7 +541,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountV1:
         """Updates an existing account's information.
 
         This endpoint allows you to update
@@ -582,7 +586,7 @@ class AsyncAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Account,
+            cast_to=AccountV1,
         )
 
     def list(
@@ -590,6 +594,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         *,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
+        search_text: str | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -645,6 +650,7 @@ class AsyncAccountsResource(AsyncAPIResource):
                     {
                         "page_number": page_number,
                         "page_size": page_size,
+                        "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
                     },
@@ -666,7 +672,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountV1:
         """Retrieves the details of an account that has previously been created.
 
         Supply the
@@ -700,14 +706,14 @@ class AsyncAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Account,
+            cast_to=AccountV1,
         )
 
     async def onboard(
         self,
         account_id: str,
         *,
-        terms_of_service: account_onboard_params.TermsOfService,
+        terms_of_service: TermsOfServiceV1Param,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -716,7 +722,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountV1:
         """Initiates the onboarding process for a new account.
 
         This endpoint can only be
@@ -751,7 +757,7 @@ class AsyncAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Account,
+            cast_to=AccountV1,
         )
 
     async def simulate(
@@ -767,7 +773,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Account:
+    ) -> AccountV1:
         """Simulte the status transitions for sandbox accounts.
 
         This endpoint can only be
@@ -804,7 +810,7 @@ class AsyncAccountsResource(AsyncAPIResource):
                     {"final_status": final_status}, account_simulate_params.AccountSimulateParams
                 ),
             ),
-            cast_to=Account,
+            cast_to=AccountV1,
         )
 
 
