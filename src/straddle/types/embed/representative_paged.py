@@ -5,8 +5,9 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..shared.paged_response_metadata import PagedResponseMetadata
 
-__all__ = ["RepresentativePaged", "Data", "DataRelationship", "DataStatusDetail", "Meta"]
+__all__ = ["RepresentativePaged", "Data", "DataRelationship", "DataStatusDetail"]
 
 
 class DataRelationship(BaseModel):
@@ -117,36 +118,10 @@ class Data(BaseModel):
     """
 
 
-class Meta(BaseModel):
-    api_request_id: str
-    """Unique identifier for this API request, useful for troubleshooting."""
-
-    api_request_timestamp: datetime
-    """Timestamp for this API request, useful for troubleshooting."""
-
-    max_page_size: int
-    """Maximum allowed page size for this endpoint."""
-
-    page_number: int
-    """Page number for paginated results."""
-
-    page_size: int
-    """Number of items per page in this response."""
-
-    sort_by: str
-    """The field that the results were sorted by."""
-
-    sort_order: Literal["asc", "desc"]
-    """The order that the results were sorted by."""
-
-    total_items: int
-    """Total number of items returned in this response."""
-
-
 class RepresentativePaged(BaseModel):
     data: List[Data]
 
-    meta: Meta
+    meta: PagedResponseMetadata
     """
     Metadata about the API request, including an identifier, timestamp, and
     pagination details.

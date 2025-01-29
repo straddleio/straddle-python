@@ -23,7 +23,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.bridge import link_plaid_params, link_bank_account_params
-from ...types.paykey import Paykey
+from ...types.paykey_v1 import PaykeyV1
 
 __all__ = ["LinkResource", "AsyncLinkResource"]
 
@@ -65,7 +65,7 @@ class LinkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
+    ) -> PaykeyV1:
         """
         Use Bridge to create a new paykey using a bank routing and account number as the
         source. This endpoint allows you to create a secure payment token linked to a
@@ -114,7 +114,7 @@ class LinkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Paykey,
+            cast_to=PaykeyV1,
         )
 
     def plaid(
@@ -132,7 +132,7 @@ class LinkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
+    ) -> PaykeyV1:
         """Use Bridge to create a new paykey using a Plaid token as the source.
 
         This
@@ -179,7 +179,7 @@ class LinkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Paykey,
+            cast_to=PaykeyV1,
         )
 
 
@@ -220,7 +220,7 @@ class AsyncLinkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
+    ) -> PaykeyV1:
         """
         Use Bridge to create a new paykey using a bank routing and account number as the
         source. This endpoint allows you to create a secure payment token linked to a
@@ -269,7 +269,7 @@ class AsyncLinkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Paykey,
+            cast_to=PaykeyV1,
         )
 
     async def plaid(
@@ -287,7 +287,7 @@ class AsyncLinkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
+    ) -> PaykeyV1:
         """Use Bridge to create a new paykey using a Plaid token as the source.
 
         This
@@ -334,7 +334,7 @@ class AsyncLinkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Paykey,
+            cast_to=PaykeyV1,
         )
 
 

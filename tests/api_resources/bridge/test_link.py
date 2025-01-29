@@ -9,7 +9,7 @@ import pytest
 
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
-from straddle.types import Paykey
+from straddle.types import PaykeyV1
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -25,7 +25,7 @@ class TestLink:
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             routing_number="xxxxxxxxx",
         )
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     def test_method_bank_account_with_all_params(self, client: Straddle) -> None:
@@ -39,7 +39,7 @@ class TestLink:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     def test_raw_response_bank_account(self, client: Straddle) -> None:
@@ -53,7 +53,7 @@ class TestLink:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         link = response.parse()
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     def test_streaming_response_bank_account(self, client: Straddle) -> None:
@@ -67,7 +67,7 @@ class TestLink:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             link = response.parse()
-            assert_matches_type(Paykey, link, path=["response"])
+            assert_matches_type(PaykeyV1, link, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -77,7 +77,7 @@ class TestLink:
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             plaid_token="plaid_token",
         )
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     def test_method_plaid_with_all_params(self, client: Straddle) -> None:
@@ -89,7 +89,7 @@ class TestLink:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     def test_raw_response_plaid(self, client: Straddle) -> None:
@@ -101,7 +101,7 @@ class TestLink:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         link = response.parse()
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     def test_streaming_response_plaid(self, client: Straddle) -> None:
@@ -113,7 +113,7 @@ class TestLink:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             link = response.parse()
-            assert_matches_type(Paykey, link, path=["response"])
+            assert_matches_type(PaykeyV1, link, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -129,7 +129,7 @@ class TestAsyncLink:
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             routing_number="xxxxxxxxx",
         )
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     async def test_method_bank_account_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -143,7 +143,7 @@ class TestAsyncLink:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     async def test_raw_response_bank_account(self, async_client: AsyncStraddle) -> None:
@@ -157,7 +157,7 @@ class TestAsyncLink:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         link = await response.parse()
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     async def test_streaming_response_bank_account(self, async_client: AsyncStraddle) -> None:
@@ -171,7 +171,7 @@ class TestAsyncLink:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             link = await response.parse()
-            assert_matches_type(Paykey, link, path=["response"])
+            assert_matches_type(PaykeyV1, link, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -181,7 +181,7 @@ class TestAsyncLink:
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             plaid_token="plaid_token",
         )
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     async def test_method_plaid_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -193,7 +193,7 @@ class TestAsyncLink:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     async def test_raw_response_plaid(self, async_client: AsyncStraddle) -> None:
@@ -205,7 +205,7 @@ class TestAsyncLink:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         link = await response.parse()
-        assert_matches_type(Paykey, link, path=["response"])
+        assert_matches_type(PaykeyV1, link, path=["response"])
 
     @parametrize
     async def test_streaming_response_plaid(self, async_client: AsyncStraddle) -> None:
@@ -217,6 +217,6 @@ class TestAsyncLink:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             link = await response.parse()
-            assert_matches_type(Paykey, link, path=["response"])
+            assert_matches_type(PaykeyV1, link, path=["response"])
 
         assert cast(Any, response.is_closed) is True
