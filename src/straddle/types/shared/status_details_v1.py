@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -47,3 +48,6 @@ class StatusDetailsV1(BaseModel):
 
     This helps in tracking the cause of status updates.
     """
+
+    code: Optional[str] = None
+    """The status code if applicable."""

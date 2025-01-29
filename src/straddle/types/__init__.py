@@ -34,6 +34,7 @@ from .charge_release_params import ChargeReleaseParams as ChargeReleaseParams
 from .payout_release_params import PayoutReleaseParams as PayoutReleaseParams
 from .customer_create_params import CustomerCreateParams as CustomerCreateParams
 from .customer_update_params import CustomerUpdateParams as CustomerUpdateParams
+from .paykey_reveal_response import PaykeyRevealResponse as PaykeyRevealResponse
 from .paykey_summary_paged_v1 import PaykeySummaryPagedV1 as PaykeySummaryPagedV1
 from .bridge_initialize_params import BridgeInitializeParams as BridgeInitializeParams
 from .device_unmasked_v1_param import DeviceUnmaskedV1Param as DeviceUnmaskedV1Param

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["CustomerAddressV1Param"]
@@ -20,5 +21,5 @@ class CustomerAddressV1Param(TypedDict, total=False):
     zip: Required[str]
     """Zip or postal code."""
 
-    address2: str
+    address2: Optional[str]
     """Secondary address line (e.g., apartment, suite, unit, or building)."""

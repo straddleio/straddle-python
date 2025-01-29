@@ -1,12 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.response_metadata import ResponseMetadata
 
-__all__ = ["PaykeySummaryPagedV1", "Data", "DataBankData", "DataStatusDetails", "Meta"]
+__all__ = ["PaykeyRevealResponse", "Data", "DataBankData", "DataStatusDetails"]
 
 
 class DataBankData(BaseModel):
@@ -74,40 +75,21 @@ class Data(BaseModel):
     institution_name: Optional[str] = None
     """Name of the financial institution."""
 
+    metadata: Optional[Dict[str, str]] = None
+    """Up to 20 additional user-defined key-value pairs.
+
+    Useful for storing additional information about the paykey in a structured
+    format.
+    """
+
     status_details: Optional[DataStatusDetails] = None
 
 
-class Meta(BaseModel):
-    api_request_id: str
-    """Unique identifier for this API request, useful for troubleshooting."""
+class PaykeyRevealResponse(BaseModel):
+    data: Data
 
-    api_request_timestamp: datetime
-    """Timestamp for this API request, useful for troubleshooting."""
-
-    max_page_size: int
-    """Maximum allowed page size for this endpoint."""
-
-    page_number: int
-    """Page number for paginated results."""
-
-    page_size: int
-    """Number of items per page in this response."""
-
-    sort_by: str
-    """The field that the results were sorted by."""
-
-    sort_order: Literal["asc", "desc"]
-
-    total_items: int
-
-    total_pages: int
-    """The number of pages available."""
-
-
-class PaykeySummaryPagedV1(BaseModel):
-    data: List[Data]
-
-    meta: Meta
+    meta: ResponseMetadata
+    """Metadata about the API request, including an identifier and timestamp."""
 
     response_type: Literal["object", "array", "error", "none"]
     """Indicates the structure of the returned content.
