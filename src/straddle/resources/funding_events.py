@@ -21,8 +21,8 @@ from .._response import (
 )
 from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.funding_event_summary_item import FundingEventSummaryItem
-from ..types.funding_event_summary_paged import Data
+from ..types.funding_event_summary_item_v1 import FundingEventSummaryItemV1
+from ..types.funding_event_summary_paged_v1 import Data
 
 __all__ = ["FundingEventsResource", "AsyncFundingEventsResource"]
 
@@ -153,7 +153,7 @@ class FundingEventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FundingEventSummaryItem:
+    ) -> FundingEventSummaryItemV1:
         """Retrieves the details of an existing funding event.
 
         Supply the unique funding
@@ -186,7 +186,7 @@ class FundingEventsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FundingEventSummaryItem,
+            cast_to=FundingEventSummaryItemV1,
         )
 
 
@@ -316,7 +316,7 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FundingEventSummaryItem:
+    ) -> FundingEventSummaryItemV1:
         """Retrieves the details of an existing funding event.
 
         Supply the unique funding
@@ -349,7 +349,7 @@ class AsyncFundingEventsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FundingEventSummaryItem,
+            cast_to=FundingEventSummaryItemV1,
         )
 
 

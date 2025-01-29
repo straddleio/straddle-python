@@ -20,9 +20,9 @@ from .._response import (
 )
 from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.paykey import Paykey
-from ..types.paykey_unmasked import PaykeyUnmasked
-from ..types.paykey_summary_paged import Data
+from ..types.paykey_v1 import PaykeyV1
+from ..types.paykey_unmasked_v1 import PaykeyUnmaskedV1
+from ..types.paykey_summary_paged_v1 import Data
 
 __all__ = ["PaykeysResource", "AsyncPaykeysResource"]
 
@@ -134,7 +134,7 @@ class PaykeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
+    ) -> PaykeyV1:
         """Retrieves the details of an existing paykey.
 
         Supply the unique paykey `id` and
@@ -167,7 +167,7 @@ class PaykeysResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Paykey,
+            cast_to=PaykeyV1,
         )
 
     def unmasked(
@@ -183,7 +183,7 @@ class PaykeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PaykeyUnmasked:
+    ) -> PaykeyUnmaskedV1:
         """Retrieves the unmasked details of an existing paykey.
 
         Supply the unique paykey
@@ -217,7 +217,7 @@ class PaykeysResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PaykeyUnmasked,
+            cast_to=PaykeyUnmaskedV1,
         )
 
 
@@ -328,7 +328,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Paykey:
+    ) -> PaykeyV1:
         """Retrieves the details of an existing paykey.
 
         Supply the unique paykey `id` and
@@ -361,7 +361,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Paykey,
+            cast_to=PaykeyV1,
         )
 
     async def unmasked(
@@ -377,7 +377,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PaykeyUnmasked:
+    ) -> PaykeyUnmaskedV1:
         """Retrieves the unmasked details of an existing paykey.
 
         Supply the unique paykey
@@ -411,7 +411,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PaykeyUnmasked,
+            cast_to=PaykeyUnmaskedV1,
         )
 
 

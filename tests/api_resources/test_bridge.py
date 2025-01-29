@@ -9,7 +9,7 @@ import pytest
 
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
-from straddle.types import BridgeToken
+from straddle.types import BridgeTokenV1
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +22,7 @@ class TestBridge:
         bridge = client.bridge.initialize(
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(BridgeToken, bridge, path=["response"])
+        assert_matches_type(BridgeTokenV1, bridge, path=["response"])
 
     @parametrize
     def test_method_initialize_with_all_params(self, client: Straddle) -> None:
@@ -32,7 +32,7 @@ class TestBridge:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(BridgeToken, bridge, path=["response"])
+        assert_matches_type(BridgeTokenV1, bridge, path=["response"])
 
     @parametrize
     def test_raw_response_initialize(self, client: Straddle) -> None:
@@ -43,7 +43,7 @@ class TestBridge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bridge = response.parse()
-        assert_matches_type(BridgeToken, bridge, path=["response"])
+        assert_matches_type(BridgeTokenV1, bridge, path=["response"])
 
     @parametrize
     def test_streaming_response_initialize(self, client: Straddle) -> None:
@@ -54,7 +54,7 @@ class TestBridge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bridge = response.parse()
-            assert_matches_type(BridgeToken, bridge, path=["response"])
+            assert_matches_type(BridgeTokenV1, bridge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -67,7 +67,7 @@ class TestAsyncBridge:
         bridge = await async_client.bridge.initialize(
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(BridgeToken, bridge, path=["response"])
+        assert_matches_type(BridgeTokenV1, bridge, path=["response"])
 
     @parametrize
     async def test_method_initialize_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -77,7 +77,7 @@ class TestAsyncBridge:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(BridgeToken, bridge, path=["response"])
+        assert_matches_type(BridgeTokenV1, bridge, path=["response"])
 
     @parametrize
     async def test_raw_response_initialize(self, async_client: AsyncStraddle) -> None:
@@ -88,7 +88,7 @@ class TestAsyncBridge:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bridge = await response.parse()
-        assert_matches_type(BridgeToken, bridge, path=["response"])
+        assert_matches_type(BridgeTokenV1, bridge, path=["response"])
 
     @parametrize
     async def test_streaming_response_initialize(self, async_client: AsyncStraddle) -> None:
@@ -99,6 +99,6 @@ class TestAsyncBridge:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bridge = await response.parse()
-            assert_matches_type(BridgeToken, bridge, path=["response"])
+            assert_matches_type(BridgeTokenV1, bridge, path=["response"])
 
         assert cast(Any, response.is_closed) is True
