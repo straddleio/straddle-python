@@ -7,8 +7,9 @@ from datetime import date
 from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .shared_params.device_info_v1 import DeviceInfoV1
 
-__all__ = ["PayoutCreateParams", "Device"]
+__all__ = ["PayoutCreateParams"]
 
 
 class PayoutCreateParams(TypedDict, total=False):
@@ -21,7 +22,7 @@ class PayoutCreateParams(TypedDict, total=False):
     description: Required[str]
     """An arbitrary description for the payout."""
 
-    device: Required[Device]
+    device: Required[DeviceInfoV1]
     """Information about the device used when the customer authorized the payout."""
 
     external_id: Required[str]
@@ -54,11 +55,3 @@ class PayoutCreateParams(TypedDict, total=False):
     request_id: Annotated[str, PropertyInfo(alias="Request-Id")]
 
     straddle_account_id: Annotated[str, PropertyInfo(alias="Straddle-Account-Id")]
-
-
-class Device(TypedDict, total=False):
-    ip_address: Required[str]
-    """
-    The IP address of the device used when the customer authorized the charge or
-    payout. Use `0.0.0.0` to represent an offline consent interaction.
-    """

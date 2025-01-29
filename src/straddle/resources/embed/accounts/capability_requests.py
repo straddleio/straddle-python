@@ -23,7 +23,7 @@ from ...._response import (
 from ....pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.embed.accounts import capability_request_list_params, capability_request_create_params
-from ....types.embed.accounts.capability_request_paged import Data, CapabilityRequestPaged
+from ....types.embed.accounts.capability_request_paged_v1 import Data, CapabilityRequestPagedV1
 
 __all__ = ["CapabilityRequestsResource", "AsyncCapabilityRequestsResource"]
 
@@ -66,7 +66,7 @@ class CapabilityRequestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CapabilityRequestPaged:
+    ) -> CapabilityRequestPagedV1:
         """Submits a request to enable a specific capability for an account.
 
         Use this
@@ -122,7 +122,7 @@ class CapabilityRequestsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CapabilityRequestPaged,
+            cast_to=CapabilityRequestPagedV1,
         )
 
     def list(
@@ -249,7 +249,7 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CapabilityRequestPaged:
+    ) -> CapabilityRequestPagedV1:
         """Submits a request to enable a specific capability for an account.
 
         Use this
@@ -305,7 +305,7 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CapabilityRequestPaged,
+            cast_to=CapabilityRequestPagedV1,
         )
 
     def list(

@@ -28,7 +28,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.bridge_token import BridgeToken
+from ...types.bridge_token_v1 import BridgeTokenV1
 
 __all__ = ["BridgeResource", "AsyncBridgeResource"]
 
@@ -70,7 +70,7 @@ class BridgeResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BridgeToken:
+    ) -> BridgeTokenV1:
         """
         Use this endpoint to generate a session token for use in the Bridge widget.
 
@@ -102,7 +102,7 @@ class BridgeResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BridgeToken,
+            cast_to=BridgeTokenV1,
         )
 
 
@@ -143,7 +143,7 @@ class AsyncBridgeResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BridgeToken:
+    ) -> BridgeTokenV1:
         """
         Use this endpoint to generate a session token for use in the Bridge widget.
 
@@ -177,7 +177,7 @@ class AsyncBridgeResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BridgeToken,
+            cast_to=BridgeTokenV1,
         )
 
 

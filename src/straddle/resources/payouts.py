@@ -29,7 +29,8 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.payout import Payout
+from ..types.payout_v1 import PayoutV1
+from ..types.shared_params.device_info_v1 import DeviceInfoV1
 
 __all__ = ["PayoutsResource", "AsyncPayoutsResource"]
 
@@ -60,7 +61,7 @@ class PayoutsResource(SyncAPIResource):
         amount: int,
         currency: str,
         description: str,
-        device: payout_create_params.Device,
+        device: DeviceInfoV1,
         external_id: str,
         paykey: str,
         payment_date: Union[str, date],
@@ -75,7 +76,7 @@ class PayoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """
         Use payouts to send money to your customers.
 
@@ -136,7 +137,7 @@ class PayoutsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
     def update(
@@ -156,7 +157,7 @@ class PayoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """Update the details of a payout prior to processing.
 
         The status of the payout
@@ -207,7 +208,7 @@ class PayoutsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
     def cancel(
@@ -224,7 +225,7 @@ class PayoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """Cancel a payout to prevent it from being processed.
 
         The status of the payout
@@ -259,7 +260,7 @@ class PayoutsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
     def get(
@@ -275,7 +276,7 @@ class PayoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """Retrieves the details of an existing payout.
 
         Supply the unique payout `id` to
@@ -307,7 +308,7 @@ class PayoutsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
     def hold(
@@ -324,7 +325,7 @@ class PayoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """Hold a payout to prevent it from being processed.
 
         The status of the payout must
@@ -359,7 +360,7 @@ class PayoutsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
     def release(
@@ -376,7 +377,7 @@ class PayoutsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """
         Release a payout from a `hold` status to allow it to be rescheduled for
         processing.
@@ -410,7 +411,7 @@ class PayoutsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
 
@@ -440,7 +441,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         amount: int,
         currency: str,
         description: str,
-        device: payout_create_params.Device,
+        device: DeviceInfoV1,
         external_id: str,
         paykey: str,
         payment_date: Union[str, date],
@@ -455,7 +456,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """
         Use payouts to send money to your customers.
 
@@ -516,7 +517,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
     async def update(
@@ -536,7 +537,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """Update the details of a payout prior to processing.
 
         The status of the payout
@@ -587,7 +588,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
     async def cancel(
@@ -604,7 +605,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """Cancel a payout to prevent it from being processed.
 
         The status of the payout
@@ -639,7 +640,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
     async def get(
@@ -655,7 +656,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """Retrieves the details of an existing payout.
 
         Supply the unique payout `id` to
@@ -687,7 +688,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
     async def hold(
@@ -704,7 +705,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """Hold a payout to prevent it from being processed.
 
         The status of the payout must
@@ -739,7 +740,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
     async def release(
@@ -756,7 +757,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Payout:
+    ) -> PayoutV1:
         """
         Release a payout from a `hold` status to allow it to be rescheduled for
         processing.
@@ -790,7 +791,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Payout,
+            cast_to=PayoutV1,
         )
 
 

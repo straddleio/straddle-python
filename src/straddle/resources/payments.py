@@ -21,7 +21,7 @@ from .._response import (
 )
 from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.payment_summary_paged import Data
+from ..types.payment_summary_paged_v1 import Data
 
 __all__ = ["PaymentsResource", "AsyncPaymentsResource"]
 

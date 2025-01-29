@@ -11,10 +11,10 @@ from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from straddle.types.embed import (
-    LinkedBankAccount,
-    LinkedBankAccountUnmask,
+    LinkedBankAccountV1,
+    LinkedBankAccountUnmaskV1,
 )
-from straddle.types.embed.linked_bank_account_paged import Data
+from straddle.types.embed.linked_bank_account_paged_v1 import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -32,7 +32,7 @@ class TestLinkedBankAccounts:
                 "routing_number": "xxxxxxxxx",
             },
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Straddle) -> None:
@@ -47,7 +47,7 @@ class TestLinkedBankAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Straddle) -> None:
@@ -63,7 +63,7 @@ class TestLinkedBankAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         linked_bank_account = response.parse()
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Straddle) -> None:
@@ -79,7 +79,7 @@ class TestLinkedBankAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             linked_bank_account = response.parse()
-            assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+            assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -93,7 +93,7 @@ class TestLinkedBankAccounts:
                 "routing_number": "xxxxxxxxx",
             },
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Straddle) -> None:
@@ -108,7 +108,7 @@ class TestLinkedBankAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Straddle) -> None:
@@ -124,7 +124,7 @@ class TestLinkedBankAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         linked_bank_account = response.parse()
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Straddle) -> None:
@@ -140,7 +140,7 @@ class TestLinkedBankAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             linked_bank_account = response.parse()
-            assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+            assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -201,7 +201,7 @@ class TestLinkedBankAccounts:
         linked_bank_account = client.embed.linked_bank_accounts.get(
             linked_bank_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Straddle) -> None:
@@ -210,7 +210,7 @@ class TestLinkedBankAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Straddle) -> None:
@@ -221,7 +221,7 @@ class TestLinkedBankAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         linked_bank_account = response.parse()
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Straddle) -> None:
@@ -232,7 +232,7 @@ class TestLinkedBankAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             linked_bank_account = response.parse()
-            assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+            assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -250,7 +250,7 @@ class TestLinkedBankAccounts:
         linked_bank_account = client.embed.linked_bank_accounts.unmask(
             linked_bank_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(LinkedBankAccountUnmask, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountUnmaskV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_method_unmask_with_all_params(self, client: Straddle) -> None:
@@ -259,7 +259,7 @@ class TestLinkedBankAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(LinkedBankAccountUnmask, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountUnmaskV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_raw_response_unmask(self, client: Straddle) -> None:
@@ -270,7 +270,7 @@ class TestLinkedBankAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         linked_bank_account = response.parse()
-        assert_matches_type(LinkedBankAccountUnmask, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountUnmaskV1, linked_bank_account, path=["response"])
 
     @parametrize
     def test_streaming_response_unmask(self, client: Straddle) -> None:
@@ -281,7 +281,7 @@ class TestLinkedBankAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             linked_bank_account = response.parse()
-            assert_matches_type(LinkedBankAccountUnmask, linked_bank_account, path=["response"])
+            assert_matches_type(LinkedBankAccountUnmaskV1, linked_bank_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -308,7 +308,7 @@ class TestAsyncLinkedBankAccounts:
                 "routing_number": "xxxxxxxxx",
             },
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -323,7 +323,7 @@ class TestAsyncLinkedBankAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStraddle) -> None:
@@ -339,7 +339,7 @@ class TestAsyncLinkedBankAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         linked_bank_account = await response.parse()
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStraddle) -> None:
@@ -355,7 +355,7 @@ class TestAsyncLinkedBankAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             linked_bank_account = await response.parse()
-            assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+            assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -369,7 +369,7 @@ class TestAsyncLinkedBankAccounts:
                 "routing_number": "xxxxxxxxx",
             },
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -384,7 +384,7 @@ class TestAsyncLinkedBankAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncStraddle) -> None:
@@ -400,7 +400,7 @@ class TestAsyncLinkedBankAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         linked_bank_account = await response.parse()
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncStraddle) -> None:
@@ -416,7 +416,7 @@ class TestAsyncLinkedBankAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             linked_bank_account = await response.parse()
-            assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+            assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -477,7 +477,7 @@ class TestAsyncLinkedBankAccounts:
         linked_bank_account = await async_client.embed.linked_bank_accounts.get(
             linked_bank_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -486,7 +486,7 @@ class TestAsyncLinkedBankAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncStraddle) -> None:
@@ -497,7 +497,7 @@ class TestAsyncLinkedBankAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         linked_bank_account = await response.parse()
-        assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncStraddle) -> None:
@@ -508,7 +508,7 @@ class TestAsyncLinkedBankAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             linked_bank_account = await response.parse()
-            assert_matches_type(LinkedBankAccount, linked_bank_account, path=["response"])
+            assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -526,7 +526,7 @@ class TestAsyncLinkedBankAccounts:
         linked_bank_account = await async_client.embed.linked_bank_accounts.unmask(
             linked_bank_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(LinkedBankAccountUnmask, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountUnmaskV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_method_unmask_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -535,7 +535,7 @@ class TestAsyncLinkedBankAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(LinkedBankAccountUnmask, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountUnmaskV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_raw_response_unmask(self, async_client: AsyncStraddle) -> None:
@@ -546,7 +546,7 @@ class TestAsyncLinkedBankAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         linked_bank_account = await response.parse()
-        assert_matches_type(LinkedBankAccountUnmask, linked_bank_account, path=["response"])
+        assert_matches_type(LinkedBankAccountUnmaskV1, linked_bank_account, path=["response"])
 
     @parametrize
     async def test_streaming_response_unmask(self, async_client: AsyncStraddle) -> None:
@@ -557,7 +557,7 @@ class TestAsyncLinkedBankAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             linked_bank_account = await response.parse()
-            assert_matches_type(LinkedBankAccountUnmask, linked_bank_account, path=["response"])
+            assert_matches_type(LinkedBankAccountUnmaskV1, linked_bank_account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -7,8 +7,9 @@ from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .shared_params.device_info_v1 import DeviceInfoV1
 
-__all__ = ["ChargeCreateParams", "Config", "Device"]
+__all__ = ["ChargeCreateParams", "Config"]
 
 
 class ChargeCreateParams(TypedDict, total=False):
@@ -31,7 +32,7 @@ class ChargeCreateParams(TypedDict, total=False):
     description: Required[str]
     """An arbitrary description for the charge."""
 
-    device: Required[Device]
+    device: Required[DeviceInfoV1]
 
     external_id: Required[str]
     """Unique identifier for the charge in your database.
@@ -65,11 +66,3 @@ class ChargeCreateParams(TypedDict, total=False):
 class Config(TypedDict, total=False):
     balance_check: Required[Literal["required", "enabled", "disabled"]]
     """Defines whether to check the customer's balance before processing the charge."""
-
-
-class Device(TypedDict, total=False):
-    ip_address: Required[str]
-    """
-    The IP address of the device used when the customer authorized the charge or
-    payout. Use `0.0.0.0` to represent an offline consent interaction.
-    """
