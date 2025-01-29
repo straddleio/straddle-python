@@ -68,6 +68,9 @@ class Data(BaseModel):
     amount: int
     """The amount of the payout in cents."""
 
+    config: object
+    """Configuration for the payout."""
+
     currency: str
     """The currency of the payout. Only USD is supported."""
 
@@ -101,9 +104,6 @@ class Data(BaseModel):
 
     status_history: List[DataStatusHistory]
     """History of the status changes for the payout."""
-
-    config: Optional[object] = None
-    """Configuration for the payout."""
 
     created_at: Optional[datetime] = None
     """The time the payout was created."""
