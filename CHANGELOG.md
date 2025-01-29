@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2025-01-29)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/straddleio/straddle-python/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* **api:** Release Updates to SDK based on Open API Spec ([#20](https://github.com/straddleio/straddle-python/issues/20)) ([b5a01fc](https://github.com/straddleio/straddle-python/commit/b5a01fc0a93c049fa3e4b723c712f45fb8c4a02c))
+* **api:** Update Config to add versioning to DTOs. Add Shared models to avoid duplication where possible. ([#23](https://github.com/straddleio/straddle-python/issues/23)) ([85760de](https://github.com/straddleio/straddle-python/commit/85760de6a2cfc08b8d21370dce8804cdcf5f2cac))
+* **docs:** Preliminary update to SDK Spec ([#24](https://github.com/straddleio/straddle-python/issues/24)) ([750a0a1](https://github.com/straddleio/straddle-python/commit/750a0a118b4e067ef1c7a607549f1d7935f1b486))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([#22](https://github.com/straddleio/straddle-python/issues/22)) ([478dec0](https://github.com/straddleio/straddle-python/commit/478dec06567cf5e9ccbb41731d53381cb42b2de7))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([#25](https://github.com/straddleio/straddle-python/issues/25)) ([21af8e5](https://github.com/straddleio/straddle-python/commit/21af8e5aa7fcdef97a481a17a3efb15a5fe35394))
+
 ## 0.1.0-alpha.4 (2025-01-28)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/straddleio/straddle-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
