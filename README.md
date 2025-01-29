@@ -16,7 +16,7 @@ The REST API documentation can be found on [docs.straddle.io](https://docs.strad
 
 ```sh
 # install from PyPI
-pip install --pre straddle
+pip install straddle
 ```
 
 ## Usage

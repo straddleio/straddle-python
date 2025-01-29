@@ -1,6 +1,6 @@
 [project]
 name = "straddle"
-version = "0.1.0-alpha.5"
+version = "0.1.0"
 description = "The official Python library for the straddle API"
 dynamic = ["readme"]
 license = "Apache-2.0"
