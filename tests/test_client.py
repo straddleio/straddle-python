@@ -23,7 +23,7 @@ from pydantic import ValidationError
 
 from straddle import Straddle, AsyncStraddle, APIResponseValidationError
 from straddle._types import Omit
-from straddle._utils import parse_date
+from straddle._utils import parse_date, maybe_transform
 from straddle._models import BaseModel, FinalRequestOptions
 from straddle._constants import RAW_RESPONSE_HEADER
 from straddle._exceptions import StraddleError, APIStatusError, APITimeoutError, APIResponseValidationError
@@ -33,6 +33,7 @@ from straddle._base_client import (
     BaseClient,
     make_request_options,
 )
+from straddle.types.charge_create_params import ChargeCreateParams
 
 from .utils import update_env
 
@@ -730,16 +731,19 @@ class TestStraddle:
                 "/v1/charges",
                 body=cast(
                     object,
-                    dict(
-                        amount=0,
-                        config={"balance_check": "required"},
-                        consent_type="internet",
-                        currency="currency",
-                        description="Monthly subscription fee",
-                        device={"ip_address": "192.168.1.1"},
-                        external_id="external_id",
-                        paykey="paykey",
-                        payment_date=parse_date("2019-12-27"),
+                    maybe_transform(
+                        dict(
+                            amount=0,
+                            config={"balance_check": "required"},
+                            consent_type="internet",
+                            currency="currency",
+                            description="Monthly subscription fee",
+                            device={"ip_address": "192.168.1.1"},
+                            external_id="external_id",
+                            paykey="paykey",
+                            payment_date=parse_date("2019-12-27"),
+                        ),
+                        ChargeCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -758,16 +762,19 @@ class TestStraddle:
                 "/v1/charges",
                 body=cast(
                     object,
-                    dict(
-                        amount=0,
-                        config={"balance_check": "required"},
-                        consent_type="internet",
-                        currency="currency",
-                        description="Monthly subscription fee",
-                        device={"ip_address": "192.168.1.1"},
-                        external_id="external_id",
-                        paykey="paykey",
-                        payment_date=parse_date("2019-12-27"),
+                    maybe_transform(
+                        dict(
+                            amount=0,
+                            config={"balance_check": "required"},
+                            consent_type="internet",
+                            currency="currency",
+                            description="Monthly subscription fee",
+                            device={"ip_address": "192.168.1.1"},
+                            external_id="external_id",
+                            paykey="paykey",
+                            payment_date=parse_date("2019-12-27"),
+                        ),
+                        ChargeCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1574,16 +1581,19 @@ class TestAsyncStraddle:
                 "/v1/charges",
                 body=cast(
                     object,
-                    dict(
-                        amount=0,
-                        config={"balance_check": "required"},
-                        consent_type="internet",
-                        currency="currency",
-                        description="Monthly subscription fee",
-                        device={"ip_address": "192.168.1.1"},
-                        external_id="external_id",
-                        paykey="paykey",
-                        payment_date=parse_date("2019-12-27"),
+                    maybe_transform(
+                        dict(
+                            amount=0,
+                            config={"balance_check": "required"},
+                            consent_type="internet",
+                            currency="currency",
+                            description="Monthly subscription fee",
+                            device={"ip_address": "192.168.1.1"},
+                            external_id="external_id",
+                            paykey="paykey",
+                            payment_date=parse_date("2019-12-27"),
+                        ),
+                        ChargeCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,
@@ -1602,16 +1612,19 @@ class TestAsyncStraddle:
                 "/v1/charges",
                 body=cast(
                     object,
-                    dict(
-                        amount=0,
-                        config={"balance_check": "required"},
-                        consent_type="internet",
-                        currency="currency",
-                        description="Monthly subscription fee",
-                        device={"ip_address": "192.168.1.1"},
-                        external_id="external_id",
-                        paykey="paykey",
-                        payment_date=parse_date("2019-12-27"),
+                    maybe_transform(
+                        dict(
+                            amount=0,
+                            config={"balance_check": "required"},
+                            consent_type="internet",
+                            currency="currency",
+                            description="Monthly subscription fee",
+                            device={"ip_address": "192.168.1.1"},
+                            external_id="external_id",
+                            paykey="paykey",
+                            payment_date=parse_date("2019-12-27"),
+                        ),
+                        ChargeCreateParams,
                     ),
                 ),
                 cast_to=httpx.Response,

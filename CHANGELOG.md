@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.2.0 (2025-02-14)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/straddleio/straddle-python/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **client:** send `X-Stainless-Read-Timeout` header ([#34](https://github.com/straddleio/straddle-python/issues/34)) ([1807309](https://github.com/straddleio/straddle-python/commit/1807309e0c50315a440b594e7ed7fab297820b54))
+* **docs:** Preliminary update to SDK Spec ([#29](https://github.com/straddleio/straddle-python/issues/29)) ([8c78fe5](https://github.com/straddleio/straddle-python/commit/8c78fe51f7b41727996c3b2a86fcfa9f880496a7))
+* **docs:** Preliminary update to SDK Spec ([#37](https://github.com/straddleio/straddle-python/issues/37)) ([462d501](https://github.com/straddleio/straddle-python/commit/462d5018b18fd881c5eccb9487150b750abe58d8))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([#33](https://github.com/straddleio/straddle-python/issues/33)) ([56264ac](https://github.com/straddleio/straddle-python/commit/56264ac2753163991f9009f1c0c4b378a25a85bb))
+
+
+### Bug Fixes
+
+* asyncify on non-asyncio runtimes ([#39](https://github.com/straddleio/straddle-python/issues/39)) ([b441fc4](https://github.com/straddleio/straddle-python/commit/b441fc4e7923f002d02640d8478ada2c57a93f06))
+
+
+### Chores
+
+* **internal:** bummp ruff dependency ([#32](https://github.com/straddleio/straddle-python/issues/32)) ([adec2d0](https://github.com/straddleio/straddle-python/commit/adec2d031a0697202040871f94b44295d9fc62d0))
+* **internal:** change default timeout to an int ([#31](https://github.com/straddleio/straddle-python/issues/31)) ([8dc087a](https://github.com/straddleio/straddle-python/commit/8dc087a24d069cffde2d431cdc5a539098589359))
+* **internal:** fix type traversing dictionary params ([#35](https://github.com/straddleio/straddle-python/issues/35)) ([56d6f4b](https://github.com/straddleio/straddle-python/commit/56d6f4b2d44f0278619b86bc4dfb5e5ec050ad10))
+* **internal:** minor type handling changes ([#36](https://github.com/straddleio/straddle-python/issues/36)) ([260b180](https://github.com/straddleio/straddle-python/commit/260b180be3b072af83c70a38b05a73a18f22c95b))
+* **internal:** update client tests ([#38](https://github.com/straddleio/straddle-python/issues/38)) ([bcda27a](https://github.com/straddleio/straddle-python/commit/bcda27ac8e0bd67f174622d511e5d4b778f88008))
+
 ## 0.1.0 (2025-01-29)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0](https://github.com/straddleio/straddle-python/compare/v0.1.0-alpha.5...v0.1.0)
