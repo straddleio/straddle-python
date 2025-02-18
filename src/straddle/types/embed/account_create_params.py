@@ -19,7 +19,7 @@ class AccountCreateParams(TypedDict, total=False):
     instructed otherwise by Straddle.
     """
 
-    account_type: Required[Literal["business", "unknown"]]
+    account_type: Required[Literal["business"]]
     """The type of account to be created. Currently, only `business` is supported."""
 
     business_profile: Required[BusinessProfileV1Param]
