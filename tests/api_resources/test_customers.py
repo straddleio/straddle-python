@@ -101,7 +101,7 @@ class TestCustomers:
         customer = client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -113,7 +113,7 @@ class TestCustomers:
         customer = client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -144,7 +144,7 @@ class TestCustomers:
         response = client.customers.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -160,7 +160,7 @@ class TestCustomers:
         with client.customers.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -179,7 +179,7 @@ class TestCustomers:
             client.customers.with_raw_response.update(
                 id="",
                 device={"ip_address": "192.168.1.1"},
-                email="dev@stainlessapi.com",
+                email="dev@stainless.com",
                 name="name",
                 phone="+46991022",
                 status="pending",
@@ -457,7 +457,7 @@ class TestAsyncCustomers:
         customer = await async_client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -469,7 +469,7 @@ class TestAsyncCustomers:
         customer = await async_client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -500,7 +500,7 @@ class TestAsyncCustomers:
         response = await async_client.customers.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -516,7 +516,7 @@ class TestAsyncCustomers:
         async with async_client.customers.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -535,7 +535,7 @@ class TestAsyncCustomers:
             await async_client.customers.with_raw_response.update(
                 id="",
                 device={"ip_address": "192.168.1.1"},
-                email="dev@stainlessapi.com",
+                email="dev@stainless.com",
                 name="name",
                 phone="+46991022",
                 status="pending",

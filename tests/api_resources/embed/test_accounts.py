@@ -60,7 +60,7 @@ class TestAccounts:
                 "legal_name": "legal_name",
                 "phone": "+46991022",
                 "support_channels": {
-                    "email": "dev@stainlessapi.com",
+                    "email": "dev@stainless.com",
                     "phone": "+46991022",
                     "url": "https://example.com",
                 },
@@ -146,7 +146,7 @@ class TestAccounts:
                 "legal_name": "legal_name",
                 "phone": "+46991022",
                 "support_channels": {
-                    "email": "dev@stainlessapi.com",
+                    "email": "dev@stainless.com",
                     "phone": "+46991022",
                     "url": "https://example.com",
                 },
@@ -448,7 +448,7 @@ class TestAsyncAccounts:
                 "legal_name": "legal_name",
                 "phone": "+46991022",
                 "support_channels": {
-                    "email": "dev@stainlessapi.com",
+                    "email": "dev@stainless.com",
                     "phone": "+46991022",
                     "url": "https://example.com",
                 },
@@ -534,7 +534,7 @@ class TestAsyncAccounts:
                 "legal_name": "legal_name",
                 "phone": "+46991022",
                 "support_channels": {
-                    "email": "dev@stainlessapi.com",
+                    "email": "dev@stainless.com",
                     "phone": "+46991022",
                     "url": "https://example.com",
                 },
