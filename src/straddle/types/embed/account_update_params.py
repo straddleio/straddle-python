@@ -6,13 +6,13 @@ from typing import Dict, Optional
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .business_profile_v1_param import BusinessProfileV1Param
+from ..shared_params.business_profile_v1 import BusinessProfileV1
 
 __all__ = ["AccountUpdateParams"]
 
 
 class AccountUpdateParams(TypedDict, total=False):
-    business_profile: Required[BusinessProfileV1Param]
+    business_profile: Required[BusinessProfileV1]
 
     external_id: Optional[str]
     """

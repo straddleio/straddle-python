@@ -20,10 +20,12 @@ from .._response import (
 )
 from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.paykey_v1 import PaykeyV1
+from ..types.shared.sort_order import SortOrder
 from ..types.paykey_unmasked_v1 import PaykeyUnmaskedV1
 from ..types.paykey_reveal_response import PaykeyRevealResponse
 from ..types.paykey_summary_paged_v1 import Data
+from ..types.shared.paykey_status_v1 import PaykeyStatusV1
+from ..types.shared.paykey_v1_item_response import PaykeyV1ItemResponse
 
 __all__ = ["PaykeysResource", "AsyncPaykeysResource"]
 
@@ -55,8 +57,8 @@ class PaykeysResource(SyncAPIResource):
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         sort_by: Literal["institution_name", "expires_at", "created_at"] | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: List[Literal["pending", "active", "inactive", "rejected"]] | NotGiven = NOT_GIVEN,
+        sort_order: SortOrder | NotGiven = NOT_GIVEN,
+        status: List[PaykeyStatusV1] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
@@ -135,7 +137,7 @@ class PaykeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PaykeyV1:
+    ) -> PaykeyV1ItemResponse:
         """Retrieves the details of an existing paykey.
 
         Supply the unique paykey `id` and
@@ -168,7 +170,7 @@ class PaykeysResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PaykeyV1,
+            cast_to=PaykeyV1ItemResponse,
         )
 
     def reveal(
@@ -298,8 +300,8 @@ class AsyncPaykeysResource(AsyncAPIResource):
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         sort_by: Literal["institution_name", "expires_at", "created_at"] | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: List[Literal["pending", "active", "inactive", "rejected"]] | NotGiven = NOT_GIVEN,
+        sort_order: SortOrder | NotGiven = NOT_GIVEN,
+        status: List[PaykeyStatusV1] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
@@ -378,7 +380,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PaykeyV1:
+    ) -> PaykeyV1ItemResponse:
         """Retrieves the details of an existing paykey.
 
         Supply the unique paykey `id` and
@@ -411,7 +413,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PaykeyV1,
+            cast_to=PaykeyV1ItemResponse,
         )
 
     async def reveal(

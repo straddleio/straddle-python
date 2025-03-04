@@ -10,10 +10,8 @@ import pytest
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
-from straddle.types.embed.accounts import (
-    CapabilityRequestPagedV1,
-)
-from straddle.types.embed.accounts.capability_request_paged_v1 import Data
+from straddle.types.shared import PagedResponseOfCapabilityRequestV1
+from straddle.types.shared.paged_response_of_capability_request_v1 import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +24,7 @@ class TestCapabilityRequests:
         capability_request = client.embed.accounts.capability_requests.create(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CapabilityRequestPagedV1, capability_request, path=["response"])
+        assert_matches_type(PagedResponseOfCapabilityRequestV1, capability_request, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Straddle) -> None:
@@ -53,7 +51,7 @@ class TestCapabilityRequests:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(CapabilityRequestPagedV1, capability_request, path=["response"])
+        assert_matches_type(PagedResponseOfCapabilityRequestV1, capability_request, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Straddle) -> None:
@@ -64,7 +62,7 @@ class TestCapabilityRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         capability_request = response.parse()
-        assert_matches_type(CapabilityRequestPagedV1, capability_request, path=["response"])
+        assert_matches_type(PagedResponseOfCapabilityRequestV1, capability_request, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Straddle) -> None:
@@ -75,7 +73,7 @@ class TestCapabilityRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             capability_request = response.parse()
-            assert_matches_type(CapabilityRequestPagedV1, capability_request, path=["response"])
+            assert_matches_type(PagedResponseOfCapabilityRequestV1, capability_request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -149,7 +147,7 @@ class TestAsyncCapabilityRequests:
         capability_request = await async_client.embed.accounts.capability_requests.create(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CapabilityRequestPagedV1, capability_request, path=["response"])
+        assert_matches_type(PagedResponseOfCapabilityRequestV1, capability_request, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -176,7 +174,7 @@ class TestAsyncCapabilityRequests:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(CapabilityRequestPagedV1, capability_request, path=["response"])
+        assert_matches_type(PagedResponseOfCapabilityRequestV1, capability_request, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStraddle) -> None:
@@ -187,7 +185,7 @@ class TestAsyncCapabilityRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         capability_request = await response.parse()
-        assert_matches_type(CapabilityRequestPagedV1, capability_request, path=["response"])
+        assert_matches_type(PagedResponseOfCapabilityRequestV1, capability_request, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStraddle) -> None:
@@ -198,7 +196,7 @@ class TestAsyncCapabilityRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             capability_request = await response.parse()
-            assert_matches_type(CapabilityRequestPagedV1, capability_request, path=["response"])
+            assert_matches_type(PagedResponseOfCapabilityRequestV1, capability_request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

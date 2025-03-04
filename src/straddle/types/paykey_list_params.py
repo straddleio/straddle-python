@@ -6,6 +6,8 @@ from typing import List
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .shared.sort_order import SortOrder
+from .shared.paykey_status_v1 import PaykeyStatusV1
 
 __all__ = ["PaykeyListParams"]
 
@@ -22,9 +24,9 @@ class PaykeyListParams(TypedDict, total=False):
 
     sort_by: Literal["institution_name", "expires_at", "created_at"]
 
-    sort_order: Literal["asc", "desc"]
+    sort_order: SortOrder
 
-    status: List[Literal["pending", "active", "inactive", "rejected"]]
+    status: List[PaykeyStatusV1]
     """Filter paykeys by their current status."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]

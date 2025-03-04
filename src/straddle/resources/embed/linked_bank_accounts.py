@@ -28,9 +28,10 @@ from ...types.embed import (
     linked_bank_account_update_params,
 )
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.embed.linked_bank_account_v1 import LinkedBankAccountV1
-from ...types.embed.linked_bank_account_paged_v1 import Data
+from ...types.shared.linked_bank_account_v1 import LinkedBankAccountV1
 from ...types.embed.linked_bank_account_unmask_v1 import LinkedBankAccountUnmaskV1
+from ...types.shared_params.bank_account_v1_request import BankAccountV1Request
+from ...types.shared.item_response_of_linked_bank_account_v1 import ItemResponseOfLinkedBankAccountV1
 
 __all__ = ["LinkedBankAccountsResource", "AsyncLinkedBankAccountsResource"]
 
@@ -59,7 +60,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        bank_account: linked_bank_account_create_params.BankAccount,
+        bank_account: BankAccountV1Request,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
@@ -69,7 +70,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LinkedBankAccountV1:
+    ) -> ItemResponseOfLinkedBankAccountV1:
         """Creates a new linked bank account associated with a Straddle account.
 
         This
@@ -114,14 +115,14 @@ class LinkedBankAccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LinkedBankAccountV1,
+            cast_to=ItemResponseOfLinkedBankAccountV1,
         )
 
     def update(
         self,
         linked_bank_account_id: str,
         *,
-        bank_account: linked_bank_account_update_params.BankAccount,
+        bank_account: BankAccountV1Request,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
@@ -131,7 +132,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LinkedBankAccountV1:
+    ) -> ItemResponseOfLinkedBankAccountV1:
         """Updates an existing linked bank account's information.
 
         This can be used to
@@ -176,7 +177,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LinkedBankAccountV1,
+            cast_to=ItemResponseOfLinkedBankAccountV1,
         )
 
     def list(
@@ -195,7 +196,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPageNumberSchema[Data]:
+    ) -> SyncPageNumberSchema[LinkedBankAccountV1]:
         """Returns a list of bank accounts associated with a specific Straddle account.
 
         The
@@ -233,7 +234,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
         }
         return self._get_api_list(
             "/v1/linked_bank_accounts",
-            page=SyncPageNumberSchema[Data],
+            page=SyncPageNumberSchema[LinkedBankAccountV1],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -250,7 +251,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
                     linked_bank_account_list_params.LinkedBankAccountListParams,
                 ),
             ),
-            model=Data,
+            model=LinkedBankAccountV1,
         )
 
     def get(
@@ -265,7 +266,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LinkedBankAccountV1:
+    ) -> ItemResponseOfLinkedBankAccountV1:
         """
         Retrieves the details of a linked bank account that has previously been created.
         Supply the unique linked bank account `id`, and Straddle will return the
@@ -299,7 +300,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LinkedBankAccountV1,
+            cast_to=ItemResponseOfLinkedBankAccountV1,
         )
 
     def unmask(
@@ -377,7 +378,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        bank_account: linked_bank_account_create_params.BankAccount,
+        bank_account: BankAccountV1Request,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
@@ -387,7 +388,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LinkedBankAccountV1:
+    ) -> ItemResponseOfLinkedBankAccountV1:
         """Creates a new linked bank account associated with a Straddle account.
 
         This
@@ -432,14 +433,14 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LinkedBankAccountV1,
+            cast_to=ItemResponseOfLinkedBankAccountV1,
         )
 
     async def update(
         self,
         linked_bank_account_id: str,
         *,
-        bank_account: linked_bank_account_update_params.BankAccount,
+        bank_account: BankAccountV1Request,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
@@ -449,7 +450,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LinkedBankAccountV1:
+    ) -> ItemResponseOfLinkedBankAccountV1:
         """Updates an existing linked bank account's information.
 
         This can be used to
@@ -494,7 +495,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LinkedBankAccountV1,
+            cast_to=ItemResponseOfLinkedBankAccountV1,
         )
 
     def list(
@@ -513,7 +514,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
+    ) -> AsyncPaginator[LinkedBankAccountV1, AsyncPageNumberSchema[LinkedBankAccountV1]]:
         """Returns a list of bank accounts associated with a specific Straddle account.
 
         The
@@ -551,7 +552,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         }
         return self._get_api_list(
             "/v1/linked_bank_accounts",
-            page=AsyncPageNumberSchema[Data],
+            page=AsyncPageNumberSchema[LinkedBankAccountV1],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -568,7 +569,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
                     linked_bank_account_list_params.LinkedBankAccountListParams,
                 ),
             ),
-            model=Data,
+            model=LinkedBankAccountV1,
         )
 
     async def get(
@@ -583,7 +584,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LinkedBankAccountV1:
+    ) -> ItemResponseOfLinkedBankAccountV1:
         """
         Retrieves the details of a linked bank account that has previously been created.
         Supply the unique linked bank account `id`, and Straddle will return the
@@ -617,7 +618,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=LinkedBankAccountV1,
+            cast_to=ItemResponseOfLinkedBankAccountV1,
         )
 
     async def unmask(
