@@ -9,7 +9,7 @@ import pytest
 
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
-from straddle.types import CustomerV1
+from straddle.types.shared import CustomerV1ItemResponse
 from straddle.types.customers import CustomerReviewV1
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -24,7 +24,7 @@ class TestReview:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status="verified",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(CustomerV1ItemResponse, review, path=["response"])
 
     @parametrize
     def test_method_decision_with_all_params(self, client: Straddle) -> None:
@@ -35,7 +35,7 @@ class TestReview:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(CustomerV1ItemResponse, review, path=["response"])
 
     @parametrize
     def test_raw_response_decision(self, client: Straddle) -> None:
@@ -47,7 +47,7 @@ class TestReview:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         review = response.parse()
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(CustomerV1ItemResponse, review, path=["response"])
 
     @parametrize
     def test_streaming_response_decision(self, client: Straddle) -> None:
@@ -59,7 +59,7 @@ class TestReview:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             review = response.parse()
-            assert_matches_type(CustomerV1, review, path=["response"])
+            assert_matches_type(CustomerV1ItemResponse, review, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -129,7 +129,7 @@ class TestAsyncReview:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status="verified",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(CustomerV1ItemResponse, review, path=["response"])
 
     @parametrize
     async def test_method_decision_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -140,7 +140,7 @@ class TestAsyncReview:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(CustomerV1ItemResponse, review, path=["response"])
 
     @parametrize
     async def test_raw_response_decision(self, async_client: AsyncStraddle) -> None:
@@ -152,7 +152,7 @@ class TestAsyncReview:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         review = await response.parse()
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(CustomerV1ItemResponse, review, path=["response"])
 
     @parametrize
     async def test_streaming_response_decision(self, async_client: AsyncStraddle) -> None:
@@ -164,7 +164,7 @@ class TestAsyncReview:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             review = await response.parse()
-            assert_matches_type(CustomerV1, review, path=["response"])
+            assert_matches_type(CustomerV1ItemResponse, review, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

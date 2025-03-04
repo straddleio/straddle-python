@@ -7,8 +7,9 @@ from datetime import date
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
+from ..shared_params.relationship_v1 import RelationshipV1
 
-__all__ = ["RepresentativeCreateParams", "Relationship"]
+__all__ = ["RepresentativeCreateParams"]
 
 
 class RepresentativeCreateParams(TypedDict, total=False):
@@ -30,7 +31,7 @@ class RepresentativeCreateParams(TypedDict, total=False):
     mobile_number: Required[str]
     """The mobile phone number of the representative."""
 
-    relationship: Required[Relationship]
+    relationship: Required[RelationshipV1]
 
     ssn_last4: Required[str]
     """The last 4 digits of the representative's Social Security Number."""
@@ -44,37 +45,3 @@ class RepresentativeCreateParams(TypedDict, total=False):
     correlation_id: Annotated[str, PropertyInfo(alias="correlation-id")]
 
     request_id: Annotated[str, PropertyInfo(alias="request-id")]
-
-
-class Relationship(TypedDict, total=False):
-    control: Required[bool]
-    """
-    Whether the representative has significant responsibility to control, manage, or
-    direct the organization. One representative must be identified under the control
-    prong for each legal entity.
-    """
-
-    owner: Required[bool]
-    """
-    Whether the representative owns any percentage of of the equity interests of the
-    legal entity.
-    """
-
-    primary: Required[bool]
-    """Whether the person is authorized as the primary representative of the account.
-
-    This is the person chosen by the business to provide information about
-    themselves, general information about the account, and who consented to the
-    services agreement.
-
-    There can be only one primary representative for an account at a time.
-    """
-
-    percent_ownership: Optional[float]
-    """The percentage of ownership the representative has.
-
-    Required if 'Owner' is true.
-    """
-
-    title: Optional[str]
-    """The job title of the representative."""

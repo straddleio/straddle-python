@@ -6,8 +6,11 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 from ..shared.response_metadata import ResponseMetadata
+from ..shared.status_detail_of_linked_bank_account_status_detail_enum import (
+    StatusDetailOfLinkedBankAccountStatusDetailEnum,
+)
 
-__all__ = ["LinkedBankAccountUnmaskV1", "Data", "DataBankAccount", "DataStatusDetail"]
+__all__ = ["LinkedBankAccountUnmaskV1", "Data", "DataBankAccount"]
 
 
 class DataBankAccount(BaseModel):
@@ -18,29 +21,6 @@ class DataBankAccount(BaseModel):
     institution_name: str
 
     routing_number: str
-
-
-class DataStatusDetail(BaseModel):
-    code: str
-    """
-    A machine-readable code for the specific status, useful for programmatic
-    handling.
-    """
-
-    message: str
-    """A human-readable message describing the current status."""
-
-    reason: Literal["unverified", "in_review", "pending", "stuck", "verified", "failed_verification", "disabled", "new"]
-    """
-    A machine-readable identifier for the specific status, useful for programmatic
-    handling.
-    """
-
-    source: Literal["watchtower"]
-    """Identifies the origin of the status change (e.g., `watchtower`).
-
-    This helps in tracking the cause of status updates.
-    """
 
 
 class Data(BaseModel):
@@ -59,7 +39,7 @@ class Data(BaseModel):
     status: Literal["created", "onboarding", "active", "rejected", "inactive"]
     """The current status of the linked bank account."""
 
-    status_detail: DataStatusDetail
+    status_detail: StatusDetailOfLinkedBankAccountStatusDetailEnum
     """Additional details about the current status of the linked bank account."""
 
     updated_at: datetime

@@ -24,8 +24,8 @@ from ..._response import (
 from ...pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from ...types.embed import organization_list_params, organization_create_params
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.embed.organization_v1 import OrganizationV1
-from ...types.embed.organization_paged_v1 import Data
+from ...types.shared.organization_v1 import OrganizationV1
+from ...types.shared.item_response_of_organization_v1 import ItemResponseOfOrganizationV1
 
 __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 
@@ -64,7 +64,7 @@ class OrganizationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrganizationV1:
+    ) -> ItemResponseOfOrganizationV1:
         """Creates a new organization related to your Straddle integration.
 
         Organizations
@@ -110,7 +110,7 @@ class OrganizationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=OrganizationV1,
+            cast_to=ItemResponseOfOrganizationV1,
         )
 
     def list(
@@ -130,7 +130,7 @@ class OrganizationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPageNumberSchema[Data]:
+    ) -> SyncPageNumberSchema[OrganizationV1]:
         """Retrieves a list of organizations associated with your Straddle integration.
 
         The
@@ -170,7 +170,7 @@ class OrganizationsResource(SyncAPIResource):
         }
         return self._get_api_list(
             "/v1/organizations",
-            page=SyncPageNumberSchema[Data],
+            page=SyncPageNumberSchema[OrganizationV1],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -188,7 +188,7 @@ class OrganizationsResource(SyncAPIResource):
                     organization_list_params.OrganizationListParams,
                 ),
             ),
-            model=Data,
+            model=OrganizationV1,
         )
 
     def get(
@@ -203,7 +203,7 @@ class OrganizationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrganizationV1:
+    ) -> ItemResponseOfOrganizationV1:
         """
         Retrieves the details of an Organization that has previously been created.
         Supply the unique organization ID that was returned from your previous request,
@@ -234,7 +234,7 @@ class OrganizationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=OrganizationV1,
+            cast_to=ItemResponseOfOrganizationV1,
         )
 
 
@@ -272,7 +272,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrganizationV1:
+    ) -> ItemResponseOfOrganizationV1:
         """Creates a new organization related to your Straddle integration.
 
         Organizations
@@ -318,7 +318,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=OrganizationV1,
+            cast_to=ItemResponseOfOrganizationV1,
         )
 
     def list(
@@ -338,7 +338,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
+    ) -> AsyncPaginator[OrganizationV1, AsyncPageNumberSchema[OrganizationV1]]:
         """Retrieves a list of organizations associated with your Straddle integration.
 
         The
@@ -378,7 +378,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         }
         return self._get_api_list(
             "/v1/organizations",
-            page=AsyncPageNumberSchema[Data],
+            page=AsyncPageNumberSchema[OrganizationV1],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -396,7 +396,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                     organization_list_params.OrganizationListParams,
                 ),
             ),
-            model=Data,
+            model=OrganizationV1,
         )
 
     async def get(
@@ -411,7 +411,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrganizationV1:
+    ) -> ItemResponseOfOrganizationV1:
         """
         Retrieves the details of an Organization that has previously been created.
         Supply the unique organization ID that was returned from your previous request,
@@ -442,7 +442,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=OrganizationV1,
+            cast_to=ItemResponseOfOrganizationV1,
         )
 
 
