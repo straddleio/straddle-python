@@ -2,43 +2,16 @@
 
 from typing import Dict, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.paykey_source_v1 import PaykeySourceV1
+from .shared.paykey_status_v1 import PaykeyStatusV1
 from .shared.response_metadata import ResponseMetadata
+from .shared.status_details_v1 import StatusDetailsV1
+from .shared.response_type_enum import ResponseTypeEnum
+from .shared.paykey_bank_details_v1 import PaykeyBankDetailsV1
 
-__all__ = ["PaykeyRevealResponse", "Data", "DataBankData", "DataStatusDetails"]
-
-
-class DataBankData(BaseModel):
-    account_number: str
-    """Bank account number.
-
-    This value is masked by default for security reasons. Use the /unmask endpoint
-    to access the unmasked value.
-    """
-
-    account_type: Literal["checking", "savings"]
-
-    routing_number: str
-    """The routing number of the bank account."""
-
-
-class DataStatusDetails(BaseModel):
-    message: str
-    """A human-readable description of the current status."""
-
-    reason: str
-    """
-    A machine-readable identifier for the specific status, useful for programmatic
-    handling.
-    """
-
-    source: str
-    """Identifies the origin of the status change (e.g., `bank_decline`, `watchtower`).
-
-    This helps in tracking the cause of status updates.
-    """
+__all__ = ["PaykeyRevealResponse", "Data"]
 
 
 class Data(BaseModel):
@@ -57,14 +30,14 @@ class Data(BaseModel):
     This value is used to create payments and should be stored securely.
     """
 
-    source: Literal["bank_account", "straddle", "mx", "plaid"]
+    source: PaykeySourceV1
 
-    status: Literal["pending", "active", "inactive", "rejected"]
+    status: PaykeyStatusV1
 
     updated_at: datetime
     """Timestamp of the most recent update to the paykey."""
 
-    bank_data: Optional[DataBankData] = None
+    bank_data: Optional[PaykeyBankDetailsV1] = None
 
     customer_id: Optional[str] = None
     """Unique identifier of the related customer object."""
@@ -82,7 +55,7 @@ class Data(BaseModel):
     format.
     """
 
-    status_details: Optional[DataStatusDetails] = None
+    status_details: Optional[StatusDetailsV1] = None
 
 
 class PaykeyRevealResponse(BaseModel):
@@ -91,7 +64,7 @@ class PaykeyRevealResponse(BaseModel):
     meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
-    response_type: Literal["object", "array", "error", "none"]
+    response_type: ResponseTypeEnum
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.

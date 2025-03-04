@@ -1,9 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing_extensions import Literal
 
 from .._models import BaseModel
 from .shared.response_metadata import ResponseMetadata
+from .shared.response_type_enum import ResponseTypeEnum
 
 __all__ = ["BridgeTokenV1", "Data"]
 
@@ -19,7 +19,7 @@ class BridgeTokenV1(BaseModel):
     meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
-    response_type: Literal["object", "array", "error", "none"]
+    response_type: ResponseTypeEnum
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.

@@ -2,11 +2,14 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.customer_type_v1 import CustomerTypeV1
+from .shared.customer_status_v1 import CustomerStatusV1
+from .shared.response_type_enum import ResponseTypeEnum
+from .shared.paged_response_metadata_1 import PagedResponseMetadata1
 
-__all__ = ["CustomerSummaryPagedV1", "Data", "Meta"]
+__all__ = ["CustomerSummaryPagedV1", "Data"]
 
 
 class Data(BaseModel):
@@ -25,9 +28,9 @@ class Data(BaseModel):
     phone: str
     """The customer's phone number in E.164 format."""
 
-    status: Literal["pending", "review", "verified", "inactive", "rejected"]
+    status: CustomerStatusV1
 
-    type: Literal["individual", "business"]
+    type: CustomerTypeV1
 
     updated_at: datetime
     """Timestamp of the most recent update to the customer record."""
@@ -39,39 +42,12 @@ class Data(BaseModel):
     """
 
 
-class Meta(BaseModel):
-    api_request_id: str
-    """Unique identifier for this API request, useful for troubleshooting."""
-
-    api_request_timestamp: datetime
-    """Timestamp for this API request, useful for troubleshooting."""
-
-    max_page_size: int
-    """Maximum allowed page size for this endpoint."""
-
-    page_number: int
-    """Page number for paginated results."""
-
-    page_size: int
-    """Number of items per page in this response."""
-
-    sort_by: str
-    """The field that the results were sorted by."""
-
-    sort_order: Literal["asc", "desc"]
-
-    total_items: int
-
-    total_pages: int
-    """The number of pages available."""
-
-
 class CustomerSummaryPagedV1(BaseModel):
     data: List[Data]
 
-    meta: Meta
+    meta: PagedResponseMetadata1
 
-    response_type: Literal["object", "array", "error", "none"]
+    response_type: ResponseTypeEnum
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.
