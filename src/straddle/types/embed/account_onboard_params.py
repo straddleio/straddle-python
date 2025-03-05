@@ -5,13 +5,13 @@ from __future__ import annotations
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from ..shared_params.terms_of_service_v1 import TermsOfServiceV1
+from .terms_of_service_v1_param import TermsOfServiceV1Param
 
 __all__ = ["AccountOnboardParams"]
 
 
 class AccountOnboardParams(TypedDict, total=False):
-    terms_of_service: Required[TermsOfServiceV1]
+    terms_of_service: Required[TermsOfServiceV1Param]
 
     correlation_id: Annotated[str, PropertyInfo(alias="correlation-id")]
 

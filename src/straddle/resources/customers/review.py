@@ -22,8 +22,8 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.customers import review_decision_params
+from ...types.customer_v1 import CustomerV1
 from ...types.customers.customer_review_v1 import CustomerReviewV1
-from ...types.shared.customer_v1_item_response import CustomerV1ItemResponse
 
 __all__ = ["ReviewResource", "AsyncReviewResource"]
 
@@ -62,7 +62,7 @@ class ReviewResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerV1ItemResponse:
+    ) -> CustomerV1:
         """Updates the status of a customer's identity decision.
 
         This endpoint allows you
@@ -99,7 +99,7 @@ class ReviewResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1ItemResponse,
+            cast_to=CustomerV1,
         )
 
     def get(
@@ -191,7 +191,7 @@ class AsyncReviewResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerV1ItemResponse:
+    ) -> CustomerV1:
         """Updates the status of a customer's identity decision.
 
         This endpoint allows you
@@ -228,7 +228,7 @@ class AsyncReviewResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1ItemResponse,
+            cast_to=CustomerV1,
         )
 
     async def get(

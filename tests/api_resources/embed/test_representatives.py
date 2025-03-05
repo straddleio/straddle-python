@@ -11,7 +11,10 @@ from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
 from straddle._utils import parse_date
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
-from straddle.types.shared import RepresentativeV1, ItemResponseOfRepresentativeV1
+from straddle.types.embed import (
+    Representative,
+)
+from straddle.types.embed.representative_paged import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -35,7 +38,7 @@ class TestRepresentatives:
             },
             ssn_last4="1234",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Straddle) -> None:
@@ -58,7 +61,7 @@ class TestRepresentatives:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Straddle) -> None:
@@ -80,7 +83,7 @@ class TestRepresentatives:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         representative = response.parse()
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Straddle) -> None:
@@ -102,7 +105,7 @@ class TestRepresentatives:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             representative = response.parse()
-            assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+            assert_matches_type(Representative, representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -122,7 +125,7 @@ class TestRepresentatives:
             },
             ssn_last4="1234",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Straddle) -> None:
@@ -145,7 +148,7 @@ class TestRepresentatives:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Straddle) -> None:
@@ -167,7 +170,7 @@ class TestRepresentatives:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         representative = response.parse()
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Straddle) -> None:
@@ -189,7 +192,7 @@ class TestRepresentatives:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             representative = response.parse()
-            assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+            assert_matches_type(Representative, representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -214,7 +217,7 @@ class TestRepresentatives:
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
         representative = client.embed.representatives.list()
-        assert_matches_type(SyncPageNumberSchema[RepresentativeV1], representative, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], representative, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
@@ -229,7 +232,7 @@ class TestRepresentatives:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(SyncPageNumberSchema[RepresentativeV1], representative, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], representative, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
@@ -238,7 +241,7 @@ class TestRepresentatives:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         representative = response.parse()
-        assert_matches_type(SyncPageNumberSchema[RepresentativeV1], representative, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], representative, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
@@ -247,7 +250,7 @@ class TestRepresentatives:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             representative = response.parse()
-            assert_matches_type(SyncPageNumberSchema[RepresentativeV1], representative, path=["response"])
+            assert_matches_type(SyncPageNumberSchema[Data], representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -256,7 +259,7 @@ class TestRepresentatives:
         representative = client.embed.representatives.get(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Straddle) -> None:
@@ -265,7 +268,7 @@ class TestRepresentatives:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Straddle) -> None:
@@ -276,7 +279,7 @@ class TestRepresentatives:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         representative = response.parse()
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Straddle) -> None:
@@ -287,7 +290,7 @@ class TestRepresentatives:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             representative = response.parse()
-            assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+            assert_matches_type(Representative, representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -303,7 +306,7 @@ class TestRepresentatives:
         representative = client.embed.representatives.unmask(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_method_unmask_with_all_params(self, client: Straddle) -> None:
@@ -312,7 +315,7 @@ class TestRepresentatives:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_raw_response_unmask(self, client: Straddle) -> None:
@@ -323,7 +326,7 @@ class TestRepresentatives:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         representative = response.parse()
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     def test_streaming_response_unmask(self, client: Straddle) -> None:
@@ -334,7 +337,7 @@ class TestRepresentatives:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             representative = response.parse()
-            assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+            assert_matches_type(Representative, representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -365,7 +368,7 @@ class TestAsyncRepresentatives:
             },
             ssn_last4="1234",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -388,7 +391,7 @@ class TestAsyncRepresentatives:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStraddle) -> None:
@@ -410,7 +413,7 @@ class TestAsyncRepresentatives:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         representative = await response.parse()
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStraddle) -> None:
@@ -432,7 +435,7 @@ class TestAsyncRepresentatives:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             representative = await response.parse()
-            assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+            assert_matches_type(Representative, representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -452,7 +455,7 @@ class TestAsyncRepresentatives:
             },
             ssn_last4="1234",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -475,7 +478,7 @@ class TestAsyncRepresentatives:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncStraddle) -> None:
@@ -497,7 +500,7 @@ class TestAsyncRepresentatives:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         representative = await response.parse()
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncStraddle) -> None:
@@ -519,7 +522,7 @@ class TestAsyncRepresentatives:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             representative = await response.parse()
-            assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+            assert_matches_type(Representative, representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -544,7 +547,7 @@ class TestAsyncRepresentatives:
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
         representative = await async_client.embed.representatives.list()
-        assert_matches_type(AsyncPageNumberSchema[RepresentativeV1], representative, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], representative, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -559,7 +562,7 @@ class TestAsyncRepresentatives:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(AsyncPageNumberSchema[RepresentativeV1], representative, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], representative, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
@@ -568,7 +571,7 @@ class TestAsyncRepresentatives:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         representative = await response.parse()
-        assert_matches_type(AsyncPageNumberSchema[RepresentativeV1], representative, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], representative, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
@@ -577,7 +580,7 @@ class TestAsyncRepresentatives:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             representative = await response.parse()
-            assert_matches_type(AsyncPageNumberSchema[RepresentativeV1], representative, path=["response"])
+            assert_matches_type(AsyncPageNumberSchema[Data], representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -586,7 +589,7 @@ class TestAsyncRepresentatives:
         representative = await async_client.embed.representatives.get(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -595,7 +598,7 @@ class TestAsyncRepresentatives:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncStraddle) -> None:
@@ -606,7 +609,7 @@ class TestAsyncRepresentatives:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         representative = await response.parse()
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncStraddle) -> None:
@@ -617,7 +620,7 @@ class TestAsyncRepresentatives:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             representative = await response.parse()
-            assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+            assert_matches_type(Representative, representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -633,7 +636,7 @@ class TestAsyncRepresentatives:
         representative = await async_client.embed.representatives.unmask(
             representative_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_method_unmask_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -642,7 +645,7 @@ class TestAsyncRepresentatives:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_raw_response_unmask(self, async_client: AsyncStraddle) -> None:
@@ -653,7 +656,7 @@ class TestAsyncRepresentatives:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         representative = await response.parse()
-        assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+        assert_matches_type(Representative, representative, path=["response"])
 
     @parametrize
     async def test_streaming_response_unmask(self, async_client: AsyncStraddle) -> None:
@@ -664,7 +667,7 @@ class TestAsyncRepresentatives:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             representative = await response.parse()
-            assert_matches_type(ItemResponseOfRepresentativeV1, representative, path=["response"])
+            assert_matches_type(Representative, representative, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

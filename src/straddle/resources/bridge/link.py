@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
+from typing_extensions import Literal
 
 import httpx
 
@@ -22,8 +23,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.bridge import link_plaid_params, link_bank_account_params
-from ...types.shared.account_type_v1 import AccountTypeV1
-from ...types.shared.paykey_v1_item_response import PaykeyV1ItemResponse
+from ...types.paykey_v1 import PaykeyV1
 
 __all__ = ["LinkResource", "AsyncLinkResource"]
 
@@ -52,7 +52,7 @@ class LinkResource(SyncAPIResource):
         self,
         *,
         account_number: str,
-        account_type: AccountTypeV1,
+        account_type: Literal["checking", "savings"],
         customer_id: str,
         routing_number: str,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
@@ -65,7 +65,7 @@ class LinkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PaykeyV1ItemResponse:
+    ) -> PaykeyV1:
         """
         Use Bridge to create a new paykey using a bank routing and account number as the
         source. This endpoint allows you to create a secure payment token linked to a
@@ -114,7 +114,7 @@ class LinkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PaykeyV1ItemResponse,
+            cast_to=PaykeyV1,
         )
 
     def plaid(
@@ -132,7 +132,7 @@ class LinkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PaykeyV1ItemResponse:
+    ) -> PaykeyV1:
         """Use Bridge to create a new paykey using a Plaid token as the source.
 
         This
@@ -179,7 +179,7 @@ class LinkResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PaykeyV1ItemResponse,
+            cast_to=PaykeyV1,
         )
 
 
@@ -207,7 +207,7 @@ class AsyncLinkResource(AsyncAPIResource):
         self,
         *,
         account_number: str,
-        account_type: AccountTypeV1,
+        account_type: Literal["checking", "savings"],
         customer_id: str,
         routing_number: str,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
@@ -220,7 +220,7 @@ class AsyncLinkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PaykeyV1ItemResponse:
+    ) -> PaykeyV1:
         """
         Use Bridge to create a new paykey using a bank routing and account number as the
         source. This endpoint allows you to create a secure payment token linked to a
@@ -269,7 +269,7 @@ class AsyncLinkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PaykeyV1ItemResponse,
+            cast_to=PaykeyV1,
         )
 
     async def plaid(
@@ -287,7 +287,7 @@ class AsyncLinkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PaykeyV1ItemResponse:
+    ) -> PaykeyV1:
         """Use Bridge to create a new paykey using a Plaid token as the source.
 
         This
@@ -334,7 +334,7 @@ class AsyncLinkResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=PaykeyV1ItemResponse,
+            cast_to=PaykeyV1,
         )
 
 

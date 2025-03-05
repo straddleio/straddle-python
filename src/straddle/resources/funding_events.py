@@ -21,11 +21,8 @@ from .._response import (
 )
 from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.shared.sort_order import SortOrder
-from ..types.shared.funding_event_type_v1 import FundingEventTypeV1
-from ..types.shared.transfer_direction_v1 import TransferDirectionV1
 from ..types.funding_event_summary_item_v1 import FundingEventSummaryItemV1
-from ..types.shared.funding_event_summary_v1 import FundingEventSummaryV1
+from ..types.funding_event_summary_paged_v1 import Data
 
 __all__ = ["FundingEventsResource", "AsyncFundingEventsResource"]
 
@@ -55,12 +52,13 @@ class FundingEventsResource(SyncAPIResource):
         *,
         created_from: Union[str, date, None] | NotGiven = NOT_GIVEN,
         created_to: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        direction: TransferDirectionV1 | NotGiven = NOT_GIVEN,
-        event_type: FundingEventTypeV1 | NotGiven = NOT_GIVEN,
+        direction: Literal["deposit", "withdrawal"] | NotGiven = NOT_GIVEN,
+        event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"]
+        | NotGiven = NOT_GIVEN,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         sort_by: Literal["transfer_date", "id", "amount"] | NotGiven = NOT_GIVEN,
-        sort_order: SortOrder | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         trace_number: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
@@ -71,7 +69,7 @@ class FundingEventsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPageNumberSchema[FundingEventSummaryV1]:
+    ) -> SyncPageNumberSchema[Data]:
         """Retrieves a list of funding events for your account.
 
         This endpoint supports
@@ -118,7 +116,7 @@ class FundingEventsResource(SyncAPIResource):
         }
         return self._get_api_list(
             "/v1/funding_events",
-            page=SyncPageNumberSchema[FundingEventSummaryV1],
+            page=SyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -139,7 +137,7 @@ class FundingEventsResource(SyncAPIResource):
                     funding_event_list_params.FundingEventListParams,
                 ),
             ),
-            model=FundingEventSummaryV1,
+            model=Data,
         )
 
     def get(
@@ -217,12 +215,13 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         *,
         created_from: Union[str, date, None] | NotGiven = NOT_GIVEN,
         created_to: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        direction: TransferDirectionV1 | NotGiven = NOT_GIVEN,
-        event_type: FundingEventTypeV1 | NotGiven = NOT_GIVEN,
+        direction: Literal["deposit", "withdrawal"] | NotGiven = NOT_GIVEN,
+        event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"]
+        | NotGiven = NOT_GIVEN,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         sort_by: Literal["transfer_date", "id", "amount"] | NotGiven = NOT_GIVEN,
-        sort_order: SortOrder | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         trace_number: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
@@ -233,7 +232,7 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[FundingEventSummaryV1, AsyncPageNumberSchema[FundingEventSummaryV1]]:
+    ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """Retrieves a list of funding events for your account.
 
         This endpoint supports
@@ -280,7 +279,7 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         }
         return self._get_api_list(
             "/v1/funding_events",
-            page=AsyncPageNumberSchema[FundingEventSummaryV1],
+            page=AsyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -301,7 +300,7 @@ class AsyncFundingEventsResource(AsyncAPIResource):
                     funding_event_list_params.FundingEventListParams,
                 ),
             ),
-            model=FundingEventSummaryV1,
+            model=Data,
         )
 
     async def get(

@@ -12,7 +12,7 @@ from tests.utils import assert_matches_type
 from straddle.types import FundingEventSummaryItemV1
 from straddle._utils import parse_date
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
-from straddle.types.shared import FundingEventSummaryV1
+from straddle.types.funding_event_summary_paged_v1 import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestFundingEvents:
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
         funding_event = client.funding_events.list()
-        assert_matches_type(SyncPageNumberSchema[FundingEventSummaryV1], funding_event, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], funding_event, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
@@ -41,7 +41,7 @@ class TestFundingEvents:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(SyncPageNumberSchema[FundingEventSummaryV1], funding_event, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], funding_event, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
@@ -50,7 +50,7 @@ class TestFundingEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         funding_event = response.parse()
-        assert_matches_type(SyncPageNumberSchema[FundingEventSummaryV1], funding_event, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], funding_event, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
@@ -59,7 +59,7 @@ class TestFundingEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             funding_event = response.parse()
-            assert_matches_type(SyncPageNumberSchema[FundingEventSummaryV1], funding_event, path=["response"])
+            assert_matches_type(SyncPageNumberSchema[Data], funding_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -118,7 +118,7 @@ class TestAsyncFundingEvents:
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
         funding_event = await async_client.funding_events.list()
-        assert_matches_type(AsyncPageNumberSchema[FundingEventSummaryV1], funding_event, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], funding_event, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -136,7 +136,7 @@ class TestAsyncFundingEvents:
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(AsyncPageNumberSchema[FundingEventSummaryV1], funding_event, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], funding_event, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
@@ -145,7 +145,7 @@ class TestAsyncFundingEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         funding_event = await response.parse()
-        assert_matches_type(AsyncPageNumberSchema[FundingEventSummaryV1], funding_event, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], funding_event, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
@@ -154,7 +154,7 @@ class TestAsyncFundingEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             funding_event = await response.parse()
-            assert_matches_type(AsyncPageNumberSchema[FundingEventSummaryV1], funding_event, path=["response"])
+            assert_matches_type(AsyncPageNumberSchema[Data], funding_event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

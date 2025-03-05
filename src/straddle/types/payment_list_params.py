@@ -4,13 +4,9 @@ from __future__ import annotations
 
 from typing import List, Union
 from datetime import date, datetime
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .shared.sort_order import SortOrder
-from .shared.payment_type_v1 import PaymentTypeV1
-from .shared.payment_status_v1 import PaymentStatusV1
-from .shared.payment_sort_by_v1 import PaymentSortByV1
 
 __all__ = ["PaymentListParams"]
 
@@ -21,10 +17,10 @@ class PaymentListParams(TypedDict, total=False):
 
     default_page_size: int
 
-    default_sort: PaymentSortByV1
+    default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"]
     """The field to sort the results by."""
 
-    default_sort_order: SortOrder
+    default_sort_order: Literal["asc", "desc"]
 
     external_id: str
     """Search using the `external_id` of a `charge` or `payout`."""
@@ -71,19 +67,21 @@ class PaymentListParams(TypedDict, total=False):
     payment_id: str
     """Search using the `id` of a `charge` or `payout`."""
 
-    payment_status: List[PaymentStatusV1]
+    payment_status: List[
+        Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+    ]
     """Search by the status of a `charge` or `payout`."""
 
-    payment_type: List[PaymentTypeV1]
+    payment_type: List[Literal["charge", "payout"]]
     """Search by the type of a `charge` or `payout`."""
 
     search_text: str
     """Search using a text string associated with a `charge` or `payout`."""
 
-    sort_by: PaymentSortByV1
+    sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"]
     """The field to sort the results by."""
 
-    sort_order: SortOrder
+    sort_order: Literal["asc", "desc"]
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 

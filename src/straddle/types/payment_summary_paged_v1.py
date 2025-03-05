@@ -2,17 +2,14 @@
 
 from typing import List, Optional
 from datetime import date, datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
-from .shared.payment_type_v1 import PaymentTypeV1
 from .shared.paykey_details_v1 import PaykeyDetailsV1
-from .shared.payment_status_v1 import PaymentStatusV1
 from .shared.status_details_v1 import StatusDetailsV1
-from .shared.response_type_enum import ResponseTypeEnum
 from .shared.customer_details_v1 import CustomerDetailsV1
-from .shared.paged_response_metadata_2 import PagedResponseMetadata2
 
-__all__ = ["PaymentSummaryPagedV1", "Data"]
+__all__ = ["PaymentSummaryPagedV1", "Data", "Meta"]
 
 
 class Data(BaseModel):
@@ -48,10 +45,10 @@ class Data(BaseModel):
     account.
     """
 
-    payment_type: PaymentTypeV1
+    payment_type: Literal["charge", "payout"]
     """The type of payment. Valid values are `charge` or `payout`."""
 
-    status: PaymentStatusV1
+    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
     """The current status of the `charge` or `payout`."""
 
     status_details: StatusDetailsV1
@@ -80,12 +77,39 @@ class Data(BaseModel):
     """Information about the paykey used for the `charge` or `payout`."""
 
 
+class Meta(BaseModel):
+    api_request_id: str
+    """Unique identifier for this API request, useful for troubleshooting."""
+
+    api_request_timestamp: datetime
+    """Timestamp for this API request, useful for troubleshooting."""
+
+    max_page_size: int
+    """Maximum allowed page size for this endpoint."""
+
+    page_number: int
+    """Page number for paginated results."""
+
+    page_size: int
+    """Number of items per page in this response."""
+
+    sort_by: str
+    """The field that the results were sorted by."""
+
+    sort_order: Literal["asc", "desc"]
+
+    total_items: int
+
+    total_pages: int
+    """The number of pages available."""
+
+
 class PaymentSummaryPagedV1(BaseModel):
     data: List[Data]
 
-    meta: PagedResponseMetadata2
+    meta: Meta
 
-    response_type: ResponseTypeEnum
+    response_type: Literal["object", "array", "error", "none"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.

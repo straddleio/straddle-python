@@ -25,9 +25,8 @@ from ..._response import (
 from ...pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from ...types.embed import representative_list_params, representative_create_params, representative_update_params
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.shared.representative_v1 import RepresentativeV1
-from ...types.shared_params.relationship_v1 import RelationshipV1
-from ...types.shared.item_response_of_representative_v1 import ItemResponseOfRepresentativeV1
+from ...types.embed.representative import Representative
+from ...types.embed.representative_paged import Data
 
 __all__ = ["RepresentativesResource", "AsyncRepresentativesResource"]
 
@@ -61,7 +60,7 @@ class RepresentativesResource(SyncAPIResource):
         first_name: str,
         last_name: str,
         mobile_number: str,
-        relationship: RelationshipV1,
+        relationship: representative_create_params.Relationship,
         ssn_last4: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -72,7 +71,7 @@ class RepresentativesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfRepresentativeV1:
+    ) -> Representative:
         """Creates a new representative associated with an account.
 
         Representatives are
@@ -133,7 +132,7 @@ class RepresentativesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfRepresentativeV1,
+            cast_to=Representative,
         )
 
     def update(
@@ -145,7 +144,7 @@ class RepresentativesResource(SyncAPIResource):
         first_name: str,
         last_name: str,
         mobile_number: str,
-        relationship: RelationshipV1,
+        relationship: representative_update_params.Relationship,
         ssn_last4: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -156,7 +155,7 @@ class RepresentativesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfRepresentativeV1:
+    ) -> Representative:
         """Updates an existing representative's information.
 
         This can be used to update
@@ -216,7 +215,7 @@ class RepresentativesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfRepresentativeV1,
+            cast_to=Representative,
         )
 
     def list(
@@ -237,7 +236,7 @@ class RepresentativesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPageNumberSchema[RepresentativeV1]:
+    ) -> SyncPageNumberSchema[Data]:
         """
         Returns a list of representatives associated with a specific account or
         organization. The representatives are returned sorted by creation date, with the
@@ -274,7 +273,7 @@ class RepresentativesResource(SyncAPIResource):
         }
         return self._get_api_list(
             "/v1/representatives",
-            page=SyncPageNumberSchema[RepresentativeV1],
+            page=SyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -293,7 +292,7 @@ class RepresentativesResource(SyncAPIResource):
                     representative_list_params.RepresentativeListParams,
                 ),
             ),
-            model=RepresentativeV1,
+            model=Data,
         )
 
     def get(
@@ -308,7 +307,7 @@ class RepresentativesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfRepresentativeV1:
+    ) -> Representative:
         """Retrieves the details of an existing representative.
 
         Supply the unique
@@ -340,7 +339,7 @@ class RepresentativesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfRepresentativeV1,
+            cast_to=Representative,
         )
 
     def unmask(
@@ -355,7 +354,7 @@ class RepresentativesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfRepresentativeV1:
+    ) -> Representative:
         """
         Retrieves the unmasked details of a representative that has previously been
         created. Supply the unique representative ID, and Straddle will return the
@@ -387,7 +386,7 @@ class RepresentativesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfRepresentativeV1,
+            cast_to=Representative,
         )
 
 
@@ -420,7 +419,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         first_name: str,
         last_name: str,
         mobile_number: str,
-        relationship: RelationshipV1,
+        relationship: representative_create_params.Relationship,
         ssn_last4: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -431,7 +430,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfRepresentativeV1:
+    ) -> Representative:
         """Creates a new representative associated with an account.
 
         Representatives are
@@ -492,7 +491,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfRepresentativeV1,
+            cast_to=Representative,
         )
 
     async def update(
@@ -504,7 +503,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         first_name: str,
         last_name: str,
         mobile_number: str,
-        relationship: RelationshipV1,
+        relationship: representative_update_params.Relationship,
         ssn_last4: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -515,7 +514,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfRepresentativeV1:
+    ) -> Representative:
         """Updates an existing representative's information.
 
         This can be used to update
@@ -575,7 +574,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfRepresentativeV1,
+            cast_to=Representative,
         )
 
     def list(
@@ -596,7 +595,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RepresentativeV1, AsyncPageNumberSchema[RepresentativeV1]]:
+    ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """
         Returns a list of representatives associated with a specific account or
         organization. The representatives are returned sorted by creation date, with the
@@ -633,7 +632,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         }
         return self._get_api_list(
             "/v1/representatives",
-            page=AsyncPageNumberSchema[RepresentativeV1],
+            page=AsyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -652,7 +651,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
                     representative_list_params.RepresentativeListParams,
                 ),
             ),
-            model=RepresentativeV1,
+            model=Data,
         )
 
     async def get(
@@ -667,7 +666,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfRepresentativeV1:
+    ) -> Representative:
         """Retrieves the details of an existing representative.
 
         Supply the unique
@@ -699,7 +698,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfRepresentativeV1,
+            cast_to=Representative,
         )
 
     async def unmask(
@@ -714,7 +713,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfRepresentativeV1:
+    ) -> Representative:
         """
         Retrieves the unmasked details of a representative that has previously been
         created. Supply the unique representative ID, and Straddle will return the
@@ -746,7 +745,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfRepresentativeV1,
+            cast_to=Representative,
         )
 
 
