@@ -1,18 +1,79 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
-from datetime import datetime
+from typing import Dict, Union, Optional
+from datetime import date, datetime
+from typing_extensions import Literal, TypeAlias
 
 from .._models import BaseModel
-from .shared.address_v11 import AddressV11
-from .shared.customer_type_v1 import CustomerTypeV1
+from .device_unmasked_v1 import DeviceUnmaskedV1
+from .customer_address_v1 import CustomerAddressV1
 from .shared.response_metadata import ResponseMetadata
-from .shared.customer_status_v1 import CustomerStatusV1
-from .shared.device_unmasked_v1 import DeviceUnmaskedV1
-from .shared.response_type_enum import ResponseTypeEnum
-from .shared.compliance_profile_unmasked_v1 import ComplianceProfileUnmaskedV1
 
-__all__ = ["CustomerUnmaskedV1", "Data"]
+__all__ = [
+    "CustomerUnmaskedV1",
+    "Data",
+    "DataComplianceProfile",
+    "DataComplianceProfileIndividualComplianceProfile",
+    "DataComplianceProfileBusinessComplianceProfile",
+]
+
+
+class DataComplianceProfileIndividualComplianceProfile(BaseModel):
+    dob: date
+    """Date of birth in YYYY-MM-DD format."""
+
+    ssn: str
+    """Social Security Number in the format XXX-XX-XXXX."""
+
+    ein: Optional[str] = None
+    """Full 9-digit Employer Identification Number for businesses.
+
+    This data is required to trigger Patriot Act compliant KYB verification. Only
+    valid where customer type is 'business'.
+    """
+
+    legal_business_name: Optional[str] = None
+    """The official name of the business.
+
+    This name should be correlated with the ein value. Only valid where customer
+    type is 'business'.
+    """
+
+    website: Optional[str] = None
+    """URL of the company's official website."""
+
+
+class DataComplianceProfileBusinessComplianceProfile(BaseModel):
+    ein: str
+    """Employer Identification Number in the format XX-XXXXXXX."""
+
+    legal_business_name: str
+    """The official registered name of the business.
+
+    This name should be correlated with the `ein` value.
+    """
+
+    dob: Optional[str] = None
+    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if SSN is provided. Only valid where customer type is 'individual'.
+    """
+
+    ssn: Optional[str] = None
+    """Full 9-digit Social Security Number or government identifier for individuals.
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if DOB is provided. Only valid where customer type is 'individual'.
+    """
+
+    website: Optional[str] = None
+    """Business website URL."""
+
+
+DataComplianceProfile: TypeAlias = Union[
+    DataComplianceProfileIndividualComplianceProfile, DataComplianceProfileBusinessComplianceProfile
+]
 
 
 class Data(BaseModel):
@@ -31,16 +92,16 @@ class Data(BaseModel):
     phone: str
     """The customer's phone number in E.164 format."""
 
-    status: CustomerStatusV1
+    status: Literal["pending", "review", "verified", "inactive", "rejected"]
 
-    type: CustomerTypeV1
+    type: Literal["individual", "business"]
 
     updated_at: datetime
     """Timestamp of the most recent update to the customer record."""
 
-    address: Optional[AddressV11] = None
+    address: Optional[CustomerAddressV1] = None
 
-    compliance_profile: Optional[ComplianceProfileUnmaskedV1] = None
+    compliance_profile: Optional[DataComplianceProfile] = None
     """Compliance profile for individual customers"""
 
     device: Optional[DeviceUnmaskedV1] = None
@@ -65,7 +126,7 @@ class CustomerUnmaskedV1(BaseModel):
     meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
-    response_type: ResponseTypeEnum
+    response_type: Literal["object", "array", "error", "none"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.

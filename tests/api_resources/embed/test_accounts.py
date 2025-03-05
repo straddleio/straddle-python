@@ -11,7 +11,10 @@ from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
 from straddle._utils import parse_datetime
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
-from straddle.types.shared import AccountV1, ItemResponseOfAccountV1
+from straddle.types.embed import (
+    AccountV1,
+)
+from straddle.types.embed.account_paged_v1 import Data
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -30,7 +33,7 @@ class TestAccounts:
             },
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Straddle) -> None:
@@ -70,7 +73,7 @@ class TestAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Straddle) -> None:
@@ -87,7 +90,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Straddle) -> None:
@@ -104,7 +107,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+            assert_matches_type(AccountV1, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -117,7 +120,7 @@ class TestAccounts:
                 "website": "https://example.com",
             },
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Straddle) -> None:
@@ -155,7 +158,7 @@ class TestAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Straddle) -> None:
@@ -170,7 +173,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Straddle) -> None:
@@ -185,7 +188,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+            assert_matches_type(AccountV1, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -203,7 +206,7 @@ class TestAccounts:
     @parametrize
     def test_method_list(self, client: Straddle) -> None:
         account = client.embed.accounts.list()
-        assert_matches_type(SyncPageNumberSchema[AccountV1], account, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], account, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
@@ -216,7 +219,7 @@ class TestAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(SyncPageNumberSchema[AccountV1], account, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], account, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Straddle) -> None:
@@ -225,7 +228,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(SyncPageNumberSchema[AccountV1], account, path=["response"])
+        assert_matches_type(SyncPageNumberSchema[Data], account, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Straddle) -> None:
@@ -234,7 +237,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(SyncPageNumberSchema[AccountV1], account, path=["response"])
+            assert_matches_type(SyncPageNumberSchema[Data], account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -243,7 +246,7 @@ class TestAccounts:
         account = client.embed.accounts.get(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Straddle) -> None:
@@ -252,7 +255,7 @@ class TestAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Straddle) -> None:
@@ -263,7 +266,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Straddle) -> None:
@@ -274,7 +277,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+            assert_matches_type(AccountV1, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -294,7 +297,7 @@ class TestAccounts:
                 "agreement_type": "embedded",
             },
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_method_onboard_with_all_params(self, client: Straddle) -> None:
@@ -310,7 +313,7 @@ class TestAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_raw_response_onboard(self, client: Straddle) -> None:
@@ -325,7 +328,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_streaming_response_onboard(self, client: Straddle) -> None:
@@ -340,7 +343,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+            assert_matches_type(AccountV1, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -360,7 +363,7 @@ class TestAccounts:
         account = client.embed.accounts.simulate(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_method_simulate_with_all_params(self, client: Straddle) -> None:
@@ -370,7 +373,7 @@ class TestAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_raw_response_simulate(self, client: Straddle) -> None:
@@ -381,7 +384,7 @@ class TestAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     def test_streaming_response_simulate(self, client: Straddle) -> None:
@@ -392,7 +395,7 @@ class TestAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = response.parse()
-            assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+            assert_matches_type(AccountV1, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -418,7 +421,7 @@ class TestAsyncAccounts:
             },
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -458,7 +461,7 @@ class TestAsyncAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStraddle) -> None:
@@ -475,7 +478,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStraddle) -> None:
@@ -492,7 +495,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+            assert_matches_type(AccountV1, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -505,7 +508,7 @@ class TestAsyncAccounts:
                 "website": "https://example.com",
             },
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -543,7 +546,7 @@ class TestAsyncAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncStraddle) -> None:
@@ -558,7 +561,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncStraddle) -> None:
@@ -573,7 +576,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+            assert_matches_type(AccountV1, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -591,7 +594,7 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
         account = await async_client.embed.accounts.list()
-        assert_matches_type(AsyncPageNumberSchema[AccountV1], account, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], account, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -604,7 +607,7 @@ class TestAsyncAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(AsyncPageNumberSchema[AccountV1], account, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], account, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncStraddle) -> None:
@@ -613,7 +616,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(AsyncPageNumberSchema[AccountV1], account, path=["response"])
+        assert_matches_type(AsyncPageNumberSchema[Data], account, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncStraddle) -> None:
@@ -622,7 +625,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(AsyncPageNumberSchema[AccountV1], account, path=["response"])
+            assert_matches_type(AsyncPageNumberSchema[Data], account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -631,7 +634,7 @@ class TestAsyncAccounts:
         account = await async_client.embed.accounts.get(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -640,7 +643,7 @@ class TestAsyncAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncStraddle) -> None:
@@ -651,7 +654,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncStraddle) -> None:
@@ -662,7 +665,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+            assert_matches_type(AccountV1, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -682,7 +685,7 @@ class TestAsyncAccounts:
                 "agreement_type": "embedded",
             },
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_method_onboard_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -698,7 +701,7 @@ class TestAsyncAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_raw_response_onboard(self, async_client: AsyncStraddle) -> None:
@@ -713,7 +716,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_streaming_response_onboard(self, async_client: AsyncStraddle) -> None:
@@ -728,7 +731,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+            assert_matches_type(AccountV1, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -748,7 +751,7 @@ class TestAsyncAccounts:
         account = await async_client.embed.accounts.simulate(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_method_simulate_with_all_params(self, async_client: AsyncStraddle) -> None:
@@ -758,7 +761,7 @@ class TestAsyncAccounts:
             correlation_id="correlation-id",
             request_id="request-id",
         )
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_raw_response_simulate(self, async_client: AsyncStraddle) -> None:
@@ -769,7 +772,7 @@ class TestAsyncAccounts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = await response.parse()
-        assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+        assert_matches_type(AccountV1, account, path=["response"])
 
     @parametrize
     async def test_streaming_response_simulate(self, async_client: AsyncStraddle) -> None:
@@ -780,7 +783,7 @@ class TestAsyncAccounts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             account = await response.parse()
-            assert_matches_type(ItemResponseOfAccountV1, account, path=["response"])
+            assert_matches_type(AccountV1, account, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

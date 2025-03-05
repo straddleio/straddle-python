@@ -3,10 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from ..shared.account_type_v1 import AccountTypeV1
 
 __all__ = ["LinkBankAccountParams"]
 
@@ -15,7 +14,7 @@ class LinkBankAccountParams(TypedDict, total=False):
     account_number: Required[str]
     """The bank account number."""
 
-    account_type: Required[AccountTypeV1]
+    account_type: Required[Literal["checking", "savings"]]
 
     customer_id: Required[str]
     """Unique identifier of the related customer object."""

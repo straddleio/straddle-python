@@ -7,9 +7,6 @@ from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .shared.sort_order import SortOrder
-from .shared.customer_type_v1 import CustomerTypeV1
-from .shared.customer_status_v1 import CustomerStatusV1
 
 __all__ = ["CustomerListParams"]
 
@@ -41,12 +38,12 @@ class CustomerListParams(TypedDict, total=False):
 
     sort_by: Literal["name", "created_at"]
 
-    sort_order: SortOrder
+    sort_order: Literal["asc", "desc"]
 
-    status: List[CustomerStatusV1]
+    status: List[Literal["pending", "review", "verified", "inactive", "rejected"]]
     """Filter customers by their current `status`."""
 
-    types: List[CustomerTypeV1]
+    types: List[Literal["individual", "business"]]
     """Filter by customer type `individual` or `business`."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]

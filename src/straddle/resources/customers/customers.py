@@ -16,7 +16,11 @@ from .review import (
     ReviewResourceWithStreamingResponse,
     AsyncReviewResourceWithStreamingResponse,
 )
-from ...types import customer_list_params, customer_create_params, customer_update_params
+from ...types import (
+    customer_list_params,
+    customer_create_params,
+    customer_update_params,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -33,15 +37,11 @@ from ..._response import (
 )
 from ...pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.shared.sort_order import SortOrder
+from ...types.customer_v1 import CustomerV1
 from ...types.customer_unmasked_v1 import CustomerUnmaskedV1
-from ...types.shared.customer_type_v1 import CustomerTypeV1
+from ...types.device_unmasked_v1_param import DeviceUnmaskedV1Param
+from ...types.customer_address_v1_param import CustomerAddressV1Param
 from ...types.customer_summary_paged_v1 import Data
-from ...types.shared.customer_status_v1 import CustomerStatusV1
-from ...types.shared_params.address_v11 import AddressV11
-from ...types.shared.customer_v1_item_response import CustomerV1ItemResponse
-from ...types.shared_params.device_unmasked_v1 import DeviceUnmaskedV1
-from ...types.shared_params.compliance_profile_unmasked_v1 import ComplianceProfileUnmaskedV1
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
 
@@ -73,13 +73,13 @@ class CustomersResource(SyncAPIResource):
     def create(
         self,
         *,
-        device: DeviceUnmaskedV1,
+        device: DeviceUnmaskedV1Param,
         email: str,
         name: str,
         phone: str,
-        type: CustomerTypeV1,
-        address: Optional[AddressV11] | NotGiven = NOT_GIVEN,
-        compliance_profile: ComplianceProfileUnmaskedV1 | NotGiven = NOT_GIVEN,
+        type: Literal["individual", "business"],
+        address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
+        compliance_profile: customer_create_params.ComplianceProfile | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -91,7 +91,7 @@ class CustomersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerV1ItemResponse:
+    ) -> CustomerV1:
         """
         Creates a new customer record and automatically initiates identity, fraud, and
         risk assessment scores. This endpoint allows you to create a customer profile
@@ -153,20 +153,20 @@ class CustomersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1ItemResponse,
+            cast_to=CustomerV1,
         )
 
     def update(
         self,
         id: str,
         *,
-        device: DeviceUnmaskedV1,
+        device: DeviceUnmaskedV1Param,
         email: str,
         name: str,
         phone: str,
         status: Literal["pending", "review", "verified", "inactive", "rejected"],
-        address: Optional[AddressV11] | NotGiven = NOT_GIVEN,
-        compliance_profile: ComplianceProfileUnmaskedV1 | NotGiven = NOT_GIVEN,
+        address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
+        compliance_profile: customer_update_params.ComplianceProfile | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -178,7 +178,7 @@ class CustomersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerV1ItemResponse:
+    ) -> CustomerV1:
         """Updates an existing customer's information.
 
         This endpoint allows you to modify
@@ -241,7 +241,7 @@ class CustomersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1ItemResponse,
+            cast_to=CustomerV1,
         )
 
     def list(
@@ -256,9 +256,9 @@ class CustomersResource(SyncAPIResource):
         page_size: int | NotGiven = NOT_GIVEN,
         search_text: str | NotGiven = NOT_GIVEN,
         sort_by: Literal["name", "created_at"] | NotGiven = NOT_GIVEN,
-        sort_order: SortOrder | NotGiven = NOT_GIVEN,
-        status: List[CustomerStatusV1] | NotGiven = NOT_GIVEN,
-        types: List[CustomerTypeV1] | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        status: List[Literal["pending", "review", "verified", "inactive", "rejected"]] | NotGiven = NOT_GIVEN,
+        types: List[Literal["individual", "business"]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
@@ -357,7 +357,7 @@ class CustomersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerV1ItemResponse:
+    ) -> CustomerV1:
         """Permanently removes a customer record from Straddle.
 
         This action cannot be
@@ -390,7 +390,7 @@ class CustomersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1ItemResponse,
+            cast_to=CustomerV1,
         )
 
     def get(
@@ -406,7 +406,7 @@ class CustomersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerV1ItemResponse:
+    ) -> CustomerV1:
         """Retrieves the details of an existing customer.
 
         Supply the unique customer ID
@@ -439,7 +439,7 @@ class CustomersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1ItemResponse,
+            cast_to=CustomerV1,
         )
 
     def unmasked(
@@ -521,13 +521,13 @@ class AsyncCustomersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        device: DeviceUnmaskedV1,
+        device: DeviceUnmaskedV1Param,
         email: str,
         name: str,
         phone: str,
-        type: CustomerTypeV1,
-        address: Optional[AddressV11] | NotGiven = NOT_GIVEN,
-        compliance_profile: ComplianceProfileUnmaskedV1 | NotGiven = NOT_GIVEN,
+        type: Literal["individual", "business"],
+        address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
+        compliance_profile: customer_create_params.ComplianceProfile | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -539,7 +539,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerV1ItemResponse:
+    ) -> CustomerV1:
         """
         Creates a new customer record and automatically initiates identity, fraud, and
         risk assessment scores. This endpoint allows you to create a customer profile
@@ -601,20 +601,20 @@ class AsyncCustomersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1ItemResponse,
+            cast_to=CustomerV1,
         )
 
     async def update(
         self,
         id: str,
         *,
-        device: DeviceUnmaskedV1,
+        device: DeviceUnmaskedV1Param,
         email: str,
         name: str,
         phone: str,
         status: Literal["pending", "review", "verified", "inactive", "rejected"],
-        address: Optional[AddressV11] | NotGiven = NOT_GIVEN,
-        compliance_profile: ComplianceProfileUnmaskedV1 | NotGiven = NOT_GIVEN,
+        address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
+        compliance_profile: customer_update_params.ComplianceProfile | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -626,7 +626,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerV1ItemResponse:
+    ) -> CustomerV1:
         """Updates an existing customer's information.
 
         This endpoint allows you to modify
@@ -689,7 +689,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1ItemResponse,
+            cast_to=CustomerV1,
         )
 
     def list(
@@ -704,9 +704,9 @@ class AsyncCustomersResource(AsyncAPIResource):
         page_size: int | NotGiven = NOT_GIVEN,
         search_text: str | NotGiven = NOT_GIVEN,
         sort_by: Literal["name", "created_at"] | NotGiven = NOT_GIVEN,
-        sort_order: SortOrder | NotGiven = NOT_GIVEN,
-        status: List[CustomerStatusV1] | NotGiven = NOT_GIVEN,
-        types: List[CustomerTypeV1] | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        status: List[Literal["pending", "review", "verified", "inactive", "rejected"]] | NotGiven = NOT_GIVEN,
+        types: List[Literal["individual", "business"]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
@@ -805,7 +805,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerV1ItemResponse:
+    ) -> CustomerV1:
         """Permanently removes a customer record from Straddle.
 
         This action cannot be
@@ -838,7 +838,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1ItemResponse,
+            cast_to=CustomerV1,
         )
 
     async def get(
@@ -854,7 +854,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomerV1ItemResponse:
+    ) -> CustomerV1:
         """Retrieves the details of an existing customer.
 
         Supply the unique customer ID
@@ -887,7 +887,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1ItemResponse,
+            cast_to=CustomerV1,
         )
 
     async def unmasked(

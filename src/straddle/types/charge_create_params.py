@@ -4,23 +4,21 @@ from __future__ import annotations
 
 from typing import Dict, Union, Optional
 from datetime import date
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .shared.consent_type_v1 import ConsentTypeV1
 from .shared_params.device_info_v1 import DeviceInfoV1
-from .shared_params.charge_configuration_v1 import ChargeConfigurationV1
 
-__all__ = ["ChargeCreateParams"]
+__all__ = ["ChargeCreateParams", "Config"]
 
 
 class ChargeCreateParams(TypedDict, total=False):
     amount: Required[int]
     """The amount of the charge in cents."""
 
-    config: Required[ChargeConfigurationV1]
+    config: Required[Config]
 
-    consent_type: Required[ConsentTypeV1]
+    consent_type: Required[Literal["internet", "signed"]]
     """The channel or mechanism through which the payment was authorized.
 
     Use `internet` for payments made online or through a mobile app and `signed` for
@@ -63,3 +61,8 @@ class ChargeCreateParams(TypedDict, total=False):
     request_id: Annotated[str, PropertyInfo(alias="Request-Id")]
 
     straddle_account_id: Annotated[str, PropertyInfo(alias="Straddle-Account-Id")]
+
+
+class Config(TypedDict, total=False):
+    balance_check: Required[Literal["required", "enabled", "disabled"]]
+    """Defines whether to check the customer's balance before processing the charge."""

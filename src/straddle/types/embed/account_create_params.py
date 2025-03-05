@@ -6,7 +6,7 @@ from typing import Dict, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from ..shared_params.business_profile_v1 import BusinessProfileV1
+from .business_profile_v1_param import BusinessProfileV1Param
 
 __all__ = ["AccountCreateParams"]
 
@@ -22,7 +22,7 @@ class AccountCreateParams(TypedDict, total=False):
     account_type: Required[Literal["business"]]
     """The type of account to be created. Currently, only `business` is supported."""
 
-    business_profile: Required[BusinessProfileV1]
+    business_profile: Required[BusinessProfileV1Param]
 
     organization_id: Required[str]
     """The unique identifier of the organization related to this account."""
