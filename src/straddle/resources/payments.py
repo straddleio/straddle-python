@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import List, Union
 from datetime import date, datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -20,11 +21,7 @@ from .._response import (
 )
 from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.shared.sort_order import SortOrder
-from ..types.shared.payment_type_v1 import PaymentTypeV1
 from ..types.payment_summary_paged_v1 import Data
-from ..types.shared.payment_status_v1 import PaymentStatusV1
-from ..types.shared.payment_sort_by_v1 import PaymentSortByV1
 
 __all__ = ["PaymentsResource", "AsyncPaymentsResource"]
 
@@ -54,8 +51,8 @@ class PaymentsResource(SyncAPIResource):
         *,
         customer_id: str | NotGiven = NOT_GIVEN,
         default_page_size: int | NotGiven = NOT_GIVEN,
-        default_sort: PaymentSortByV1 | NotGiven = NOT_GIVEN,
-        default_sort_order: SortOrder | NotGiven = NOT_GIVEN,
+        default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | NotGiven = NOT_GIVEN,
+        default_sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         funding_id: str | NotGiven = NOT_GIVEN,
         max_amount: int | NotGiven = NOT_GIVEN,
@@ -71,11 +68,14 @@ class PaymentsResource(SyncAPIResource):
         paykey: str | NotGiven = NOT_GIVEN,
         paykey_id: str | NotGiven = NOT_GIVEN,
         payment_id: str | NotGiven = NOT_GIVEN,
-        payment_status: List[PaymentStatusV1] | NotGiven = NOT_GIVEN,
-        payment_type: List[PaymentTypeV1] | NotGiven = NOT_GIVEN,
+        payment_status: List[
+            Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+        ]
+        | NotGiven = NOT_GIVEN,
+        payment_type: List[Literal["charge", "payout"]] | NotGiven = NOT_GIVEN,
         search_text: str | NotGiven = NOT_GIVEN,
-        sort_by: PaymentSortByV1 | NotGiven = NOT_GIVEN,
-        sort_order: SortOrder | NotGiven = NOT_GIVEN,
+        sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
@@ -218,8 +218,8 @@ class AsyncPaymentsResource(AsyncAPIResource):
         *,
         customer_id: str | NotGiven = NOT_GIVEN,
         default_page_size: int | NotGiven = NOT_GIVEN,
-        default_sort: PaymentSortByV1 | NotGiven = NOT_GIVEN,
-        default_sort_order: SortOrder | NotGiven = NOT_GIVEN,
+        default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | NotGiven = NOT_GIVEN,
+        default_sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         external_id: str | NotGiven = NOT_GIVEN,
         funding_id: str | NotGiven = NOT_GIVEN,
         max_amount: int | NotGiven = NOT_GIVEN,
@@ -235,11 +235,14 @@ class AsyncPaymentsResource(AsyncAPIResource):
         paykey: str | NotGiven = NOT_GIVEN,
         paykey_id: str | NotGiven = NOT_GIVEN,
         payment_id: str | NotGiven = NOT_GIVEN,
-        payment_status: List[PaymentStatusV1] | NotGiven = NOT_GIVEN,
-        payment_type: List[PaymentTypeV1] | NotGiven = NOT_GIVEN,
+        payment_status: List[
+            Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+        ]
+        | NotGiven = NOT_GIVEN,
+        payment_type: List[Literal["charge", "payout"]] | NotGiven = NOT_GIVEN,
         search_text: str | NotGiven = NOT_GIVEN,
-        sort_by: PaymentSortByV1 | NotGiven = NOT_GIVEN,
-        sort_order: SortOrder | NotGiven = NOT_GIVEN,
+        sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,

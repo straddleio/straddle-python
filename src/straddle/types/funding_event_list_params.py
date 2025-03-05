@@ -7,9 +7,6 @@ from datetime import date
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
-from .shared.sort_order import SortOrder
-from .shared.funding_event_type_v1 import FundingEventTypeV1
-from .shared.transfer_direction_v1 import TransferDirectionV1
 
 __all__ = ["FundingEventListParams"]
 
@@ -21,13 +18,13 @@ class FundingEventListParams(TypedDict, total=False):
     created_to: Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]
     """The end date of the range to filter by using the `YYYY-MM-DD` format."""
 
-    direction: TransferDirectionV1
+    direction: Literal["deposit", "withdrawal"]
     """
     Describes the direction of the funding event from the perspective of the
     `linked_bank_account`.
     """
 
-    event_type: FundingEventTypeV1
+    event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"]
     """
     The funding event types describes the direction and reason for the funding
     event.
@@ -42,7 +39,7 @@ class FundingEventListParams(TypedDict, total=False):
     sort_by: Literal["transfer_date", "id", "amount"]
     """The field to sort the results by."""
 
-    sort_order: SortOrder
+    sort_order: Literal["asc", "desc"]
     """The order in which to sort the results."""
 
     trace_number: Optional[str]

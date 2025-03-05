@@ -34,7 +34,7 @@ client = Straddle(
     environment="sandbox",
 )
 
-charge_v1_item_response = client.charges.create(
+charge_v1 = client.charges.create(
     amount=0,
     config={"balance_check": "required"},
     consent_type="internet",
@@ -45,7 +45,7 @@ charge_v1_item_response = client.charges.create(
     paykey="paykey",
     payment_date=parse_date("2019-12-27"),
 )
-print(charge_v1_item_response.data)
+print(charge_v1.data)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -71,7 +71,7 @@ client = AsyncStraddle(
 
 
 async def main() -> None:
-    charge_v1_item_response = await client.charges.create(
+    charge_v1 = await client.charges.create(
         amount=0,
         config={"balance_check": "required"},
         consent_type="internet",
@@ -82,7 +82,7 @@ async def main() -> None:
         paykey="paykey",
         payment_date=parse_date("2019-12-27"),
     )
-    print(charge_v1_item_response.data)
+    print(charge_v1.data)
 
 
 asyncio.run(main())

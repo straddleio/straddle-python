@@ -38,10 +38,10 @@ from .capability_requests import (
     CapabilityRequestsResourceWithStreamingResponse,
     AsyncCapabilityRequestsResourceWithStreamingResponse,
 )
-from ....types.shared.account_v1 import AccountV1
-from ....types.shared_params.business_profile_v1 import BusinessProfileV1
-from ....types.shared_params.terms_of_service_v1 import TermsOfServiceV1
-from ....types.shared.item_response_of_account_v1 import ItemResponseOfAccountV1
+from ....types.embed.account_v1 import AccountV1
+from ....types.embed.account_paged_v1 import Data
+from ....types.embed.business_profile_v1_param import BusinessProfileV1Param
+from ....types.embed.terms_of_service_v1_param import TermsOfServiceV1Param
 
 __all__ = ["AccountsResource", "AsyncAccountsResource"]
 
@@ -75,7 +75,7 @@ class AccountsResource(SyncAPIResource):
         *,
         access_level: Literal["standard", "managed"],
         account_type: Literal["business"],
-        business_profile: BusinessProfileV1,
+        business_profile: BusinessProfileV1Param,
         organization_id: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
@@ -87,7 +87,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfAccountV1:
+    ) -> AccountV1:
         """Creates a new account associated with your Straddle platform integration.
 
         This
@@ -141,14 +141,14 @@ class AccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfAccountV1,
+            cast_to=AccountV1,
         )
 
     def update(
         self,
         account_id: str,
         *,
-        business_profile: BusinessProfileV1,
+        business_profile: BusinessProfileV1Param,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -159,7 +159,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfAccountV1:
+    ) -> AccountV1:
         """Updates an existing account's information.
 
         This endpoint allows you to update
@@ -204,7 +204,7 @@ class AccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfAccountV1,
+            cast_to=AccountV1,
         )
 
     def list(
@@ -223,7 +223,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncPageNumberSchema[AccountV1]:
+    ) -> SyncPageNumberSchema[Data]:
         """
         Returns a list of accounts associated with your Straddle platform integration.
         The accounts are returned sorted by creation date, with the most recently
@@ -258,7 +258,7 @@ class AccountsResource(SyncAPIResource):
         }
         return self._get_api_list(
             "/v1/accounts",
-            page=SyncPageNumberSchema[AccountV1],
+            page=SyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -275,7 +275,7 @@ class AccountsResource(SyncAPIResource):
                     account_list_params.AccountListParams,
                 ),
             ),
-            model=AccountV1,
+            model=Data,
         )
 
     def get(
@@ -290,7 +290,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfAccountV1:
+    ) -> AccountV1:
         """Retrieves the details of an account that has previously been created.
 
         Supply the
@@ -324,14 +324,14 @@ class AccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfAccountV1,
+            cast_to=AccountV1,
         )
 
     def onboard(
         self,
         account_id: str,
         *,
-        terms_of_service: TermsOfServiceV1,
+        terms_of_service: TermsOfServiceV1Param,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -340,7 +340,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfAccountV1:
+    ) -> AccountV1:
         """Initiates the onboarding process for a new account.
 
         This endpoint can only be
@@ -373,7 +373,7 @@ class AccountsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfAccountV1,
+            cast_to=AccountV1,
         )
 
     def simulate(
@@ -389,7 +389,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfAccountV1:
+    ) -> AccountV1:
         """Simulte the status transitions for sandbox accounts.
 
         This endpoint can only be
@@ -424,7 +424,7 @@ class AccountsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"final_status": final_status}, account_simulate_params.AccountSimulateParams),
             ),
-            cast_to=ItemResponseOfAccountV1,
+            cast_to=AccountV1,
         )
 
 
@@ -457,7 +457,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         *,
         access_level: Literal["standard", "managed"],
         account_type: Literal["business"],
-        business_profile: BusinessProfileV1,
+        business_profile: BusinessProfileV1Param,
         organization_id: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
@@ -469,7 +469,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfAccountV1:
+    ) -> AccountV1:
         """Creates a new account associated with your Straddle platform integration.
 
         This
@@ -523,14 +523,14 @@ class AsyncAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfAccountV1,
+            cast_to=AccountV1,
         )
 
     async def update(
         self,
         account_id: str,
         *,
-        business_profile: BusinessProfileV1,
+        business_profile: BusinessProfileV1Param,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -541,7 +541,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfAccountV1:
+    ) -> AccountV1:
         """Updates an existing account's information.
 
         This endpoint allows you to update
@@ -586,7 +586,7 @@ class AsyncAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfAccountV1,
+            cast_to=AccountV1,
         )
 
     def list(
@@ -605,7 +605,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AccountV1, AsyncPageNumberSchema[AccountV1]]:
+    ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """
         Returns a list of accounts associated with your Straddle platform integration.
         The accounts are returned sorted by creation date, with the most recently
@@ -640,7 +640,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         }
         return self._get_api_list(
             "/v1/accounts",
-            page=AsyncPageNumberSchema[AccountV1],
+            page=AsyncPageNumberSchema[Data],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -657,7 +657,7 @@ class AsyncAccountsResource(AsyncAPIResource):
                     account_list_params.AccountListParams,
                 ),
             ),
-            model=AccountV1,
+            model=Data,
         )
 
     async def get(
@@ -672,7 +672,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfAccountV1:
+    ) -> AccountV1:
         """Retrieves the details of an account that has previously been created.
 
         Supply the
@@ -706,14 +706,14 @@ class AsyncAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfAccountV1,
+            cast_to=AccountV1,
         )
 
     async def onboard(
         self,
         account_id: str,
         *,
-        terms_of_service: TermsOfServiceV1,
+        terms_of_service: TermsOfServiceV1Param,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -722,7 +722,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfAccountV1:
+    ) -> AccountV1:
         """Initiates the onboarding process for a new account.
 
         This endpoint can only be
@@ -757,7 +757,7 @@ class AsyncAccountsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ItemResponseOfAccountV1,
+            cast_to=AccountV1,
         )
 
     async def simulate(
@@ -773,7 +773,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ItemResponseOfAccountV1:
+    ) -> AccountV1:
         """Simulte the status transitions for sandbox accounts.
 
         This endpoint can only be
@@ -810,7 +810,7 @@ class AsyncAccountsResource(AsyncAPIResource):
                     {"final_status": final_status}, account_simulate_params.AccountSimulateParams
                 ),
             ),
-            cast_to=ItemResponseOfAccountV1,
+            cast_to=AccountV1,
         )
 
 

@@ -2,16 +2,12 @@
 
 from typing import Dict, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
-from .shared.account_type_v1 import AccountTypeV1
-from .shared.paykey_source_v1 import PaykeySourceV1
-from .shared.paykey_status_v1 import PaykeyStatusV1
 from .shared.response_metadata import ResponseMetadata
-from .shared.status_details_v1 import StatusDetailsV1
-from .shared.response_type_enum import ResponseTypeEnum
 
-__all__ = ["PaykeyUnmaskedV1", "Data", "DataBankData"]
+__all__ = ["PaykeyUnmaskedV1", "Data", "DataBankData", "DataStatusDetails"]
 
 
 class DataBankData(BaseModel):
@@ -22,10 +18,27 @@ class DataBankData(BaseModel):
     to access the unmasked value.
     """
 
-    account_type: AccountTypeV1
+    account_type: Literal["checking", "savings"]
 
     routing_number: str
     """The routing number of the bank account."""
+
+
+class DataStatusDetails(BaseModel):
+    message: str
+    """A human-readable description of the current status."""
+
+    reason: str
+    """
+    A machine-readable identifier for the specific status, useful for programmatic
+    handling.
+    """
+
+    source: str
+    """Identifies the origin of the status change (e.g., `bank_decline`, `watchtower`).
+
+    This helps in tracking the cause of status updates.
+    """
 
 
 class Data(BaseModel):
@@ -44,9 +57,9 @@ class Data(BaseModel):
     This value is used to create payments and should be stored securely.
     """
 
-    source: PaykeySourceV1
+    source: Literal["bank_account", "straddle", "mx", "plaid"]
 
-    status: PaykeyStatusV1
+    status: Literal["pending", "active", "inactive", "rejected"]
 
     updated_at: datetime
     """Timestamp of the most recent update to the paykey."""
@@ -69,7 +82,7 @@ class Data(BaseModel):
     format.
     """
 
-    status_details: Optional[StatusDetailsV1] = None
+    status_details: Optional[DataStatusDetails] = None
 
 
 class PaykeyUnmaskedV1(BaseModel):
@@ -78,7 +91,7 @@ class PaykeyUnmaskedV1(BaseModel):
     meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
-    response_type: ResponseTypeEnum
+    response_type: Literal["object", "array", "error", "none"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.
