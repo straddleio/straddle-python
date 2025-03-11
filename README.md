@@ -160,6 +160,50 @@ for payment in first_page.data:
 # Remove `await` for non-async usage.
 ```
 
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from straddle import Straddle
+
+client = Straddle()
+
+account_v1 = client.embed.accounts.create(
+    access_level="standard",
+    account_type="business",
+    business_profile={
+        "name": "name",
+        "website": "https://example.com",
+        "address": {
+            "city": "city",
+            "country": "country",
+            "line1": "line1",
+            "line2": "line2",
+            "postal_code": "21029-1360",
+            "state": "SE",
+        },
+        "description": "description",
+        "industry": {
+            "category": "category",
+            "mcc": "mcc",
+            "sector": "sector",
+        },
+        "legal_name": "legal_name",
+        "phone": "+46991022",
+        "support_channels": {
+            "email": "dev@stainless.com",
+            "phone": "+46991022",
+            "url": "https://example.com",
+        },
+        "tax_id": "210297980",
+        "use_case": "use_case",
+    },
+    organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+)
+print(account_v1.business_profile)
+```
+
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `straddle.APIConnectionError` is raised.
