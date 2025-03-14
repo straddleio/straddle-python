@@ -12,10 +12,48 @@ __all__ = [
     "CustomerV1",
     "Data",
     "DataComplianceProfile",
+    "DataComplianceProfileUnionMember0",
     "DataComplianceProfileIndividualComplianceProfile",
     "DataComplianceProfileBusinessComplianceProfile",
     "DataDevice",
 ]
+
+
+class DataComplianceProfileUnionMember0(BaseModel):
+    dob: Optional[str] = None
+    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+
+    This data is required to trigger Patriot Act compliant Know Your Customer (KYC)
+    verification. Required if SSN is provided. Only valid where customer type is
+    'individual'.
+    """
+
+    ein: Optional[str] = None
+    """Full 9-digit Employer Identification Number for businesses.
+
+    This data is required to trigger Patriot Act compliant Know Your Business (KYB)
+    verification. Only valid where customer type is 'business'.
+    """
+
+    legal_business_name: Optional[str] = None
+    """The official name of the business.
+
+    This name should be correlated with the ein value. Only valid where customer
+    type is 'business'.
+    """
+
+    ssn: Optional[str] = None
+    """Full 9-digit Social Security Number or government identifier for individuals.
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if DOB is provided. Only valid where customer type is 'individual'.
+    """
+
+    website: Optional[str] = None
+    """URL of the company's official website.
+
+    Only valid where customer type is 'business'.
+    """
 
 
 class DataComplianceProfileIndividualComplianceProfile(BaseModel):
@@ -76,7 +114,10 @@ class DataComplianceProfileBusinessComplianceProfile(BaseModel):
 
 
 DataComplianceProfile: TypeAlias = Union[
-    DataComplianceProfileIndividualComplianceProfile, DataComplianceProfileBusinessComplianceProfile
+    DataComplianceProfileUnionMember0,
+    DataComplianceProfileIndividualComplianceProfile,
+    DataComplianceProfileBusinessComplianceProfile,
+    None,
 ]
 
 
