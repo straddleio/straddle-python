@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import charges, paykeys, payouts, payments, funding_events
+from .resources import charges, paykeys, payouts, reports, payments, funding_events
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import StraddleError, APIStatusError
 from ._base_client import (
@@ -63,6 +63,7 @@ class Straddle(SyncAPIClient):
     funding_events: funding_events.FundingEventsResource
     payments: payments.PaymentsResource
     payouts: payouts.PayoutsResource
+    reports: reports.ReportsResource
     with_raw_response: StraddleWithRawResponse
     with_streaming_response: StraddleWithStreamedResponse
 
@@ -152,6 +153,7 @@ class Straddle(SyncAPIClient):
         self.funding_events = funding_events.FundingEventsResource(self)
         self.payments = payments.PaymentsResource(self)
         self.payouts = payouts.PayoutsResource(self)
+        self.reports = reports.ReportsResource(self)
         self.with_raw_response = StraddleWithRawResponse(self)
         self.with_streaming_response = StraddleWithStreamedResponse(self)
 
@@ -271,6 +273,7 @@ class AsyncStraddle(AsyncAPIClient):
     funding_events: funding_events.AsyncFundingEventsResource
     payments: payments.AsyncPaymentsResource
     payouts: payouts.AsyncPayoutsResource
+    reports: reports.AsyncReportsResource
     with_raw_response: AsyncStraddleWithRawResponse
     with_streaming_response: AsyncStraddleWithStreamedResponse
 
@@ -360,6 +363,7 @@ class AsyncStraddle(AsyncAPIClient):
         self.funding_events = funding_events.AsyncFundingEventsResource(self)
         self.payments = payments.AsyncPaymentsResource(self)
         self.payouts = payouts.AsyncPayoutsResource(self)
+        self.reports = reports.AsyncReportsResource(self)
         self.with_raw_response = AsyncStraddleWithRawResponse(self)
         self.with_streaming_response = AsyncStraddleWithStreamedResponse(self)
 
@@ -480,6 +484,7 @@ class StraddleWithRawResponse:
         self.funding_events = funding_events.FundingEventsResourceWithRawResponse(client.funding_events)
         self.payments = payments.PaymentsResourceWithRawResponse(client.payments)
         self.payouts = payouts.PayoutsResourceWithRawResponse(client.payouts)
+        self.reports = reports.ReportsResourceWithRawResponse(client.reports)
 
 
 class AsyncStraddleWithRawResponse:
@@ -492,6 +497,7 @@ class AsyncStraddleWithRawResponse:
         self.funding_events = funding_events.AsyncFundingEventsResourceWithRawResponse(client.funding_events)
         self.payments = payments.AsyncPaymentsResourceWithRawResponse(client.payments)
         self.payouts = payouts.AsyncPayoutsResourceWithRawResponse(client.payouts)
+        self.reports = reports.AsyncReportsResourceWithRawResponse(client.reports)
 
 
 class StraddleWithStreamedResponse:
@@ -504,6 +510,7 @@ class StraddleWithStreamedResponse:
         self.funding_events = funding_events.FundingEventsResourceWithStreamingResponse(client.funding_events)
         self.payments = payments.PaymentsResourceWithStreamingResponse(client.payments)
         self.payouts = payouts.PayoutsResourceWithStreamingResponse(client.payouts)
+        self.reports = reports.ReportsResourceWithStreamingResponse(client.reports)
 
 
 class AsyncStraddleWithStreamedResponse:
@@ -516,6 +523,7 @@ class AsyncStraddleWithStreamedResponse:
         self.funding_events = funding_events.AsyncFundingEventsResourceWithStreamingResponse(client.funding_events)
         self.payments = payments.AsyncPaymentsResourceWithStreamingResponse(client.payments)
         self.payouts = payouts.AsyncPayoutsResourceWithStreamingResponse(client.payouts)
+        self.reports = reports.AsyncReportsResourceWithStreamingResponse(client.reports)
 
 
 Client = Straddle

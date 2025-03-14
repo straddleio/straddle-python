@@ -40,6 +40,14 @@ from .payouts import (
     PayoutsResourceWithStreamingResponse,
     AsyncPayoutsResourceWithStreamingResponse,
 )
+from .reports import (
+    ReportsResource,
+    AsyncReportsResource,
+    ReportsResourceWithRawResponse,
+    AsyncReportsResourceWithRawResponse,
+    ReportsResourceWithStreamingResponse,
+    AsyncReportsResourceWithStreamingResponse,
+)
 from .payments import (
     PaymentsResource,
     AsyncPaymentsResource,
@@ -114,4 +122,10 @@ __all__ = [
     "AsyncPayoutsResourceWithRawResponse",
     "PayoutsResourceWithStreamingResponse",
     "AsyncPayoutsResourceWithStreamingResponse",
+    "ReportsResource",
+    "AsyncReportsResource",
+    "ReportsResourceWithRawResponse",
+    "AsyncReportsResourceWithRawResponse",
+    "ReportsResourceWithStreamingResponse",
+    "AsyncReportsResourceWithStreamingResponse",
 ]
