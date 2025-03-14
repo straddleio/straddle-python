@@ -142,6 +142,7 @@ Methods:
 - <code title="get /v1/customers">client.customers.<a href="./src/straddle/resources/customers/customers.py">list</a>(\*\*<a href="src/straddle/types/customer_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
 - <code title="delete /v1/customers/{id}">client.customers.<a href="./src/straddle/resources/customers/customers.py">delete</a>(id) -> <a href="./src/straddle/types/customer_v1.py">CustomerV1</a></code>
 - <code title="get /v1/customers/{id}">client.customers.<a href="./src/straddle/resources/customers/customers.py">get</a>(id) -> <a href="./src/straddle/types/customer_v1.py">CustomerV1</a></code>
+- <code title="put /v1/customers/{id}/refresh_review">client.customers.<a href="./src/straddle/resources/customers/customers.py">refresh_review</a>(id) -> <a href="./src/straddle/types/customer_v1.py">CustomerV1</a></code>
 - <code title="get /v1/customers/{id}/unmasked">client.customers.<a href="./src/straddle/resources/customers/customers.py">unmasked</a>(id) -> <a href="./src/straddle/types/customer_unmasked_v1.py">CustomerUnmaskedV1</a></code>
 
 ## Review
@@ -230,3 +231,15 @@ Methods:
 - <code title="get /v1/payouts/{id}">client.payouts.<a href="./src/straddle/resources/payouts.py">get</a>(id) -> <a href="./src/straddle/types/payout_v1.py">PayoutV1</a></code>
 - <code title="put /v1/payouts/{id}/hold">client.payouts.<a href="./src/straddle/resources/payouts.py">hold</a>(id, \*\*<a href="src/straddle/types/payout_hold_params.py">params</a>) -> <a href="./src/straddle/types/payout_v1.py">PayoutV1</a></code>
 - <code title="put /v1/payouts/{id}/release">client.payouts.<a href="./src/straddle/resources/payouts.py">release</a>(id, \*\*<a href="src/straddle/types/payout_release_params.py">params</a>) -> <a href="./src/straddle/types/payout_v1.py">PayoutV1</a></code>
+
+# Reports
+
+Types:
+
+```python
+from straddle.types import ReportCreateTotalCustomersByStatusResponse
+```
+
+Methods:
+
+- <code title="post /v1/reports/total_customers_by_status">client.reports.<a href="./src/straddle/resources/reports.py">create_total_customers_by_status</a>() -> <a href="./src/straddle/types/report_create_total_customers_by_status_response.py">ReportCreateTotalCustomersByStatusResponse</a></code>

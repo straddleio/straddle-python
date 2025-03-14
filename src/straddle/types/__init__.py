@@ -44,3 +44,6 @@ from .customer_summary_paged_v1 import CustomerSummaryPagedV1 as CustomerSummary
 from .funding_event_list_params import FundingEventListParams as FundingEventListParams
 from .funding_event_summary_item_v1 import FundingEventSummaryItemV1 as FundingEventSummaryItemV1
 from .funding_event_summary_paged_v1 import FundingEventSummaryPagedV1 as FundingEventSummaryPagedV1
+from .report_create_total_customers_by_status_response import (
+    ReportCreateTotalCustomersByStatusResponse as ReportCreateTotalCustomersByStatusResponse,
+)
