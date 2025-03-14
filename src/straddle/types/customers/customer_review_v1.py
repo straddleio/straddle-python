@@ -23,6 +23,7 @@ __all__ = [
     "DataIdentityDetailsKYCValidations",
     "DataIdentityDetailsNetworkAlerts",
     "DataIdentityDetailsWatchList",
+    "DataIdentityDetailsWatchListMatch",
 ]
 
 
@@ -195,6 +196,19 @@ class DataIdentityDetailsNetworkAlerts(BaseModel):
     decision: Optional[Literal["accept", "reject", "review"]] = None
 
 
+class DataIdentityDetailsWatchListMatch(BaseModel):
+    correlation: Literal["low_confidence", "potential_match", "likely_match", "high_confidence"]
+
+    list_name: str
+    """The name of the list the match was found."""
+
+    match_fields: List[str]
+    """Data fields that matched."""
+
+    urls: List[str]
+    """Relevent Urls to review."""
+
+
 class DataIdentityDetailsWatchList(BaseModel):
     codes: Optional[List[str]] = None
     """Specific codes related to the Straddle watchlist screening results."""
@@ -202,6 +216,9 @@ class DataIdentityDetailsWatchList(BaseModel):
     decision: Optional[Literal["accept", "reject", "review"]] = None
 
     matched: Optional[List[str]] = None
+    """Information about any matches found during screening."""
+
+    matches: Optional[List[DataIdentityDetailsWatchListMatch]] = None
     """Information about any matches found during screening."""
 
 
