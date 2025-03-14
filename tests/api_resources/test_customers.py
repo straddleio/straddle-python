@@ -13,7 +13,7 @@ from straddle.types import (
     CustomerV1,
     CustomerUnmaskedV1,
 )
-from straddle._utils import parse_date, parse_datetime
+from straddle._utils import parse_datetime
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from straddle.types.customer_summary_paged_v1 import Data
 
@@ -50,10 +50,10 @@ class TestCustomers:
                 "address2": None,
             },
             compliance_profile={
-                "dob": parse_date("2019-12-27"),
-                "ssn": "210-69-1329",
+                "dob": "dob",
                 "ein": "ein",
                 "legal_business_name": "legal_business_name",
+                "ssn": "ssn",
                 "website": "website",
             },
             external_id="customer_123",
@@ -125,10 +125,10 @@ class TestCustomers:
                 "address2": None,
             },
             compliance_profile={
-                "dob": parse_date("2019-12-27"),
-                "ssn": "210-69-1329",
+                "dob": "dob",
                 "ein": "ein",
                 "legal_business_name": "legal_business_name",
+                "ssn": "ssn",
                 "website": "website",
             },
             external_id="external_id",
@@ -454,10 +454,10 @@ class TestAsyncCustomers:
                 "address2": None,
             },
             compliance_profile={
-                "dob": parse_date("2019-12-27"),
-                "ssn": "210-69-1329",
+                "dob": "dob",
                 "ein": "ein",
                 "legal_business_name": "legal_business_name",
+                "ssn": "ssn",
                 "website": "website",
             },
             external_id="customer_123",
@@ -529,10 +529,10 @@ class TestAsyncCustomers:
                 "address2": None,
             },
             compliance_profile={
-                "dob": parse_date("2019-12-27"),
-                "ssn": "210-69-1329",
+                "dob": "dob",
                 "ein": "ein",
                 "legal_business_name": "legal_business_name",
+                "ssn": "ssn",
                 "website": "website",
             },
             external_id="external_id",

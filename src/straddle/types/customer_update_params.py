@@ -13,6 +13,7 @@ from .customer_address_v1_param import CustomerAddressV1Param
 __all__ = [
     "CustomerUpdateParams",
     "ComplianceProfile",
+    "ComplianceProfileUnionMember0",
     "ComplianceProfileIndividualComplianceProfile",
     "ComplianceProfileBusinessComplianceProfile",
 ]
@@ -59,6 +60,39 @@ class CustomerUpdateParams(TypedDict, total=False):
     request_id: Annotated[str, PropertyInfo(alias="Request-Id")]
 
     straddle_account_id: Annotated[str, PropertyInfo(alias="Straddle-Account-Id")]
+
+
+class ComplianceProfileUnionMember0(TypedDict, total=False):
+    dob: Optional[str]
+    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if SSN is provided. Only valid where customer type is 'individual'.
+    """
+
+    ein: Optional[str]
+    """Full 9-digit Employer Identification Number for businesses.
+
+    This data is required to trigger Patriot Act compliant KYB verification. Only
+    valid where customer type is 'business'.
+    """
+
+    legal_business_name: Optional[str]
+    """The official name of the business.
+
+    This name should be correlated with the ein value. Only valid where customer
+    type is 'business'.
+    """
+
+    ssn: Optional[str]
+    """Full 9-digit Social Security Number or government identifier for individuals.
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if DOB is provided. Only valid where customer type is 'individual'.
+    """
+
+    website: Optional[str]
+    """URL of the company's official website."""
 
 
 class ComplianceProfileIndividualComplianceProfile(TypedDict, total=False):
@@ -115,5 +149,7 @@ class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
 
 
 ComplianceProfile: TypeAlias = Union[
-    ComplianceProfileIndividualComplianceProfile, ComplianceProfileBusinessComplianceProfile
+    ComplianceProfileUnionMember0,
+    ComplianceProfileIndividualComplianceProfile,
+    ComplianceProfileBusinessComplianceProfile,
 ]
