@@ -13,8 +13,8 @@ from .customer_address_v1_param import CustomerAddressV1Param
 __all__ = [
     "CustomerCreateParams",
     "ComplianceProfile",
-    "ComplianceProfileIndividualCustomerComplianceProfile",
-    "ComplianceProfileBusinessCustomerComplianceProfile",
+    "ComplianceProfileIndividualComplianceProfile",
+    "ComplianceProfileBusinessComplianceProfile",
 ]
 
 
@@ -65,7 +65,7 @@ class CustomerCreateParams(TypedDict, total=False):
     straddle_account_id: Annotated[str, PropertyInfo(alias="Straddle-Account-Id")]
 
 
-class ComplianceProfileIndividualCustomerComplianceProfile(TypedDict, total=False):
+class ComplianceProfileIndividualComplianceProfile(TypedDict, total=False):
     dob: Required[Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]]
     """Date of birth (YYYY-MM-DD).
 
@@ -79,7 +79,7 @@ class ComplianceProfileIndividualCustomerComplianceProfile(TypedDict, total=Fals
     """
 
 
-class ComplianceProfileBusinessCustomerComplianceProfile(TypedDict, total=False):
+class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
     ein: Required[Optional[str]]
     """Employer Identification Number (format XX-XXXXXXX).
 
@@ -97,5 +97,5 @@ class ComplianceProfileBusinessCustomerComplianceProfile(TypedDict, total=False)
 
 
 ComplianceProfile: TypeAlias = Union[
-    ComplianceProfileIndividualCustomerComplianceProfile, ComplianceProfileBusinessCustomerComplianceProfile
+    ComplianceProfileIndividualComplianceProfile, ComplianceProfileBusinessComplianceProfile
 ]
