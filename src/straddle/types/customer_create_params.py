@@ -41,8 +41,8 @@ class CustomerCreateParams(TypedDict, total=False):
     compliance_profile: Optional[ComplianceProfile]
     """An object containing the customer's compliance profile.
 
-    **This is optional.** If used, all required fields must be present for the
-    appropriate customer type.
+    **This is optional.** If all required fields must be present for the appropriate
+    customer type.
     """
 
     external_id: Optional[str]

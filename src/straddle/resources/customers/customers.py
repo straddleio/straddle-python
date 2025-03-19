@@ -108,7 +108,7 @@ class CustomersResource(SyncAPIResource):
               required fields must be present.
 
           compliance_profile: An object containing the customer's compliance profile. **This is optional.** If
-              used, all required fields must be present for the appropriate customer type.
+              all required fields must be present for the appropriate customer type.
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
@@ -605,7 +605,7 @@ class AsyncCustomersResource(AsyncAPIResource):
               required fields must be present.
 
           compliance_profile: An object containing the customer's compliance profile. **This is optional.** If
-              used, all required fields must be present for the appropriate customer type.
+              all required fields must be present for the appropriate customer type.
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
