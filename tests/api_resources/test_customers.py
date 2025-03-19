@@ -115,11 +115,11 @@ class TestCustomers:
             phone="+46991022",
             status="pending",
             address={
-                "address1": "123 Main St",
-                "city": "Anytown",
-                "state": "CA",
-                "zip": "94105",
-                "address2": None,
+                "address1": "address1",
+                "city": "city",
+                "state": "SE",
+                "zip": "21029-1360",
+                "address2": "address2",
             },
             compliance_profile={
                 "dob": parse_date("1969-04-20"),
@@ -513,11 +513,11 @@ class TestAsyncCustomers:
             phone="+46991022",
             status="pending",
             address={
-                "address1": "123 Main St",
-                "city": "Anytown",
-                "state": "CA",
-                "zip": "94105",
-                "address2": None,
+                "address1": "address1",
+                "city": "city",
+                "state": "SE",
+                "zip": "21029-1360",
+                "address2": "address2",
             },
             compliance_profile={
                 "dob": parse_date("1969-04-20"),
