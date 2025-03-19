@@ -48,7 +48,10 @@ class Data(BaseModel):
     """Timestamp of when the paykey was created."""
 
     label: str
-    """Human-readable label used to represent this paykey in a UI."""
+    """
+    Human-readable label that combines the bank name and masked account number to
+    help easility represent this paykey in a UI
+    """
 
     paykey: str
     """The tokenized paykey value.

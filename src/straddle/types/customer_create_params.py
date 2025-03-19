@@ -35,14 +35,14 @@ class CustomerCreateParams(TypedDict, total=False):
     address: Optional[CustomerAddressV1Param]
     """An object containing the customer's address.
 
-    This is optional, but if provided, all required fields must be present.
+    **This is optional.** If used, all required fields must be present.
     """
 
     compliance_profile: Optional[ComplianceProfile]
     """An object containing the customer's compliance profile.
 
-    **This is optional**, but if provided, all required fields must be present for
-    the appropriate customer type.
+    **This is optional.** If used, all required fields must be present for the
+    appropriate customer type.
     """
 
     external_id: Optional[str]
