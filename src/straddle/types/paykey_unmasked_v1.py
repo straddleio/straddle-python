@@ -12,11 +12,7 @@ __all__ = ["PaykeyUnmaskedV1", "Data", "DataBankData", "DataStatusDetails"]
 
 class DataBankData(BaseModel):
     account_number: str
-    """The bank account number.
-
-    This value is masked by default for security reasons. Use the /unmask endpoint
-    to access the unmasked value.
-    """
+    """The bank account number"""
 
     account_type: Literal["checking", "savings"]
 
