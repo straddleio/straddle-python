@@ -104,12 +104,11 @@ class CustomersResource(SyncAPIResource):
 
           phone: The customer's phone number in E.164 format. Mobile number is preferred.
 
-          address: An object containing the customer's address. This is optional, but if provided,
-              all required fields must be present.
+          address: An object containing the customer's address. **This is optional.** If used, all
+              required fields must be present.
 
-          compliance_profile: An object containing the customer's compliance profile. **This is optional**,
-              but if provided, all required fields must be present for the appropriate
-              customer type.
+          compliance_profile: An object containing the customer's compliance profile. **This is optional.** If
+              used, all required fields must be present for the appropriate customer type.
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
@@ -602,12 +601,11 @@ class AsyncCustomersResource(AsyncAPIResource):
 
           phone: The customer's phone number in E.164 format. Mobile number is preferred.
 
-          address: An object containing the customer's address. This is optional, but if provided,
-              all required fields must be present.
+          address: An object containing the customer's address. **This is optional.** If used, all
+              required fields must be present.
 
-          compliance_profile: An object containing the customer's compliance profile. **This is optional**,
-              but if provided, all required fields must be present for the appropriate
-              customer type.
+          compliance_profile: An object containing the customer's compliance profile. **This is optional.** If
+              used, all required fields must be present for the appropriate customer type.
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
