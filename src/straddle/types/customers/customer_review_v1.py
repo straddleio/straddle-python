@@ -14,9 +14,8 @@ __all__ = [
     "Data",
     "DataCustomerDetails",
     "DataCustomerDetailsComplianceProfile",
-    "DataCustomerDetailsComplianceProfileUnionMember0",
-    "DataCustomerDetailsComplianceProfileIndividualComplianceProfile",
-    "DataCustomerDetailsComplianceProfileBusinessComplianceProfile",
+    "DataCustomerDetailsComplianceProfileIndividualCustomerComplianceProfile",
+    "DataCustomerDetailsComplianceProfileBusinessCustomerComplianceProfile",
     "DataCustomerDetailsDevice",
     "DataIdentityDetails",
     "DataIdentityDetailsBreakdown",
@@ -28,104 +27,31 @@ __all__ = [
 ]
 
 
-class DataCustomerDetailsComplianceProfileUnionMember0(BaseModel):
-    dob: Optional[str] = None
-    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
-
-    This data is required to trigger Patriot Act compliant Know Your Customer (KYC)
-    verification. Required if SSN is provided. Only valid where customer type is
-    'individual'.
-    """
-
-    ein: Optional[str] = None
-    """Full 9-digit Employer Identification Number for businesses.
-
-    This data is required to trigger Patriot Act compliant Know Your Business (KYB)
-    verification. Only valid where customer type is 'business'.
-    """
-
-    legal_business_name: Optional[str] = None
-    """The official name of the business.
-
-    This name should be correlated with the ein value. Only valid where customer
-    type is 'business'.
-    """
+class DataCustomerDetailsComplianceProfileIndividualCustomerComplianceProfile(BaseModel):
+    dob: Optional[date] = None
+    """Masked date of birth in \\****\\**-**-\\**\\** format."""
 
     ssn: Optional[str] = None
-    """Full 9-digit Social Security Number or government identifier for individuals.
-
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if DOB is provided. Only valid where customer type is 'individual'.
-    """
-
-    website: Optional[str] = None
-    """URL of the company's official website.
-
-    Only valid where customer type is 'business'.
-    """
+    """Masked Social Security Number in the format **\\**-**-\\**\\**\\**\\**."""
 
 
-class DataCustomerDetailsComplianceProfileIndividualComplianceProfile(BaseModel):
-    dob: date
-    """Date of birth in YYYY-MM-DD format."""
-
-    ssn: str
-    """Social Security Number in the format XXX-XX-XXXX."""
-
+class DataCustomerDetailsComplianceProfileBusinessCustomerComplianceProfile(BaseModel):
     ein: Optional[str] = None
-    """Full 9-digit Employer Identification Number for businesses.
-
-    This data is required to trigger Patriot Act compliant Know Your Business (KYB)
-    verification. Only valid where customer type is 'business'.
-    """
+    """Masked Employer Identification Number in the format **-**\\******"""
 
     legal_business_name: Optional[str] = None
-    """The official name of the business.
-
-    This name should be correlated with the ein value. Only valid where customer
-    type is 'business'.
-    """
-
-    website: Optional[str] = None
-    """URL of the company's official website.
-
-    Only valid where customer type is 'business'.
-    """
-
-
-class DataCustomerDetailsComplianceProfileBusinessComplianceProfile(BaseModel):
-    ein: str
-    """Employer Identification Number in the format XX-XXXXXXX."""
-
-    legal_business_name: str
     """The official registered name of the business.
 
     This name should be correlated with the `ein` value.
     """
 
-    dob: Optional[str] = None
-    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
-
-    This data is required to trigger Patriot Act compliant Know Your Customer (KYC)
-    verification. Required if SSN is provided. Only valid where customer type is
-    'individual'.
-    """
-
-    ssn: Optional[str] = None
-    """Full 9-digit Social Security Number or government identifier for individuals.
-
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if DOB is provided. Only valid where customer type is 'individual'.
-    """
-
     website: Optional[str] = None
-    """Business website URL."""
+    """Official business website URL. Optional but recommended for enhanced KYB."""
 
 
 DataCustomerDetailsComplianceProfile: TypeAlias = Union[
-    DataCustomerDetailsComplianceProfileUnionMember0,
-    DataCustomerDetailsComplianceProfileIndividualComplianceProfile,
-    DataCustomerDetailsComplianceProfileBusinessComplianceProfile,
+    DataCustomerDetailsComplianceProfileIndividualCustomerComplianceProfile,
+    DataCustomerDetailsComplianceProfileBusinessCustomerComplianceProfile,
     None,
 ]
 
@@ -162,9 +88,13 @@ class DataCustomerDetails(BaseModel):
     """Timestamp of the most recent update to the customer record."""
 
     address: Optional[CustomerAddressV1] = None
+    """An object containing the customer's address.
+
+    This is optional, but if provided, all required fields must be present.
+    """
 
     compliance_profile: Optional[DataCustomerDetailsComplianceProfile] = None
-    """Compliance profile for individual customers"""
+    """PII required to trigger Patriot Act compliant KYC verification."""
 
     device: Optional[DataCustomerDetailsDevice] = None
 

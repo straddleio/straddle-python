@@ -13,9 +13,8 @@ from .customer_address_v1_param import CustomerAddressV1Param
 __all__ = [
     "CustomerCreateParams",
     "ComplianceProfile",
-    "ComplianceProfileUnionMember0",
-    "ComplianceProfileIndividualComplianceProfile",
-    "ComplianceProfileBusinessComplianceProfile",
+    "ComplianceProfileIndividualCustomerComplianceProfile",
+    "ComplianceProfileBusinessCustomerComplianceProfile",
 ]
 
 
@@ -39,11 +38,11 @@ class CustomerCreateParams(TypedDict, total=False):
     This is optional, but if provided, all required fields must be present.
     """
 
-    compliance_profile: ComplianceProfile
+    compliance_profile: Optional[ComplianceProfile]
     """An object containing the customer's compliance profile.
 
-    This is optional, but if provided, all required fields must be present for the
-    appropriate customer type.
+    **This is optional**, but if provided, all required fields must be present for
+    the appropriate customer type.
     """
 
     external_id: Optional[str]
@@ -66,94 +65,37 @@ class CustomerCreateParams(TypedDict, total=False):
     straddle_account_id: Annotated[str, PropertyInfo(alias="Straddle-Account-Id")]
 
 
-class ComplianceProfileUnionMember0(TypedDict, total=False):
-    dob: Optional[str]
-    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+class ComplianceProfileIndividualCustomerComplianceProfile(TypedDict, total=False):
+    dob: Required[Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]]
+    """Date of birth (YYYY-MM-DD).
 
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if SSN is provided. Only valid where customer type is 'individual'.
+    Required for Patriot Act-compliant KYC verification.
     """
 
-    ein: Optional[str]
-    """Full 9-digit Employer Identification Number for businesses.
+    ssn: Required[Optional[str]]
+    """Social Security Number (format XXX-XX-XXXX).
 
-    This data is required to trigger Patriot Act compliant KYB verification. Only
-    valid where customer type is 'business'.
+    Required for Patriot Act-compliant KYC verification.
     """
 
-    legal_business_name: Optional[str]
-    """The official name of the business.
 
-    This name should be correlated with the ein value. Only valid where customer
-    type is 'business'.
+class ComplianceProfileBusinessCustomerComplianceProfile(TypedDict, total=False):
+    ein: Required[Optional[str]]
+    """Employer Identification Number (format XX-XXXXXXX).
+
+    Required for Patriot Act-compliant KYB verification.
     """
 
-    ssn: Optional[str]
-    """Full 9-digit Social Security Number or government identifier for individuals.
+    legal_business_name: Required[Optional[str]]
+    """Official registered business name as listed with the IRS.
 
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if DOB is provided. Only valid where customer type is 'individual'.
-    """
-
-    website: Optional[str]
-    """URL of the company's official website."""
-
-
-class ComplianceProfileIndividualComplianceProfile(TypedDict, total=False):
-    dob: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
-    """Date of birth in YYYY-MM-DD format."""
-
-    ssn: Required[str]
-    """Social Security Number in the format XXX-XX-XXXX."""
-
-    ein: Optional[str]
-    """Full 9-digit Employer Identification Number for businesses.
-
-    This data is required to trigger Patriot Act compliant KYB verification. Only
-    valid where customer type is 'business'.
-    """
-
-    legal_business_name: Optional[str]
-    """The official name of the business.
-
-    This name should be correlated with the ein value. Only valid where customer
-    type is 'business'.
+    This value will be matched against the 'legal_business name'.
     """
 
     website: Optional[str]
-    """URL of the company's official website."""
-
-
-class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
-    ein: Required[str]
-    """Employer Identification Number in the format XX-XXXXXXX."""
-
-    legal_business_name: Required[str]
-    """The official registered name of the business.
-
-    This name should be correlated with the `ein` value.
-    """
-
-    dob: Optional[str]
-    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
-
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if SSN is provided. Only valid where customer type is 'individual'.
-    """
-
-    ssn: Optional[str]
-    """Full 9-digit Social Security Number or government identifier for individuals.
-
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if DOB is provided. Only valid where customer type is 'individual'.
-    """
-
-    website: str
-    """Business website URL."""
+    """Official business website URL. Optional but recommended for enhanced KYB."""
 
 
 ComplianceProfile: TypeAlias = Union[
-    ComplianceProfileUnionMember0,
-    ComplianceProfileIndividualComplianceProfile,
-    ComplianceProfileBusinessComplianceProfile,
+    ComplianceProfileIndividualCustomerComplianceProfile, ComplianceProfileBusinessCustomerComplianceProfile
 ]

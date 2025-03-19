@@ -79,7 +79,7 @@ class CustomersResource(SyncAPIResource):
         phone: str,
         type: Literal["individual", "business"],
         address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
-        compliance_profile: customer_create_params.ComplianceProfile | NotGiven = NOT_GIVEN,
+        compliance_profile: Optional[customer_create_params.ComplianceProfile] | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -107,8 +107,9 @@ class CustomersResource(SyncAPIResource):
           address: An object containing the customer's address. This is optional, but if provided,
               all required fields must be present.
 
-          compliance_profile: An object containing the customer's compliance profile. This is optional, but if
-              provided, all required fields must be present for the appropriate customer type.
+          compliance_profile: An object containing the customer's compliance profile. **This is optional**,
+              but if provided, all required fields must be present for the appropriate
+              customer type.
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
@@ -166,7 +167,7 @@ class CustomersResource(SyncAPIResource):
         phone: str,
         status: Literal["pending", "review", "verified", "inactive", "rejected"],
         address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
-        compliance_profile: customer_update_params.ComplianceProfile | NotGiven = NOT_GIVEN,
+        compliance_profile: Optional[customer_update_params.ComplianceProfile] | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -194,7 +195,7 @@ class CustomersResource(SyncAPIResource):
           address: An object containing the customer's address. This is optional, but if provided,
               all required fields must be present.
 
-          compliance_profile: Compliance profile for individual customers
+          compliance_profile: Individual PII data required to trigger Patriot Act compliant KYC verification.
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
@@ -576,7 +577,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         phone: str,
         type: Literal["individual", "business"],
         address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
-        compliance_profile: customer_create_params.ComplianceProfile | NotGiven = NOT_GIVEN,
+        compliance_profile: Optional[customer_create_params.ComplianceProfile] | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -604,8 +605,9 @@ class AsyncCustomersResource(AsyncAPIResource):
           address: An object containing the customer's address. This is optional, but if provided,
               all required fields must be present.
 
-          compliance_profile: An object containing the customer's compliance profile. This is optional, but if
-              provided, all required fields must be present for the appropriate customer type.
+          compliance_profile: An object containing the customer's compliance profile. **This is optional**,
+              but if provided, all required fields must be present for the appropriate
+              customer type.
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
@@ -663,7 +665,7 @@ class AsyncCustomersResource(AsyncAPIResource):
         phone: str,
         status: Literal["pending", "review", "verified", "inactive", "rejected"],
         address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
-        compliance_profile: customer_update_params.ComplianceProfile | NotGiven = NOT_GIVEN,
+        compliance_profile: Optional[customer_update_params.ComplianceProfile] | NotGiven = NOT_GIVEN,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
@@ -691,7 +693,7 @@ class AsyncCustomersResource(AsyncAPIResource):
           address: An object containing the customer's address. This is optional, but if provided,
               all required fields must be present.
 
-          compliance_profile: Compliance profile for individual customers
+          compliance_profile: Individual PII data required to trigger Patriot Act compliant KYC verification.
 
           external_id: Unique identifier for the customer in your database, used for cross-referencing
               between Straddle and your systems.
