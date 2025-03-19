@@ -15,7 +15,10 @@ class PaykeyDetailsV1(BaseModel):
     """Unique identifier for the customer associated with the paykey."""
 
     label: str
-    """Human-readable label used to represent this paykey in a UI."""
+    """
+    Human-readable label that combines the bank name and masked account number to
+    help easility represent this paykey in a UI
+    """
 
     balance: Optional[int] = None
     """

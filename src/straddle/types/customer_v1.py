@@ -12,13 +12,13 @@ __all__ = [
     "CustomerV1",
     "Data",
     "DataComplianceProfile",
-    "DataComplianceProfileIndividualCustomerComplianceProfile",
-    "DataComplianceProfileBusinessCustomerComplianceProfile",
+    "DataComplianceProfileIndividualComplianceProfile",
+    "DataComplianceProfileBusinessComplianceProfile",
     "DataDevice",
 ]
 
 
-class DataComplianceProfileIndividualCustomerComplianceProfile(BaseModel):
+class DataComplianceProfileIndividualComplianceProfile(BaseModel):
     dob: Optional[date] = None
     """Masked date of birth in \\****\\**-**-\\**\\** format."""
 
@@ -26,7 +26,7 @@ class DataComplianceProfileIndividualCustomerComplianceProfile(BaseModel):
     """Masked Social Security Number in the format **\\**-**-\\**\\**\\**\\**."""
 
 
-class DataComplianceProfileBusinessCustomerComplianceProfile(BaseModel):
+class DataComplianceProfileBusinessComplianceProfile(BaseModel):
     ein: Optional[str] = None
     """Masked Employer Identification Number in the format **-**\\******"""
 
@@ -41,9 +41,7 @@ class DataComplianceProfileBusinessCustomerComplianceProfile(BaseModel):
 
 
 DataComplianceProfile: TypeAlias = Union[
-    DataComplianceProfileIndividualCustomerComplianceProfile,
-    DataComplianceProfileBusinessCustomerComplianceProfile,
-    None,
+    DataComplianceProfileIndividualComplianceProfile, DataComplianceProfileBusinessComplianceProfile, None
 ]
 
 

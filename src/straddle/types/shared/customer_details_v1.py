@@ -9,16 +9,16 @@ __all__ = ["CustomerDetailsV1"]
 
 class CustomerDetailsV1(BaseModel):
     id: str
-    """Unique identifier for the customer."""
+    """Unique identifier for the customer"""
 
     customer_type: Literal["individual", "business"]
-    """The type of customer."""
+    """The type of customer"""
 
     email: str
-    """Email."""
+    """The customer's email address"""
 
     name: str
-    """The name of the customer."""
+    """The name of the customer"""
 
     phone: str
-    """Phone."""
+    """The customer's phone number in E.164 format"""
