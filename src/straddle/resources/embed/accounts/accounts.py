@@ -390,7 +390,7 @@ class AccountsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AccountV1:
-        """Simulte the status transitions for sandbox accounts.
+        """Simulate the status transitions for sandbox accounts.
 
         This endpoint can only be
         used for sandbox accounts.
@@ -774,7 +774,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AccountV1:
-        """Simulte the status transitions for sandbox accounts.
+        """Simulate the status transitions for sandbox accounts.
 
         This endpoint can only be
         used for sandbox accounts.
