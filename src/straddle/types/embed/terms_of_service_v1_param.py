@@ -22,11 +22,11 @@ class TermsOfServiceV1Param(TypedDict, total=False):
     agreements.
     """
 
+    agreement_url: Required[Optional[str]]
+    """The URL where the full text of the accepted agreement can be found."""
+
     accepted_ip: Optional[str]
     """The IP address from which the terms of service were accepted."""
 
     accepted_user_agent: Optional[str]
     """The user agent string of the browser or application used to accept the terms."""
-
-    agreement_url: Optional[str]
-    """The URL where the full text of the accepted agreement can be found."""

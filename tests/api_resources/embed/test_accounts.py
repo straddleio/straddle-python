@@ -295,6 +295,7 @@ class TestAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -306,9 +307,9 @@ class TestAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
                 "accepted_ip": "accepted_ip",
                 "accepted_user_agent": "accepted_user_agent",
-                "agreement_url": "agreement_url",
             },
             correlation_id="correlation-id",
             request_id="request-id",
@@ -322,6 +323,7 @@ class TestAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         )
 
@@ -337,6 +339,7 @@ class TestAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         ) as response:
             assert not response.is_closed
@@ -355,6 +358,7 @@ class TestAccounts:
                 terms_of_service={
                     "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "agreement_type": "embedded",
+                    "agreement_url": "agreement_url",
                 },
             )
 
@@ -683,6 +687,7 @@ class TestAsyncAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -694,9 +699,9 @@ class TestAsyncAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
                 "accepted_ip": "accepted_ip",
                 "accepted_user_agent": "accepted_user_agent",
-                "agreement_url": "agreement_url",
             },
             correlation_id="correlation-id",
             request_id="request-id",
@@ -710,6 +715,7 @@ class TestAsyncAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         )
 
@@ -725,6 +731,7 @@ class TestAsyncAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         ) as response:
             assert not response.is_closed
@@ -743,6 +750,7 @@ class TestAsyncAccounts:
                 terms_of_service={
                     "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "agreement_type": "embedded",
+                    "agreement_url": "agreement_url",
                 },
             )
 
