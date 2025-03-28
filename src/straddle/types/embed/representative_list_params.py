@@ -13,6 +13,8 @@ class RepresentativeListParams(TypedDict, total=False):
     account_id: str
     """The unique identifier of the account to list representatives for."""
 
+    level: Literal["account", "platform"]
+
     organization_id: str
 
     page_number: int
