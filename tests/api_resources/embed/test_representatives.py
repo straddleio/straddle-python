@@ -223,6 +223,7 @@ class TestRepresentatives:
     def test_method_list_with_all_params(self, client: Straddle) -> None:
         representative = client.embed.representatives.list(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            level="account",
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page_number=0,
             page_size=0,
@@ -553,6 +554,7 @@ class TestAsyncRepresentatives:
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
         representative = await async_client.embed.representatives.list(
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            level="account",
             organization_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page_number=0,
             page_size=0,

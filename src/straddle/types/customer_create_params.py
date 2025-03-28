@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
@@ -14,7 +14,9 @@ __all__ = [
     "CustomerCreateParams",
     "ComplianceProfile",
     "ComplianceProfileIndividualComplianceProfile",
+    "ComplianceProfileIndividualComplianceProfileRepresentative",
     "ComplianceProfileBusinessComplianceProfile",
+    "ComplianceProfileBusinessComplianceProfileRepresentative",
 ]
 
 
@@ -65,6 +67,14 @@ class CustomerCreateParams(TypedDict, total=False):
     straddle_account_id: Annotated[str, PropertyInfo(alias="Straddle-Account-Id")]
 
 
+class ComplianceProfileIndividualComplianceProfileRepresentative(TypedDict, total=False):
+    name: Required[str]
+
+    email: Optional[str]
+
+    phone: Optional[str]
+
+
 class ComplianceProfileIndividualComplianceProfile(TypedDict, total=False):
     dob: Required[Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]]
     """Date of birth (YYYY-MM-DD).
@@ -78,6 +88,40 @@ class ComplianceProfileIndividualComplianceProfile(TypedDict, total=False):
     Required for Patriot Act-compliant KYC verification.
     """
 
+    ein: Optional[str]
+    """Full 9-digit Employer Identification Number for businesses.
+
+    This data is required to trigger Patriot Act compliant KYB verification. Only
+    valid where customer type is 'business'.
+    """
+
+    legal_business_name: Optional[str]
+    """The official name of the business.
+
+    This name should be correlated with the ein value. Only valid where customer
+    type is 'business'.
+    """
+
+    representatives: Optional[Iterable[ComplianceProfileIndividualComplianceProfileRepresentative]]
+    """A list of people related to the company.
+
+    Only valid where customer type is 'business'.
+    """
+
+    website: Optional[str]
+    """URL of the company's official website.
+
+    Only valid where customer type is 'business'.
+    """
+
+
+class ComplianceProfileBusinessComplianceProfileRepresentative(TypedDict, total=False):
+    name: Required[str]
+
+    email: Optional[str]
+
+    phone: Optional[str]
+
 
 class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
     ein: Required[Optional[str]]
@@ -90,6 +134,26 @@ class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
     """Official registered business name as listed with the IRS.
 
     This value will be matched against the 'legal_business name'.
+    """
+
+    dob: Optional[str]
+    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if SSN is provided. Only valid where customer type is 'individual'.
+    """
+
+    representatives: Optional[Iterable[ComplianceProfileBusinessComplianceProfileRepresentative]]
+    """A list of people related to the company.
+
+    Only valid where customer type is 'business'.
+    """
+
+    ssn: Optional[str]
+    """Full 9-digit Social Security Number or government identifier for individuals.
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if DOB is provided. Only valid where customer type is 'individual'.
     """
 
     website: Optional[str]

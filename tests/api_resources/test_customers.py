@@ -52,6 +52,16 @@ class TestCustomers:
             compliance_profile={
                 "dob": parse_date("1969-04-20"),
                 "ssn": "123-45-6789",
+                "ein": "ein",
+                "legal_business_name": "legal_business_name",
+                "representatives": [
+                    {
+                        "name": "name",
+                        "email": "email",
+                        "phone": "phone",
+                    }
+                ],
+                "website": "website",
             },
             external_id="customer_123",
             metadata={},
@@ -124,6 +134,16 @@ class TestCustomers:
             compliance_profile={
                 "dob": parse_date("1969-04-20"),
                 "ssn": "123-45-6789",
+                "ein": "ein",
+                "legal_business_name": "legal_business_name",
+                "representatives": [
+                    {
+                        "name": "name",
+                        "email": "email",
+                        "phone": "phone",
+                    }
+                ],
+                "website": "website",
             },
             external_id="external_id",
             metadata={"foo": "string"},
@@ -450,6 +470,16 @@ class TestAsyncCustomers:
             compliance_profile={
                 "dob": parse_date("1969-04-20"),
                 "ssn": "123-45-6789",
+                "ein": "ein",
+                "legal_business_name": "legal_business_name",
+                "representatives": [
+                    {
+                        "name": "name",
+                        "email": "email",
+                        "phone": "phone",
+                    }
+                ],
+                "website": "website",
             },
             external_id="customer_123",
             metadata={},
@@ -522,6 +552,16 @@ class TestAsyncCustomers:
             compliance_profile={
                 "dob": parse_date("1969-04-20"),
                 "ssn": "123-45-6789",
+                "ein": "ein",
+                "legal_business_name": "legal_business_name",
+                "representatives": [
+                    {
+                        "name": "name",
+                        "email": "email",
+                        "phone": "phone",
+                    }
+                ],
+                "website": "website",
             },
             external_id="external_id",
             metadata={"foo": "string"},
