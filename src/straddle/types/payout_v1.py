@@ -86,9 +86,6 @@ class Data(BaseModel):
     This value must be unique across all payouts.
     """
 
-    funding_ids: List[str]
-    """Funding Ids"""
-
     paykey: str
     """Value of the `paykey` used for the payout."""
 
