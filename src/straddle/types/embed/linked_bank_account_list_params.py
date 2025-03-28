@@ -13,8 +13,6 @@ class LinkedBankAccountListParams(TypedDict, total=False):
     account_id: str
     """The unique identifier of the related account."""
 
-    level: Literal["account", "platform"]
-
     page_number: int
     """Results page number. Starts at page 1."""
 

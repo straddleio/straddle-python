@@ -115,12 +115,6 @@ class DataCustomerDetails(BaseModel):
 class DataIdentityDetailsBreakdown(BaseModel):
     address: Optional[IdentityVerificationBreakdownV1] = None
 
-    business_evaluation: Optional[IdentityVerificationBreakdownV1] = None
-
-    business_identification: Optional[IdentityVerificationBreakdownV1] = None
-
-    business_validation: Optional[IdentityVerificationBreakdownV1] = None
-
     email: Optional[IdentityVerificationBreakdownV1] = None
 
     fraud: Optional[IdentityVerificationBreakdownV1] = None
@@ -173,7 +167,7 @@ class DataIdentityDetailsNetworkAlerts(BaseModel):
 
 
 class DataIdentityDetailsWatchListMatch(BaseModel):
-    correlation: Literal["low_confidence", "potential_match", "likely_match", "high_confidence", "unknown"]
+    correlation: Literal["low_confidence", "potential_match", "likely_match", "high_confidence"]
 
     list_name: str
     """The name of the list the match was found."""
