@@ -47,7 +47,7 @@ class Data(BaseModel):
     id: str
     """Unique identifier for the linked bank account."""
 
-    account_id: Optional[str] = None
+    account_id: str
     """The unique identifier of the Straddle account related to this bank account."""
 
     bank_account: DataBankAccount
@@ -69,9 +69,6 @@ class Data(BaseModel):
     Useful for storing additional information about the linked bank account in a
     structured format.
     """
-
-    platform_id: Optional[str] = None
-    """The unique identifier of the Straddle Platform relatd to this bank account."""
 
 
 class LinkedBankAccountV1(BaseModel):
