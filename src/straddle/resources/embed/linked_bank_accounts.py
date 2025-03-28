@@ -183,7 +183,6 @@ class LinkedBankAccountsResource(SyncAPIResource):
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
-        level: Literal["account", "platform"] | NotGiven = NOT_GIVEN,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
@@ -243,7 +242,6 @@ class LinkedBankAccountsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "account_id": account_id,
-                        "level": level,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort_by": sort_by,
@@ -503,7 +501,6 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
-        level: Literal["account", "platform"] | NotGiven = NOT_GIVEN,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
@@ -563,7 +560,6 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "account_id": account_id,
-                        "level": level,
                         "page_number": page_number,
                         "page_size": page_size,
                         "sort_by": sort_by,
