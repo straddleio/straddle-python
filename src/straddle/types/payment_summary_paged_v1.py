@@ -34,6 +34,9 @@ class Data(BaseModel):
     This value must be unique across all charges or payouts.
     """
 
+    funding_ids: List[str]
+    """Funding ids."""
+
     paykey: str
     """Value of the `paykey` used for the `charge` or `payout`."""
 

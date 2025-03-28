@@ -16,6 +16,7 @@ __all__ = [
     "DataCustomerDetailsComplianceProfile",
     "DataCustomerDetailsComplianceProfileIndividualComplianceProfile",
     "DataCustomerDetailsComplianceProfileBusinessComplianceProfile",
+    "DataCustomerDetailsComplianceProfileBusinessComplianceProfileRepresentative",
     "DataCustomerDetailsDevice",
     "DataIdentityDetails",
     "DataIdentityDetailsBreakdown",
@@ -35,6 +36,14 @@ class DataCustomerDetailsComplianceProfileIndividualComplianceProfile(BaseModel)
     """Masked Social Security Number in the format **\\**-**-\\**\\**\\**\\**."""
 
 
+class DataCustomerDetailsComplianceProfileBusinessComplianceProfileRepresentative(BaseModel):
+    name: str
+
+    email: Optional[str] = None
+
+    phone: Optional[str] = None
+
+
 class DataCustomerDetailsComplianceProfileBusinessComplianceProfile(BaseModel):
     ein: Optional[str] = None
     """Masked Employer Identification Number in the format **-**\\******"""
@@ -43,6 +52,12 @@ class DataCustomerDetailsComplianceProfileBusinessComplianceProfile(BaseModel):
     """The official registered name of the business.
 
     This name should be correlated with the `ein` value.
+    """
+
+    representatives: Optional[List[DataCustomerDetailsComplianceProfileBusinessComplianceProfileRepresentative]] = None
+    """A list of people related to the company.
+
+    Only valid where customer type is 'business'.
     """
 
     website: Optional[str] = None
@@ -114,6 +129,12 @@ class DataCustomerDetails(BaseModel):
 
 class DataIdentityDetailsBreakdown(BaseModel):
     address: Optional[IdentityVerificationBreakdownV1] = None
+
+    business_evaluation: Optional[IdentityVerificationBreakdownV1] = None
+
+    business_identification: Optional[IdentityVerificationBreakdownV1] = None
+
+    business_validation: Optional[IdentityVerificationBreakdownV1] = None
 
     email: Optional[IdentityVerificationBreakdownV1] = None
 
