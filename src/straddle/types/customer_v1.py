@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -14,6 +14,7 @@ __all__ = [
     "DataComplianceProfile",
     "DataComplianceProfileIndividualComplianceProfile",
     "DataComplianceProfileBusinessComplianceProfile",
+    "DataComplianceProfileBusinessComplianceProfileRepresentative",
     "DataDevice",
 ]
 
@@ -26,6 +27,14 @@ class DataComplianceProfileIndividualComplianceProfile(BaseModel):
     """Masked Social Security Number in the format **\\**-**-\\**\\**\\**\\**."""
 
 
+class DataComplianceProfileBusinessComplianceProfileRepresentative(BaseModel):
+    name: str
+
+    email: Optional[str] = None
+
+    phone: Optional[str] = None
+
+
 class DataComplianceProfileBusinessComplianceProfile(BaseModel):
     ein: Optional[str] = None
     """Masked Employer Identification Number in the format **-**\\******"""
@@ -34,6 +43,12 @@ class DataComplianceProfileBusinessComplianceProfile(BaseModel):
     """The official registered name of the business.
 
     This name should be correlated with the `ein` value.
+    """
+
+    representatives: Optional[List[DataComplianceProfileBusinessComplianceProfileRepresentative]] = None
+    """A list of people related to the company.
+
+    Only valid where customer type is 'business'.
     """
 
     website: Optional[str] = None

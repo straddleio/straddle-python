@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
@@ -15,6 +15,7 @@ __all__ = [
     "ComplianceProfile",
     "ComplianceProfileIndividualComplianceProfile",
     "ComplianceProfileBusinessComplianceProfile",
+    "ComplianceProfileBusinessComplianceProfileRepresentative",
 ]
 
 
@@ -75,6 +76,14 @@ class ComplianceProfileIndividualComplianceProfile(TypedDict, total=False):
     """
 
 
+class ComplianceProfileBusinessComplianceProfileRepresentative(TypedDict, total=False):
+    name: Required[str]
+
+    email: Optional[str]
+
+    phone: Optional[str]
+
+
 class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
     ein: Required[Optional[str]]
     """Employer Identification Number (format XX-XXXXXXX).
@@ -86,6 +95,12 @@ class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
     """Official registered business name as listed with the IRS.
 
     This value will be matched against the 'legal_business name'.
+    """
+
+    representatives: Optional[Iterable[ComplianceProfileBusinessComplianceProfileRepresentative]]
+    """A list of people related to the company.
+
+    Only valid where customer type is 'business'.
     """
 
     website: Optional[str]
