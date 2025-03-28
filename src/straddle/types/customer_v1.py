@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -13,19 +13,9 @@ __all__ = [
     "Data",
     "DataComplianceProfile",
     "DataComplianceProfileIndividualComplianceProfile",
-    "DataComplianceProfileIndividualComplianceProfileRepresentative",
     "DataComplianceProfileBusinessComplianceProfile",
-    "DataComplianceProfileBusinessComplianceProfileRepresentative",
     "DataDevice",
 ]
-
-
-class DataComplianceProfileIndividualComplianceProfileRepresentative(BaseModel):
-    name: str
-
-    email: Optional[str] = None
-
-    phone: Optional[str] = None
 
 
 class DataComplianceProfileIndividualComplianceProfile(BaseModel):
@@ -34,40 +24,6 @@ class DataComplianceProfileIndividualComplianceProfile(BaseModel):
 
     ssn: Optional[str] = None
     """Masked Social Security Number in the format **\\**-**-\\**\\**\\**\\**."""
-
-    ein: Optional[str] = None
-    """Full 9-digit Employer Identification Number for businesses.
-
-    This data is required to trigger Patriot Act compliant Know Your Business (KYB)
-    verification. Only valid where customer type is 'business'.
-    """
-
-    legal_business_name: Optional[str] = None
-    """The official name of the business.
-
-    This name should be correlated with the ein value. Only valid where customer
-    type is 'business'.
-    """
-
-    representatives: Optional[List[DataComplianceProfileIndividualComplianceProfileRepresentative]] = None
-    """A list of people related to the company.
-
-    Only valid where customer type is 'business'.
-    """
-
-    website: Optional[str] = None
-    """URL of the company's official website.
-
-    Only valid where customer type is 'business'.
-    """
-
-
-class DataComplianceProfileBusinessComplianceProfileRepresentative(BaseModel):
-    name: str
-
-    email: Optional[str] = None
-
-    phone: Optional[str] = None
 
 
 class DataComplianceProfileBusinessComplianceProfile(BaseModel):
@@ -78,27 +34,6 @@ class DataComplianceProfileBusinessComplianceProfile(BaseModel):
     """The official registered name of the business.
 
     This name should be correlated with the `ein` value.
-    """
-
-    dob: Optional[str] = None
-    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
-
-    This data is required to trigger Patriot Act compliant Know Your Customer (KYC)
-    verification. Required if SSN is provided. Only valid where customer type is
-    'individual'.
-    """
-
-    representatives: Optional[List[DataComplianceProfileBusinessComplianceProfileRepresentative]] = None
-    """A list of people related to the company.
-
-    Only valid where customer type is 'business'.
-    """
-
-    ssn: Optional[str] = None
-    """Full 9-digit Social Security Number or government identifier for individuals.
-
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if DOB is provided. Only valid where customer type is 'individual'.
     """
 
     website: Optional[str] = None
