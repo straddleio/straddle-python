@@ -15,7 +15,9 @@ __all__ = [
     "DataCustomerDetails",
     "DataCustomerDetailsComplianceProfile",
     "DataCustomerDetailsComplianceProfileIndividualComplianceProfile",
+    "DataCustomerDetailsComplianceProfileIndividualComplianceProfileRepresentative",
     "DataCustomerDetailsComplianceProfileBusinessComplianceProfile",
+    "DataCustomerDetailsComplianceProfileBusinessComplianceProfileRepresentative",
     "DataCustomerDetailsDevice",
     "DataIdentityDetails",
     "DataIdentityDetailsBreakdown",
@@ -27,12 +29,56 @@ __all__ = [
 ]
 
 
+class DataCustomerDetailsComplianceProfileIndividualComplianceProfileRepresentative(BaseModel):
+    name: str
+
+    email: Optional[str] = None
+
+    phone: Optional[str] = None
+
+
 class DataCustomerDetailsComplianceProfileIndividualComplianceProfile(BaseModel):
     dob: Optional[date] = None
     """Masked date of birth in \\****\\**-**-\\**\\** format."""
 
     ssn: Optional[str] = None
     """Masked Social Security Number in the format **\\**-**-\\**\\**\\**\\**."""
+
+    ein: Optional[str] = None
+    """Full 9-digit Employer Identification Number for businesses.
+
+    This data is required to trigger Patriot Act compliant Know Your Business (KYB)
+    verification. Only valid where customer type is 'business'.
+    """
+
+    legal_business_name: Optional[str] = None
+    """The official name of the business.
+
+    This name should be correlated with the ein value. Only valid where customer
+    type is 'business'.
+    """
+
+    representatives: Optional[List[DataCustomerDetailsComplianceProfileIndividualComplianceProfileRepresentative]] = (
+        None
+    )
+    """A list of people related to the company.
+
+    Only valid where customer type is 'business'.
+    """
+
+    website: Optional[str] = None
+    """URL of the company's official website.
+
+    Only valid where customer type is 'business'.
+    """
+
+
+class DataCustomerDetailsComplianceProfileBusinessComplianceProfileRepresentative(BaseModel):
+    name: str
+
+    email: Optional[str] = None
+
+    phone: Optional[str] = None
 
 
 class DataCustomerDetailsComplianceProfileBusinessComplianceProfile(BaseModel):
@@ -43,6 +89,27 @@ class DataCustomerDetailsComplianceProfileBusinessComplianceProfile(BaseModel):
     """The official registered name of the business.
 
     This name should be correlated with the `ein` value.
+    """
+
+    dob: Optional[str] = None
+    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+
+    This data is required to trigger Patriot Act compliant Know Your Customer (KYC)
+    verification. Required if SSN is provided. Only valid where customer type is
+    'individual'.
+    """
+
+    representatives: Optional[List[DataCustomerDetailsComplianceProfileBusinessComplianceProfileRepresentative]] = None
+    """A list of people related to the company.
+
+    Only valid where customer type is 'business'.
+    """
+
+    ssn: Optional[str] = None
+    """Full 9-digit Social Security Number or government identifier for individuals.
+
+    This data is required to trigger Patriot Act compliant KYC verification.
+    Required if DOB is provided. Only valid where customer type is 'individual'.
     """
 
     website: Optional[str] = None
@@ -115,6 +182,12 @@ class DataCustomerDetails(BaseModel):
 class DataIdentityDetailsBreakdown(BaseModel):
     address: Optional[IdentityVerificationBreakdownV1] = None
 
+    business_evaluation: Optional[IdentityVerificationBreakdownV1] = None
+
+    business_identification: Optional[IdentityVerificationBreakdownV1] = None
+
+    business_validation: Optional[IdentityVerificationBreakdownV1] = None
+
     email: Optional[IdentityVerificationBreakdownV1] = None
 
     fraud: Optional[IdentityVerificationBreakdownV1] = None
@@ -167,7 +240,7 @@ class DataIdentityDetailsNetworkAlerts(BaseModel):
 
 
 class DataIdentityDetailsWatchListMatch(BaseModel):
-    correlation: Literal["low_confidence", "potential_match", "likely_match", "high_confidence"]
+    correlation: Literal["low_confidence", "potential_match", "likely_match", "high_confidence", "unknown"]
 
     list_name: str
     """The name of the list the match was found."""
