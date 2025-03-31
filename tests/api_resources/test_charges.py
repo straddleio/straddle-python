@@ -23,7 +23,7 @@ class TestCharges:
     @parametrize
     def test_method_create(self, client: Straddle) -> None:
         charge = client.charges.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -38,7 +38,7 @@ class TestCharges:
     @parametrize
     def test_method_create_with_all_params(self, client: Straddle) -> None:
         charge = client.charges.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -57,7 +57,7 @@ class TestCharges:
     @parametrize
     def test_raw_response_create(self, client: Straddle) -> None:
         response = client.charges.with_raw_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -76,7 +76,7 @@ class TestCharges:
     @parametrize
     def test_streaming_response_create(self, client: Straddle) -> None:
         with client.charges.with_streaming_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -98,7 +98,7 @@ class TestCharges:
     def test_method_update(self, client: Straddle) -> None:
         charge = client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         )
@@ -108,7 +108,7 @@ class TestCharges:
     def test_method_update_with_all_params(self, client: Straddle) -> None:
         charge = client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
             metadata={"foo": "string"},
@@ -122,7 +122,7 @@ class TestCharges:
     def test_raw_response_update(self, client: Straddle) -> None:
         response = client.charges.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         )
@@ -136,7 +136,7 @@ class TestCharges:
     def test_streaming_response_update(self, client: Straddle) -> None:
         with client.charges.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         ) as response:
@@ -153,7 +153,7 @@ class TestCharges:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.charges.with_raw_response.update(
                 id="",
-                amount=0,
+                amount=10000,
                 description="Monthly subscription fee",
                 payment_date=parse_date("2019-12-27"),
             )
@@ -360,7 +360,7 @@ class TestAsyncCharges:
     @parametrize
     async def test_method_create(self, async_client: AsyncStraddle) -> None:
         charge = await async_client.charges.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -375,7 +375,7 @@ class TestAsyncCharges:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStraddle) -> None:
         charge = await async_client.charges.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -394,7 +394,7 @@ class TestAsyncCharges:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStraddle) -> None:
         response = await async_client.charges.with_raw_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -413,7 +413,7 @@ class TestAsyncCharges:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStraddle) -> None:
         async with async_client.charges.with_streaming_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -435,7 +435,7 @@ class TestAsyncCharges:
     async def test_method_update(self, async_client: AsyncStraddle) -> None:
         charge = await async_client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         )
@@ -445,7 +445,7 @@ class TestAsyncCharges:
     async def test_method_update_with_all_params(self, async_client: AsyncStraddle) -> None:
         charge = await async_client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
             metadata={"foo": "string"},
@@ -459,7 +459,7 @@ class TestAsyncCharges:
     async def test_raw_response_update(self, async_client: AsyncStraddle) -> None:
         response = await async_client.charges.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         )
@@ -473,7 +473,7 @@ class TestAsyncCharges:
     async def test_streaming_response_update(self, async_client: AsyncStraddle) -> None:
         async with async_client.charges.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         ) as response:
@@ -490,7 +490,7 @@ class TestAsyncCharges:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.charges.with_raw_response.update(
                 id="",
-                amount=0,
+                amount=10000,
                 description="Monthly subscription fee",
                 payment_date=parse_date("2019-12-27"),
             )
