@@ -733,7 +733,7 @@ class TestStraddle:
                     object,
                     maybe_transform(
                         dict(
-                            amount=0,
+                            amount=10000,
                             config={"balance_check": "required"},
                             consent_type="internet",
                             currency="currency",
@@ -764,7 +764,7 @@ class TestStraddle:
                     object,
                     maybe_transform(
                         dict(
-                            amount=0,
+                            amount=10000,
                             config={"balance_check": "required"},
                             consent_type="internet",
                             currency="currency",
@@ -810,7 +810,7 @@ class TestStraddle:
         respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
         response = client.charges.with_raw_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -844,7 +844,7 @@ class TestStraddle:
         respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
         response = client.charges.with_raw_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -878,7 +878,7 @@ class TestStraddle:
         respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
         response = client.charges.with_raw_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -1583,7 +1583,7 @@ class TestAsyncStraddle:
                     object,
                     maybe_transform(
                         dict(
-                            amount=0,
+                            amount=10000,
                             config={"balance_check": "required"},
                             consent_type="internet",
                             currency="currency",
@@ -1614,7 +1614,7 @@ class TestAsyncStraddle:
                     object,
                     maybe_transform(
                         dict(
-                            amount=0,
+                            amount=10000,
                             config={"balance_check": "required"},
                             consent_type="internet",
                             currency="currency",
@@ -1661,7 +1661,7 @@ class TestAsyncStraddle:
         respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
         response = await client.charges.with_raw_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -1696,7 +1696,7 @@ class TestAsyncStraddle:
         respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
         response = await client.charges.with_raw_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -1731,7 +1731,7 @@ class TestAsyncStraddle:
         respx_mock.post("/v1/charges").mock(side_effect=retry_handler)
 
         response = await client.charges.with_raw_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
