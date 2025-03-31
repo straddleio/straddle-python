@@ -35,7 +35,7 @@ client = Straddle(
 )
 
 charge_v1 = client.charges.create(
-    amount=0,
+    amount=10000,
     config={"balance_check": "required"},
     consent_type="internet",
     currency="currency",
@@ -72,7 +72,7 @@ client = AsyncStraddle(
 
 async def main() -> None:
     charge_v1 = await client.charges.create(
-        amount=0,
+        amount=10000,
         config={"balance_check": "required"},
         consent_type="internet",
         currency="currency",
@@ -223,7 +223,7 @@ client = Straddle()
 
 try:
     client.charges.create(
-        amount=0,
+        amount=10000,
         config={"balance_check": "required"},
         consent_type="internet",
         currency="currency",
@@ -278,7 +278,7 @@ client = Straddle(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).charges.create(
-    amount=0,
+    amount=10000,
     config={"balance_check": "required"},
     consent_type="internet",
     currency="currency",
@@ -313,7 +313,7 @@ client = Straddle(
 
 # Override per-request:
 client.with_options(timeout=5.0).charges.create(
-    amount=0,
+    amount=10000,
     config={"balance_check": "required"},
     consent_type="internet",
     currency="currency",
@@ -364,7 +364,7 @@ from straddle import Straddle
 
 client = Straddle()
 response = client.charges.with_raw_response.create(
-    amount=0,
+    amount=10000,
     config={
         "balance_check": "required"
     },
@@ -396,7 +396,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.charges.with_streaming_response.create(
-    amount=0,
+    amount=10000,
     config={"balance_check": "required"},
     consent_type="internet",
     currency="currency",

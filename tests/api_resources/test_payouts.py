@@ -23,7 +23,7 @@ class TestPayouts:
     @parametrize
     def test_method_create(self, client: Straddle) -> None:
         payout = client.payouts.create(
-            amount=0,
+            amount=10000,
             currency="currency",
             description="Vendor invoice payment",
             device={"ip_address": "192.168.1.1"},
@@ -36,7 +36,7 @@ class TestPayouts:
     @parametrize
     def test_method_create_with_all_params(self, client: Straddle) -> None:
         payout = client.payouts.create(
-            amount=0,
+            amount=10000,
             currency="currency",
             description="Vendor invoice payment",
             device={"ip_address": "192.168.1.1"},
@@ -54,7 +54,7 @@ class TestPayouts:
     @parametrize
     def test_raw_response_create(self, client: Straddle) -> None:
         response = client.payouts.with_raw_response.create(
-            amount=0,
+            amount=10000,
             currency="currency",
             description="Vendor invoice payment",
             device={"ip_address": "192.168.1.1"},
@@ -71,7 +71,7 @@ class TestPayouts:
     @parametrize
     def test_streaming_response_create(self, client: Straddle) -> None:
         with client.payouts.with_streaming_response.create(
-            amount=0,
+            amount=10000,
             currency="currency",
             description="Vendor invoice payment",
             device={"ip_address": "192.168.1.1"},
@@ -91,7 +91,7 @@ class TestPayouts:
     def test_method_update(self, client: Straddle) -> None:
         payout = client.payouts.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="description",
             payment_date=parse_date("2019-12-27"),
         )
@@ -101,7 +101,7 @@ class TestPayouts:
     def test_method_update_with_all_params(self, client: Straddle) -> None:
         payout = client.payouts.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="description",
             payment_date=parse_date("2019-12-27"),
             metadata={"foo": "string"},
@@ -115,7 +115,7 @@ class TestPayouts:
     def test_raw_response_update(self, client: Straddle) -> None:
         response = client.payouts.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="description",
             payment_date=parse_date("2019-12-27"),
         )
@@ -129,7 +129,7 @@ class TestPayouts:
     def test_streaming_response_update(self, client: Straddle) -> None:
         with client.payouts.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="description",
             payment_date=parse_date("2019-12-27"),
         ) as response:
@@ -146,7 +146,7 @@ class TestPayouts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.payouts.with_raw_response.update(
                 id="",
-                amount=0,
+                amount=10000,
                 description="description",
                 payment_date=parse_date("2019-12-27"),
             )
@@ -365,7 +365,7 @@ class TestAsyncPayouts:
     @parametrize
     async def test_method_create(self, async_client: AsyncStraddle) -> None:
         payout = await async_client.payouts.create(
-            amount=0,
+            amount=10000,
             currency="currency",
             description="Vendor invoice payment",
             device={"ip_address": "192.168.1.1"},
@@ -378,7 +378,7 @@ class TestAsyncPayouts:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStraddle) -> None:
         payout = await async_client.payouts.create(
-            amount=0,
+            amount=10000,
             currency="currency",
             description="Vendor invoice payment",
             device={"ip_address": "192.168.1.1"},
@@ -396,7 +396,7 @@ class TestAsyncPayouts:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStraddle) -> None:
         response = await async_client.payouts.with_raw_response.create(
-            amount=0,
+            amount=10000,
             currency="currency",
             description="Vendor invoice payment",
             device={"ip_address": "192.168.1.1"},
@@ -413,7 +413,7 @@ class TestAsyncPayouts:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStraddle) -> None:
         async with async_client.payouts.with_streaming_response.create(
-            amount=0,
+            amount=10000,
             currency="currency",
             description="Vendor invoice payment",
             device={"ip_address": "192.168.1.1"},
@@ -433,7 +433,7 @@ class TestAsyncPayouts:
     async def test_method_update(self, async_client: AsyncStraddle) -> None:
         payout = await async_client.payouts.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="description",
             payment_date=parse_date("2019-12-27"),
         )
@@ -443,7 +443,7 @@ class TestAsyncPayouts:
     async def test_method_update_with_all_params(self, async_client: AsyncStraddle) -> None:
         payout = await async_client.payouts.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="description",
             payment_date=parse_date("2019-12-27"),
             metadata={"foo": "string"},
@@ -457,7 +457,7 @@ class TestAsyncPayouts:
     async def test_raw_response_update(self, async_client: AsyncStraddle) -> None:
         response = await async_client.payouts.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="description",
             payment_date=parse_date("2019-12-27"),
         )
@@ -471,7 +471,7 @@ class TestAsyncPayouts:
     async def test_streaming_response_update(self, async_client: AsyncStraddle) -> None:
         async with async_client.payouts.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="description",
             payment_date=parse_date("2019-12-27"),
         ) as response:
@@ -488,7 +488,7 @@ class TestAsyncPayouts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.payouts.with_raw_response.update(
                 id="",
-                amount=0,
+                amount=10000,
                 description="description",
                 payment_date=parse_date("2019-12-27"),
             )
