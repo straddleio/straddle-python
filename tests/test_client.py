@@ -1757,7 +1757,7 @@ class TestAsyncStraddle:
         import threading
 
         from straddle._utils import asyncify
-        from straddle._base_client import get_platform 
+        from straddle._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()
