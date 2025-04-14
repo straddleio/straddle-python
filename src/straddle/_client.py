@@ -69,6 +69,7 @@ class Straddle(SyncAPIClient):
 
     # client options
     api_key: str
+    environments: str
 
     _environment: Literal["production", "sandbox"] | NotGiven
 
@@ -76,6 +77,7 @@ class Straddle(SyncAPIClient):
         self,
         *,
         api_key: str | None = None,
+        environments: str | None = None,
         environment: Literal["production", "sandbox"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -98,7 +100,9 @@ class Straddle(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous Straddle client instance.
 
-        This automatically infers the `api_key` argument from the `STRADDLE_API_KEY` environment variable if it is not provided.
+        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `api_key` from `STRADDLE_API_KEY`
+        - `environments` from `STRADDLE_ENVIRONMENT`
         """
         if api_key is None:
             api_key = os.environ.get("STRADDLE_API_KEY")
@@ -107,6 +111,10 @@ class Straddle(SyncAPIClient):
                 "The api_key client option must be set either by passing api_key to the client or by setting the STRADDLE_API_KEY environment variable"
             )
         self.api_key = api_key
+
+        if environments is None:
+            environments = os.environ.get("STRADDLE_ENVIRONMENT") or "sandbox"
+        self.environments = environments
 
         self._environment = environment
 
@@ -181,6 +189,7 @@ class Straddle(SyncAPIClient):
         self,
         *,
         api_key: str | None = None,
+        environments: str | None = None,
         environment: Literal["production", "sandbox"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -216,6 +225,7 @@ class Straddle(SyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             api_key=api_key or self.api_key,
+            environments=environments or self.environments,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
@@ -279,6 +289,7 @@ class AsyncStraddle(AsyncAPIClient):
 
     # client options
     api_key: str
+    environments: str
 
     _environment: Literal["production", "sandbox"] | NotGiven
 
@@ -286,6 +297,7 @@ class AsyncStraddle(AsyncAPIClient):
         self,
         *,
         api_key: str | None = None,
+        environments: str | None = None,
         environment: Literal["production", "sandbox"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
@@ -308,7 +320,9 @@ class AsyncStraddle(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncStraddle client instance.
 
-        This automatically infers the `api_key` argument from the `STRADDLE_API_KEY` environment variable if it is not provided.
+        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
+        - `api_key` from `STRADDLE_API_KEY`
+        - `environments` from `STRADDLE_ENVIRONMENT`
         """
         if api_key is None:
             api_key = os.environ.get("STRADDLE_API_KEY")
@@ -317,6 +331,10 @@ class AsyncStraddle(AsyncAPIClient):
                 "The api_key client option must be set either by passing api_key to the client or by setting the STRADDLE_API_KEY environment variable"
             )
         self.api_key = api_key
+
+        if environments is None:
+            environments = os.environ.get("STRADDLE_ENVIRONMENT") or "sandbox"
+        self.environments = environments
 
         self._environment = environment
 
@@ -391,6 +409,7 @@ class AsyncStraddle(AsyncAPIClient):
         self,
         *,
         api_key: str | None = None,
+        environments: str | None = None,
         environment: Literal["production", "sandbox"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -426,6 +445,7 @@ class AsyncStraddle(AsyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             api_key=api_key or self.api_key,
+            environments=environments or self.environments,
             base_url=base_url or self.base_url,
             environment=environment or self._environment,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
