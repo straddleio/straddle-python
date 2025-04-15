@@ -25,8 +25,8 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
+from datetime import date
 from straddle import Straddle
-from straddle._utils import parse_date
 
 client = Straddle(
     api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
@@ -43,7 +43,7 @@ charge_v1 = client.charges.create(
     device={"ip_address": "192.168.1.1"},
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 )
 print(charge_v1.data)
 ```
@@ -59,9 +59,9 @@ Simply import `AsyncStraddle` instead of `Straddle` and use `await` with each AP
 
 ```python
 import os
+from datetime import date
 import asyncio
 from straddle import AsyncStraddle
-from straddle._utils import parse_date
 
 client = AsyncStraddle(
     api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
@@ -80,7 +80,7 @@ async def main() -> None:
         device={"ip_address": "192.168.1.1"},
         external_id="external_id",
         paykey="paykey",
-        payment_date=parse_date("2019-12-27"),
+        payment_date=date.fromisoformat("2019-12-27"),
     )
     print(charge_v1.data)
 
@@ -160,7 +160,7 @@ for payment in first_page.data:
 # Remove `await` for non-async usage.
 ```
 
-from straddle.\_utils import parse_date
+from datetime import date
 
 ## Nested params
 
@@ -180,7 +180,7 @@ charge_v1 = client.charges.create(
     device={"ip_address": "192.168.1.1"},
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 )
 print(charge_v1.config)
 ```
@@ -195,7 +195,7 @@ response), a subclass of `straddle.APIStatusError` is raised, containing `status
 All errors inherit from `straddle.APIError`.
 
 ```python
-from straddle._utils import parse_date
+from datetime import date
 
 import straddle
 from straddle import Straddle
@@ -212,7 +212,7 @@ try:
         device={"ip_address": "192.168.1.1"},
         external_id="external_id",
         paykey="paykey",
-        payment_date=parse_date("2019-12-27"),
+        payment_date=date.fromisoformat("2019-12-27"),
     )
 except straddle.APIConnectionError as e:
     print("The server could not be reached")
@@ -247,7 +247,7 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from straddle._utils import parse_date
+from datetime import date
 
 from straddle import Straddle
 
@@ -267,7 +267,7 @@ client.with_options(max_retries=5).charges.create(
     device={"ip_address": "192.168.1.1"},
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 )
 ```
 
@@ -277,7 +277,7 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from straddle._utils import parse_date
+from datetime import date
 
 from straddle import Straddle
 
@@ -302,7 +302,7 @@ client.with_options(timeout=5.0).charges.create(
     device={"ip_address": "192.168.1.1"},
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 )
 ```
 
@@ -357,7 +357,7 @@ response = client.charges.with_raw_response.create(
     },
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=SDK_Symbol_0_date.fromisoformat("2019-12-27"),
 )
 print(response.headers.get('X-My-Header'))
 
@@ -385,7 +385,7 @@ with client.charges.with_streaming_response.create(
     device={"ip_address": "192.168.1.1"},
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=SDK_Symbol_1_date.fromisoformat("2019-12-27"),
 ) as response:
     print(response.headers.get("X-My-Header"))
 
