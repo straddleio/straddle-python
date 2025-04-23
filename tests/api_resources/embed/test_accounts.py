@@ -216,6 +216,8 @@ class TestAccounts:
             search_text="search_text",
             sort_by="sort_by",
             sort_order="asc",
+            status="unknown",
+            type="unknown",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -608,6 +610,8 @@ class TestAsyncAccounts:
             search_text="search_text",
             sort_by="sort_by",
             sort_order="asc",
+            status="unknown",
+            type="unknown",
             correlation_id="correlation-id",
             request_id="request-id",
         )

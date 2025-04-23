@@ -23,6 +23,8 @@ __all__ = [
     "DataIdentityDetailsKYC",
     "DataIdentityDetailsKYCValidations",
     "DataIdentityDetailsNetworkAlerts",
+    "DataIdentityDetailsReputation",
+    "DataIdentityDetailsReputationInsights",
     "DataIdentityDetailsWatchList",
     "DataIdentityDetailsWatchListMatch",
 ]
@@ -187,8 +189,87 @@ class DataIdentityDetailsNetworkAlerts(BaseModel):
     decision: Optional[Literal["accept", "reject", "review"]] = None
 
 
+class DataIdentityDetailsReputationInsights(BaseModel):
+    accounts_active_count: Optional[int] = None
+
+    accounts_closed_count: Optional[int] = None
+
+    accounts_closed_dates: Optional[List[date]] = None
+
+    accounts_count: Optional[int] = None
+
+    accounts_fraud_count: Optional[int] = None
+
+    accounts_fraud_labeled_dates: Optional[List[date]] = None
+
+    accounts_fraud_loss_total_amount: Optional[float] = None
+
+    ach_fraud_transactions_count: Optional[int] = None
+
+    ach_fraud_transactions_dates: Optional[List[date]] = None
+
+    ach_fraud_transactions_total_amount: Optional[float] = None
+
+    ach_returned_transactions_count: Optional[int] = None
+
+    ach_returned_transactions_dates: Optional[List[date]] = None
+
+    ach_returned_transactions_total_amount: Optional[float] = None
+
+    applications_approved_count: Optional[int] = None
+
+    applications_count: Optional[int] = None
+
+    applications_dates: Optional[List[date]] = None
+
+    applications_declined_count: Optional[int] = None
+
+    applications_fraud_count: Optional[int] = None
+
+    card_disputed_transactions_count: Optional[int] = None
+
+    card_disputed_transactions_dates: Optional[List[date]] = None
+
+    card_disputed_transactions_total_amount: Optional[float] = None
+
+    card_fraud_transactions_count: Optional[int] = None
+
+    card_fraud_transactions_dates: Optional[List[date]] = None
+
+    card_fraud_transactions_total_amount: Optional[float] = None
+
+    card_stopped_transactions_count: Optional[int] = None
+
+    card_stopped_transactions_dates: Optional[List[date]] = None
+
+    user_active_profile_count: Optional[int] = None
+
+    user_address_count: Optional[int] = None
+
+    user_closed_profile_count: Optional[int] = None
+
+    user_dob_count: Optional[int] = None
+
+    user_email_count: Optional[int] = None
+
+    user_institution_count: Optional[int] = None
+
+    user_mobile_count: Optional[int] = None
+
+
+class DataIdentityDetailsReputation(BaseModel):
+    codes: Optional[List[str]] = None
+    """Specific codes related to the Straddle reputation screening results."""
+
+    decision: Optional[Literal["accept", "reject", "review"]] = None
+
+    insights: Optional[DataIdentityDetailsReputationInsights] = None
+
+    risk_score: Optional[float] = None
+
+
 class DataIdentityDetailsWatchListMatch(BaseModel):
-    correlation: Literal["low_confidence", "potential_match", "likely_match", "high_confidence"]
+    correlation: Literal["low_confidence", "potential_match", "likely_match", "high_confidence", "unknown"]
 
     list_name: str
     """The name of the list the match was found."""
@@ -237,6 +318,8 @@ class DataIdentityDetails(BaseModel):
     """Dictionary of all messages from the customer verification process."""
 
     network_alerts: Optional[DataIdentityDetailsNetworkAlerts] = None
+
+    reputation: Optional[DataIdentityDetailsReputation] = None
 
     watch_list: Optional[DataIdentityDetailsWatchList] = None
 
