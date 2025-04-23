@@ -341,6 +341,8 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
+from datetime import date
+
 from straddle import Straddle
 
 client = Straddle()
@@ -357,13 +359,15 @@ response = client.charges.with_raw_response.create(
     },
     external_id="external_id",
     paykey="paykey",
-    payment_date=SDK_Symbol_0_date.fromisoformat("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 )
 print(response.headers.get('X-My-Header'))
 
 charge = response.parse()  # get the object that `charges.create()` would have returned
 print(charge.data)
 ```
+
+from datetime import date
 
 These methods return an [`APIResponse`](https://github.com/straddleio/straddle-python/tree/main/src/straddle/_response.py) object.
 
@@ -385,7 +389,7 @@ with client.charges.with_streaming_response.create(
     device={"ip_address": "192.168.1.1"},
     external_id="external_id",
     paykey="paykey",
-    payment_date=SDK_Symbol_1_date.fromisoformat("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 ) as response:
     print(response.headers.get("X-My-Header"))
 
