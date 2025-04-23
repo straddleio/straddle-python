@@ -59,7 +59,7 @@ class Data(BaseModel):
     This value is used to create payments and should be stored securely.
     """
 
-    source: Literal["bank_account", "straddle", "mx", "plaid"]
+    source: Literal["bank_account", "straddle", "mx", "plaid", "tan"]
 
     status: Literal["pending", "active", "inactive", "rejected"]
 
