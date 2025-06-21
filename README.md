@@ -90,6 +90,49 @@ asyncio.run(main())
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
 
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from PyPI
+pip install straddle[aiohttp]
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import os
+import asyncio
+from straddle import DefaultAioHttpClient
+from datetime import date
+from straddle import AsyncStraddle
+
+
+async def main() -> None:
+    async with AsyncStraddle(
+        api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        charge_v1 = await client.charges.create(
+            amount=10000,
+            config={"balance_check": "required"},
+            consent_type="internet",
+            currency="currency",
+            description="Monthly subscription fee",
+            device={"ip_address": "192.168.1.1"},
+            external_id="external_id",
+            paykey="paykey",
+            payment_date=date.fromisoformat("2019-12-27"),
+        )
+        print(charge_v1.data)
+
+
+asyncio.run(main())
+```
+
 ## Using types
 
 Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
