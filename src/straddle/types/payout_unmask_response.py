@@ -5,13 +5,12 @@ from datetime import date, datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .shared.device_info_v1 import DeviceInfoV1
 from .shared.paykey_details_v1 import PaykeyDetailsV1
 from .shared.response_metadata import ResponseMetadata
 from .shared.status_details_v1 import StatusDetailsV1
 from .shared.customer_details_v1 import CustomerDetailsV1
 
-__all__ = ["PayoutV1", "Data", "DataConfig", "DataStatusHistory"]
+__all__ = ["PayoutUnmaskResponse", "Data", "DataConfig", "DataDevice", "DataStatusHistory"]
 
 
 class DataConfig(BaseModel):
@@ -31,6 +30,11 @@ class DataConfig(BaseModel):
         ]
     ] = None
     """Payment will simulate processing if not Standard."""
+
+
+class DataDevice(BaseModel):
+    ip_address: str
+    """Ip address."""
 
 
 class DataStatusHistory(BaseModel):
@@ -82,87 +86,66 @@ class DataStatusHistory(BaseModel):
 
 class Data(BaseModel):
     id: str
-    """Unique identifier for the payout."""
+    """Id."""
 
     amount: int
-    """The amount of the payout in cents."""
+    """Amount."""
 
     config: DataConfig
-    """Configuration for the payout."""
 
     currency: str
-    """The currency of the payout. Only USD is supported."""
+    """Currency."""
 
     description: str
-    """An arbitrary description for the payout."""
+    """Description."""
 
-    device: DeviceInfoV1
-    """Information about the device used when the customer authorized the payout."""
+    device: DataDevice
 
     external_id: str
-    """Unique identifier for the payout in your database.
-
-    This value must be unique across all payouts.
-    """
+    """External id."""
 
     funding_ids: List[str]
     """Funding Ids"""
 
     paykey: str
-    """Value of the `paykey` used for the payout."""
+    """Paykey."""
 
     payment_date: date
-    """The desired date on which the payment should be occur.
-
-    For payouts, this means the date you want the funds to be sent from your bank
-    account.
-    """
+    """Payment date."""
 
     status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
-    """The current status of the payout."""
+    """The current status of the `charge` or `payout`."""
 
     status_details: StatusDetailsV1
-    """Details about the current status of the payout."""
 
     status_history: List[DataStatusHistory]
-    """History of the status changes for the payout."""
+    """Status history."""
 
     created_at: Optional[datetime] = None
-    """The time the payout was created."""
+    """Created at."""
 
     customer_details: Optional[CustomerDetailsV1] = None
-    """Information about the customer associated with the payout."""
+    """Information about the customer associated with the charge or payout."""
 
     effective_at: Optional[datetime] = None
-    """The actual date on which the payment occurred.
-
-    For payouts, this is the date the funds were sent from your bank account.
-    """
+    """Effective at."""
 
     metadata: Optional[Dict[str, str]] = None
-    """Up to 20 additional user-defined key-value pairs.
-
-    Useful for storing additional information about the payout in a structured
-    format.
-    """
+    """Metadata."""
 
     paykey_details: Optional[PaykeyDetailsV1] = None
-    """Information about the paykey used for the payout."""
 
     payment_rail: Optional[Literal["ach"]] = None
-    """The payment rail used for the payout."""
+    """The payment rail used for the charge or payout."""
 
     processed_at: Optional[datetime] = None
-    """
-    The time the payout was processed by Straddle and originated to the payment
-    rail.
-    """
+    """Processed at."""
 
     updated_at: Optional[datetime] = None
-    """The time the payout was last updated."""
+    """Updated at."""
 
 
-class PayoutV1(BaseModel):
+class PayoutUnmaskResponse(BaseModel):
     data: Data
 
     meta: ResponseMetadata

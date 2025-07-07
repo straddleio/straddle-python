@@ -15,6 +15,7 @@ __all__ = [
     "DataComplianceProfileIndividualComplianceProfile",
     "DataComplianceProfileBusinessComplianceProfile",
     "DataComplianceProfileBusinessComplianceProfileRepresentative",
+    "DataConfig",
     "DataDevice",
 ]
 
@@ -60,6 +61,12 @@ DataComplianceProfile: TypeAlias = Union[
 ]
 
 
+class DataConfig(BaseModel):
+    processing_method: Optional[Literal["inline", "background", "skip"]] = None
+
+    sandbox_outcome: Optional[Literal["standard", "verified", "rejected", "review"]] = None
+
+
 class DataDevice(BaseModel):
     ip_address: str
     """The customer's IP address at the time of profile creation.
@@ -86,7 +93,7 @@ class Data(BaseModel):
 
     status: Literal["pending", "review", "verified", "inactive", "rejected"]
 
-    type: Literal["individual", "business"]
+    type: Literal["individual", "business", "unknown"]
 
     updated_at: datetime
     """Timestamp of the most recent update to the customer record."""
@@ -99,6 +106,8 @@ class Data(BaseModel):
 
     compliance_profile: Optional[DataComplianceProfile] = None
     """PII required to trigger Patriot Act compliant KYC verification."""
+
+    config: Optional[DataConfig] = None
 
     device: Optional[DataDevice] = None
 

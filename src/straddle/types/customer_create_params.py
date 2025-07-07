@@ -16,6 +16,7 @@ __all__ = [
     "ComplianceProfileIndividualComplianceProfile",
     "ComplianceProfileBusinessComplianceProfile",
     "ComplianceProfileBusinessComplianceProfileRepresentative",
+    "Config",
 ]
 
 
@@ -31,7 +32,7 @@ class CustomerCreateParams(TypedDict, total=False):
     phone: Required[str]
     """The customer's phone number in E.164 format. Mobile number is preferred."""
 
-    type: Required[Literal["individual", "business"]]
+    type: Required[Literal["individual", "business", "unknown"]]
 
     address: Optional[CustomerAddressV1Param]
     """An object containing the customer's address.
@@ -45,6 +46,8 @@ class CustomerCreateParams(TypedDict, total=False):
     **This is optional.** If all required fields must be present for the appropriate
     customer type.
     """
+
+    config: Config
 
     external_id: Optional[str]
     """
@@ -114,3 +117,9 @@ class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
 ComplianceProfile: TypeAlias = Union[
     ComplianceProfileIndividualComplianceProfile, ComplianceProfileBusinessComplianceProfile
 ]
+
+
+class Config(TypedDict, total=False):
+    processing_method: Literal["inline", "background", "skip"]
+
+    sandbox_outcome: Literal["standard", "verified", "rejected", "review"]

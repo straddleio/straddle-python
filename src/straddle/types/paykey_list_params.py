@@ -24,7 +24,10 @@ class PaykeyListParams(TypedDict, total=False):
 
     sort_order: Literal["asc", "desc"]
 
-    status: List[Literal["pending", "active", "inactive", "rejected"]]
+    source: List[Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]]
+    """Filter paykeys by their source."""
+
+    status: List[Literal["pending", "active", "inactive", "rejected", "review"]]
     """Filter paykeys by their current status."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]

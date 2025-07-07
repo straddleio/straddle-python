@@ -28,6 +28,7 @@ class TestBridge:
     def test_method_initialize_with_all_params(self, client: Straddle) -> None:
         bridge = client.bridge.initialize(
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            config={"sandbox_outcome": "standard"},
             correlation_id="Correlation-Id",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -75,6 +76,7 @@ class TestAsyncBridge:
     async def test_method_initialize_with_all_params(self, async_client: AsyncStraddle) -> None:
         bridge = await async_client.bridge.initialize(
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            config={"sandbox_outcome": "standard"},
             correlation_id="Correlation-Id",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",

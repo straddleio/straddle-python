@@ -8,8 +8,20 @@ __all__ = ["AddressV1"]
 
 
 class AddressV1(BaseModel):
+    address1: str
+    """Primary address line (e.g., street, PO Box)."""
+
     city: Optional[str] = None
     """City, district, suburb, town, or village."""
+
+    state: Optional[str] = None
+    """Two-letter state code."""
+
+    zip: str
+    """Zip or postal code."""
+
+    address2: Optional[str] = None
+    """Secondary address line (e.g., apartment, suite, unit, or building)."""
 
     country: Optional[str] = None
     """The country of the address, in ISO 3166-1 alpha-2 format."""
@@ -22,6 +34,3 @@ class AddressV1(BaseModel):
 
     postal_code: Optional[str] = None
     """Postal or ZIP code."""
-
-    state: Optional[str] = None
-    """Two-letter state code."""

@@ -4,10 +4,10 @@ from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._models import BaseModel
-from .shared.response_metadata import ResponseMetadata
+from ..._models import BaseModel
+from ..shared.response_metadata import ResponseMetadata
 
-__all__ = ["PaykeyUnmaskedV1", "Data", "DataConfig", "DataBalance", "DataBankData", "DataStatusDetails"]
+__all__ = ["LinkCreatePaykeyResponse", "Data", "DataConfig", "DataBalance", "DataBankData", "DataStatusDetails"]
 
 
 class DataConfig(BaseModel):
@@ -26,7 +26,11 @@ class DataBalance(BaseModel):
 
 class DataBankData(BaseModel):
     account_number: str
-    """The bank account number"""
+    """Bank account number.
+
+    This value is masked by default for security reasons. Use the /unmask endpoint
+    to access the unmasked value.
+    """
 
     account_type: Literal["checking", "savings"]
 
@@ -80,12 +84,15 @@ class Data(BaseModel):
     """Timestamp of when the paykey was created."""
 
     label: str
-    """Human-readable label used to represent this paykey in a UI."""
+    """
+    Human-readable label that combines the bank name and masked account number to
+    help easility represent this paykey in a UI
+    """
 
     paykey: str
     """The tokenized paykey value.
 
-    This value is used to create payments and should be stored securely.
+    This token is used to create payments and should be stored securely.
     """
 
     source: Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]
@@ -118,7 +125,7 @@ class Data(BaseModel):
     status_details: Optional[DataStatusDetails] = None
 
 
-class PaykeyUnmaskedV1(BaseModel):
+class LinkCreatePaykeyResponse(BaseModel):
     data: Data
 
     meta: ResponseMetadata

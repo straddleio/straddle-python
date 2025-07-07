@@ -116,9 +116,17 @@ Methods:
 
 ## Link
 
+Types:
+
+```python
+from straddle.types.bridge import LinkCreatePaykeyResponse, LinkCreateTanResponse
+```
+
 Methods:
 
 - <code title="post /v1/bridge/bank_account">client.bridge.link.<a href="./src/straddle/resources/bridge/link.py">bank_account</a>(\*\*<a href="src/straddle/types/bridge/link_bank_account_params.py">params</a>) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
+- <code title="post /v1/bridge/quiltt">client.bridge.link.<a href="./src/straddle/resources/bridge/link.py">create_paykey</a>(\*\*<a href="src/straddle/types/bridge/link_create_paykey_params.py">params</a>) -> <a href="./src/straddle/types/bridge/link_create_paykey_response.py">LinkCreatePaykeyResponse</a></code>
+- <code title="post /v1/bridge/tan">client.bridge.link.<a href="./src/straddle/resources/bridge/link.py">create_tan</a>(\*\*<a href="src/straddle/types/bridge/link_create_tan_params.py">params</a>) -> <a href="./src/straddle/types/bridge/link_create_tan_response.py">LinkCreateTanResponse</a></code>
 - <code title="post /v1/bridge/plaid">client.bridge.link.<a href="./src/straddle/resources/bridge/link.py">plaid</a>(\*\*<a href="src/straddle/types/bridge/link_plaid_params.py">params</a>) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
 
 # Customers
@@ -169,6 +177,7 @@ from straddle.types import PaykeySummaryPagedV1, PaykeyUnmaskedV1, PaykeyV1, Pay
 Methods:
 
 - <code title="get /v1/paykeys">client.paykeys.<a href="./src/straddle/resources/paykeys.py">list</a>(\*\*<a href="src/straddle/types/paykey_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
+- <code title="put /v1/paykeys/{id}/cancel">client.paykeys.<a href="./src/straddle/resources/paykeys.py">cancel</a>(id, \*\*<a href="src/straddle/types/paykey_cancel_params.py">params</a>) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
 - <code title="get /v1/paykeys/{id}">client.paykeys.<a href="./src/straddle/resources/paykeys.py">get</a>(id) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
 - <code title="get /v1/paykeys/{id}/reveal">client.paykeys.<a href="./src/straddle/resources/paykeys.py">reveal</a>(id) -> <a href="./src/straddle/types/paykey_reveal_response.py">PaykeyRevealResponse</a></code>
 - <code title="get /v1/paykeys/{id}/unmasked">client.paykeys.<a href="./src/straddle/resources/paykeys.py">unmasked</a>(id) -> <a href="./src/straddle/types/paykey_unmasked_v1.py">PaykeyUnmaskedV1</a></code>
@@ -178,7 +187,7 @@ Methods:
 Types:
 
 ```python
-from straddle.types import ChargeV1
+from straddle.types import ChargeV1, ChargeUnmaskResponse
 ```
 
 Methods:
@@ -189,6 +198,7 @@ Methods:
 - <code title="get /v1/charges/{id}">client.charges.<a href="./src/straddle/resources/charges.py">get</a>(id) -> <a href="./src/straddle/types/charge_v1.py">ChargeV1</a></code>
 - <code title="put /v1/charges/{id}/hold">client.charges.<a href="./src/straddle/resources/charges.py">hold</a>(id, \*\*<a href="src/straddle/types/charge_hold_params.py">params</a>) -> <a href="./src/straddle/types/charge_v1.py">ChargeV1</a></code>
 - <code title="put /v1/charges/{id}/release">client.charges.<a href="./src/straddle/resources/charges.py">release</a>(id, \*\*<a href="src/straddle/types/charge_release_params.py">params</a>) -> <a href="./src/straddle/types/charge_v1.py">ChargeV1</a></code>
+- <code title="get /v1/charges/{id}/unmask">client.charges.<a href="./src/straddle/resources/charges.py">unmask</a>(id) -> <a href="./src/straddle/types/charge_unmask_response.py">ChargeUnmaskResponse</a></code>
 
 # FundingEvents
 
@@ -220,7 +230,7 @@ Methods:
 Types:
 
 ```python
-from straddle.types import PayoutV1
+from straddle.types import PayoutV1, PayoutUnmaskResponse
 ```
 
 Methods:
@@ -231,6 +241,7 @@ Methods:
 - <code title="get /v1/payouts/{id}">client.payouts.<a href="./src/straddle/resources/payouts.py">get</a>(id) -> <a href="./src/straddle/types/payout_v1.py">PayoutV1</a></code>
 - <code title="put /v1/payouts/{id}/hold">client.payouts.<a href="./src/straddle/resources/payouts.py">hold</a>(id, \*\*<a href="src/straddle/types/payout_hold_params.py">params</a>) -> <a href="./src/straddle/types/payout_v1.py">PayoutV1</a></code>
 - <code title="put /v1/payouts/{id}/release">client.payouts.<a href="./src/straddle/resources/payouts.py">release</a>(id, \*\*<a href="src/straddle/types/payout_release_params.py">params</a>) -> <a href="./src/straddle/types/payout_v1.py">PayoutV1</a></code>
+- <code title="get /v1/payouts/{id}/unmask">client.payouts.<a href="./src/straddle/resources/payouts.py">unmask</a>(id) -> <a href="./src/straddle/types/payout_unmask_response.py">PayoutUnmaskResponse</a></code>
 
 # Reports
 

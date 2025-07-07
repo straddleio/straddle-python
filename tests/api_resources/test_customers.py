@@ -53,6 +53,10 @@ class TestCustomers:
                 "dob": parse_date("1969-04-20"),
                 "ssn": "123-45-6789",
             },
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
             external_id="customer_123",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
@@ -452,6 +456,10 @@ class TestAsyncCustomers:
             compliance_profile={
                 "dob": parse_date("1969-04-20"),
                 "ssn": "123-45-6789",
+            },
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
             },
             external_id="customer_123",
             metadata={"foo": "string"},
