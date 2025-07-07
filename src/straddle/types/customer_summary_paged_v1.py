@@ -27,7 +27,7 @@ class Data(BaseModel):
 
     status: Literal["pending", "review", "verified", "inactive", "rejected"]
 
-    type: Literal["individual", "business"]
+    type: Literal["individual", "business", "unknown"]
 
     updated_at: datetime
     """Timestamp of the most recent update to the customer record."""

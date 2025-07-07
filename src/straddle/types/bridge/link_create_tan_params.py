@@ -7,20 +7,20 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["LinkBankAccountParams", "Config"]
+__all__ = ["LinkCreateTanParams", "Config"]
 
 
-class LinkBankAccountParams(TypedDict, total=False):
-    account_number: Required[str]
-    """The bank account number."""
-
+class LinkCreateTanParams(TypedDict, total=False):
     account_type: Required[Literal["checking", "savings"]]
 
     customer_id: Required[str]
     """Unique identifier of the related customer object."""
 
     routing_number: Required[str]
-    """The routing number of the bank account."""
+    """Bank routing number."""
+
+    tan: Required[str]
+    """Tokenized account number."""
 
     config: Config
 

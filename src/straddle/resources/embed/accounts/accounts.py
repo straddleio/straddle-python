@@ -211,8 +211,8 @@ class AccountsResource(SyncAPIResource):
         search_text: str | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: Literal["unknown", "created", "onboarding", "active", "rejected", "inactive"] | NotGiven = NOT_GIVEN,
-        type: Literal["unknown", "business"] | NotGiven = NOT_GIVEN,
+        status: Literal["created", "onboarding", "active", "rejected", "inactive"] | NotGiven = NOT_GIVEN,
+        type: Literal["business"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -597,8 +597,8 @@ class AsyncAccountsResource(AsyncAPIResource):
         search_text: str | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: Literal["unknown", "created", "onboarding", "active", "rejected", "inactive"] | NotGiven = NOT_GIVEN,
-        type: Literal["unknown", "business"] | NotGiven = NOT_GIVEN,
+        status: Literal["created", "onboarding", "active", "rejected", "inactive"] | NotGiven = NOT_GIVEN,
+        type: Literal["business"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

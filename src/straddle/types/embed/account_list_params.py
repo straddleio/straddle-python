@@ -24,9 +24,9 @@ class AccountListParams(TypedDict, total=False):
     sort_order: Literal["asc", "desc"]
     """Sort Order. Default value: 'asc'."""
 
-    status: Literal["unknown", "created", "onboarding", "active", "rejected", "inactive"]
+    status: Literal["created", "onboarding", "active", "rejected", "inactive"]
 
-    type: Literal["unknown", "business"]
+    type: Literal["business"]
 
     correlation_id: Annotated[str, PropertyInfo(alias="correlation-id")]
 

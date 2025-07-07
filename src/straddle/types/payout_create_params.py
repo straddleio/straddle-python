@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing import Dict, Union, Optional
 from datetime import date
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .shared_params.device_info_v1 import DeviceInfoV1
 
-__all__ = ["PayoutCreateParams"]
+__all__ = ["PayoutCreateParams", "Config"]
 
 
 class PayoutCreateParams(TypedDict, total=False):
@@ -41,7 +41,7 @@ class PayoutCreateParams(TypedDict, total=False):
     account.
     """
 
-    config: object
+    config: Config
 
     metadata: Optional[Dict[str, str]]
     """Up to 20 additional user-defined key-value pairs.
@@ -55,3 +55,20 @@ class PayoutCreateParams(TypedDict, total=False):
     request_id: Annotated[str, PropertyInfo(alias="Request-Id")]
 
     straddle_account_id: Annotated[str, PropertyInfo(alias="Straddle-Account-Id")]
+
+
+class Config(TypedDict, total=False):
+    sandbox_outcome: Literal[
+        "standard",
+        "paid",
+        "on_hold_daily_limit",
+        "cancelled_for_fraud_risk",
+        "cancelled_for_balance_check",
+        "failed_insufficient_funds",
+        "reversed_insufficient_funds",
+        "failed_customer_dispute",
+        "reversed_customer_dispute",
+        "failed_closed_bank_account",
+        "reversed_closed_bank_account",
+    ]
+    """Payment will simulate processing if not Standard."""
