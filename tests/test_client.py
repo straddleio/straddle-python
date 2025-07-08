@@ -564,12 +564,10 @@ class TestStraddle:
         # explicit environment arg requires explicitness
         with update_env(STRADDLE_BASE_URL="http://localhost:5000/from/env"):
             with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                Straddle(api_key=api_key, _strict_response_validation=True, environment="production")
+                Straddle(api_key=api_key, _strict_response_validation=True, environment="sandbox")
 
-            client = Straddle(
-                base_url=None, api_key=api_key, _strict_response_validation=True, environment="production"
-            )
-            assert str(client.base_url).startswith("https://production.straddle.io")
+            client = Straddle(base_url=None, api_key=api_key, _strict_response_validation=True, environment="sandbox")
+            assert str(client.base_url).startswith("https://sandbox.straddle.io")
 
     @pytest.mark.parametrize(
         "client",
@@ -1429,12 +1427,12 @@ class TestAsyncStraddle:
         # explicit environment arg requires explicitness
         with update_env(STRADDLE_BASE_URL="http://localhost:5000/from/env"):
             with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                AsyncStraddle(api_key=api_key, _strict_response_validation=True, environment="production")
+                AsyncStraddle(api_key=api_key, _strict_response_validation=True, environment="sandbox")
 
             client = AsyncStraddle(
-                base_url=None, api_key=api_key, _strict_response_validation=True, environment="production"
+                base_url=None, api_key=api_key, _strict_response_validation=True, environment="sandbox"
             )
-            assert str(client.base_url).startswith("https://production.straddle.io")
+            assert str(client.base_url).startswith("https://sandbox.straddle.io")
 
     @pytest.mark.parametrize(
         "client",

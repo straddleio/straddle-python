@@ -30,8 +30,8 @@ from straddle import Straddle
 
 client = Straddle(
     api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
-    # defaults to "production".
-    environment="sandbox",
+    # defaults to "sandbox".
+    environment="production",
 )
 
 charge_v1 = client.charges.create(
@@ -65,8 +65,8 @@ from straddle import AsyncStraddle
 
 client = AsyncStraddle(
     api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
-    # defaults to "production".
-    environment="sandbox",
+    # defaults to "sandbox".
+    environment="production",
 )
 
 
