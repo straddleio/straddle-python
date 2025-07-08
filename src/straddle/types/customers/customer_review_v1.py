@@ -106,7 +106,7 @@ class DataCustomerDetails(BaseModel):
 
     status: Literal["pending", "review", "verified", "inactive", "rejected"]
 
-    type: Literal["individual", "business", "unknown"]
+    type: Literal["individual", "business"]
 
     updated_at: datetime
     """Timestamp of the most recent update to the customer record."""
@@ -278,7 +278,7 @@ class DataIdentityDetailsReputation(BaseModel):
 
 
 class DataIdentityDetailsWatchListMatch(BaseModel):
-    correlation: Literal["low_confidence", "potential_match", "likely_match", "high_confidence", "unknown"]
+    correlation: Literal["low_confidence", "potential_match", "likely_match", "high_confidence"]
 
     list_name: str
     """The name of the list the match was found."""

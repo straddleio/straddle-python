@@ -43,7 +43,7 @@ class CustomerListParams(TypedDict, total=False):
     status: List[Literal["pending", "review", "verified", "inactive", "rejected"]]
     """Filter customers by their current `status`."""
 
-    types: List[Literal["individual", "business", "unknown"]]
+    types: List[Literal["individual", "business"]]
     """Filter by customer type `individual` or `business`."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
