@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import date, datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -15,65 +15,65 @@ __all__ = [
     "DataComplianceProfile",
     "DataComplianceProfileIndividualComplianceProfile",
     "DataComplianceProfileBusinessComplianceProfile",
+    "DataComplianceProfileBusinessComplianceProfileRepresentative",
+    "DataConfig",
 ]
 
 
 class DataComplianceProfileIndividualComplianceProfile(BaseModel):
-    dob: date
-    """Date of birth in YYYY-MM-DD format."""
+    dob: Optional[date] = None
+    """Date of birth (YYYY-MM-DD).
 
-    ssn: str
-    """Social Security Number in the format XXX-XX-XXXX."""
-
-    ein: Optional[str] = None
-    """Full 9-digit Employer Identification Number for businesses.
-
-    This data is required to trigger Patriot Act compliant KYB verification. Only
-    valid where customer type is 'business'.
-    """
-
-    legal_business_name: Optional[str] = None
-    """The official name of the business.
-
-    This name should be correlated with the ein value. Only valid where customer
-    type is 'business'.
-    """
-
-    website: Optional[str] = None
-    """URL of the company's official website."""
-
-
-class DataComplianceProfileBusinessComplianceProfile(BaseModel):
-    ein: str
-    """Employer Identification Number in the format XX-XXXXXXX."""
-
-    legal_business_name: str
-    """The official registered name of the business.
-
-    This name should be correlated with the `ein` value.
-    """
-
-    dob: Optional[str] = None
-    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
-
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if SSN is provided. Only valid where customer type is 'individual'.
+    Required for Patriot Act-compliant KYC verification.
     """
 
     ssn: Optional[str] = None
-    """Full 9-digit Social Security Number or government identifier for individuals.
+    """Social Security Number (format XXX-XX-XXXX).
 
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if DOB is provided. Only valid where customer type is 'individual'.
+    Required for Patriot Act-compliant KYC verification.
+    """
+
+
+class DataComplianceProfileBusinessComplianceProfileRepresentative(BaseModel):
+    name: str
+
+    email: Optional[str] = None
+
+    phone: Optional[str] = None
+
+
+class DataComplianceProfileBusinessComplianceProfile(BaseModel):
+    ein: Optional[str] = None
+    """Employer Identification Number (format XX-XXXXXXX).
+
+    Required for Patriot Act-compliant KYB verification.
+    """
+
+    legal_business_name: Optional[str] = None
+    """Official registered business name as listed with the IRS.
+
+    This value will be matched against the 'legal_business name'.
+    """
+
+    representatives: Optional[List[DataComplianceProfileBusinessComplianceProfileRepresentative]] = None
+    """A list of people related to the company.
+
+    Only valid where customer type is 'business'.
     """
 
     website: Optional[str] = None
-    """Business website URL."""
+    """Official business website URL. Optional but recommended for enhanced KYB."""
 
 
 DataComplianceProfile: TypeAlias = Union[
-    DataComplianceProfileIndividualComplianceProfile, DataComplianceProfileBusinessComplianceProfile
+    DataComplianceProfileIndividualComplianceProfile, DataComplianceProfileBusinessComplianceProfile, None
 ]
+
+
+class DataConfig(BaseModel):
+    processing_method: Optional[Literal["inline", "background", "skip"]] = None
+
+    sandbox_outcome: Optional[Literal["standard", "verified", "rejected", "review"]] = None
 
 
 class Data(BaseModel):
@@ -100,9 +100,15 @@ class Data(BaseModel):
     """Timestamp of the most recent update to the customer record."""
 
     address: Optional[CustomerAddressV1] = None
+    """An object containing the customer's address.
+
+    This is optional, but if provided, all required fields must be present.
+    """
 
     compliance_profile: Optional[DataComplianceProfile] = None
-    """Compliance profile for individual customers"""
+    """Individual PII data required to trigger Patriot Act compliant KYC verification."""
+
+    config: Optional[DataConfig] = None
 
     device: Optional[DeviceUnmaskedV1] = None
 

@@ -1,12 +1,12 @@
 # Straddle Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/straddle.svg)](https://pypi.org/project/straddle/)
+[![PyPI version](<https://img.shields.io/pypi/v/straddle.svg?label=pypi%20(stable)>)](https://pypi.org/project/straddle/)
 
 The Straddle Python library provides convenient access to the Straddle REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Documentation
 
@@ -25,17 +25,17 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
+from datetime import date
 from straddle import Straddle
-from straddle._utils import parse_date
 
 client = Straddle(
     api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
-    # defaults to "production".
-    environment="sandbox",
+    # defaults to "sandbox".
+    environment="production",
 )
 
 charge_v1 = client.charges.create(
-    amount=0,
+    amount=10000,
     config={"balance_check": "required"},
     consent_type="internet",
     currency="currency",
@@ -43,7 +43,7 @@ charge_v1 = client.charges.create(
     device={"ip_address": "192.168.1.1"},
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 )
 print(charge_v1.data)
 ```
@@ -59,20 +59,20 @@ Simply import `AsyncStraddle` instead of `Straddle` and use `await` with each AP
 
 ```python
 import os
+from datetime import date
 import asyncio
 from straddle import AsyncStraddle
-from straddle._utils import parse_date
 
 client = AsyncStraddle(
     api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
-    # defaults to "production".
-    environment="sandbox",
+    # defaults to "sandbox".
+    environment="production",
 )
 
 
 async def main() -> None:
     charge_v1 = await client.charges.create(
-        amount=0,
+        amount=10000,
         config={"balance_check": "required"},
         consent_type="internet",
         currency="currency",
@@ -80,7 +80,7 @@ async def main() -> None:
         device={"ip_address": "192.168.1.1"},
         external_id="external_id",
         paykey="paykey",
-        payment_date=parse_date("2019-12-27"),
+        payment_date=date.fromisoformat("2019-12-27"),
     )
     print(charge_v1.data)
 
@@ -89,6 +89,49 @@ asyncio.run(main())
 ```
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
+
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from PyPI
+pip install straddle[aiohttp]
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import os
+import asyncio
+from straddle import DefaultAioHttpClient
+from datetime import date
+from straddle import AsyncStraddle
+
+
+async def main() -> None:
+    async with AsyncStraddle(
+        api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        charge_v1 = await client.charges.create(
+            amount=10000,
+            config={"balance_check": "required"},
+            consent_type="internet",
+            currency="currency",
+            description="Monthly subscription fee",
+            device={"ip_address": "192.168.1.1"},
+            external_id="external_id",
+            paykey="paykey",
+            payment_date=date.fromisoformat("2019-12-27"),
+        )
+        print(charge_v1.data)
+
+
+asyncio.run(main())
+```
 
 ## Using types
 
@@ -160,6 +203,31 @@ for payment in first_page.data:
 # Remove `await` for non-async usage.
 ```
 
+from datetime import date
+
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from straddle import Straddle
+
+client = Straddle()
+
+charge_v1 = client.charges.create(
+    amount=10000,
+    config={"balance_check": "required"},
+    consent_type="internet",
+    currency="currency",
+    description="Monthly subscription fee",
+    device={"ip_address": "192.168.1.1"},
+    external_id="external_id",
+    paykey="paykey",
+    payment_date=date.fromisoformat("2019-12-27"),
+)
+print(charge_v1.config)
+```
+
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `straddle.APIConnectionError` is raised.
@@ -170,7 +238,7 @@ response), a subclass of `straddle.APIStatusError` is raised, containing `status
 All errors inherit from `straddle.APIError`.
 
 ```python
-from straddle._utils import parse_date
+from datetime import date
 
 import straddle
 from straddle import Straddle
@@ -179,7 +247,7 @@ client = Straddle()
 
 try:
     client.charges.create(
-        amount=0,
+        amount=10000,
         config={"balance_check": "required"},
         consent_type="internet",
         currency="currency",
@@ -187,7 +255,7 @@ try:
         device={"ip_address": "192.168.1.1"},
         external_id="external_id",
         paykey="paykey",
-        payment_date=parse_date("2019-12-27"),
+        payment_date=date.fromisoformat("2019-12-27"),
     )
 except straddle.APIConnectionError as e:
     print("The server could not be reached")
@@ -222,7 +290,7 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from straddle._utils import parse_date
+from datetime import date
 
 from straddle import Straddle
 
@@ -234,7 +302,7 @@ client = Straddle(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).charges.create(
-    amount=0,
+    amount=10000,
     config={"balance_check": "required"},
     consent_type="internet",
     currency="currency",
@@ -242,17 +310,17 @@ client.with_options(max_retries=5).charges.create(
     device={"ip_address": "192.168.1.1"},
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 )
 ```
 
 ### Timeouts
 
 By default requests time out after 1 minute. You can configure this with a `timeout` option,
-which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
+which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
-from straddle._utils import parse_date
+from datetime import date
 
 from straddle import Straddle
 
@@ -269,7 +337,7 @@ client = Straddle(
 
 # Override per-request:
 client.with_options(timeout=5.0).charges.create(
-    amount=0,
+    amount=10000,
     config={"balance_check": "required"},
     consent_type="internet",
     currency="currency",
@@ -277,7 +345,7 @@ client.with_options(timeout=5.0).charges.create(
     device={"ip_address": "192.168.1.1"},
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 )
 ```
 
@@ -316,11 +384,13 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
+from datetime import date
+
 from straddle import Straddle
 
 client = Straddle()
 response = client.charges.with_raw_response.create(
-    amount=0,
+    amount=10000,
     config={
         "balance_check": "required"
     },
@@ -332,13 +402,15 @@ response = client.charges.with_raw_response.create(
     },
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 )
 print(response.headers.get('X-My-Header'))
 
 charge = response.parse()  # get the object that `charges.create()` would have returned
 print(charge.data)
 ```
+
+from datetime import date
 
 These methods return an [`APIResponse`](https://github.com/straddleio/straddle-python/tree/main/src/straddle/_response.py) object.
 
@@ -352,7 +424,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.charges.with_streaming_response.create(
-    amount=0,
+    amount=10000,
     config={"balance_check": "required"},
     consent_type="internet",
     currency="currency",
@@ -360,7 +432,7 @@ with client.charges.with_streaming_response.create(
     device={"ip_address": "192.168.1.1"},
     external_id="external_id",
     paykey="paykey",
-    payment_date=parse_date("2019-12-27"),
+    payment_date=date.fromisoformat("2019-12-27"),
 ) as response:
     print(response.headers.get("X-My-Header"))
 

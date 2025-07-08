@@ -8,11 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -215,6 +211,8 @@ class AccountsResource(SyncAPIResource):
         search_text: str | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        status: Literal["created", "onboarding", "active", "rejected", "inactive"] | NotGiven = NOT_GIVEN,
+        type: Literal["business"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -271,6 +269,8 @@ class AccountsResource(SyncAPIResource):
                         "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "status": status,
+                        "type": type,
                     },
                     account_list_params.AccountListParams,
                 ),
@@ -390,7 +390,7 @@ class AccountsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AccountV1:
-        """Simulte the status transitions for sandbox accounts.
+        """Simulate the status transitions for sandbox accounts.
 
         This endpoint can only be
         used for sandbox accounts.
@@ -597,6 +597,8 @@ class AsyncAccountsResource(AsyncAPIResource):
         search_text: str | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        status: Literal["created", "onboarding", "active", "rejected", "inactive"] | NotGiven = NOT_GIVEN,
+        type: Literal["business"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -653,6 +655,8 @@ class AsyncAccountsResource(AsyncAPIResource):
                         "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "status": status,
+                        "type": type,
                     },
                     account_list_params.AccountListParams,
                 ),
@@ -774,7 +778,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AccountV1:
-        """Simulte the status transitions for sandbox accounts.
+        """Simulate the status transitions for sandbox accounts.
 
         This endpoint can only be
         used for sandbox accounts.

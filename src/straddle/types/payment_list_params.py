@@ -83,6 +83,35 @@ class PaymentListParams(TypedDict, total=False):
 
     sort_order: Literal["asc", "desc"]
 
+    status_reason: List[
+        Literal[
+            "insufficient_funds",
+            "closed_bank_account",
+            "invalid_bank_account",
+            "invalid_routing",
+            "disputed",
+            "payment_stopped",
+            "owner_deceased",
+            "frozen_bank_account",
+            "risk_review",
+            "fraudulent",
+            "duplicate_entry",
+            "invalid_paykey",
+            "payment_blocked",
+            "amount_too_large",
+            "too_many_attempts",
+            "internal_system_error",
+            "user_request",
+            "ok",
+            "other_network_return",
+            "payout_refused",
+        ]
+    ]
+    """Reason for latest payment status change."""
+
+    status_source: List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]
+    """Source of latest payment status change."""
+
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 
     request_id: Annotated[str, PropertyInfo(alias="Request-Id")]

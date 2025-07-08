@@ -14,11 +14,7 @@ from .link import (
 )
 from ...types import bridge_initialize_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -61,6 +57,7 @@ class BridgeResource(SyncAPIResource):
         self,
         *,
         customer_id: str,
+        config: bridge_initialize_params.Config | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
@@ -98,7 +95,13 @@ class BridgeResource(SyncAPIResource):
         }
         return self._post(
             "/v1/bridge/initialize",
-            body=maybe_transform({"customer_id": customer_id}, bridge_initialize_params.BridgeInitializeParams),
+            body=maybe_transform(
+                {
+                    "customer_id": customer_id,
+                    "config": config,
+                },
+                bridge_initialize_params.BridgeInitializeParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -134,6 +137,7 @@ class AsyncBridgeResource(AsyncAPIResource):
         self,
         *,
         customer_id: str,
+        config: bridge_initialize_params.Config | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
@@ -172,7 +176,11 @@ class AsyncBridgeResource(AsyncAPIResource):
         return await self._post(
             "/v1/bridge/initialize",
             body=await async_maybe_transform(
-                {"customer_id": customer_id}, bridge_initialize_params.BridgeInitializeParams
+                {
+                    "customer_id": customer_id,
+                    "config": config,
+                },
+                bridge_initialize_params.BridgeInitializeParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

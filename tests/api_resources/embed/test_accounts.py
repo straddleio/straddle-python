@@ -44,12 +44,15 @@ class TestAccounts:
                 "name": "name",
                 "website": "https://example.com",
                 "address": {
+                    "address1": "address1",
                     "city": "city",
+                    "state": "SE",
+                    "zip": "zip",
+                    "address2": "address2",
                     "country": "country",
                     "line1": "line1",
                     "line2": "line2",
                     "postal_code": "21029-1360",
-                    "state": "SE",
                 },
                 "description": "description",
                 "industry": {
@@ -60,7 +63,7 @@ class TestAccounts:
                 "legal_name": "legal_name",
                 "phone": "+46991022",
                 "support_channels": {
-                    "email": "dev@stainlessapi.com",
+                    "email": "dev@stainless.com",
                     "phone": "+46991022",
                     "url": "https://example.com",
                 },
@@ -130,12 +133,15 @@ class TestAccounts:
                 "name": "name",
                 "website": "https://example.com",
                 "address": {
+                    "address1": "address1",
                     "city": "city",
+                    "state": "SE",
+                    "zip": "zip",
+                    "address2": "address2",
                     "country": "country",
                     "line1": "line1",
                     "line2": "line2",
                     "postal_code": "21029-1360",
-                    "state": "SE",
                 },
                 "description": "description",
                 "industry": {
@@ -146,7 +152,7 @@ class TestAccounts:
                 "legal_name": "legal_name",
                 "phone": "+46991022",
                 "support_channels": {
-                    "email": "dev@stainlessapi.com",
+                    "email": "dev@stainless.com",
                     "phone": "+46991022",
                     "url": "https://example.com",
                 },
@@ -216,6 +222,8 @@ class TestAccounts:
             search_text="search_text",
             sort_by="sort_by",
             sort_order="asc",
+            status="created",
+            type="business",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -295,6 +303,7 @@ class TestAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -306,9 +315,9 @@ class TestAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
                 "accepted_ip": "accepted_ip",
                 "accepted_user_agent": "accepted_user_agent",
-                "agreement_url": "agreement_url",
             },
             correlation_id="correlation-id",
             request_id="request-id",
@@ -322,6 +331,7 @@ class TestAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         )
 
@@ -337,6 +347,7 @@ class TestAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         ) as response:
             assert not response.is_closed
@@ -355,6 +366,7 @@ class TestAccounts:
                 terms_of_service={
                     "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "agreement_type": "embedded",
+                    "agreement_url": "agreement_url",
                 },
             )
 
@@ -408,7 +420,9 @@ class TestAccounts:
 
 
 class TestAsyncAccounts:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncStraddle) -> None:
@@ -432,12 +446,15 @@ class TestAsyncAccounts:
                 "name": "name",
                 "website": "https://example.com",
                 "address": {
+                    "address1": "address1",
                     "city": "city",
+                    "state": "SE",
+                    "zip": "zip",
+                    "address2": "address2",
                     "country": "country",
                     "line1": "line1",
                     "line2": "line2",
                     "postal_code": "21029-1360",
-                    "state": "SE",
                 },
                 "description": "description",
                 "industry": {
@@ -448,7 +465,7 @@ class TestAsyncAccounts:
                 "legal_name": "legal_name",
                 "phone": "+46991022",
                 "support_channels": {
-                    "email": "dev@stainlessapi.com",
+                    "email": "dev@stainless.com",
                     "phone": "+46991022",
                     "url": "https://example.com",
                 },
@@ -518,12 +535,15 @@ class TestAsyncAccounts:
                 "name": "name",
                 "website": "https://example.com",
                 "address": {
+                    "address1": "address1",
                     "city": "city",
+                    "state": "SE",
+                    "zip": "zip",
+                    "address2": "address2",
                     "country": "country",
                     "line1": "line1",
                     "line2": "line2",
                     "postal_code": "21029-1360",
-                    "state": "SE",
                 },
                 "description": "description",
                 "industry": {
@@ -534,7 +554,7 @@ class TestAsyncAccounts:
                 "legal_name": "legal_name",
                 "phone": "+46991022",
                 "support_channels": {
-                    "email": "dev@stainlessapi.com",
+                    "email": "dev@stainless.com",
                     "phone": "+46991022",
                     "url": "https://example.com",
                 },
@@ -604,6 +624,8 @@ class TestAsyncAccounts:
             search_text="search_text",
             sort_by="sort_by",
             sort_order="asc",
+            status="created",
+            type="business",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -683,6 +705,7 @@ class TestAsyncAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -694,9 +717,9 @@ class TestAsyncAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
                 "accepted_ip": "accepted_ip",
                 "accepted_user_agent": "accepted_user_agent",
-                "agreement_url": "agreement_url",
             },
             correlation_id="correlation-id",
             request_id="request-id",
@@ -710,6 +733,7 @@ class TestAsyncAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         )
 
@@ -725,6 +749,7 @@ class TestAsyncAccounts:
             terms_of_service={
                 "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "agreement_type": "embedded",
+                "agreement_url": "agreement_url",
             },
         ) as response:
             assert not response.is_closed
@@ -743,6 +768,7 @@ class TestAsyncAccounts:
                 terms_of_service={
                     "accepted_date": parse_datetime("2019-12-27T18:11:19.117Z"),
                     "agreement_type": "embedded",
+                    "agreement_url": "agreement_url",
                 },
             )
 

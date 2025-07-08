@@ -16,11 +16,7 @@ from ..types import (
     charge_release_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -31,6 +27,7 @@ from .._response import (
 )
 from .._base_client import make_request_options
 from ..types.charge_v1 import ChargeV1
+from ..types.charge_unmask_response import ChargeUnmaskResponse
 from ..types.shared_params.device_info_v1 import DeviceInfoV1
 
 __all__ = ["ChargesResource", "AsyncChargesResource"]
@@ -419,6 +416,52 @@ class ChargesResource(SyncAPIResource):
             cast_to=ChargeV1,
         )
 
+    def unmask(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ChargeUnmaskResponse:
+        """
+        Get a charge by id.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._get(
+            f"/v1/charges/{id}/unmask",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChargeUnmaskResponse,
+        )
+
 
 class AsyncChargesResource(AsyncAPIResource):
     @cached_property
@@ -803,6 +846,52 @@ class AsyncChargesResource(AsyncAPIResource):
             cast_to=ChargeV1,
         )
 
+    async def unmask(
+        self,
+        id: str,
+        *,
+        correlation_id: str | NotGiven = NOT_GIVEN,
+        request_id: str | NotGiven = NOT_GIVEN,
+        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ChargeUnmaskResponse:
+        """
+        Get a charge by id.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._get(
+            f"/v1/charges/{id}/unmask",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ChargeUnmaskResponse,
+        )
+
 
 class ChargesResourceWithRawResponse:
     def __init__(self, charges: ChargesResource) -> None:
@@ -825,6 +914,9 @@ class ChargesResourceWithRawResponse:
         )
         self.release = to_raw_response_wrapper(
             charges.release,
+        )
+        self.unmask = to_raw_response_wrapper(
+            charges.unmask,
         )
 
 
@@ -850,6 +942,9 @@ class AsyncChargesResourceWithRawResponse:
         self.release = async_to_raw_response_wrapper(
             charges.release,
         )
+        self.unmask = async_to_raw_response_wrapper(
+            charges.unmask,
+        )
 
 
 class ChargesResourceWithStreamingResponse:
@@ -874,6 +969,9 @@ class ChargesResourceWithStreamingResponse:
         self.release = to_streamed_response_wrapper(
             charges.release,
         )
+        self.unmask = to_streamed_response_wrapper(
+            charges.unmask,
+        )
 
 
 class AsyncChargesResourceWithStreamingResponse:
@@ -897,4 +995,7 @@ class AsyncChargesResourceWithStreamingResponse:
         )
         self.release = async_to_streamed_response_wrapper(
             charges.release,
+        )
+        self.unmask = async_to_streamed_response_wrapper(
+            charges.unmask,
         )

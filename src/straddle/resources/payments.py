@@ -76,6 +76,33 @@ class PaymentsResource(SyncAPIResource):
         search_text: str | NotGiven = NOT_GIVEN,
         sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        status_reason: List[
+            Literal[
+                "insufficient_funds",
+                "closed_bank_account",
+                "invalid_bank_account",
+                "invalid_routing",
+                "disputed",
+                "payment_stopped",
+                "owner_deceased",
+                "frozen_bank_account",
+                "risk_review",
+                "fraudulent",
+                "duplicate_entry",
+                "invalid_paykey",
+                "payment_blocked",
+                "amount_too_large",
+                "too_many_attempts",
+                "internal_system_error",
+                "user_request",
+                "ok",
+                "other_network_return",
+                "payout_refused",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        status_source: List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]
+        | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
@@ -133,6 +160,10 @@ class PaymentsResource(SyncAPIResource):
 
           sort_by: The field to sort the results by.
 
+          status_reason: Reason for latest payment status change.
+
+          status_source: Source of latest payment status change.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -185,6 +216,8 @@ class PaymentsResource(SyncAPIResource):
                         "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "status_reason": status_reason,
+                        "status_source": status_source,
                     },
                     payment_list_params.PaymentListParams,
                 ),
@@ -243,6 +276,33 @@ class AsyncPaymentsResource(AsyncAPIResource):
         search_text: str | NotGiven = NOT_GIVEN,
         sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        status_reason: List[
+            Literal[
+                "insufficient_funds",
+                "closed_bank_account",
+                "invalid_bank_account",
+                "invalid_routing",
+                "disputed",
+                "payment_stopped",
+                "owner_deceased",
+                "frozen_bank_account",
+                "risk_review",
+                "fraudulent",
+                "duplicate_entry",
+                "invalid_paykey",
+                "payment_blocked",
+                "amount_too_large",
+                "too_many_attempts",
+                "internal_system_error",
+                "user_request",
+                "ok",
+                "other_network_return",
+                "payout_refused",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        status_source: List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]
+        | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
@@ -300,6 +360,10 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           sort_by: The field to sort the results by.
 
+          status_reason: Reason for latest payment status change.
+
+          status_source: Source of latest payment status change.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -352,6 +416,8 @@ class AsyncPaymentsResource(AsyncAPIResource):
                         "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "status_reason": status_reason,
+                        "status_source": status_source,
                     },
                     payment_list_params.PaymentListParams,
                 ),

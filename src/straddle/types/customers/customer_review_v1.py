@@ -16,77 +16,68 @@ __all__ = [
     "DataCustomerDetailsComplianceProfile",
     "DataCustomerDetailsComplianceProfileIndividualComplianceProfile",
     "DataCustomerDetailsComplianceProfileBusinessComplianceProfile",
+    "DataCustomerDetailsComplianceProfileBusinessComplianceProfileRepresentative",
+    "DataCustomerDetailsConfig",
     "DataCustomerDetailsDevice",
     "DataIdentityDetails",
     "DataIdentityDetailsBreakdown",
     "DataIdentityDetailsKYC",
     "DataIdentityDetailsKYCValidations",
     "DataIdentityDetailsNetworkAlerts",
+    "DataIdentityDetailsReputation",
+    "DataIdentityDetailsReputationInsights",
     "DataIdentityDetailsWatchList",
+    "DataIdentityDetailsWatchListMatch",
 ]
 
 
 class DataCustomerDetailsComplianceProfileIndividualComplianceProfile(BaseModel):
-    dob: date
-    """Date of birth in YYYY-MM-DD format."""
+    dob: Optional[date] = None
+    """Masked date of birth in \\****\\**-**-\\**\\** format."""
 
-    ssn: str
-    """Social Security Number in the format XXX-XX-XXXX."""
+    ssn: Optional[str] = None
+    """Masked Social Security Number in the format **\\**-**-\\**\\**\\**\\**."""
 
-    ein: Optional[str] = None
-    """Full 9-digit Employer Identification Number for businesses.
 
-    This data is required to trigger Patriot Act compliant Know Your Business (KYB)
-    verification. Only valid where customer type is 'business'.
-    """
+class DataCustomerDetailsComplianceProfileBusinessComplianceProfileRepresentative(BaseModel):
+    name: str
 
-    legal_business_name: Optional[str] = None
-    """The official name of the business.
+    email: Optional[str] = None
 
-    This name should be correlated with the ein value. Only valid where customer
-    type is 'business'.
-    """
-
-    website: Optional[str] = None
-    """URL of the company's official website.
-
-    Only valid where customer type is 'business'.
-    """
+    phone: Optional[str] = None
 
 
 class DataCustomerDetailsComplianceProfileBusinessComplianceProfile(BaseModel):
-    ein: str
-    """Employer Identification Number in the format XX-XXXXXXX."""
+    ein: Optional[str] = None
+    """Masked Employer Identification Number in the format **-**\\******"""
 
-    legal_business_name: str
+    legal_business_name: Optional[str] = None
     """The official registered name of the business.
 
     This name should be correlated with the `ein` value.
     """
 
-    dob: Optional[str] = None
-    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+    representatives: Optional[List[DataCustomerDetailsComplianceProfileBusinessComplianceProfileRepresentative]] = None
+    """A list of people related to the company.
 
-    This data is required to trigger Patriot Act compliant Know Your Customer (KYC)
-    verification. Required if SSN is provided. Only valid where customer type is
-    'individual'.
-    """
-
-    ssn: Optional[str] = None
-    """Full 9-digit Social Security Number or government identifier for individuals.
-
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if DOB is provided. Only valid where customer type is 'individual'.
+    Only valid where customer type is 'business'.
     """
 
     website: Optional[str] = None
-    """Business website URL."""
+    """Official business website URL. Optional but recommended for enhanced KYB."""
 
 
 DataCustomerDetailsComplianceProfile: TypeAlias = Union[
     DataCustomerDetailsComplianceProfileIndividualComplianceProfile,
     DataCustomerDetailsComplianceProfileBusinessComplianceProfile,
+    None,
 ]
+
+
+class DataCustomerDetailsConfig(BaseModel):
+    processing_method: Optional[Literal["inline", "background", "skip"]] = None
+
+    sandbox_outcome: Optional[Literal["standard", "verified", "rejected", "review"]] = None
 
 
 class DataCustomerDetailsDevice(BaseModel):
@@ -121,9 +112,15 @@ class DataCustomerDetails(BaseModel):
     """Timestamp of the most recent update to the customer record."""
 
     address: Optional[CustomerAddressV1] = None
+    """An object containing the customer's address.
+
+    This is optional, but if provided, all required fields must be present.
+    """
 
     compliance_profile: Optional[DataCustomerDetailsComplianceProfile] = None
-    """Compliance profile for individual customers"""
+    """PII required to trigger Patriot Act compliant KYC verification."""
+
+    config: Optional[DataCustomerDetailsConfig] = None
 
     device: Optional[DataCustomerDetailsDevice] = None
 
@@ -143,6 +140,12 @@ class DataCustomerDetails(BaseModel):
 
 class DataIdentityDetailsBreakdown(BaseModel):
     address: Optional[IdentityVerificationBreakdownV1] = None
+
+    business_evaluation: Optional[IdentityVerificationBreakdownV1] = None
+
+    business_identification: Optional[IdentityVerificationBreakdownV1] = None
+
+    business_validation: Optional[IdentityVerificationBreakdownV1] = None
 
     email: Optional[IdentityVerificationBreakdownV1] = None
 
@@ -195,6 +198,98 @@ class DataIdentityDetailsNetworkAlerts(BaseModel):
     decision: Optional[Literal["accept", "reject", "review"]] = None
 
 
+class DataIdentityDetailsReputationInsights(BaseModel):
+    accounts_active_count: Optional[int] = None
+
+    accounts_closed_count: Optional[int] = None
+
+    accounts_closed_dates: Optional[List[date]] = None
+
+    accounts_count: Optional[int] = None
+
+    accounts_fraud_count: Optional[int] = None
+
+    accounts_fraud_labeled_dates: Optional[List[date]] = None
+
+    accounts_fraud_loss_total_amount: Optional[float] = None
+
+    ach_fraud_transactions_count: Optional[int] = None
+
+    ach_fraud_transactions_dates: Optional[List[date]] = None
+
+    ach_fraud_transactions_total_amount: Optional[float] = None
+
+    ach_returned_transactions_count: Optional[int] = None
+
+    ach_returned_transactions_dates: Optional[List[date]] = None
+
+    ach_returned_transactions_total_amount: Optional[float] = None
+
+    applications_approved_count: Optional[int] = None
+
+    applications_count: Optional[int] = None
+
+    applications_dates: Optional[List[date]] = None
+
+    applications_declined_count: Optional[int] = None
+
+    applications_fraud_count: Optional[int] = None
+
+    card_disputed_transactions_count: Optional[int] = None
+
+    card_disputed_transactions_dates: Optional[List[date]] = None
+
+    card_disputed_transactions_total_amount: Optional[float] = None
+
+    card_fraud_transactions_count: Optional[int] = None
+
+    card_fraud_transactions_dates: Optional[List[date]] = None
+
+    card_fraud_transactions_total_amount: Optional[float] = None
+
+    card_stopped_transactions_count: Optional[int] = None
+
+    card_stopped_transactions_dates: Optional[List[date]] = None
+
+    user_active_profile_count: Optional[int] = None
+
+    user_address_count: Optional[int] = None
+
+    user_closed_profile_count: Optional[int] = None
+
+    user_dob_count: Optional[int] = None
+
+    user_email_count: Optional[int] = None
+
+    user_institution_count: Optional[int] = None
+
+    user_mobile_count: Optional[int] = None
+
+
+class DataIdentityDetailsReputation(BaseModel):
+    codes: Optional[List[str]] = None
+    """Specific codes related to the Straddle reputation screening results."""
+
+    decision: Optional[Literal["accept", "reject", "review"]] = None
+
+    insights: Optional[DataIdentityDetailsReputationInsights] = None
+
+    risk_score: Optional[float] = None
+
+
+class DataIdentityDetailsWatchListMatch(BaseModel):
+    correlation: Literal["low_confidence", "potential_match", "likely_match", "high_confidence"]
+
+    list_name: str
+    """The name of the list the match was found."""
+
+    match_fields: List[str]
+    """Data fields that matched."""
+
+    urls: List[str]
+    """Relevent Urls to review."""
+
+
 class DataIdentityDetailsWatchList(BaseModel):
     codes: Optional[List[str]] = None
     """Specific codes related to the Straddle watchlist screening results."""
@@ -202,6 +297,9 @@ class DataIdentityDetailsWatchList(BaseModel):
     decision: Optional[Literal["accept", "reject", "review"]] = None
 
     matched: Optional[List[str]] = None
+    """Information about any matches found during screening."""
+
+    matches: Optional[List[DataIdentityDetailsWatchListMatch]] = None
     """Information about any matches found during screening."""
 
 
@@ -229,6 +327,8 @@ class DataIdentityDetails(BaseModel):
     """Dictionary of all messages from the customer verification process."""
 
     network_alerts: Optional[DataIdentityDetailsNetworkAlerts] = None
+
+    reputation: Optional[DataIdentityDetailsReputation] = None
 
     watch_list: Optional[DataIdentityDetailsWatchList] = None
 

@@ -6,7 +6,11 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["PaykeySummaryPagedV1", "Data", "DataBankData", "DataStatusDetails", "Meta"]
+__all__ = ["PaykeySummaryPagedV1", "Data", "DataConfig", "DataBankData", "DataStatusDetails", "Meta"]
+
+
+class DataConfig(BaseModel):
+    sandbox_outcome: Optional[Literal["standard", "active", "rejected"]] = None
 
 
 class DataBankData(BaseModel):
@@ -24,31 +28,55 @@ class DataBankData(BaseModel):
 
 
 class DataStatusDetails(BaseModel):
+    changed_at: datetime
+    """The time the status change occurred."""
+
     message: str
     """A human-readable description of the current status."""
 
-    reason: str
-    """
-    A machine-readable identifier for the specific status, useful for programmatic
-    handling.
-    """
+    reason: Literal[
+        "insufficient_funds",
+        "closed_bank_account",
+        "invalid_bank_account",
+        "invalid_routing",
+        "disputed",
+        "payment_stopped",
+        "owner_deceased",
+        "frozen_bank_account",
+        "risk_review",
+        "fraudulent",
+        "duplicate_entry",
+        "invalid_paykey",
+        "payment_blocked",
+        "amount_too_large",
+        "too_many_attempts",
+        "internal_system_error",
+        "user_request",
+        "ok",
+        "other_network_return",
+        "payout_refused",
+    ]
 
-    source: str
-    """Identifies the origin of the status change (e.g., `bank_decline`, `watchtower`).
+    source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
 
-    This helps in tracking the cause of status updates.
-    """
+    code: Optional[str] = None
+    """The status code if applicable."""
 
 
 class Data(BaseModel):
     id: str
     """Unique identifier for the paykey."""
 
+    config: DataConfig
+
     created_at: datetime
     """Timestamp of when the paykey was created."""
 
     label: str
-    """Human-readable label used to represent this paykey in a UI."""
+    """
+    Human-readable label that combines the bank name and masked account number to
+    help easility represent this paykey in a UI
+    """
 
     paykey: str
     """The tokenized paykey value.
@@ -56,9 +84,9 @@ class Data(BaseModel):
     This value is used to create payments and should be stored securely.
     """
 
-    source: Literal["bank_account", "straddle", "mx", "plaid"]
+    source: Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]
 
-    status: Literal["pending", "active", "inactive", "rejected"]
+    status: Literal["pending", "active", "inactive", "rejected", "review"]
 
     updated_at: datetime
     """Timestamp of the most recent update to the paykey."""

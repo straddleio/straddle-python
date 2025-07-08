@@ -46,15 +46,16 @@ class TestCustomers:
                 "address1": "123 Main St",
                 "city": "Anytown",
                 "state": "CA",
-                "zip": "94105",
-                "address2": None,
+                "zip": "12345",
+                "address2": "Apt 1",
             },
             compliance_profile={
-                "dob": parse_date("2019-12-27"),
-                "ssn": "210-69-1329",
-                "ein": "ein",
-                "legal_business_name": "legal_business_name",
-                "website": "website",
+                "dob": parse_date("1969-04-20"),
+                "ssn": "123-45-6789",
+            },
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
             },
             external_id="customer_123",
             metadata={"foo": "string"},
@@ -101,7 +102,7 @@ class TestCustomers:
         customer = client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -113,7 +114,7 @@ class TestCustomers:
         customer = client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -121,15 +122,12 @@ class TestCustomers:
                 "address1": "123 Main St",
                 "city": "Anytown",
                 "state": "CA",
-                "zip": "94105",
-                "address2": None,
+                "zip": "12345",
+                "address2": "Apt 1",
             },
             compliance_profile={
-                "dob": parse_date("2019-12-27"),
-                "ssn": "210-69-1329",
-                "ein": "ein",
-                "legal_business_name": "legal_business_name",
-                "website": "website",
+                "dob": parse_date("1969-04-20"),
+                "ssn": "123-45-6789",
             },
             external_id="external_id",
             metadata={"foo": "string"},
@@ -144,7 +142,7 @@ class TestCustomers:
         response = client.customers.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -160,7 +158,7 @@ class TestCustomers:
         with client.customers.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -179,7 +177,7 @@ class TestCustomers:
             client.customers.with_raw_response.update(
                 id="",
                 device={"ip_address": "192.168.1.1"},
-                email="dev@stainlessapi.com",
+                email="dev@stainless.com",
                 name="name",
                 phone="+46991022",
                 status="pending",
@@ -328,6 +326,54 @@ class TestCustomers:
             )
 
     @parametrize
+    def test_method_refresh_review(self, client: Straddle) -> None:
+        customer = client.customers.refresh_review(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(CustomerV1, customer, path=["response"])
+
+    @parametrize
+    def test_method_refresh_review_with_all_params(self, client: Straddle) -> None:
+        customer = client.customers.refresh_review(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            correlation_id="Correlation-Id",
+            request_id="Request-Id",
+            straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(CustomerV1, customer, path=["response"])
+
+    @parametrize
+    def test_raw_response_refresh_review(self, client: Straddle) -> None:
+        response = client.customers.with_raw_response.refresh_review(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = response.parse()
+        assert_matches_type(CustomerV1, customer, path=["response"])
+
+    @parametrize
+    def test_streaming_response_refresh_review(self, client: Straddle) -> None:
+        with client.customers.with_streaming_response.refresh_review(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = response.parse()
+            assert_matches_type(CustomerV1, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_refresh_review(self, client: Straddle) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.customers.with_raw_response.refresh_review(
+                id="",
+            )
+
+    @parametrize
     def test_method_unmasked(self, client: Straddle) -> None:
         customer = client.customers.unmasked(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -377,7 +423,9 @@ class TestCustomers:
 
 
 class TestAsyncCustomers:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncStraddle) -> None:
@@ -402,15 +450,16 @@ class TestAsyncCustomers:
                 "address1": "123 Main St",
                 "city": "Anytown",
                 "state": "CA",
-                "zip": "94105",
-                "address2": None,
+                "zip": "12345",
+                "address2": "Apt 1",
             },
             compliance_profile={
-                "dob": parse_date("2019-12-27"),
-                "ssn": "210-69-1329",
-                "ein": "ein",
-                "legal_business_name": "legal_business_name",
-                "website": "website",
+                "dob": parse_date("1969-04-20"),
+                "ssn": "123-45-6789",
+            },
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
             },
             external_id="customer_123",
             metadata={"foo": "string"},
@@ -457,7 +506,7 @@ class TestAsyncCustomers:
         customer = await async_client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -469,7 +518,7 @@ class TestAsyncCustomers:
         customer = await async_client.customers.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -477,15 +526,12 @@ class TestAsyncCustomers:
                 "address1": "123 Main St",
                 "city": "Anytown",
                 "state": "CA",
-                "zip": "94105",
-                "address2": None,
+                "zip": "12345",
+                "address2": "Apt 1",
             },
             compliance_profile={
-                "dob": parse_date("2019-12-27"),
-                "ssn": "210-69-1329",
-                "ein": "ein",
-                "legal_business_name": "legal_business_name",
-                "website": "website",
+                "dob": parse_date("1969-04-20"),
+                "ssn": "123-45-6789",
             },
             external_id="external_id",
             metadata={"foo": "string"},
@@ -500,7 +546,7 @@ class TestAsyncCustomers:
         response = await async_client.customers.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -516,7 +562,7 @@ class TestAsyncCustomers:
         async with async_client.customers.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             device={"ip_address": "192.168.1.1"},
-            email="dev@stainlessapi.com",
+            email="dev@stainless.com",
             name="name",
             phone="+46991022",
             status="pending",
@@ -535,7 +581,7 @@ class TestAsyncCustomers:
             await async_client.customers.with_raw_response.update(
                 id="",
                 device={"ip_address": "192.168.1.1"},
-                email="dev@stainlessapi.com",
+                email="dev@stainless.com",
                 name="name",
                 phone="+46991022",
                 status="pending",
@@ -680,6 +726,54 @@ class TestAsyncCustomers:
     async def test_path_params_get(self, async_client: AsyncStraddle) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.customers.with_raw_response.get(
+                id="",
+            )
+
+    @parametrize
+    async def test_method_refresh_review(self, async_client: AsyncStraddle) -> None:
+        customer = await async_client.customers.refresh_review(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(CustomerV1, customer, path=["response"])
+
+    @parametrize
+    async def test_method_refresh_review_with_all_params(self, async_client: AsyncStraddle) -> None:
+        customer = await async_client.customers.refresh_review(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            correlation_id="Correlation-Id",
+            request_id="Request-Id",
+            straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(CustomerV1, customer, path=["response"])
+
+    @parametrize
+    async def test_raw_response_refresh_review(self, async_client: AsyncStraddle) -> None:
+        response = await async_client.customers.with_raw_response.refresh_review(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        customer = await response.parse()
+        assert_matches_type(CustomerV1, customer, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_refresh_review(self, async_client: AsyncStraddle) -> None:
+        async with async_client.customers.with_streaming_response.refresh_review(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            customer = await response.parse()
+            assert_matches_type(CustomerV1, customer, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_refresh_review(self, async_client: AsyncStraddle) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.customers.with_raw_response.refresh_review(
                 id="",
             )
 

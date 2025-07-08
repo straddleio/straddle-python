@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Dict, Union, Iterable, Optional
 from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
@@ -15,6 +15,8 @@ __all__ = [
     "ComplianceProfile",
     "ComplianceProfileIndividualComplianceProfile",
     "ComplianceProfileBusinessComplianceProfile",
+    "ComplianceProfileBusinessComplianceProfileRepresentative",
+    "Config",
 ]
 
 
@@ -35,15 +37,17 @@ class CustomerCreateParams(TypedDict, total=False):
     address: Optional[CustomerAddressV1Param]
     """An object containing the customer's address.
 
-    This is optional, but if provided, all required fields must be present.
+    **This is optional.** If used, all required fields must be present.
     """
 
-    compliance_profile: ComplianceProfile
+    compliance_profile: Optional[ComplianceProfile]
     """An object containing the customer's compliance profile.
 
-    This is optional, but if provided, all required fields must be present for the
-    appropriate customer type.
+    **This is optional.** If all required fields must be present for the appropriate
+    customer type.
     """
+
+    config: Config
 
     external_id: Optional[str]
     """
@@ -66,58 +70,56 @@ class CustomerCreateParams(TypedDict, total=False):
 
 
 class ComplianceProfileIndividualComplianceProfile(TypedDict, total=False):
-    dob: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
-    """Date of birth in YYYY-MM-DD format."""
+    dob: Required[Annotated[Union[str, date, None], PropertyInfo(format="iso8601")]]
+    """Date of birth (YYYY-MM-DD).
 
-    ssn: Required[str]
-    """Social Security Number in the format XXX-XX-XXXX."""
-
-    ein: Optional[str]
-    """Full 9-digit Employer Identification Number for businesses.
-
-    This data is required to trigger Patriot Act compliant KYB verification. Only
-    valid where customer type is 'business'.
+    Required for Patriot Act-compliant KYC verification.
     """
 
-    legal_business_name: Optional[str]
-    """The official name of the business.
+    ssn: Required[Optional[str]]
+    """Social Security Number (format XXX-XX-XXXX).
 
-    This name should be correlated with the ein value. Only valid where customer
-    type is 'business'.
+    Required for Patriot Act-compliant KYC verification.
     """
 
-    website: Optional[str]
-    """URL of the company's official website."""
+
+class ComplianceProfileBusinessComplianceProfileRepresentative(TypedDict, total=False):
+    name: Required[str]
+
+    email: Optional[str]
+
+    phone: Optional[str]
 
 
 class ComplianceProfileBusinessComplianceProfile(TypedDict, total=False):
-    ein: Required[str]
-    """Employer Identification Number in the format XX-XXXXXXX."""
+    ein: Required[Optional[str]]
+    """Employer Identification Number (format XX-XXXXXXX).
 
-    legal_business_name: Required[str]
-    """The official registered name of the business.
-
-    This name should be correlated with the `ein` value.
+    Required for Patriot Act-compliant KYB verification.
     """
 
-    dob: Optional[str]
-    """Date of birth for individual customers in ISO 8601 format (YYYY-MM-DD).
+    legal_business_name: Required[Optional[str]]
+    """Official registered business name as listed with the IRS.
 
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if SSN is provided. Only valid where customer type is 'individual'.
+    This value will be matched against the 'legal_business name'.
     """
 
-    ssn: Optional[str]
-    """Full 9-digit Social Security Number or government identifier for individuals.
+    representatives: Optional[Iterable[ComplianceProfileBusinessComplianceProfileRepresentative]]
+    """A list of people related to the company.
 
-    This data is required to trigger Patriot Act compliant KYC verification.
-    Required if DOB is provided. Only valid where customer type is 'individual'.
+    Only valid where customer type is 'business'.
     """
 
-    website: str
-    """Business website URL."""
+    website: Optional[str]
+    """Official business website URL. Optional but recommended for enhanced KYB."""
 
 
 ComplianceProfile: TypeAlias = Union[
     ComplianceProfileIndividualComplianceProfile, ComplianceProfileBusinessComplianceProfile
 ]
+
+
+class Config(TypedDict, total=False):
+    processing_method: Literal["inline", "background", "skip"]
+
+    sandbox_outcome: Literal["standard", "verified", "rejected", "review"]

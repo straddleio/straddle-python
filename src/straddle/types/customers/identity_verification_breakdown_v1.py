@@ -12,6 +12,8 @@ class IdentityVerificationBreakdownV1(BaseModel):
     codes: Optional[List[str]] = None
     """List of specific result codes from the fraud and risk screening."""
 
+    correlation: Optional[Literal["low_confidence", "potential_match", "likely_match", "high_confidence"]] = None
+
     correlation_score: Optional[float] = None
     """
     Represents the strength of the correlation between provided and known

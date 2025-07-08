@@ -11,7 +11,26 @@ from .shared.response_metadata import ResponseMetadata
 from .shared.status_details_v1 import StatusDetailsV1
 from .shared.customer_details_v1 import CustomerDetailsV1
 
-__all__ = ["PayoutV1", "Data", "DataStatusHistory"]
+__all__ = ["PayoutV1", "Data", "DataConfig", "DataStatusHistory"]
+
+
+class DataConfig(BaseModel):
+    sandbox_outcome: Optional[
+        Literal[
+            "standard",
+            "paid",
+            "on_hold_daily_limit",
+            "cancelled_for_fraud_risk",
+            "cancelled_for_balance_check",
+            "failed_insufficient_funds",
+            "reversed_insufficient_funds",
+            "failed_customer_dispute",
+            "reversed_customer_dispute",
+            "failed_closed_bank_account",
+            "reversed_closed_bank_account",
+        ]
+    ] = None
+    """Payment will simulate processing if not Standard."""
 
 
 class DataStatusHistory(BaseModel):
@@ -68,7 +87,7 @@ class Data(BaseModel):
     amount: int
     """The amount of the payout in cents."""
 
-    config: object
+    config: DataConfig
     """Configuration for the payout."""
 
     currency: str
@@ -85,6 +104,9 @@ class Data(BaseModel):
 
     This value must be unique across all payouts.
     """
+
+    funding_ids: List[str]
+    """Funding Ids"""
 
     paykey: str
     """Value of the `paykey` used for the payout."""

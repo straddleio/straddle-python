@@ -19,12 +19,9 @@ from ._types import (
     ProxiesTypes,
     RequestOptions,
 )
-from ._utils import (
-    is_given,
-    get_async_library,
-)
+from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import charges, paykeys, payouts, payments, funding_events
+from .resources import charges, paykeys, payouts, reports, payments, funding_events
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import StraddleError, APIStatusError
 from ._base_client import (
@@ -49,8 +46,8 @@ __all__ = [
 ]
 
 ENVIRONMENTS: Dict[str, str] = {
-    "production": "https://production.straddle.io",
     "sandbox": "https://sandbox.straddle.io",
+    "production": "https://production.straddle.io",
 }
 
 
@@ -63,19 +60,20 @@ class Straddle(SyncAPIClient):
     funding_events: funding_events.FundingEventsResource
     payments: payments.PaymentsResource
     payouts: payouts.PayoutsResource
+    reports: reports.ReportsResource
     with_raw_response: StraddleWithRawResponse
     with_streaming_response: StraddleWithStreamedResponse
 
     # client options
     api_key: str
 
-    _environment: Literal["production", "sandbox"] | NotGiven
+    _environment: Literal["sandbox", "production"] | NotGiven
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "sandbox"] | NotGiven = NOT_GIVEN,
+        environment: Literal["sandbox", "production"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -95,7 +93,7 @@ class Straddle(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous straddle client instance.
+        """Construct a new synchronous Straddle client instance.
 
         This automatically infers the `api_key` argument from the `STRADDLE_API_KEY` environment variable if it is not provided.
         """
@@ -126,7 +124,7 @@ class Straddle(SyncAPIClient):
         elif base_url_env is not None:
             base_url = base_url_env
         else:
-            self._environment = environment = "production"
+            self._environment = environment = "sandbox"
 
             try:
                 base_url = ENVIRONMENTS[environment]
@@ -152,6 +150,7 @@ class Straddle(SyncAPIClient):
         self.funding_events = funding_events.FundingEventsResource(self)
         self.payments = payments.PaymentsResource(self)
         self.payouts = payouts.PayoutsResource(self)
+        self.reports = reports.ReportsResource(self)
         self.with_raw_response = StraddleWithRawResponse(self)
         self.with_streaming_response = StraddleWithStreamedResponse(self)
 
@@ -179,7 +178,7 @@ class Straddle(SyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "sandbox"] | None = None,
+        environment: Literal["sandbox", "production"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -271,19 +270,20 @@ class AsyncStraddle(AsyncAPIClient):
     funding_events: funding_events.AsyncFundingEventsResource
     payments: payments.AsyncPaymentsResource
     payouts: payouts.AsyncPayoutsResource
+    reports: reports.AsyncReportsResource
     with_raw_response: AsyncStraddleWithRawResponse
     with_streaming_response: AsyncStraddleWithStreamedResponse
 
     # client options
     api_key: str
 
-    _environment: Literal["production", "sandbox"] | NotGiven
+    _environment: Literal["sandbox", "production"] | NotGiven
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "sandbox"] | NotGiven = NOT_GIVEN,
+        environment: Literal["sandbox", "production"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -303,7 +303,7 @@ class AsyncStraddle(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async straddle client instance.
+        """Construct a new async AsyncStraddle client instance.
 
         This automatically infers the `api_key` argument from the `STRADDLE_API_KEY` environment variable if it is not provided.
         """
@@ -334,7 +334,7 @@ class AsyncStraddle(AsyncAPIClient):
         elif base_url_env is not None:
             base_url = base_url_env
         else:
-            self._environment = environment = "production"
+            self._environment = environment = "sandbox"
 
             try:
                 base_url = ENVIRONMENTS[environment]
@@ -360,6 +360,7 @@ class AsyncStraddle(AsyncAPIClient):
         self.funding_events = funding_events.AsyncFundingEventsResource(self)
         self.payments = payments.AsyncPaymentsResource(self)
         self.payouts = payouts.AsyncPayoutsResource(self)
+        self.reports = reports.AsyncReportsResource(self)
         self.with_raw_response = AsyncStraddleWithRawResponse(self)
         self.with_streaming_response = AsyncStraddleWithStreamedResponse(self)
 
@@ -387,7 +388,7 @@ class AsyncStraddle(AsyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "sandbox"] | None = None,
+        environment: Literal["sandbox", "production"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -480,6 +481,7 @@ class StraddleWithRawResponse:
         self.funding_events = funding_events.FundingEventsResourceWithRawResponse(client.funding_events)
         self.payments = payments.PaymentsResourceWithRawResponse(client.payments)
         self.payouts = payouts.PayoutsResourceWithRawResponse(client.payouts)
+        self.reports = reports.ReportsResourceWithRawResponse(client.reports)
 
 
 class AsyncStraddleWithRawResponse:
@@ -492,6 +494,7 @@ class AsyncStraddleWithRawResponse:
         self.funding_events = funding_events.AsyncFundingEventsResourceWithRawResponse(client.funding_events)
         self.payments = payments.AsyncPaymentsResourceWithRawResponse(client.payments)
         self.payouts = payouts.AsyncPayoutsResourceWithRawResponse(client.payouts)
+        self.reports = reports.AsyncReportsResourceWithRawResponse(client.reports)
 
 
 class StraddleWithStreamedResponse:
@@ -504,6 +507,7 @@ class StraddleWithStreamedResponse:
         self.funding_events = funding_events.FundingEventsResourceWithStreamingResponse(client.funding_events)
         self.payments = payments.PaymentsResourceWithStreamingResponse(client.payments)
         self.payouts = payouts.PayoutsResourceWithStreamingResponse(client.payouts)
+        self.reports = reports.ReportsResourceWithStreamingResponse(client.reports)
 
 
 class AsyncStraddleWithStreamedResponse:
@@ -516,6 +520,7 @@ class AsyncStraddleWithStreamedResponse:
         self.funding_events = funding_events.AsyncFundingEventsResourceWithStreamingResponse(client.funding_events)
         self.payments = payments.AsyncPaymentsResourceWithStreamingResponse(client.payments)
         self.payouts = payouts.AsyncPayoutsResourceWithStreamingResponse(client.payouts)
+        self.reports = reports.AsyncReportsResourceWithStreamingResponse(client.reports)
 
 
 Client = Straddle

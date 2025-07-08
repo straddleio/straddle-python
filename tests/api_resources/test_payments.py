@@ -51,6 +51,8 @@ class TestPayments:
             search_text="search_text",
             sort_by="created_at",
             sort_order="asc",
+            status_reason=["insufficient_funds"],
+            status_source=["watchtower"],
             correlation_id="Correlation-Id",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -79,7 +81,9 @@ class TestPayments:
 
 
 class TestAsyncPayments:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncStraddle) -> None:
@@ -113,6 +117,8 @@ class TestAsyncPayments:
             search_text="search_text",
             sort_by="created_at",
             sort_order="asc",
+            status_reason=["insufficient_funds"],
+            status_source=["watchtower"],
             correlation_id="Correlation-Id",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",

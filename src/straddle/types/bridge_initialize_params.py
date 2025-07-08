@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["BridgeInitializeParams"]
+__all__ = ["BridgeInitializeParams", "Config"]
 
 
 class BridgeInitializeParams(TypedDict, total=False):
@@ -16,8 +16,14 @@ class BridgeInitializeParams(TypedDict, total=False):
     token for.
     """
 
+    config: Config
+
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 
     request_id: Annotated[str, PropertyInfo(alias="Request-Id")]
 
     straddle_account_id: Annotated[str, PropertyInfo(alias="Straddle-Account-Id")]
+
+
+class Config(TypedDict, total=False):
+    sandbox_outcome: Literal["standard", "active", "rejected"]

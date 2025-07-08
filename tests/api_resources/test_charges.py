@@ -11,6 +11,7 @@ from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
 from straddle.types import (
     ChargeV1,
+    ChargeUnmaskResponse,
 )
 from straddle._utils import parse_date
 
@@ -23,7 +24,7 @@ class TestCharges:
     @parametrize
     def test_method_create(self, client: Straddle) -> None:
         charge = client.charges.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -38,8 +39,11 @@ class TestCharges:
     @parametrize
     def test_method_create_with_all_params(self, client: Straddle) -> None:
         charge = client.charges.create(
-            amount=0,
-            config={"balance_check": "required"},
+            amount=10000,
+            config={
+                "balance_check": "required",
+                "sandbox_outcome": "standard",
+            },
             consent_type="internet",
             currency="currency",
             description="Monthly subscription fee",
@@ -57,7 +61,7 @@ class TestCharges:
     @parametrize
     def test_raw_response_create(self, client: Straddle) -> None:
         response = client.charges.with_raw_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -76,7 +80,7 @@ class TestCharges:
     @parametrize
     def test_streaming_response_create(self, client: Straddle) -> None:
         with client.charges.with_streaming_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -98,7 +102,7 @@ class TestCharges:
     def test_method_update(self, client: Straddle) -> None:
         charge = client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         )
@@ -108,7 +112,7 @@ class TestCharges:
     def test_method_update_with_all_params(self, client: Straddle) -> None:
         charge = client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
             metadata={"foo": "string"},
@@ -122,7 +126,7 @@ class TestCharges:
     def test_raw_response_update(self, client: Straddle) -> None:
         response = client.charges.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         )
@@ -136,7 +140,7 @@ class TestCharges:
     def test_streaming_response_update(self, client: Straddle) -> None:
         with client.charges.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         ) as response:
@@ -153,7 +157,7 @@ class TestCharges:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.charges.with_raw_response.update(
                 id="",
-                amount=0,
+                amount=10000,
                 description="Monthly subscription fee",
                 payment_date=parse_date("2019-12-27"),
             )
@@ -353,14 +357,64 @@ class TestCharges:
                 id="",
             )
 
+    @parametrize
+    def test_method_unmask(self, client: Straddle) -> None:
+        charge = client.charges.unmask(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(ChargeUnmaskResponse, charge, path=["response"])
+
+    @parametrize
+    def test_method_unmask_with_all_params(self, client: Straddle) -> None:
+        charge = client.charges.unmask(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            correlation_id="Correlation-Id",
+            request_id="Request-Id",
+            straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(ChargeUnmaskResponse, charge, path=["response"])
+
+    @parametrize
+    def test_raw_response_unmask(self, client: Straddle) -> None:
+        response = client.charges.with_raw_response.unmask(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        charge = response.parse()
+        assert_matches_type(ChargeUnmaskResponse, charge, path=["response"])
+
+    @parametrize
+    def test_streaming_response_unmask(self, client: Straddle) -> None:
+        with client.charges.with_streaming_response.unmask(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            charge = response.parse()
+            assert_matches_type(ChargeUnmaskResponse, charge, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_unmask(self, client: Straddle) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.charges.with_raw_response.unmask(
+                id="",
+            )
+
 
 class TestAsyncCharges:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
 
     @parametrize
     async def test_method_create(self, async_client: AsyncStraddle) -> None:
         charge = await async_client.charges.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -375,8 +429,11 @@ class TestAsyncCharges:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncStraddle) -> None:
         charge = await async_client.charges.create(
-            amount=0,
-            config={"balance_check": "required"},
+            amount=10000,
+            config={
+                "balance_check": "required",
+                "sandbox_outcome": "standard",
+            },
             consent_type="internet",
             currency="currency",
             description="Monthly subscription fee",
@@ -394,7 +451,7 @@ class TestAsyncCharges:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncStraddle) -> None:
         response = await async_client.charges.with_raw_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -413,7 +470,7 @@ class TestAsyncCharges:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncStraddle) -> None:
         async with async_client.charges.with_streaming_response.create(
-            amount=0,
+            amount=10000,
             config={"balance_check": "required"},
             consent_type="internet",
             currency="currency",
@@ -435,7 +492,7 @@ class TestAsyncCharges:
     async def test_method_update(self, async_client: AsyncStraddle) -> None:
         charge = await async_client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         )
@@ -445,7 +502,7 @@ class TestAsyncCharges:
     async def test_method_update_with_all_params(self, async_client: AsyncStraddle) -> None:
         charge = await async_client.charges.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
             metadata={"foo": "string"},
@@ -459,7 +516,7 @@ class TestAsyncCharges:
     async def test_raw_response_update(self, async_client: AsyncStraddle) -> None:
         response = await async_client.charges.with_raw_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         )
@@ -473,7 +530,7 @@ class TestAsyncCharges:
     async def test_streaming_response_update(self, async_client: AsyncStraddle) -> None:
         async with async_client.charges.with_streaming_response.update(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            amount=0,
+            amount=10000,
             description="Monthly subscription fee",
             payment_date=parse_date("2019-12-27"),
         ) as response:
@@ -490,7 +547,7 @@ class TestAsyncCharges:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.charges.with_raw_response.update(
                 id="",
-                amount=0,
+                amount=10000,
                 description="Monthly subscription fee",
                 payment_date=parse_date("2019-12-27"),
             )
@@ -687,5 +744,53 @@ class TestAsyncCharges:
     async def test_path_params_release(self, async_client: AsyncStraddle) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.charges.with_raw_response.release(
+                id="",
+            )
+
+    @parametrize
+    async def test_method_unmask(self, async_client: AsyncStraddle) -> None:
+        charge = await async_client.charges.unmask(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(ChargeUnmaskResponse, charge, path=["response"])
+
+    @parametrize
+    async def test_method_unmask_with_all_params(self, async_client: AsyncStraddle) -> None:
+        charge = await async_client.charges.unmask(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            correlation_id="Correlation-Id",
+            request_id="Request-Id",
+            straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+        assert_matches_type(ChargeUnmaskResponse, charge, path=["response"])
+
+    @parametrize
+    async def test_raw_response_unmask(self, async_client: AsyncStraddle) -> None:
+        response = await async_client.charges.with_raw_response.unmask(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        charge = await response.parse()
+        assert_matches_type(ChargeUnmaskResponse, charge, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_unmask(self, async_client: AsyncStraddle) -> None:
+        async with async_client.charges.with_streaming_response.unmask(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            charge = await response.parse()
+            assert_matches_type(ChargeUnmaskResponse, charge, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_unmask(self, async_client: AsyncStraddle) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.charges.with_raw_response.unmask(
                 id="",
             )

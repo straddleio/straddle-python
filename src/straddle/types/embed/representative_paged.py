@@ -80,7 +80,7 @@ class Data(BaseModel):
     dob: date
     """The date of birth of the representative, in ISO 8601 format (YYYY-MM-DD)."""
 
-    email: str
+    email: Optional[str] = None
     """The email address of the representative."""
 
     first_name: str
@@ -91,6 +91,8 @@ class Data(BaseModel):
 
     mobile_number: str
     """The mobile phone number of the representative."""
+
+    name: str
 
     relationship: DataRelationship
 
@@ -110,6 +112,8 @@ class Data(BaseModel):
     Unique identifier for the representative in your database, used for
     cross-referencing between Straddle and your systems.
     """
+
+    phone: Optional[str] = None
 
     user_id: Optional[str] = None
     """
