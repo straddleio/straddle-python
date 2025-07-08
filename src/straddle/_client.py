@@ -46,8 +46,8 @@ __all__ = [
 ]
 
 ENVIRONMENTS: Dict[str, str] = {
-    "production": "https://production.straddle.io",
     "sandbox": "https://sandbox.straddle.io",
+    "production": "https://production.straddle.io",
 }
 
 
@@ -67,13 +67,13 @@ class Straddle(SyncAPIClient):
     # client options
     api_key: str
 
-    _environment: Literal["production", "sandbox"] | NotGiven
+    _environment: Literal["sandbox", "production"] | NotGiven
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "sandbox"] | NotGiven = NOT_GIVEN,
+        environment: Literal["sandbox", "production"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -124,7 +124,7 @@ class Straddle(SyncAPIClient):
         elif base_url_env is not None:
             base_url = base_url_env
         else:
-            self._environment = environment = "production"
+            self._environment = environment = "sandbox"
 
             try:
                 base_url = ENVIRONMENTS[environment]
@@ -178,7 +178,7 @@ class Straddle(SyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "sandbox"] | None = None,
+        environment: Literal["sandbox", "production"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -277,13 +277,13 @@ class AsyncStraddle(AsyncAPIClient):
     # client options
     api_key: str
 
-    _environment: Literal["production", "sandbox"] | NotGiven
+    _environment: Literal["sandbox", "production"] | NotGiven
 
     def __init__(
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "sandbox"] | NotGiven = NOT_GIVEN,
+        environment: Literal["sandbox", "production"] | NotGiven = NOT_GIVEN,
         base_url: str | httpx.URL | None | NotGiven = NOT_GIVEN,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -334,7 +334,7 @@ class AsyncStraddle(AsyncAPIClient):
         elif base_url_env is not None:
             base_url = base_url_env
         else:
-            self._environment = environment = "production"
+            self._environment = environment = "sandbox"
 
             try:
                 base_url = ENVIRONMENTS[environment]
@@ -388,7 +388,7 @@ class AsyncStraddle(AsyncAPIClient):
         self,
         *,
         api_key: str | None = None,
-        environment: Literal["production", "sandbox"] | None = None,
+        environment: Literal["sandbox", "production"] | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
