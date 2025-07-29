@@ -56,7 +56,7 @@ class Data(BaseModel):
     created_at: datetime
     """Timestamp of when the linked bank account was created."""
 
-    status: Literal["created", "onboarding", "active", "rejected", "inactive"]
+    status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"]
     """The current status of the linked bank account."""
 
     status_detail: DataStatusDetail
