@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -54,9 +54,12 @@ class LinkedBankAccountsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: str,
+        account_id: Optional[str],
         bank_account: linked_bank_account_create_params.BankAccount,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
+        platform_id: Optional[str] | NotGiven = NOT_GIVEN,
+        purposes: Optional[List[Literal["charges", "payouts", "billing"]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -77,8 +80,15 @@ class LinkedBankAccountsResource(SyncAPIResource):
           account_id: The unique identifier of the Straddle account to associate this bank account
               with.
 
+          description: Optional description for the bank account.
+
           metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
               information about the linked bank account in a structured format.
+
+          platform_id: The unique identifier of the Straddle Platform to associate this bank account
+              with.
+
+          purposes: The purposes for the linked bank account.
 
           extra_headers: Send extra headers
 
@@ -103,7 +113,10 @@ class LinkedBankAccountsResource(SyncAPIResource):
                 {
                     "account_id": account_id,
                     "bank_account": bank_account,
+                    "description": description,
                     "metadata": metadata,
+                    "platform_id": platform_id,
+                    "purposes": purposes,
                 },
                 linked_bank_account_create_params.LinkedBankAccountCreateParams,
             ),
@@ -374,9 +387,12 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: str,
+        account_id: Optional[str],
         bank_account: linked_bank_account_create_params.BankAccount,
+        description: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
+        platform_id: Optional[str] | NotGiven = NOT_GIVEN,
+        purposes: Optional[List[Literal["charges", "payouts", "billing"]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -397,8 +413,15 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
           account_id: The unique identifier of the Straddle account to associate this bank account
               with.
 
+          description: Optional description for the bank account.
+
           metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
               information about the linked bank account in a structured format.
+
+          platform_id: The unique identifier of the Straddle Platform to associate this bank account
+              with.
+
+          purposes: The purposes for the linked bank account.
 
           extra_headers: Send extra headers
 
@@ -423,7 +446,10 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
                 {
                     "account_id": account_id,
                     "bank_account": bank_account,
+                    "description": description,
                     "metadata": metadata,
+                    "platform_id": platform_id,
+                    "purposes": purposes,
                 },
                 linked_bank_account_create_params.LinkedBankAccountCreateParams,
             ),
