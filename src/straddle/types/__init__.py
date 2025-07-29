@@ -28,6 +28,7 @@ from .charge_update_params import ChargeUpdateParams as ChargeUpdateParams
 from .customer_list_params import CustomerListParams as CustomerListParams
 from .customer_unmasked_v1 import CustomerUnmaskedV1 as CustomerUnmaskedV1
 from .paykey_cancel_params import PaykeyCancelParams as PaykeyCancelParams
+from .paykey_review_params import PaykeyReviewParams as PaykeyReviewParams
 from .payout_cancel_params import PayoutCancelParams as PayoutCancelParams
 from .payout_create_params import PayoutCreateParams as PayoutCreateParams
 from .payout_update_params import PayoutUpdateParams as PayoutUpdateParams
