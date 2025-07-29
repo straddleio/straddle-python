@@ -69,6 +69,7 @@ Methods:
 - <code title="post /v1/linked_bank_accounts">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">create</a>(\*\*<a href="src/straddle/types/embed/linked_bank_account_create_params.py">params</a>) -> <a href="./src/straddle/types/embed/linked_bank_account_v1.py">LinkedBankAccountV1</a></code>
 - <code title="put /v1/linked_bank_accounts/{linked_bank_account_id}">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">update</a>(linked_bank_account_id, \*\*<a href="src/straddle/types/embed/linked_bank_account_update_params.py">params</a>) -> <a href="./src/straddle/types/embed/linked_bank_account_v1.py">LinkedBankAccountV1</a></code>
 - <code title="get /v1/linked_bank_accounts">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">list</a>(\*\*<a href="src/straddle/types/embed/linked_bank_account_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
+- <code title="patch /v1/linked_bank_accounts/{linked_bank_account_id}/cancel">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">cancel</a>(linked_bank_account_id) -> <a href="./src/straddle/types/embed/linked_bank_account_v1.py">LinkedBankAccountV1</a></code>
 - <code title="get /v1/linked_bank_accounts/{linked_bank_account_id}">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">get</a>(linked_bank_account_id) -> <a href="./src/straddle/types/embed/linked_bank_account_v1.py">LinkedBankAccountV1</a></code>
 - <code title="get /v1/linked_bank_accounts/{linked_bank_account_id}/unmask">client.embed.linked_bank_accounts.<a href="./src/straddle/resources/embed/linked_bank_accounts.py">unmask</a>(linked_bank_account_id) -> <a href="./src/straddle/types/embed/linked_bank_account_unmask_v1.py">LinkedBankAccountUnmaskV1</a></code>
 
@@ -180,6 +181,7 @@ Methods:
 - <code title="put /v1/paykeys/{id}/cancel">client.paykeys.<a href="./src/straddle/resources/paykeys.py">cancel</a>(id, \*\*<a href="src/straddle/types/paykey_cancel_params.py">params</a>) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
 - <code title="get /v1/paykeys/{id}">client.paykeys.<a href="./src/straddle/resources/paykeys.py">get</a>(id) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
 - <code title="get /v1/paykeys/{id}/reveal">client.paykeys.<a href="./src/straddle/resources/paykeys.py">reveal</a>(id) -> <a href="./src/straddle/types/paykey_reveal_response.py">PaykeyRevealResponse</a></code>
+- <code title="patch /v1/paykeys/{id}/review">client.paykeys.<a href="./src/straddle/resources/paykeys.py">review</a>(id, \*\*<a href="src/straddle/types/paykey_review_params.py">params</a>) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
 - <code title="get /v1/paykeys/{id}/unmasked">client.paykeys.<a href="./src/straddle/resources/paykeys.py">unmasked</a>(id) -> <a href="./src/straddle/types/paykey_unmasked_v1.py">PaykeyUnmaskedV1</a></code>
 
 # Charges
