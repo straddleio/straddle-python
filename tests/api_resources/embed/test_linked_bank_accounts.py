@@ -43,7 +43,10 @@ class TestLinkedBankAccounts:
                 "account_number": "account_number",
                 "routing_number": "xxxxxxxxx",
             },
+            description="description",
             metadata={"foo": "string"},
+            platform_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            purposes=["charges"],
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -322,7 +325,10 @@ class TestAsyncLinkedBankAccounts:
                 "account_number": "account_number",
                 "routing_number": "xxxxxxxxx",
             },
+            description="description",
             metadata={"foo": "string"},
+            platform_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            purposes=["charges"],
             correlation_id="correlation-id",
             request_id="request-id",
         )
