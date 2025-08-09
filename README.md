@@ -1,6 +1,7 @@
 # Straddle Python API library
 
-[![PyPI version](<https://img.shields.io/pypi/v/straddle.svg?label=pypi%20(stable)>)](https://pypi.org/project/straddle/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/straddle.svg?label=pypi%20(stable))](https://pypi.org/project/straddle/)
 
 The Straddle Python library provides convenient access to the Straddle REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -104,7 +105,6 @@ pip install straddle[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from straddle import DefaultAioHttpClient
 from datetime import date
@@ -113,7 +113,7 @@ from straddle import AsyncStraddle
 
 async def main() -> None:
     async with AsyncStraddle(
-        api_key=os.environ.get("STRADDLE_API_KEY"),  # This is the default and can be omitted
+        api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
         charge_v1 = await client.charges.create(

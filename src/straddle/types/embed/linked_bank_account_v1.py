@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -55,13 +55,19 @@ class Data(BaseModel):
     created_at: datetime
     """Timestamp of when the bank account object was created."""
 
-    status: Literal["created", "onboarding", "active", "rejected", "inactive"]
+    purposes: List[Literal["charges", "payouts", "billing"]]
+    """The purposes for the linked bank account."""
+
+    status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"]
     """The current status of the linked bank account."""
 
     status_detail: DataStatusDetail
 
     updated_at: datetime
     """Timestamp of the most recent update to the linked bank account."""
+
+    description: Optional[str] = None
+    """Optional description for the bank account."""
 
     metadata: Optional[Dict[str, Optional[str]]] = None
     """Up to 20 additional user-defined key-value pairs.
