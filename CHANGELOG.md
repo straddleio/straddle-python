@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.2.0 (2025-08-09)
+
+Full Changelog: [v0.1.1...v0.2.0](https://github.com/straddleio/straddle-python/compare/v0.1.1...v0.2.0)
+
+### Features
+
+* **api:** manual updates ([ed0226f](https://github.com/straddleio/straddle-python/commit/ed0226fa8e3de4720587a59ad50bc81db2db0d9c))
+* **api:** manual updates ([63beb58](https://github.com/straddleio/straddle-python/commit/63beb586c9aa10325832a9612e3256e591092342))
+* clean up environment call outs ([1eeb12e](https://github.com/straddleio/straddle-python/commit/1eeb12ee7967b2f88259243676d1da7af4578448))
+* **client:** support file upload requests ([e448cbf](https://github.com/straddleio/straddle-python/commit/e448cbf159492da146af602ba6c93cea9cbbd127))
+
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([920023c](https://github.com/straddleio/straddle-python/commit/920023c5b45971ded364ecafc21083ef072a3f64))
+* **parsing:** correctly handle nested discriminated unions ([322d631](https://github.com/straddleio/straddle-python/commit/322d63189df7b02b6083fca47a0693cc1359a1cd))
+* **parsing:** ignore empty metadata ([22359b1](https://github.com/straddleio/straddle-python/commit/22359b1cc4dff65d06dcfd67193a123dc366972a))
+* **parsing:** parse extra field types ([8f4d0b3](https://github.com/straddleio/straddle-python/commit/8f4d0b3b518ea8dd84ac9d74695a159b539cad6b))
+
+
+### Chores
+
+* **internal:** bump pinned h11 dep ([9e8ed7b](https://github.com/straddleio/straddle-python/commit/9e8ed7bff3b943e492ed05cad384a80e7d5b241e))
+* **internal:** fix ruff target version ([8fdd795](https://github.com/straddleio/straddle-python/commit/8fdd795e9fdcfd4826a89e835e4d49a4eee9f0fb))
+* **package:** mark python 3.13 as supported ([0600578](https://github.com/straddleio/straddle-python/commit/060057822f8c438b09c70edb8ba345f7faec7ef4))
+* **project:** add settings file for vscode ([5a68c73](https://github.com/straddleio/straddle-python/commit/5a68c737bc232b4491d5c4865f648f68fa9befcf))
+* **readme:** fix version rendering on pypi ([700785d](https://github.com/straddleio/straddle-python/commit/700785dfc4d079c5ee36387013a6f65e7633fe68))
+* update @stainless-api/prism-cli to v5.15.0 ([c5aa610](https://github.com/straddleio/straddle-python/commit/c5aa610509a4e64b4d12a9218d9b852a3735b38c))
+
 ## 0.1.1 (2025-07-08)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/straddleio/straddle-python/compare/v0.1.0...v0.1.1)
