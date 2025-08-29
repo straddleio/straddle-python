@@ -64,6 +64,8 @@ class CustomerCreateParams(TypedDict, total=False):
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 
+    idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
+
     request_id: Annotated[str, PropertyInfo(alias="Request-Id")]
 
     straddle_account_id: Annotated[str, PropertyInfo(alias="Straddle-Account-Id")]

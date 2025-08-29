@@ -32,6 +32,7 @@ class TestReview:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status="verified",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -139,6 +140,7 @@ class TestAsyncReview:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             status="verified",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
