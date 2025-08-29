@@ -53,6 +53,7 @@ class OrganizationsResource(SyncAPIResource):
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -88,6 +89,7 @@ class OrganizationsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -261,6 +263,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -296,6 +299,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),

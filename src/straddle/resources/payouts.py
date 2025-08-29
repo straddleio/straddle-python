@@ -65,6 +65,7 @@ class PayoutsResource(SyncAPIResource):
         config: payout_create_params.Config | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -109,6 +110,7 @@ class PayoutsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -146,6 +148,7 @@ class PayoutsResource(SyncAPIResource):
         payment_date: Union[str, date],
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -185,6 +188,7 @@ class PayoutsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -214,6 +218,7 @@ class PayoutsResource(SyncAPIResource):
         *,
         reason: str,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -245,6 +250,7 @@ class PayoutsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -314,6 +320,7 @@ class PayoutsResource(SyncAPIResource):
         *,
         reason: str,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -345,6 +352,7 @@ class PayoutsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -366,6 +374,7 @@ class PayoutsResource(SyncAPIResource):
         *,
         reason: str,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -396,6 +405,7 @@ class PayoutsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -491,6 +501,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         config: payout_create_params.Config | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -535,6 +546,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -572,6 +584,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         payment_date: Union[str, date],
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -611,6 +624,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -640,6 +654,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         *,
         reason: str,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -671,6 +686,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -740,6 +756,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         *,
         reason: str,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -771,6 +788,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -792,6 +810,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
         *,
         reason: str,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -822,6 +841,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }

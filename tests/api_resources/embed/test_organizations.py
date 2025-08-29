@@ -33,6 +33,7 @@ class TestOrganizations:
             external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(OrganizationV1, organization, path=["response"])
@@ -167,6 +168,7 @@ class TestAsyncOrganizations:
             external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(OrganizationV1, organization, path=["response"])

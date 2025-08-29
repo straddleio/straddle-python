@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Dict, Union, Optional
 from datetime import date
 from typing_extensions import Required, Annotated, TypedDict
 
@@ -38,7 +38,16 @@ class RepresentativeUpdateParams(TypedDict, total=False):
     cross-referencing between Straddle and your systems.
     """
 
+    metadata: Optional[Dict[str, str]]
+    """Up to 20 additional user-defined key-value pairs.
+
+    Useful for storing additional information about the represetative in a
+    structured format.
+    """
+
     correlation_id: Annotated[str, PropertyInfo(alias="correlation-id")]
+
+    idempotency_key: Annotated[str, PropertyInfo(alias="idempotency-key")]
 
     request_id: Annotated[str, PropertyInfo(alias="request-id")]
 

@@ -40,6 +40,8 @@ class LinkedBankAccountCreateParams(TypedDict, total=False):
 
     correlation_id: Annotated[str, PropertyInfo(alias="correlation-id")]
 
+    idempotency_key: Annotated[str, PropertyInfo(alias="idempotency-key")]
+
     request_id: Annotated[str, PropertyInfo(alias="request-id")]
 
 
