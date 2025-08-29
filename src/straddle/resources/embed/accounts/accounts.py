@@ -76,6 +76,7 @@ class AccountsResource(SyncAPIResource):
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -116,6 +117,7 @@ class AccountsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -148,6 +150,7 @@ class AccountsResource(SyncAPIResource):
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -182,6 +185,7 @@ class AccountsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -333,6 +337,7 @@ class AccountsResource(SyncAPIResource):
         *,
         terms_of_service: TermsOfServiceV1Param,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -362,6 +367,7 @@ class AccountsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -382,6 +388,7 @@ class AccountsResource(SyncAPIResource):
         *,
         final_status: Literal["onboarding", "active"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -410,6 +417,7 @@ class AccountsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -462,6 +470,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -502,6 +511,7 @@ class AsyncAccountsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -534,6 +544,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -568,6 +579,7 @@ class AsyncAccountsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -719,6 +731,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         *,
         terms_of_service: TermsOfServiceV1Param,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -748,6 +761,7 @@ class AsyncAccountsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -770,6 +784,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         *,
         final_status: Literal["onboarding", "active"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -798,6 +813,7 @@ class AsyncAccountsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),

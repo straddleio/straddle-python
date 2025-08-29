@@ -67,6 +67,7 @@ class ChargesResource(SyncAPIResource):
         payment_date: Union[str, date],
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -114,6 +115,7 @@ class ChargesResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -152,6 +154,7 @@ class ChargesResource(SyncAPIResource):
         payment_date: Union[str, date],
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -190,6 +193,7 @@ class ChargesResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -219,6 +223,7 @@ class ChargesResource(SyncAPIResource):
         *,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -250,6 +255,7 @@ class ChargesResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -319,6 +325,7 @@ class ChargesResource(SyncAPIResource):
         *,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -350,6 +357,7 @@ class ChargesResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -371,6 +379,7 @@ class ChargesResource(SyncAPIResource):
         *,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -401,6 +410,7 @@ class ChargesResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -497,6 +507,7 @@ class AsyncChargesResource(AsyncAPIResource):
         payment_date: Union[str, date],
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -544,6 +555,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -582,6 +594,7 @@ class AsyncChargesResource(AsyncAPIResource):
         payment_date: Union[str, date],
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -620,6 +633,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -649,6 +663,7 @@ class AsyncChargesResource(AsyncAPIResource):
         *,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -680,6 +695,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -749,6 +765,7 @@ class AsyncChargesResource(AsyncAPIResource):
         *,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -780,6 +797,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -801,6 +819,7 @@ class AsyncChargesResource(AsyncAPIResource):
         *,
         reason: Optional[str] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -831,6 +850,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }

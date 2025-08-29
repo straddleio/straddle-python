@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -111,6 +111,13 @@ class Data(BaseModel):
     """
     Unique identifier for the representative in your database, used for
     cross-referencing between Straddle and your systems.
+    """
+
+    metadata: Optional[Dict[str, str]] = None
+    """Up to 20 additional user-defined key-value pairs.
+
+    Useful for storing additional information about the represetative in a
+    structured format.
     """
 
     phone: Optional[str] = None

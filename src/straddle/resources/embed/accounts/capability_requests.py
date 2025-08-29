@@ -55,6 +55,7 @@ class CapabilityRequestsResource(SyncAPIResource):
         payouts: capability_request_create_params.Payouts | NotGiven = NOT_GIVEN,
         signed_agreement: capability_request_create_params.SignedAgreement | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -97,6 +98,7 @@ class CapabilityRequestsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -238,6 +240,7 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
         payouts: capability_request_create_params.Payouts | NotGiven = NOT_GIVEN,
         signed_agreement: capability_request_create_params.SignedAgreement | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -280,6 +283,7 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Optional
+from typing import Dict, Union, Optional
 from datetime import date
 from typing_extensions import Literal
 
@@ -59,7 +59,9 @@ class RepresentativesResource(SyncAPIResource):
         relationship: representative_create_params.Relationship,
         ssn_last4: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -92,6 +94,9 @@ class RepresentativesResource(SyncAPIResource):
           external_id: Unique identifier for the representative in your database, used for
               cross-referencing between Straddle and your systems.
 
+          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
+              information about the represetative in a structured format.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -104,6 +109,7 @@ class RepresentativesResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -122,6 +128,7 @@ class RepresentativesResource(SyncAPIResource):
                     "relationship": relationship,
                     "ssn_last4": ssn_last4,
                     "external_id": external_id,
+                    "metadata": metadata,
                 },
                 representative_create_params.RepresentativeCreateParams,
             ),
@@ -143,7 +150,9 @@ class RepresentativesResource(SyncAPIResource):
         relationship: representative_update_params.Relationship,
         ssn_last4: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -174,6 +183,9 @@ class RepresentativesResource(SyncAPIResource):
           external_id: Unique identifier for the representative in your database, used for
               cross-referencing between Straddle and your systems.
 
+          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
+              information about the represetative in a structured format.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -188,6 +200,7 @@ class RepresentativesResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -205,6 +218,7 @@ class RepresentativesResource(SyncAPIResource):
                     "relationship": relationship,
                     "ssn_last4": ssn_last4,
                     "external_id": external_id,
+                    "metadata": metadata,
                 },
                 representative_update_params.RepresentativeUpdateParams,
             ),
@@ -420,7 +434,9 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         relationship: representative_create_params.Relationship,
         ssn_last4: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -453,6 +469,9 @@ class AsyncRepresentativesResource(AsyncAPIResource):
           external_id: Unique identifier for the representative in your database, used for
               cross-referencing between Straddle and your systems.
 
+          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
+              information about the represetative in a structured format.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -465,6 +484,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -483,6 +503,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
                     "relationship": relationship,
                     "ssn_last4": ssn_last4,
                     "external_id": external_id,
+                    "metadata": metadata,
                 },
                 representative_create_params.RepresentativeCreateParams,
             ),
@@ -504,7 +525,9 @@ class AsyncRepresentativesResource(AsyncAPIResource):
         relationship: representative_update_params.Relationship,
         ssn_last4: str,
         external_id: Optional[str] | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -535,6 +558,9 @@ class AsyncRepresentativesResource(AsyncAPIResource):
           external_id: Unique identifier for the representative in your database, used for
               cross-referencing between Straddle and your systems.
 
+          metadata: Up to 20 additional user-defined key-value pairs. Useful for storing additional
+              information about the represetative in a structured format.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -549,6 +575,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -566,6 +593,7 @@ class AsyncRepresentativesResource(AsyncAPIResource):
                     "relationship": relationship,
                     "ssn_last4": ssn_last4,
                     "external_id": external_id,
+                    "metadata": metadata,
                 },
                 representative_update_params.RepresentativeUpdateParams,
             ),

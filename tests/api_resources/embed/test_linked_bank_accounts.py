@@ -48,6 +48,7 @@ class TestLinkedBankAccounts:
             platform_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             purposes=["charges"],
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
@@ -109,6 +110,7 @@ class TestLinkedBankAccounts:
             },
             metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
@@ -212,6 +214,7 @@ class TestLinkedBankAccounts:
         linked_bank_account = client.embed.linked_bank_accounts.cancel(
             linked_bank_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
@@ -379,6 +382,7 @@ class TestAsyncLinkedBankAccounts:
             platform_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             purposes=["charges"],
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
@@ -440,6 +444,7 @@ class TestAsyncLinkedBankAccounts:
             },
             metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
@@ -543,6 +548,7 @@ class TestAsyncLinkedBankAccounts:
         linked_bank_account = await async_client.embed.linked_bank_accounts.cancel(
             linked_bank_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(LinkedBankAccountV1, linked_bank_account, path=["response"])
