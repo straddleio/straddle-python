@@ -61,6 +61,7 @@ class LinkResource(SyncAPIResource):
         config: link_bank_account_params.Config | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -97,6 +98,7 @@ class LinkResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -130,6 +132,7 @@ class LinkResource(SyncAPIResource):
         config: link_create_paykey_params.Config | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -166,6 +169,7 @@ class LinkResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -199,6 +203,7 @@ class LinkResource(SyncAPIResource):
         config: link_create_tan_params.Config | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -231,6 +236,7 @@ class LinkResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -264,6 +270,7 @@ class LinkResource(SyncAPIResource):
         config: link_plaid_params.Config | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -300,6 +307,7 @@ class LinkResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -354,6 +362,7 @@ class AsyncLinkResource(AsyncAPIResource):
         config: link_bank_account_params.Config | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -390,6 +399,7 @@ class AsyncLinkResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -423,6 +433,7 @@ class AsyncLinkResource(AsyncAPIResource):
         config: link_create_paykey_params.Config | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -459,6 +470,7 @@ class AsyncLinkResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -492,6 +504,7 @@ class AsyncLinkResource(AsyncAPIResource):
         config: link_create_tan_params.Config | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -524,6 +537,7 @@ class AsyncLinkResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -557,6 +571,7 @@ class AsyncLinkResource(AsyncAPIResource):
         config: link_plaid_params.Config | NotGiven = NOT_GIVEN,
         metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -593,6 +608,7 @@ class AsyncLinkResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
