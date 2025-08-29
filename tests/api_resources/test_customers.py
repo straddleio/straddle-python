@@ -60,6 +60,7 @@ class TestCustomers:
             external_id="customer_123",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -132,6 +133,7 @@ class TestCustomers:
             external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -241,6 +243,7 @@ class TestCustomers:
         customer = client.customers.delete(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -337,6 +340,7 @@ class TestCustomers:
         customer = client.customers.refresh_review(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -464,6 +468,7 @@ class TestAsyncCustomers:
             external_id="customer_123",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -536,6 +541,7 @@ class TestAsyncCustomers:
             external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -645,6 +651,7 @@ class TestAsyncCustomers:
         customer = await async_client.customers.delete(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -741,6 +748,7 @@ class TestAsyncCustomers:
         customer = await async_client.customers.refresh_review(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )

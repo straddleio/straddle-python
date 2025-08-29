@@ -41,6 +41,7 @@ class TestLink:
             config={"sandbox_outcome": "standard"},
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -92,6 +93,7 @@ class TestLink:
             config={"sandbox_outcome": "standard"},
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -143,6 +145,7 @@ class TestLink:
             config={"sandbox_outcome": "standard"},
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -194,6 +197,7 @@ class TestLink:
             config={"sandbox_outcome": "standard"},
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -251,6 +255,7 @@ class TestAsyncLink:
             config={"sandbox_outcome": "standard"},
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -302,6 +307,7 @@ class TestAsyncLink:
             config={"sandbox_outcome": "standard"},
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -353,6 +359,7 @@ class TestAsyncLink:
             config={"sandbox_outcome": "standard"},
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -404,6 +411,7 @@ class TestAsyncLink:
             config={"sandbox_outcome": "standard"},
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )

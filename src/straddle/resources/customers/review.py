@@ -50,6 +50,7 @@ class ReviewResource(SyncAPIResource):
         *,
         status: Literal["verified", "rejected"],
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -83,6 +84,7 @@ class ReviewResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
@@ -179,6 +181,7 @@ class AsyncReviewResource(AsyncAPIResource):
         *,
         status: Literal["verified", "rejected"],
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         straddle_account_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -212,6 +215,7 @@ class AsyncReviewResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
                     "Request-Id": request_id,
                     "Straddle-Account-Id": straddle_account_id,
                 }
