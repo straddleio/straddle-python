@@ -61,6 +61,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
         platform_id: Optional[str] | NotGiven = NOT_GIVEN,
         purposes: Optional[List[Literal["charges", "payouts", "billing"]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -102,6 +103,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -133,6 +135,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
         bank_account: linked_bank_account_update_params.BankAccount,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -168,6 +171,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -269,6 +273,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
         linked_bank_account_id: str,
         *,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -300,6 +305,7 @@ class LinkedBankAccountsResource(SyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -443,6 +449,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         platform_id: Optional[str] | NotGiven = NOT_GIVEN,
         purposes: Optional[List[Literal["charges", "payouts", "billing"]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -484,6 +491,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -515,6 +523,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         bank_account: linked_bank_account_update_params.BankAccount,
         metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -550,6 +559,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),
@@ -651,6 +661,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         linked_bank_account_id: str,
         *,
         correlation_id: str | NotGiven = NOT_GIVEN,
+        idempotency_key: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -682,6 +693,7 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             **strip_not_given(
                 {
                     "correlation-id": correlation_id,
+                    "idempotency-key": idempotency_key,
                     "request-id": request_id,
                 }
             ),

@@ -51,6 +51,7 @@ class TestCapabilityRequests:
             },
             signed_agreement={"enable": True},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(CapabilityRequestPagedV1, capability_request, path=["response"])
@@ -176,6 +177,7 @@ class TestAsyncCapabilityRequests:
             },
             signed_agreement={"enable": True},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(CapabilityRequestPagedV1, capability_request, path=["response"])

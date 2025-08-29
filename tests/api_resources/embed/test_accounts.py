@@ -74,6 +74,7 @@ class TestAccounts:
             external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -162,6 +163,7 @@ class TestAccounts:
             external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -320,6 +322,7 @@ class TestAccounts:
                 "accepted_user_agent": "accepted_user_agent",
             },
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -383,6 +386,7 @@ class TestAccounts:
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             final_status="onboarding",
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -476,6 +480,7 @@ class TestAsyncAccounts:
             external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -564,6 +569,7 @@ class TestAsyncAccounts:
             external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -722,6 +728,7 @@ class TestAsyncAccounts:
                 "accepted_user_agent": "accepted_user_agent",
             },
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(AccountV1, account, path=["response"])
@@ -785,6 +792,7 @@ class TestAsyncAccounts:
             account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             final_status="onboarding",
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(AccountV1, account, path=["response"])

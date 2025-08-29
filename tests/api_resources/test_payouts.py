@@ -47,6 +47,7 @@ class TestPayouts:
             config={"sandbox_outcome": "standard"},
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -107,6 +108,7 @@ class TestPayouts:
             payment_date=parse_date("2019-12-27"),
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -166,6 +168,7 @@ class TestPayouts:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="reason",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -267,6 +270,7 @@ class TestPayouts:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="reason",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -320,6 +324,7 @@ class TestPayouts:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="reason",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -439,6 +444,7 @@ class TestAsyncPayouts:
             config={"sandbox_outcome": "standard"},
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -499,6 +505,7 @@ class TestAsyncPayouts:
             payment_date=parse_date("2019-12-27"),
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -558,6 +565,7 @@ class TestAsyncPayouts:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="reason",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -659,6 +667,7 @@ class TestAsyncPayouts:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="reason",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -712,6 +721,7 @@ class TestAsyncPayouts:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             reason="reason",
             correlation_id="Correlation-Id",
+            idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )

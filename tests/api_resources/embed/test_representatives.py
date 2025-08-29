@@ -58,7 +58,9 @@ class TestRepresentatives:
             },
             ssn_last4="1234",
             external_id="external_id",
+            metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(Representative, representative, path=["response"])
@@ -145,7 +147,9 @@ class TestRepresentatives:
             },
             ssn_last4="1234",
             external_id="external_id",
+            metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(Representative, representative, path=["response"])
@@ -391,7 +395,9 @@ class TestAsyncRepresentatives:
             },
             ssn_last4="1234",
             external_id="external_id",
+            metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(Representative, representative, path=["response"])
@@ -478,7 +484,9 @@ class TestAsyncRepresentatives:
             },
             ssn_last4="1234",
             external_id="external_id",
+            metadata={"foo": "string"},
             correlation_id="correlation-id",
+            idempotency_key="xxxxxxxxxx",
             request_id="request-id",
         )
         assert_matches_type(Representative, representative, path=["response"])
