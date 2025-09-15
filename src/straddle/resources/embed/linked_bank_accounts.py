@@ -199,8 +199,10 @@ class LinkedBankAccountsResource(SyncAPIResource):
         level: Literal["account", "platform"] | NotGiven = NOT_GIVEN,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
+        purpose: Literal["charges", "payouts", "billing"] | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -224,9 +226,15 @@ class LinkedBankAccountsResource(SyncAPIResource):
 
           page_size: Page size. Max value: 1000
 
+          purpose: The purpose of the linked bank accounts to return. Possible values: 'charges',
+              'payouts', 'billing'.
+
           sort_by: Sort By.
 
           sort_order: Sort Order.
+
+          status: The status of the linked bank accounts to return. Possible values: 'created',
+              'onboarding', 'active', 'inactive', 'rejected'.
 
           extra_headers: Send extra headers
 
@@ -259,8 +267,10 @@ class LinkedBankAccountsResource(SyncAPIResource):
                         "level": level,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "purpose": purpose,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "status": status,
                     },
                     linked_bank_account_list_params.LinkedBankAccountListParams,
                 ),
@@ -587,8 +597,10 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         level: Literal["account", "platform"] | NotGiven = NOT_GIVEN,
         page_number: int | NotGiven = NOT_GIVEN,
         page_size: int | NotGiven = NOT_GIVEN,
+        purpose: Literal["charges", "payouts", "billing"] | NotGiven = NOT_GIVEN,
         sort_by: str | NotGiven = NOT_GIVEN,
         sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"] | NotGiven = NOT_GIVEN,
         correlation_id: str | NotGiven = NOT_GIVEN,
         request_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -612,9 +624,15 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
 
           page_size: Page size. Max value: 1000
 
+          purpose: The purpose of the linked bank accounts to return. Possible values: 'charges',
+              'payouts', 'billing'.
+
           sort_by: Sort By.
 
           sort_order: Sort Order.
+
+          status: The status of the linked bank accounts to return. Possible values: 'created',
+              'onboarding', 'active', 'inactive', 'rejected'.
 
           extra_headers: Send extra headers
 
@@ -647,8 +665,10 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
                         "level": level,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "purpose": purpose,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "status": status,
                     },
                     linked_bank_account_list_params.LinkedBankAccountListParams,
                 ),
