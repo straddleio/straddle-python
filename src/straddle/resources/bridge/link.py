@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -58,18 +58,18 @@ class LinkResource(SyncAPIResource):
         account_type: Literal["checking", "savings"],
         customer_id: str,
         routing_number: str,
-        config: link_bank_account_params.Config | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        config: link_bank_account_params.Config | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaykeyV1:
         """
         Use Bridge to create a new paykey using a bank routing and account number as the
@@ -129,18 +129,18 @@ class LinkResource(SyncAPIResource):
         *,
         customer_id: str,
         quiltt_token: str,
-        config: link_create_paykey_params.Config | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        config: link_create_paykey_params.Config | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkCreatePaykeyResponse:
         """Creates a new paykey using a Quiltt token as the source.
 
@@ -200,18 +200,18 @@ class LinkResource(SyncAPIResource):
         customer_id: str,
         routing_number: str,
         tan: str,
-        config: link_create_tan_params.Config | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        config: link_create_tan_params.Config | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkCreateTanResponse:
         """
         Args:
@@ -267,18 +267,18 @@ class LinkResource(SyncAPIResource):
         *,
         customer_id: str,
         plaid_token: str,
-        config: link_plaid_params.Config | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        config: link_plaid_params.Config | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaykeyV1:
         """Use Bridge to create a new paykey using a Plaid token as the source.
 
@@ -359,18 +359,18 @@ class AsyncLinkResource(AsyncAPIResource):
         account_type: Literal["checking", "savings"],
         customer_id: str,
         routing_number: str,
-        config: link_bank_account_params.Config | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        config: link_bank_account_params.Config | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaykeyV1:
         """
         Use Bridge to create a new paykey using a bank routing and account number as the
@@ -430,18 +430,18 @@ class AsyncLinkResource(AsyncAPIResource):
         *,
         customer_id: str,
         quiltt_token: str,
-        config: link_create_paykey_params.Config | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        config: link_create_paykey_params.Config | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkCreatePaykeyResponse:
         """Creates a new paykey using a Quiltt token as the source.
 
@@ -501,18 +501,18 @@ class AsyncLinkResource(AsyncAPIResource):
         customer_id: str,
         routing_number: str,
         tan: str,
-        config: link_create_tan_params.Config | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        config: link_create_tan_params.Config | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkCreateTanResponse:
         """
         Args:
@@ -568,18 +568,18 @@ class AsyncLinkResource(AsyncAPIResource):
         *,
         customer_id: str,
         plaid_token: str,
-        config: link_plaid_params.Config | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        config: link_plaid_params.Config | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaykeyV1:
         """Use Bridge to create a new paykey using a Plaid token as the source.
 

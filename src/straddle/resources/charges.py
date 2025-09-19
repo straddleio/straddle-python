@@ -15,7 +15,7 @@ from ..types import (
     charge_update_params,
     charge_release_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -65,17 +65,17 @@ class ChargesResource(SyncAPIResource):
         external_id: str,
         paykey: str,
         payment_date: Union[str, date],
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """
         Use charges to collect money from a customer for the sale of goods or services.
@@ -152,17 +152,17 @@ class ChargesResource(SyncAPIResource):
         amount: int,
         description: str,
         payment_date: Union[str, date],
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """
         Change the values of parameters associated with a charge prior to processing.
@@ -221,17 +221,17 @@ class ChargesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        reason: Optional[str] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        reason: Optional[str] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """Cancel a charge to prevent it from being originated for processing.
 
@@ -275,15 +275,15 @@ class ChargesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """Retrieves the details of an existing charge.
 
@@ -323,17 +323,17 @@ class ChargesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        reason: Optional[str] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        reason: Optional[str] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """Place a charge on hold to prevent it from being originated for processing.
 
@@ -377,17 +377,17 @@ class ChargesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        reason: Optional[str] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        reason: Optional[str] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """
         Release a charge from an `on_hold` status to allow it to be rescheduled for
@@ -430,15 +430,15 @@ class ChargesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeUnmaskResponse:
         """
         Get a charge by id.
@@ -505,17 +505,17 @@ class AsyncChargesResource(AsyncAPIResource):
         external_id: str,
         paykey: str,
         payment_date: Union[str, date],
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """
         Use charges to collect money from a customer for the sale of goods or services.
@@ -592,17 +592,17 @@ class AsyncChargesResource(AsyncAPIResource):
         amount: int,
         description: str,
         payment_date: Union[str, date],
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """
         Change the values of parameters associated with a charge prior to processing.
@@ -661,17 +661,17 @@ class AsyncChargesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        reason: Optional[str] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        reason: Optional[str] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """Cancel a charge to prevent it from being originated for processing.
 
@@ -715,15 +715,15 @@ class AsyncChargesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """Retrieves the details of an existing charge.
 
@@ -763,17 +763,17 @@ class AsyncChargesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        reason: Optional[str] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        reason: Optional[str] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """Place a charge on hold to prevent it from being originated for processing.
 
@@ -817,17 +817,17 @@ class AsyncChargesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        reason: Optional[str] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        reason: Optional[str] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeV1:
         """
         Release a charge from an `on_hold` status to allow it to be rescheduled for
@@ -870,15 +870,15 @@ class AsyncChargesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChargeUnmaskResponse:
         """
         Get a charge by id.

@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -56,19 +56,19 @@ class LinkedBankAccountsResource(SyncAPIResource):
         *,
         account_id: Optional[str],
         bank_account: linked_bank_account_create_params.BankAccount,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
-        platform_id: Optional[str] | NotGiven = NOT_GIVEN,
-        purposes: Optional[List[Literal["charges", "payouts", "billing"]]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        metadata: Optional[Dict[str, Optional[str]]] | Omit = omit,
+        platform_id: Optional[str] | Omit = omit,
+        purposes: Optional[List[Literal["charges", "payouts", "billing"]]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkedBankAccountV1:
         """Creates a new linked bank account associated with a Straddle account.
 
@@ -133,16 +133,16 @@ class LinkedBankAccountsResource(SyncAPIResource):
         linked_bank_account_id: str,
         *,
         bank_account: linked_bank_account_update_params.BankAccount,
-        metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, Optional[str]]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkedBankAccountV1:
         """Updates an existing linked bank account's information.
 
@@ -195,22 +195,22 @@ class LinkedBankAccountsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        level: Literal["account", "platform"] | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        purpose: Literal["charges", "payouts", "billing"] | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        level: Literal["account", "platform"] | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        purpose: Literal["charges", "payouts", "billing"] | Omit = omit,
+        sort_by: str | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageNumberSchema[Data]:
         """Returns a list of bank accounts associated with a specific Straddle account.
 
@@ -282,15 +282,15 @@ class LinkedBankAccountsResource(SyncAPIResource):
         self,
         linked_bank_account_id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkedBankAccountV1:
         """Cancels an existing linked bank account.
 
@@ -333,14 +333,14 @@ class LinkedBankAccountsResource(SyncAPIResource):
         self,
         linked_bank_account_id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkedBankAccountV1:
         """
         Retrieves the details of a linked bank account that has previously been created.
@@ -382,14 +382,14 @@ class LinkedBankAccountsResource(SyncAPIResource):
         self,
         linked_bank_account_id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkedBankAccountUnmaskV1:
         """
         Retrieves the unmasked details of a linked bank account that has previously been
@@ -454,19 +454,19 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         *,
         account_id: Optional[str],
         bank_account: linked_bank_account_create_params.BankAccount,
-        description: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
-        platform_id: Optional[str] | NotGiven = NOT_GIVEN,
-        purposes: Optional[List[Literal["charges", "payouts", "billing"]]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        description: Optional[str] | Omit = omit,
+        metadata: Optional[Dict[str, Optional[str]]] | Omit = omit,
+        platform_id: Optional[str] | Omit = omit,
+        purposes: Optional[List[Literal["charges", "payouts", "billing"]]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkedBankAccountV1:
         """Creates a new linked bank account associated with a Straddle account.
 
@@ -531,16 +531,16 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         linked_bank_account_id: str,
         *,
         bank_account: linked_bank_account_update_params.BankAccount,
-        metadata: Optional[Dict[str, Optional[str]]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        metadata: Optional[Dict[str, Optional[str]]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkedBankAccountV1:
         """Updates an existing linked bank account's information.
 
@@ -593,22 +593,22 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        level: Literal["account", "platform"] | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        purpose: Literal["charges", "payouts", "billing"] | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        account_id: str | Omit = omit,
+        level: Literal["account", "platform"] | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        purpose: Literal["charges", "payouts", "billing"] | Omit = omit,
+        sort_by: str | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """Returns a list of bank accounts associated with a specific Straddle account.
 
@@ -680,15 +680,15 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         self,
         linked_bank_account_id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkedBankAccountV1:
         """Cancels an existing linked bank account.
 
@@ -731,14 +731,14 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         self,
         linked_bank_account_id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkedBankAccountV1:
         """
         Retrieves the details of a linked bank account that has previously been created.
@@ -780,14 +780,14 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         self,
         linked_bank_account_id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> LinkedBankAccountUnmaskV1:
         """
         Retrieves the unmasked details of a linked bank account that has previously been
