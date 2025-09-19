@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import payment_list_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, strip_not_given
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,33 +49,33 @@ class PaymentsResource(SyncAPIResource):
     def list(
         self,
         *,
-        customer_id: str | NotGiven = NOT_GIVEN,
-        default_page_size: int | NotGiven = NOT_GIVEN,
-        default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | NotGiven = NOT_GIVEN,
-        default_sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        funding_id: str | NotGiven = NOT_GIVEN,
-        max_amount: int | NotGiven = NOT_GIVEN,
-        max_created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        max_effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        max_payment_date: Union[str, date] | NotGiven = NOT_GIVEN,
-        min_amount: int | NotGiven = NOT_GIVEN,
-        min_created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        min_effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        min_payment_date: Union[str, date] | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        paykey: str | NotGiven = NOT_GIVEN,
-        paykey_id: str | NotGiven = NOT_GIVEN,
-        payment_id: str | NotGiven = NOT_GIVEN,
+        customer_id: str | Omit = omit,
+        default_page_size: int | Omit = omit,
+        default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | Omit = omit,
+        default_sort_order: Literal["asc", "desc"] | Omit = omit,
+        external_id: str | Omit = omit,
+        funding_id: str | Omit = omit,
+        max_amount: int | Omit = omit,
+        max_created_at: Union[str, datetime] | Omit = omit,
+        max_effective_at: Union[str, datetime] | Omit = omit,
+        max_payment_date: Union[str, date] | Omit = omit,
+        min_amount: int | Omit = omit,
+        min_created_at: Union[str, datetime] | Omit = omit,
+        min_effective_at: Union[str, datetime] | Omit = omit,
+        min_payment_date: Union[str, date] | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        paykey: str | Omit = omit,
+        paykey_id: str | Omit = omit,
+        payment_id: str | Omit = omit,
         payment_status: List[
             Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
         ]
-        | NotGiven = NOT_GIVEN,
-        payment_type: List[Literal["charge", "payout"]] | NotGiven = NOT_GIVEN,
-        search_text: str | NotGiven = NOT_GIVEN,
-        sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        payment_type: List[Literal["charge", "payout"]] | Omit = omit,
+        search_text: str | Omit = omit,
+        sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
         status_reason: List[
             Literal[
                 "insufficient_funds",
@@ -100,18 +100,18 @@ class PaymentsResource(SyncAPIResource):
                 "payout_refused",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         status_source: List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]
-        | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageNumberSchema[Data]:
         """
         Search for payments, including `charges` and `payouts`, using a variety of
@@ -249,33 +249,33 @@ class AsyncPaymentsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        customer_id: str | NotGiven = NOT_GIVEN,
-        default_page_size: int | NotGiven = NOT_GIVEN,
-        default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | NotGiven = NOT_GIVEN,
-        default_sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        funding_id: str | NotGiven = NOT_GIVEN,
-        max_amount: int | NotGiven = NOT_GIVEN,
-        max_created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        max_effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        max_payment_date: Union[str, date] | NotGiven = NOT_GIVEN,
-        min_amount: int | NotGiven = NOT_GIVEN,
-        min_created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        min_effective_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        min_payment_date: Union[str, date] | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        paykey: str | NotGiven = NOT_GIVEN,
-        paykey_id: str | NotGiven = NOT_GIVEN,
-        payment_id: str | NotGiven = NOT_GIVEN,
+        customer_id: str | Omit = omit,
+        default_page_size: int | Omit = omit,
+        default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | Omit = omit,
+        default_sort_order: Literal["asc", "desc"] | Omit = omit,
+        external_id: str | Omit = omit,
+        funding_id: str | Omit = omit,
+        max_amount: int | Omit = omit,
+        max_created_at: Union[str, datetime] | Omit = omit,
+        max_effective_at: Union[str, datetime] | Omit = omit,
+        max_payment_date: Union[str, date] | Omit = omit,
+        min_amount: int | Omit = omit,
+        min_created_at: Union[str, datetime] | Omit = omit,
+        min_effective_at: Union[str, datetime] | Omit = omit,
+        min_payment_date: Union[str, date] | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        paykey: str | Omit = omit,
+        paykey_id: str | Omit = omit,
+        payment_id: str | Omit = omit,
         payment_status: List[
             Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
         ]
-        | NotGiven = NOT_GIVEN,
-        payment_type: List[Literal["charge", "payout"]] | NotGiven = NOT_GIVEN,
-        search_text: str | NotGiven = NOT_GIVEN,
-        sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        payment_type: List[Literal["charge", "payout"]] | Omit = omit,
+        search_text: str | Omit = omit,
+        sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
         status_reason: List[
             Literal[
                 "insufficient_funds",
@@ -300,18 +300,18 @@ class AsyncPaymentsResource(AsyncAPIResource):
                 "payout_refused",
             ]
         ]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         status_source: List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]
-        | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        | Omit = omit,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """
         Search for payments, including `charges` and `payouts`, using a variety of

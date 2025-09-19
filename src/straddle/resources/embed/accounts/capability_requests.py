@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -48,21 +48,21 @@ class CapabilityRequestsResource(SyncAPIResource):
         self,
         account_id: str,
         *,
-        businesses: capability_request_create_params.Businesses | NotGiven = NOT_GIVEN,
-        charges: capability_request_create_params.Charges | NotGiven = NOT_GIVEN,
-        individuals: capability_request_create_params.Individuals | NotGiven = NOT_GIVEN,
-        internet: capability_request_create_params.Internet | NotGiven = NOT_GIVEN,
-        payouts: capability_request_create_params.Payouts | NotGiven = NOT_GIVEN,
-        signed_agreement: capability_request_create_params.SignedAgreement | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        businesses: capability_request_create_params.Businesses | Omit = omit,
+        charges: capability_request_create_params.Charges | Omit = omit,
+        individuals: capability_request_create_params.Individuals | Omit = omit,
+        internet: capability_request_create_params.Internet | Omit = omit,
+        payouts: capability_request_create_params.Payouts | Omit = omit,
+        signed_agreement: capability_request_create_params.SignedAgreement | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CapabilityRequestPagedV1:
         """Submits a request to enable a specific capability for an account.
 
@@ -127,22 +127,21 @@ class CapabilityRequestsResource(SyncAPIResource):
         self,
         account_id: str,
         *,
-        category: Literal["payment_type", "customer_type", "consent_type"] | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: Literal["active", "inactive", "in_review", "rejected"] | NotGiven = NOT_GIVEN,
-        type: Literal["charges", "payouts", "individuals", "businesses", "signed_agreement", "internet"]
-        | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        category: Literal["payment_type", "customer_type", "consent_type"] | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        sort_by: str | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        status: Literal["active", "inactive", "in_review", "rejected"] | Omit = omit,
+        type: Literal["charges", "payouts", "individuals", "businesses", "signed_agreement", "internet"] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageNumberSchema[Data]:
         """Retrieves a list of capability requests associated with an account.
 
@@ -233,21 +232,21 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
         self,
         account_id: str,
         *,
-        businesses: capability_request_create_params.Businesses | NotGiven = NOT_GIVEN,
-        charges: capability_request_create_params.Charges | NotGiven = NOT_GIVEN,
-        individuals: capability_request_create_params.Individuals | NotGiven = NOT_GIVEN,
-        internet: capability_request_create_params.Internet | NotGiven = NOT_GIVEN,
-        payouts: capability_request_create_params.Payouts | NotGiven = NOT_GIVEN,
-        signed_agreement: capability_request_create_params.SignedAgreement | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        businesses: capability_request_create_params.Businesses | Omit = omit,
+        charges: capability_request_create_params.Charges | Omit = omit,
+        individuals: capability_request_create_params.Individuals | Omit = omit,
+        internet: capability_request_create_params.Internet | Omit = omit,
+        payouts: capability_request_create_params.Payouts | Omit = omit,
+        signed_agreement: capability_request_create_params.SignedAgreement | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CapabilityRequestPagedV1:
         """Submits a request to enable a specific capability for an account.
 
@@ -312,22 +311,21 @@ class AsyncCapabilityRequestsResource(AsyncAPIResource):
         self,
         account_id: str,
         *,
-        category: Literal["payment_type", "customer_type", "consent_type"] | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        sort_by: str | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: Literal["active", "inactive", "in_review", "rejected"] | NotGiven = NOT_GIVEN,
-        type: Literal["charges", "payouts", "individuals", "businesses", "signed_agreement", "internet"]
-        | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
+        category: Literal["payment_type", "customer_type", "consent_type"] | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        sort_by: str | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        status: Literal["active", "inactive", "in_review", "rejected"] | Omit = omit,
+        type: Literal["charges", "payouts", "individuals", "businesses", "signed_agreement", "internet"] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """Retrieves a list of capability requests associated with an account.
 

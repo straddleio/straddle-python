@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import funding_event_list_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, strip_not_given
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,25 +50,24 @@ class FundingEventsResource(SyncAPIResource):
     def list(
         self,
         *,
-        created_from: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        created_to: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        direction: Literal["deposit", "withdrawal"] | NotGiven = NOT_GIVEN,
-        event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"]
-        | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        sort_by: Literal["transfer_date", "id", "amount"] | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        trace_number: Optional[str] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        created_from: Union[str, date, None] | Omit = omit,
+        created_to: Union[str, date, None] | Omit = omit,
+        direction: Literal["deposit", "withdrawal"] | Omit = omit,
+        event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"] | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        sort_by: Literal["transfer_date", "id", "amount"] | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        trace_number: Optional[str] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageNumberSchema[Data]:
         """Retrieves a list of funding events for your account.
 
@@ -144,15 +143,15 @@ class FundingEventsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FundingEventSummaryItemV1:
         """Retrieves the details of an existing funding event.
 
@@ -213,25 +212,24 @@ class AsyncFundingEventsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        created_from: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        created_to: Union[str, date, None] | NotGiven = NOT_GIVEN,
-        direction: Literal["deposit", "withdrawal"] | NotGiven = NOT_GIVEN,
-        event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"]
-        | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        sort_by: Literal["transfer_date", "id", "amount"] | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        trace_number: Optional[str] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        created_from: Union[str, date, None] | Omit = omit,
+        created_to: Union[str, date, None] | Omit = omit,
+        direction: Literal["deposit", "withdrawal"] | Omit = omit,
+        event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"] | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        sort_by: Literal["transfer_date", "id", "amount"] | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        trace_number: Optional[str] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """Retrieves a list of funding events for your account.
 
@@ -307,15 +305,15 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FundingEventSummaryItemV1:
         """Retrieves the details of an existing funding event.
 
