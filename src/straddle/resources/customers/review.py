@@ -6,7 +6,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -49,16 +49,16 @@ class ReviewResource(SyncAPIResource):
         id: str,
         *,
         status: Literal["verified", "rejected"],
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """Updates the status of a customer's identity decision.
 
@@ -104,15 +104,15 @@ class ReviewResource(SyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerReviewV1:
         """
         Retrieves and analyzes the results of a customer's identity validation and fraud
@@ -180,16 +180,16 @@ class AsyncReviewResource(AsyncAPIResource):
         id: str,
         *,
         status: Literal["verified", "rejected"],
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """Updates the status of a customer's identity decision.
 
@@ -235,15 +235,15 @@ class AsyncReviewResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerReviewV1:
         """
         Retrieves and analyzes the results of a customer's identity validation and fraud

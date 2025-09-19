@@ -21,7 +21,7 @@ from ...types import (
     customer_create_params,
     customer_update_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -74,21 +74,21 @@ class CustomersResource(SyncAPIResource):
         name: str,
         phone: str,
         type: Literal["individual", "business"],
-        address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
-        compliance_profile: Optional[customer_create_params.ComplianceProfile] | NotGiven = NOT_GIVEN,
-        config: customer_create_params.Config | NotGiven = NOT_GIVEN,
-        external_id: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        address: Optional[CustomerAddressV1Param] | Omit = omit,
+        compliance_profile: Optional[customer_create_params.ComplianceProfile] | Omit = omit,
+        config: customer_create_params.Config | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """
         Creates a new customer record and automatically initiates identity, fraud, and
@@ -165,20 +165,20 @@ class CustomersResource(SyncAPIResource):
         name: str,
         phone: str,
         status: Literal["pending", "review", "verified", "inactive", "rejected"],
-        address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
-        compliance_profile: Optional[customer_update_params.ComplianceProfile] | NotGiven = NOT_GIVEN,
-        external_id: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        address: Optional[CustomerAddressV1Param] | Omit = omit,
+        compliance_profile: Optional[customer_update_params.ComplianceProfile] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """Updates an existing customer's information.
 
@@ -249,27 +249,27 @@ class CustomersResource(SyncAPIResource):
     def list(
         self,
         *,
-        created_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_to: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        search_text: str | NotGiven = NOT_GIVEN,
-        sort_by: Literal["name", "created_at"] | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: List[Literal["pending", "review", "verified", "inactive", "rejected"]] | NotGiven = NOT_GIVEN,
-        types: List[Literal["individual", "business"]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        created_from: Union[str, datetime] | Omit = omit,
+        created_to: Union[str, datetime] | Omit = omit,
+        email: str | Omit = omit,
+        external_id: str | Omit = omit,
+        name: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        search_text: str | Omit = omit,
+        sort_by: Literal["name", "created_at"] | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        status: List[Literal["pending", "review", "verified", "inactive", "rejected"]] | Omit = omit,
+        types: List[Literal["individual", "business"]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPageNumberSchema[Data]:
         """Lists or searches customers connected to your account.
 
@@ -350,16 +350,16 @@ class CustomersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """Permanently removes a customer record from Straddle.
 
@@ -401,15 +401,15 @@ class CustomersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """Retrieves the details of an existing customer.
 
@@ -450,16 +450,16 @@ class CustomersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """Updates the decision of a customer's identity validation.
 
@@ -501,15 +501,15 @@ class CustomersResource(SyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerUnmaskedV1:
         """Retrieves the unmasked details, including PII, of an existing customer.
 
@@ -581,21 +581,21 @@ class AsyncCustomersResource(AsyncAPIResource):
         name: str,
         phone: str,
         type: Literal["individual", "business"],
-        address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
-        compliance_profile: Optional[customer_create_params.ComplianceProfile] | NotGiven = NOT_GIVEN,
-        config: customer_create_params.Config | NotGiven = NOT_GIVEN,
-        external_id: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        address: Optional[CustomerAddressV1Param] | Omit = omit,
+        compliance_profile: Optional[customer_create_params.ComplianceProfile] | Omit = omit,
+        config: customer_create_params.Config | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """
         Creates a new customer record and automatically initiates identity, fraud, and
@@ -672,20 +672,20 @@ class AsyncCustomersResource(AsyncAPIResource):
         name: str,
         phone: str,
         status: Literal["pending", "review", "verified", "inactive", "rejected"],
-        address: Optional[CustomerAddressV1Param] | NotGiven = NOT_GIVEN,
-        compliance_profile: Optional[customer_update_params.ComplianceProfile] | NotGiven = NOT_GIVEN,
-        external_id: Optional[str] | NotGiven = NOT_GIVEN,
-        metadata: Optional[Dict[str, str]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        address: Optional[CustomerAddressV1Param] | Omit = omit,
+        compliance_profile: Optional[customer_update_params.ComplianceProfile] | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
+        metadata: Optional[Dict[str, str]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """Updates an existing customer's information.
 
@@ -756,27 +756,27 @@ class AsyncCustomersResource(AsyncAPIResource):
     def list(
         self,
         *,
-        created_from: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        created_to: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        external_id: str | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
-        page_number: int | NotGiven = NOT_GIVEN,
-        page_size: int | NotGiven = NOT_GIVEN,
-        search_text: str | NotGiven = NOT_GIVEN,
-        sort_by: Literal["name", "created_at"] | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        status: List[Literal["pending", "review", "verified", "inactive", "rejected"]] | NotGiven = NOT_GIVEN,
-        types: List[Literal["individual", "business"]] | NotGiven = NOT_GIVEN,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        created_from: Union[str, datetime] | Omit = omit,
+        created_to: Union[str, datetime] | Omit = omit,
+        email: str | Omit = omit,
+        external_id: str | Omit = omit,
+        name: str | Omit = omit,
+        page_number: int | Omit = omit,
+        page_size: int | Omit = omit,
+        search_text: str | Omit = omit,
+        sort_by: Literal["name", "created_at"] | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        status: List[Literal["pending", "review", "verified", "inactive", "rejected"]] | Omit = omit,
+        types: List[Literal["individual", "business"]] | Omit = omit,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Data, AsyncPageNumberSchema[Data]]:
         """Lists or searches customers connected to your account.
 
@@ -857,16 +857,16 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """Permanently removes a customer record from Straddle.
 
@@ -908,15 +908,15 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """Retrieves the details of an existing customer.
 
@@ -957,16 +957,16 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        idempotency_key: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerV1:
         """Updates the decision of a customer's identity validation.
 
@@ -1008,15 +1008,15 @@ class AsyncCustomersResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        correlation_id: str | NotGiven = NOT_GIVEN,
-        request_id: str | NotGiven = NOT_GIVEN,
-        straddle_account_id: str | NotGiven = NOT_GIVEN,
+        correlation_id: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CustomerUnmaskedV1:
         """Retrieves the unmasked details, including PII, of an existing customer.
 
