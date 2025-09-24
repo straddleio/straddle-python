@@ -21,23 +21,11 @@ class LinkedBankAccountListParams(TypedDict, total=False):
     page_size: int
     """Page size. Max value: 1000"""
 
-    purpose: Literal["charges", "payouts", "billing"]
-    """The purpose of the linked bank accounts to return.
-
-    Possible values: 'charges', 'payouts', 'billing'.
-    """
-
     sort_by: str
     """Sort By."""
 
     sort_order: Literal["asc", "desc"]
     """Sort Order."""
-
-    status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"]
-    """The status of the linked bank accounts to return.
-
-    Possible values: 'created', 'onboarding', 'active', 'inactive', 'rejected'.
-    """
 
     correlation_id: Annotated[str, PropertyInfo(alias="correlation-id")]
 

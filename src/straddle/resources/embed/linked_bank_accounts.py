@@ -199,10 +199,8 @@ class LinkedBankAccountsResource(SyncAPIResource):
         level: Literal["account", "platform"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        purpose: Literal["charges", "payouts", "billing"] | Omit = omit,
         sort_by: str | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
-        status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"] | Omit = omit,
         correlation_id: str | Omit = omit,
         request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -226,15 +224,9 @@ class LinkedBankAccountsResource(SyncAPIResource):
 
           page_size: Page size. Max value: 1000
 
-          purpose: The purpose of the linked bank accounts to return. Possible values: 'charges',
-              'payouts', 'billing'.
-
           sort_by: Sort By.
 
           sort_order: Sort Order.
-
-          status: The status of the linked bank accounts to return. Possible values: 'created',
-              'onboarding', 'active', 'inactive', 'rejected'.
 
           extra_headers: Send extra headers
 
@@ -267,10 +259,8 @@ class LinkedBankAccountsResource(SyncAPIResource):
                         "level": level,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "purpose": purpose,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
-                        "status": status,
                     },
                     linked_bank_account_list_params.LinkedBankAccountListParams,
                 ),
@@ -597,10 +587,8 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
         level: Literal["account", "platform"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        purpose: Literal["charges", "payouts", "billing"] | Omit = omit,
         sort_by: str | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
-        status: Literal["created", "onboarding", "active", "rejected", "inactive", "canceled"] | Omit = omit,
         correlation_id: str | Omit = omit,
         request_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -624,15 +612,9 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
 
           page_size: Page size. Max value: 1000
 
-          purpose: The purpose of the linked bank accounts to return. Possible values: 'charges',
-              'payouts', 'billing'.
-
           sort_by: Sort By.
 
           sort_order: Sort Order.
-
-          status: The status of the linked bank accounts to return. Possible values: 'created',
-              'onboarding', 'active', 'inactive', 'rejected'.
 
           extra_headers: Send extra headers
 
@@ -665,10 +647,8 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
                         "level": level,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "purpose": purpose,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
-                        "status": status,
                     },
                     linked_bank_account_list_params.LinkedBankAccountListParams,
                 ),
