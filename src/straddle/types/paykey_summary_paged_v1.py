@@ -56,16 +56,8 @@ class DataStatusDetails(BaseModel):
         "other_network_return",
         "payout_refused",
     ]
-    """
-    A machine-readable identifier for the specific status, useful for programmatic
-    handling.
-    """
 
     source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
-    """Identifies the origin of the status change (e.g., 'bank_decline', 'watchtower').
-
-    This helps in tracking the cause of status updates.
-    """
 
     code: Optional[str] = None
     """The status code if applicable."""
