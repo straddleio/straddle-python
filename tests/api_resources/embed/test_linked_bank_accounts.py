@@ -175,10 +175,8 @@ class TestLinkedBankAccounts:
             level="account",
             page_number=0,
             page_size=0,
-            purpose="charges",
             sort_by="sort_by",
             sort_order="asc",
-            status="created",
             correlation_id="correlation-id",
             request_id="request-id",
         )
@@ -511,10 +509,8 @@ class TestAsyncLinkedBankAccounts:
             level="account",
             page_number=0,
             page_size=0,
-            purpose="charges",
             sort_by="sort_by",
             sort_order="asc",
-            status="created",
             correlation_id="correlation-id",
             request_id="request-id",
         )
