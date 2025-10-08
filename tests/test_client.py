@@ -566,7 +566,7 @@ class TestStraddle:
                 Straddle(api_key=api_key, _strict_response_validation=True, environment="sandbox")
 
             client = Straddle(base_url=None, api_key=api_key, _strict_response_validation=True, environment="sandbox")
-            assert str(client.base_url).startswith("https://sandbox.straddle.io")
+            assert str(client.base_url).startswith("https://sandbox.straddle.com")
 
     @pytest.mark.parametrize(
         "client",
@@ -1431,7 +1431,7 @@ class TestAsyncStraddle:
             client = AsyncStraddle(
                 base_url=None, api_key=api_key, _strict_response_validation=True, environment="sandbox"
             )
-            assert str(client.base_url).startswith("https://sandbox.straddle.io")
+            assert str(client.base_url).startswith("https://sandbox.straddle.com")
 
     @pytest.mark.parametrize(
         "client",

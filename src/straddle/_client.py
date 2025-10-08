@@ -46,8 +46,8 @@ __all__ = [
 ]
 
 ENVIRONMENTS: Dict[str, str] = {
-    "sandbox": "https://sandbox.straddle.io",
-    "production": "https://production.straddle.io",
+    "sandbox": "https://sandbox.straddle.com",
+    "production": "https://production.straddle.com",
 }
 
 
