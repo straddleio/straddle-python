@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 (2025-10-11)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/straddleio/straddle-python/compare/v0.2.0...v0.2.1)
+
+### Chores
+
+* **internal:** detect missing future annotations with ruff ([b5edfdc](https://github.com/straddleio/straddle-python/commit/b5edfdc07bd67fff5914b6cbded0b211bc961fa5))
+
 ## 0.2.0 (2025-10-08)
 
 Full Changelog: [v0.1.1...v0.2.0](https://github.com/straddleio/straddle-python/compare/v0.1.1...v0.2.0)
