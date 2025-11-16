@@ -446,57 +446,6 @@ class CustomersResource(SyncAPIResource):
             cast_to=CustomerV1,
         )
 
-    def refresh_review(
-        self,
-        id: str,
-        *,
-        correlation_id: str | Omit = omit,
-        idempotency_key: str | Omit = omit,
-        request_id: str | Omit = omit,
-        straddle_account_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerV1:
-        """Updates the decision of a customer's identity validation.
-
-        This endpoint allows
-        you to modify the outcome of a customer decision and is useful for correcting or
-        updating the status of a customer's verification.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Idempotency-Key": idempotency_key,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._put(
-            f"/v1/customers/{id}/refresh_review",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CustomerV1,
-        )
-
     def unmasked(
         self,
         id: str,
@@ -953,57 +902,6 @@ class AsyncCustomersResource(AsyncAPIResource):
             cast_to=CustomerV1,
         )
 
-    async def refresh_review(
-        self,
-        id: str,
-        *,
-        correlation_id: str | Omit = omit,
-        idempotency_key: str | Omit = omit,
-        request_id: str | Omit = omit,
-        straddle_account_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerV1:
-        """Updates the decision of a customer's identity validation.
-
-        This endpoint allows
-        you to modify the outcome of a customer decision and is useful for correcting or
-        updating the status of a customer's verification.
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Idempotency-Key": idempotency_key,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._put(
-            f"/v1/customers/{id}/refresh_review",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CustomerV1,
-        )
-
     async def unmasked(
         self,
         id: str,
@@ -1075,9 +973,6 @@ class CustomersResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             customers.get,
         )
-        self.refresh_review = to_raw_response_wrapper(
-            customers.refresh_review,
-        )
         self.unmasked = to_raw_response_wrapper(
             customers.unmasked,
         )
@@ -1105,9 +1000,6 @@ class AsyncCustomersResourceWithRawResponse:
         )
         self.get = async_to_raw_response_wrapper(
             customers.get,
-        )
-        self.refresh_review = async_to_raw_response_wrapper(
-            customers.refresh_review,
         )
         self.unmasked = async_to_raw_response_wrapper(
             customers.unmasked,
@@ -1137,9 +1029,6 @@ class CustomersResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             customers.get,
         )
-        self.refresh_review = to_streamed_response_wrapper(
-            customers.refresh_review,
-        )
         self.unmasked = to_streamed_response_wrapper(
             customers.unmasked,
         )
@@ -1167,9 +1056,6 @@ class AsyncCustomersResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             customers.get,
-        )
-        self.refresh_review = async_to_streamed_response_wrapper(
-            customers.refresh_review,
         )
         self.unmasked = async_to_streamed_response_wrapper(
             customers.unmasked,

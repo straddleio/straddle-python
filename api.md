@@ -151,7 +151,6 @@ Methods:
 - <code title="get /v1/customers">client.customers.<a href="./src/straddle/resources/customers/customers.py">list</a>(\*\*<a href="src/straddle/types/customer_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
 - <code title="delete /v1/customers/{id}">client.customers.<a href="./src/straddle/resources/customers/customers.py">delete</a>(id) -> <a href="./src/straddle/types/customer_v1.py">CustomerV1</a></code>
 - <code title="get /v1/customers/{id}">client.customers.<a href="./src/straddle/resources/customers/customers.py">get</a>(id) -> <a href="./src/straddle/types/customer_v1.py">CustomerV1</a></code>
-- <code title="put /v1/customers/{id}/refresh_review">client.customers.<a href="./src/straddle/resources/customers/customers.py">refresh_review</a>(id) -> <a href="./src/straddle/types/customer_v1.py">CustomerV1</a></code>
 - <code title="get /v1/customers/{id}/unmasked">client.customers.<a href="./src/straddle/resources/customers/customers.py">unmasked</a>(id) -> <a href="./src/straddle/types/customer_unmasked_v1.py">CustomerUnmaskedV1</a></code>
 
 ## Review
@@ -166,6 +165,7 @@ Methods:
 
 - <code title="patch /v1/customers/{id}/review">client.customers.review.<a href="./src/straddle/resources/customers/review.py">decision</a>(id, \*\*<a href="src/straddle/types/customers/review_decision_params.py">params</a>) -> <a href="./src/straddle/types/customer_v1.py">CustomerV1</a></code>
 - <code title="get /v1/customers/{id}/review">client.customers.review.<a href="./src/straddle/resources/customers/review.py">get</a>(id) -> <a href="./src/straddle/types/customers/customer_review_v1.py">CustomerReviewV1</a></code>
+- <code title="put /v1/customers/{id}/refresh_review">client.customers.review.<a href="./src/straddle/resources/customers/review.py">refresh_review</a>(id) -> <a href="./src/straddle/types/customer_v1.py">CustomerV1</a></code>
 
 # Paykeys
 
@@ -177,12 +177,26 @@ from straddle.types import PaykeySummaryPagedV1, PaykeyUnmaskedV1, PaykeyV1, Pay
 
 Methods:
 
-- <code title="get /v1/paykeys">client.paykeys.<a href="./src/straddle/resources/paykeys.py">list</a>(\*\*<a href="src/straddle/types/paykey_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
-- <code title="put /v1/paykeys/{id}/cancel">client.paykeys.<a href="./src/straddle/resources/paykeys.py">cancel</a>(id, \*\*<a href="src/straddle/types/paykey_cancel_params.py">params</a>) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
-- <code title="get /v1/paykeys/{id}">client.paykeys.<a href="./src/straddle/resources/paykeys.py">get</a>(id) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
-- <code title="get /v1/paykeys/{id}/reveal">client.paykeys.<a href="./src/straddle/resources/paykeys.py">reveal</a>(id) -> <a href="./src/straddle/types/paykey_reveal_response.py">PaykeyRevealResponse</a></code>
-- <code title="patch /v1/paykeys/{id}/review">client.paykeys.<a href="./src/straddle/resources/paykeys.py">review</a>(id, \*\*<a href="src/straddle/types/paykey_review_params.py">params</a>) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
-- <code title="get /v1/paykeys/{id}/unmasked">client.paykeys.<a href="./src/straddle/resources/paykeys.py">unmasked</a>(id) -> <a href="./src/straddle/types/paykey_unmasked_v1.py">PaykeyUnmaskedV1</a></code>
+- <code title="get /v1/paykeys">client.paykeys.<a href="./src/straddle/resources/paykeys/paykeys.py">list</a>(\*\*<a href="src/straddle/types/paykey_list_params.py">params</a>) -> SyncPageNumberSchema[Data]</code>
+- <code title="put /v1/paykeys/{id}/cancel">client.paykeys.<a href="./src/straddle/resources/paykeys/paykeys.py">cancel</a>(id, \*\*<a href="src/straddle/types/paykey_cancel_params.py">params</a>) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
+- <code title="get /v1/paykeys/{id}">client.paykeys.<a href="./src/straddle/resources/paykeys/paykeys.py">get</a>(id) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
+- <code title="get /v1/paykeys/{id}/reveal">client.paykeys.<a href="./src/straddle/resources/paykeys/paykeys.py">reveal</a>(id) -> <a href="./src/straddle/types/paykey_reveal_response.py">PaykeyRevealResponse</a></code>
+- <code title="get /v1/paykeys/{id}/unmasked">client.paykeys.<a href="./src/straddle/resources/paykeys/paykeys.py">unmasked</a>(id) -> <a href="./src/straddle/types/paykey_unmasked_v1.py">PaykeyUnmaskedV1</a></code>
+- <code title="put /v1/paykeys/{id}/refresh_balance">client.paykeys.<a href="./src/straddle/resources/paykeys/paykeys.py">update_balance</a>(id) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
+
+## Review
+
+Types:
+
+```python
+from straddle.types.paykeys import ReviewGetResponse
+```
+
+Methods:
+
+- <code title="patch /v1/paykeys/{id}/review">client.paykeys.review.<a href="./src/straddle/resources/paykeys/review.py">decision</a>(id, \*\*<a href="src/straddle/types/paykeys/review_decision_params.py">params</a>) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
+- <code title="get /v1/paykeys/{id}/review">client.paykeys.review.<a href="./src/straddle/resources/paykeys/review.py">get</a>(id) -> <a href="./src/straddle/types/paykeys/review_get_response.py">ReviewGetResponse</a></code>
+- <code title="put /v1/paykeys/{id}/refresh_review">client.paykeys.review.<a href="./src/straddle/resources/paykeys/review.py">refresh_review</a>(id) -> <a href="./src/straddle/types/paykey_v1.py">PaykeyV1</a></code>
 
 # Charges
 

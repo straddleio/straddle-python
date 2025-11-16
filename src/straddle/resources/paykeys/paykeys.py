@@ -7,28 +7,40 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import paykey_list_params, paykey_cancel_params, paykey_review_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, strip_not_given, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from .review import (
+    ReviewResource,
+    AsyncReviewResource,
+    ReviewResourceWithRawResponse,
+    AsyncReviewResourceWithRawResponse,
+    ReviewResourceWithStreamingResponse,
+    AsyncReviewResourceWithStreamingResponse,
+)
+from ...types import paykey_list_params, paykey_cancel_params
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncPageNumberSchema, AsyncPageNumberSchema
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.paykey_v1 import PaykeyV1
-from ..types.paykey_unmasked_v1 import PaykeyUnmaskedV1
-from ..types.paykey_reveal_response import PaykeyRevealResponse
-from ..types.paykey_summary_paged_v1 import Data
+from ...pagination import SyncPageNumberSchema, AsyncPageNumberSchema
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.paykey_v1 import PaykeyV1
+from ...types.paykey_unmasked_v1 import PaykeyUnmaskedV1
+from ...types.paykey_reveal_response import PaykeyRevealResponse
+from ...types.paykey_summary_paged_v1 import Data
 
 __all__ = ["PaykeysResource", "AsyncPaykeysResource"]
 
 
 class PaykeysResource(SyncAPIResource):
+    @cached_property
+    def review(self) -> ReviewResource:
+        return ReviewResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> PaykeysResourceWithRawResponse:
         """
@@ -272,56 +284,6 @@ class PaykeysResource(SyncAPIResource):
             cast_to=PaykeyRevealResponse,
         )
 
-    def review(
-        self,
-        id: str,
-        *,
-        status: Literal["active", "rejected"],
-        correlation_id: str | Omit = omit,
-        idempotency_key: str | Omit = omit,
-        request_id: str | Omit = omit,
-        straddle_account_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaykeyV1:
-        """
-        Update the status of a paykey when in review status
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Idempotency-Key": idempotency_key,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return self._patch(
-            f"/v1/paykeys/{id}/review",
-            body=maybe_transform({"status": status}, paykey_review_params.PaykeyReviewParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=PaykeyV1,
-        )
-
     def unmasked(
         self,
         id: str,
@@ -372,8 +334,62 @@ class PaykeysResource(SyncAPIResource):
             cast_to=PaykeyUnmaskedV1,
         )
 
+    def update_balance(
+        self,
+        id: str,
+        *,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PaykeyV1:
+        """Updates the balance of a paykey.
+
+        This endpoint allows you to refresh the balance
+        of a paykey.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._put(
+            f"/v1/paykeys/{id}/refresh_balance",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PaykeyV1,
+        )
+
 
 class AsyncPaykeysResource(AsyncAPIResource):
+    @cached_property
+    def review(self) -> AsyncReviewResource:
+        return AsyncReviewResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncPaykeysResourceWithRawResponse:
         """
@@ -617,56 +633,6 @@ class AsyncPaykeysResource(AsyncAPIResource):
             cast_to=PaykeyRevealResponse,
         )
 
-    async def review(
-        self,
-        id: str,
-        *,
-        status: Literal["active", "rejected"],
-        correlation_id: str | Omit = omit,
-        idempotency_key: str | Omit = omit,
-        request_id: str | Omit = omit,
-        straddle_account_id: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PaykeyV1:
-        """
-        Update the status of a paykey when in review status
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        extra_headers = {
-            **strip_not_given(
-                {
-                    "Correlation-Id": correlation_id,
-                    "Idempotency-Key": idempotency_key,
-                    "Request-Id": request_id,
-                    "Straddle-Account-Id": straddle_account_id,
-                }
-            ),
-            **(extra_headers or {}),
-        }
-        return await self._patch(
-            f"/v1/paykeys/{id}/review",
-            body=await async_maybe_transform({"status": status}, paykey_review_params.PaykeyReviewParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=PaykeyV1,
-        )
-
     async def unmasked(
         self,
         id: str,
@@ -717,6 +683,56 @@ class AsyncPaykeysResource(AsyncAPIResource):
             cast_to=PaykeyUnmaskedV1,
         )
 
+    async def update_balance(
+        self,
+        id: str,
+        *,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PaykeyV1:
+        """Updates the balance of a paykey.
+
+        This endpoint allows you to refresh the balance
+        of a paykey.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._put(
+            f"/v1/paykeys/{id}/refresh_balance",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PaykeyV1,
+        )
+
 
 class PaykeysResourceWithRawResponse:
     def __init__(self, paykeys: PaykeysResource) -> None:
@@ -734,12 +750,16 @@ class PaykeysResourceWithRawResponse:
         self.reveal = to_raw_response_wrapper(
             paykeys.reveal,
         )
-        self.review = to_raw_response_wrapper(
-            paykeys.review,
-        )
         self.unmasked = to_raw_response_wrapper(
             paykeys.unmasked,
         )
+        self.update_balance = to_raw_response_wrapper(
+            paykeys.update_balance,
+        )
+
+    @cached_property
+    def review(self) -> ReviewResourceWithRawResponse:
+        return ReviewResourceWithRawResponse(self._paykeys.review)
 
 
 class AsyncPaykeysResourceWithRawResponse:
@@ -758,12 +778,16 @@ class AsyncPaykeysResourceWithRawResponse:
         self.reveal = async_to_raw_response_wrapper(
             paykeys.reveal,
         )
-        self.review = async_to_raw_response_wrapper(
-            paykeys.review,
-        )
         self.unmasked = async_to_raw_response_wrapper(
             paykeys.unmasked,
         )
+        self.update_balance = async_to_raw_response_wrapper(
+            paykeys.update_balance,
+        )
+
+    @cached_property
+    def review(self) -> AsyncReviewResourceWithRawResponse:
+        return AsyncReviewResourceWithRawResponse(self._paykeys.review)
 
 
 class PaykeysResourceWithStreamingResponse:
@@ -782,12 +806,16 @@ class PaykeysResourceWithStreamingResponse:
         self.reveal = to_streamed_response_wrapper(
             paykeys.reveal,
         )
-        self.review = to_streamed_response_wrapper(
-            paykeys.review,
-        )
         self.unmasked = to_streamed_response_wrapper(
             paykeys.unmasked,
         )
+        self.update_balance = to_streamed_response_wrapper(
+            paykeys.update_balance,
+        )
+
+    @cached_property
+    def review(self) -> ReviewResourceWithStreamingResponse:
+        return ReviewResourceWithStreamingResponse(self._paykeys.review)
 
 
 class AsyncPaykeysResourceWithStreamingResponse:
@@ -806,9 +834,13 @@ class AsyncPaykeysResourceWithStreamingResponse:
         self.reveal = async_to_streamed_response_wrapper(
             paykeys.reveal,
         )
-        self.review = async_to_streamed_response_wrapper(
-            paykeys.review,
-        )
         self.unmasked = async_to_streamed_response_wrapper(
             paykeys.unmasked,
         )
+        self.update_balance = async_to_streamed_response_wrapper(
+            paykeys.update_balance,
+        )
+
+    @cached_property
+    def review(self) -> AsyncReviewResourceWithStreamingResponse:
+        return AsyncReviewResourceWithStreamingResponse(self._paykeys.review)
