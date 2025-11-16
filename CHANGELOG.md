@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.3.0 (2025-11-16)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/straddleio/straddle-python/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** manual updates ([2f0ee75](https://github.com/straddleio/straddle-python/commit/2f0ee75a3fcc49a264755b704105ace6d44757e1))
+* **docs:** Preliminary update to SDK Spec ([f2bf614](https://github.com/straddleio/straddle-python/commit/f2bf614a3347b1382a0e8975a1935ef722ba07ae))
+
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([1e7d98c](https://github.com/straddleio/straddle-python/commit/1e7d98c15fce5c39f07e08fec0cabf8f7966a4f1))
+* compat with Python 3.14 ([c71b93a](https://github.com/straddleio/straddle-python/commit/c71b93a4ba1fa08eb7b5d6bceed6b2f2c4f91b9a))
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([3decf8c](https://github.com/straddleio/straddle-python/commit/3decf8c33248fffebfc6f4fd536c4e4f3a7844bc))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([d982753](https://github.com/straddleio/straddle-python/commit/d98275356ac2ee855b3ae1fff08b89b5572747e1))
+* **internal/tests:** avoid race condition with implicit client cleanup ([f70d3f4](https://github.com/straddleio/straddle-python/commit/f70d3f49bf402f4a089fc11e141fd5daadd60c37))
+* **internal:** detect missing future annotations with ruff ([b5edfdc](https://github.com/straddleio/straddle-python/commit/b5edfdc07bd67fff5914b6cbded0b211bc961fa5))
+* **internal:** grammar fix (it's -&gt; its) ([b4330e9](https://github.com/straddleio/straddle-python/commit/b4330e971a3429a5f3bcdbafc58f8c6b244f2ecb))
+* **package:** drop Python 3.8 support ([026463b](https://github.com/straddleio/straddle-python/commit/026463b57dceefa1daa3971ca619bc9002103af2))
+
 ## 0.2.0 (2025-10-08)
 
 Full Changelog: [v0.1.1...v0.2.0](https://github.com/straddleio/straddle-python/compare/v0.1.1...v0.2.0)
