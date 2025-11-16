@@ -24,6 +24,12 @@ class LinkBankAccountParams(TypedDict, total=False):
 
     config: Config
 
+    external_id: Optional[str]
+    """
+    Unique identifier for the paykey in your database, used for cross-referencing
+    between Straddle and your systems.
+    """
+
     metadata: Optional[Dict[str, str]]
     """Up to 20 additional user-defined key-value pairs.
 
@@ -41,4 +47,6 @@ class LinkBankAccountParams(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
-    sandbox_outcome: Literal["standard", "active", "rejected"]
+    processing_method: Literal["inline", "background", "skip"]
+
+    sandbox_outcome: Literal["standard", "active", "rejected", "review"]

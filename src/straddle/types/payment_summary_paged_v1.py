@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -56,6 +56,9 @@ class Data(BaseModel):
 
     status_details: StatusDetailsV1
     """Details about the current status of the `charge` or `payout`."""
+
+    trace_ids: Dict[str, str]
+    """Trace ids."""
 
     updated_at: datetime
     """The time the `charge` or `payout` was last updated."""
