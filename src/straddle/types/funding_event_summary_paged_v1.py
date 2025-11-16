@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import date, datetime
 from typing_extensions import Literal
 
@@ -15,6 +15,9 @@ class Data(BaseModel):
 
     amount: int
     """The amount of the funding event in cents."""
+
+    created_at: datetime
+    """Created at."""
 
     direction: Literal["deposit", "withdrawal"]
     """
@@ -31,6 +34,9 @@ class Data(BaseModel):
     payment_count: int
     """The number of payments associated with the funding event."""
 
+    trace_ids: Dict[str, str]
+    """Trace Ids."""
+
     trace_numbers: List[str]
     """Trace number."""
 
@@ -41,6 +47,9 @@ class Data(BaseModel):
     bank account. For `withdrawals` and `reversals`, this is the date the funds were
     debited from your bank account.
     """
+
+    updated_at: datetime
+    """Updated at."""
 
     trace_number: Optional[str] = None
     """The trace number of the funding event."""

@@ -38,7 +38,11 @@ class TestLink:
             account_type="checking",
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             routing_number="xxxxxxxxx",
-            config={"sandbox_outcome": "standard"},
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
+            external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
@@ -90,7 +94,11 @@ class TestLink:
         link = client.bridge.link.create_paykey(
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             quiltt_token="quiltt_token",
-            config={"sandbox_outcome": "standard"},
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
+            external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
@@ -142,7 +150,11 @@ class TestLink:
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             routing_number="routing_number",
             tan="tan",
-            config={"sandbox_outcome": "standard"},
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
+            external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
@@ -194,7 +206,11 @@ class TestLink:
         link = client.bridge.link.plaid(
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             plaid_token="plaid_token",
-            config={"sandbox_outcome": "standard"},
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
+            external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
@@ -252,7 +268,11 @@ class TestAsyncLink:
             account_type="checking",
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             routing_number="xxxxxxxxx",
-            config={"sandbox_outcome": "standard"},
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
+            external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
@@ -304,7 +324,11 @@ class TestAsyncLink:
         link = await async_client.bridge.link.create_paykey(
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             quiltt_token="quiltt_token",
-            config={"sandbox_outcome": "standard"},
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
+            external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
@@ -356,7 +380,11 @@ class TestAsyncLink:
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             routing_number="routing_number",
             tan="tan",
-            config={"sandbox_outcome": "standard"},
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
+            external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
@@ -408,7 +436,11 @@ class TestAsyncLink:
         link = await async_client.bridge.link.plaid(
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             plaid_token="plaid_token",
-            config={"sandbox_outcome": "standard"},
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
+            external_id="external_id",
             metadata={"foo": "string"},
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",

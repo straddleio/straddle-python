@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -18,6 +19,12 @@ class BridgeInitializeParams(TypedDict, total=False):
 
     config: Config
 
+    external_id: Optional[str]
+    """
+    Unique identifier for the paykey in your database, used for cross-referencing
+    between Straddle and your systems.
+    """
+
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 
     idempotency_key: Annotated[str, PropertyInfo(alias="Idempotency-Key")]
@@ -28,4 +35,6 @@ class BridgeInitializeParams(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
-    sandbox_outcome: Literal["standard", "active", "rejected"]
+    processing_method: Literal["inline", "background", "skip"]
+
+    sandbox_outcome: Literal["standard", "active", "rejected", "review"]

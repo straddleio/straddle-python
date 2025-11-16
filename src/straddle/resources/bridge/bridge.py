@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from .link import (
@@ -58,6 +60,7 @@ class BridgeResource(SyncAPIResource):
         *,
         customer_id: str,
         config: bridge_initialize_params.Config | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         correlation_id: str | Omit = omit,
         idempotency_key: str | Omit = omit,
         request_id: str | Omit = omit,
@@ -75,6 +78,9 @@ class BridgeResource(SyncAPIResource):
         Args:
           customer_id: The Straddle generated unique identifier of the `customer` to create a bridge
               token for.
+
+          external_id: Unique identifier for the paykey in your database, used for cross-referencing
+              between Straddle and your systems.
 
           extra_headers: Send extra headers
 
@@ -101,6 +107,7 @@ class BridgeResource(SyncAPIResource):
                 {
                     "customer_id": customer_id,
                     "config": config,
+                    "external_id": external_id,
                 },
                 bridge_initialize_params.BridgeInitializeParams,
             ),
@@ -140,6 +147,7 @@ class AsyncBridgeResource(AsyncAPIResource):
         *,
         customer_id: str,
         config: bridge_initialize_params.Config | Omit = omit,
+        external_id: Optional[str] | Omit = omit,
         correlation_id: str | Omit = omit,
         idempotency_key: str | Omit = omit,
         request_id: str | Omit = omit,
@@ -157,6 +165,9 @@ class AsyncBridgeResource(AsyncAPIResource):
         Args:
           customer_id: The Straddle generated unique identifier of the `customer` to create a bridge
               token for.
+
+          external_id: Unique identifier for the paykey in your database, used for cross-referencing
+              between Straddle and your systems.
 
           extra_headers: Send extra headers
 
@@ -183,6 +194,7 @@ class AsyncBridgeResource(AsyncAPIResource):
                 {
                     "customer_id": customer_id,
                     "config": config,
+                    "external_id": external_id,
                 },
                 bridge_initialize_params.BridgeInitializeParams,
             ),

@@ -11,7 +11,9 @@ __all__ = ["PaykeyV1", "Data", "DataConfig", "DataBalance", "DataBankData", "Dat
 
 
 class DataConfig(BaseModel):
-    sandbox_outcome: Optional[Literal["standard", "active", "rejected"]] = None
+    processing_method: Optional[Literal["inline", "background", "skip"]] = None
+
+    sandbox_outcome: Optional[Literal["standard", "active", "rejected", "review"]] = None
 
 
 class DataBalance(BaseModel):
@@ -108,6 +110,12 @@ class Data(BaseModel):
 
     expires_at: Optional[datetime] = None
     """Expiration date and time of the paykey, if applicable."""
+
+    external_id: Optional[str] = None
+    """
+    Unique identifier for the paykey in your database, used for cross-referencing
+    between Straddle and your systems.
+    """
 
     institution_name: Optional[str] = None
     """Name of the financial institution."""

@@ -56,6 +56,7 @@ class FundingEventsResource(SyncAPIResource):
         event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
+        search_text: Optional[str] | Omit = omit,
         sort_by: Literal["transfer_date", "id", "amount"] | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
         trace_number: Optional[str] | Omit = omit,
@@ -88,6 +89,8 @@ class FundingEventsResource(SyncAPIResource):
           page_number: Results page number. Starts at page 1.
 
           page_size: Results page size. Max value: 1000
+
+          search_text: Search text.
 
           sort_by: The field to sort the results by.
 
@@ -129,6 +132,7 @@ class FundingEventsResource(SyncAPIResource):
                         "event_type": event_type,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
                         "trace_number": trace_number,
@@ -218,6 +222,7 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
+        search_text: Optional[str] | Omit = omit,
         sort_by: Literal["transfer_date", "id", "amount"] | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
         trace_number: Optional[str] | Omit = omit,
@@ -250,6 +255,8 @@ class AsyncFundingEventsResource(AsyncAPIResource):
           page_number: Results page number. Starts at page 1.
 
           page_size: Results page size. Max value: 1000
+
+          search_text: Search text.
 
           sort_by: The field to sort the results by.
 
@@ -291,6 +298,7 @@ class AsyncFundingEventsResource(AsyncAPIResource):
                         "event_type": event_type,
                         "page_number": page_number,
                         "page_size": page_size,
+                        "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
                         "trace_number": trace_number,
