@@ -28,7 +28,11 @@ class TestBridge:
     def test_method_initialize_with_all_params(self, client: Straddle) -> None:
         bridge = client.bridge.initialize(
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            config={"sandbox_outcome": "standard"},
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
+            external_id="external_id",
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
@@ -77,7 +81,11 @@ class TestAsyncBridge:
     async def test_method_initialize_with_all_params(self, async_client: AsyncStraddle) -> None:
         bridge = await async_client.bridge.initialize(
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            config={"sandbox_outcome": "standard"},
+            config={
+                "processing_method": "inline",
+                "sandbox_outcome": "standard",
+            },
+            external_id="external_id",
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",

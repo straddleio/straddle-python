@@ -36,6 +36,9 @@ class FundingEventListParams(TypedDict, total=False):
     page_size: int
     """Results page size. Max value: 1000"""
 
+    search_text: Optional[str]
+    """Search text."""
+
     sort_by: Literal["transfer_date", "id", "amount"]
     """The field to sort the results by."""
 
