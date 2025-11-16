@@ -4,12 +4,12 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from .._utils import PropertyInfo
+from ..._utils import PropertyInfo
 
-__all__ = ["PaykeyReviewParams"]
+__all__ = ["ReviewDecisionParams"]
 
 
-class PaykeyReviewParams(TypedDict, total=False):
+class ReviewDecisionParams(TypedDict, total=False):
     status: Required[Literal["active", "rejected"]]
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]

@@ -17,9 +17,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.customers import review_decision_params
-from ...types.customer_v1 import CustomerV1
-from ...types.customers.customer_review_v1 import CustomerReviewV1
+from ...types.paykeys import review_decision_params
+from ...types.paykey_v1 import PaykeyV1
+from ...types.paykeys.review_get_response import ReviewGetResponse
 
 __all__ = ["ReviewResource", "AsyncReviewResource"]
 
@@ -48,7 +48,7 @@ class ReviewResource(SyncAPIResource):
         self,
         id: str,
         *,
-        status: Literal["verified", "rejected"],
+        status: Literal["active", "rejected"],
         correlation_id: str | Omit = omit,
         idempotency_key: str | Omit = omit,
         request_id: str | Omit = omit,
@@ -59,17 +59,11 @@ class ReviewResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerV1:
-        """Updates the status of a customer's identity decision.
-
-        This endpoint allows you
-        to modify the outcome of a customer risk screening and is useful for correcting
-        or updating the status of a customer's verification. Note that this endpoint is
-        only available for customers with a current status of `review`.
+    ) -> PaykeyV1:
+        """
+        Update the status of a paykey when in review status
 
         Args:
-          status: The final status of the customer review.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -92,12 +86,12 @@ class ReviewResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._patch(
-            f"/v1/customers/{id}/review",
+            f"/v1/paykeys/{id}/review",
             body=maybe_transform({"status": status}, review_decision_params.ReviewDecisionParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1,
+            cast_to=PaykeyV1,
         )
 
     def get(
@@ -113,17 +107,9 @@ class ReviewResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerReviewV1:
+    ) -> ReviewGetResponse:
         """
-        Retrieves and analyzes the results of a customer's identity validation and fraud
-        score. This endpoint provides a comprehensive breakdown of the validation
-        outcome, including:
-
-        - Risk and correlation scores
-        - Reason codes for the decision
-        - Results of watchlist screening
-        - Any network alerts detected Use this endpoint to gain insights into the
-          verification process and make informed decisions about customer onboarding.
+        Get additional details about a paykey.
 
         Args:
           extra_headers: Send extra headers
@@ -147,11 +133,11 @@ class ReviewResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/customers/{id}/review",
+            f"/v1/paykeys/{id}/review",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerReviewV1,
+            cast_to=ReviewGetResponse,
         )
 
     def refresh_review(
@@ -168,12 +154,12 @@ class ReviewResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerV1:
-        """Updates the decision of a customer's identity validation.
+    ) -> PaykeyV1:
+        """Updates the decision of a paykey's review validation.
 
-        This endpoint allows
-        you to modify the outcome of a customer decision and is useful for correcting or
-        updating the status of a customer's verification.
+        This endpoint allows you
+        to refresh the outcome of a paykey's decision and is useful for correcting or
+        updating the status of a paykey's verification.
 
         Args:
           extra_headers: Send extra headers
@@ -198,11 +184,11 @@ class ReviewResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/customers/{id}/refresh_review",
+            f"/v1/paykeys/{id}/refresh_review",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1,
+            cast_to=PaykeyV1,
         )
 
 
@@ -230,7 +216,7 @@ class AsyncReviewResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        status: Literal["verified", "rejected"],
+        status: Literal["active", "rejected"],
         correlation_id: str | Omit = omit,
         idempotency_key: str | Omit = omit,
         request_id: str | Omit = omit,
@@ -241,17 +227,11 @@ class AsyncReviewResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerV1:
-        """Updates the status of a customer's identity decision.
-
-        This endpoint allows you
-        to modify the outcome of a customer risk screening and is useful for correcting
-        or updating the status of a customer's verification. Note that this endpoint is
-        only available for customers with a current status of `review`.
+    ) -> PaykeyV1:
+        """
+        Update the status of a paykey when in review status
 
         Args:
-          status: The final status of the customer review.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -274,12 +254,12 @@ class AsyncReviewResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._patch(
-            f"/v1/customers/{id}/review",
+            f"/v1/paykeys/{id}/review",
             body=await async_maybe_transform({"status": status}, review_decision_params.ReviewDecisionParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1,
+            cast_to=PaykeyV1,
         )
 
     async def get(
@@ -295,17 +275,9 @@ class AsyncReviewResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerReviewV1:
+    ) -> ReviewGetResponse:
         """
-        Retrieves and analyzes the results of a customer's identity validation and fraud
-        score. This endpoint provides a comprehensive breakdown of the validation
-        outcome, including:
-
-        - Risk and correlation scores
-        - Reason codes for the decision
-        - Results of watchlist screening
-        - Any network alerts detected Use this endpoint to gain insights into the
-          verification process and make informed decisions about customer onboarding.
+        Get additional details about a paykey.
 
         Args:
           extra_headers: Send extra headers
@@ -329,11 +301,11 @@ class AsyncReviewResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/customers/{id}/review",
+            f"/v1/paykeys/{id}/review",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerReviewV1,
+            cast_to=ReviewGetResponse,
         )
 
     async def refresh_review(
@@ -350,12 +322,12 @@ class AsyncReviewResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CustomerV1:
-        """Updates the decision of a customer's identity validation.
+    ) -> PaykeyV1:
+        """Updates the decision of a paykey's review validation.
 
-        This endpoint allows
-        you to modify the outcome of a customer decision and is useful for correcting or
-        updating the status of a customer's verification.
+        This endpoint allows you
+        to refresh the outcome of a paykey's decision and is useful for correcting or
+        updating the status of a paykey's verification.
 
         Args:
           extra_headers: Send extra headers
@@ -380,11 +352,11 @@ class AsyncReviewResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/customers/{id}/refresh_review",
+            f"/v1/paykeys/{id}/refresh_review",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CustomerV1,
+            cast_to=PaykeyV1,
         )
 
 

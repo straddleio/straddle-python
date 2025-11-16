@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import charges, paykeys, payouts, reports, payments, funding_events
+from .resources import charges, payouts, reports, payments, funding_events
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import StraddleError, APIStatusError
 from ._base_client import (
@@ -31,6 +31,7 @@ from ._base_client import (
 )
 from .resources.embed import embed
 from .resources.bridge import bridge
+from .resources.paykeys import paykeys
 from .resources.customers import customers
 
 __all__ = [

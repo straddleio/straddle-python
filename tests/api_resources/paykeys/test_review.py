@@ -9,8 +9,8 @@ import pytest
 
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
-from straddle.types import CustomerV1
-from straddle.types.customers import CustomerReviewV1
+from straddle.types import PaykeyV1
+from straddle.types.paykeys import ReviewGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,152 +20,152 @@ class TestReview:
 
     @parametrize
     def test_method_decision(self, client: Straddle) -> None:
-        review = client.customers.review.decision(
+        review = client.paykeys.review.decision(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            status="verified",
+            status="active",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     def test_method_decision_with_all_params(self, client: Straddle) -> None:
-        review = client.customers.review.decision(
+        review = client.paykeys.review.decision(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            status="verified",
+            status="active",
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     def test_raw_response_decision(self, client: Straddle) -> None:
-        response = client.customers.review.with_raw_response.decision(
+        response = client.paykeys.review.with_raw_response.decision(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            status="verified",
+            status="active",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         review = response.parse()
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     def test_streaming_response_decision(self, client: Straddle) -> None:
-        with client.customers.review.with_streaming_response.decision(
+        with client.paykeys.review.with_streaming_response.decision(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            status="verified",
+            status="active",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             review = response.parse()
-            assert_matches_type(CustomerV1, review, path=["response"])
+            assert_matches_type(PaykeyV1, review, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_decision(self, client: Straddle) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.customers.review.with_raw_response.decision(
+            client.paykeys.review.with_raw_response.decision(
                 id="",
-                status="verified",
+                status="active",
             )
 
     @parametrize
     def test_method_get(self, client: Straddle) -> None:
-        review = client.customers.review.get(
+        review = client.paykeys.review.get(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerReviewV1, review, path=["response"])
+        assert_matches_type(ReviewGetResponse, review, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Straddle) -> None:
-        review = client.customers.review.get(
+        review = client.paykeys.review.get(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="Correlation-Id",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerReviewV1, review, path=["response"])
+        assert_matches_type(ReviewGetResponse, review, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Straddle) -> None:
-        response = client.customers.review.with_raw_response.get(
+        response = client.paykeys.review.with_raw_response.get(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         review = response.parse()
-        assert_matches_type(CustomerReviewV1, review, path=["response"])
+        assert_matches_type(ReviewGetResponse, review, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Straddle) -> None:
-        with client.customers.review.with_streaming_response.get(
+        with client.paykeys.review.with_streaming_response.get(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             review = response.parse()
-            assert_matches_type(CustomerReviewV1, review, path=["response"])
+            assert_matches_type(ReviewGetResponse, review, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Straddle) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.customers.review.with_raw_response.get(
+            client.paykeys.review.with_raw_response.get(
                 id="",
             )
 
     @parametrize
     def test_method_refresh_review(self, client: Straddle) -> None:
-        review = client.customers.review.refresh_review(
+        review = client.paykeys.review.refresh_review(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     def test_method_refresh_review_with_all_params(self, client: Straddle) -> None:
-        review = client.customers.review.refresh_review(
+        review = client.paykeys.review.refresh_review(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     def test_raw_response_refresh_review(self, client: Straddle) -> None:
-        response = client.customers.review.with_raw_response.refresh_review(
+        response = client.paykeys.review.with_raw_response.refresh_review(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         review = response.parse()
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     def test_streaming_response_refresh_review(self, client: Straddle) -> None:
-        with client.customers.review.with_streaming_response.refresh_review(
+        with client.paykeys.review.with_streaming_response.refresh_review(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             review = response.parse()
-            assert_matches_type(CustomerV1, review, path=["response"])
+            assert_matches_type(PaykeyV1, review, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_refresh_review(self, client: Straddle) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            client.customers.review.with_raw_response.refresh_review(
+            client.paykeys.review.with_raw_response.refresh_review(
                 id="",
             )
 
@@ -177,151 +177,151 @@ class TestAsyncReview:
 
     @parametrize
     async def test_method_decision(self, async_client: AsyncStraddle) -> None:
-        review = await async_client.customers.review.decision(
+        review = await async_client.paykeys.review.decision(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            status="verified",
+            status="active",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     async def test_method_decision_with_all_params(self, async_client: AsyncStraddle) -> None:
-        review = await async_client.customers.review.decision(
+        review = await async_client.paykeys.review.decision(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            status="verified",
+            status="active",
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     async def test_raw_response_decision(self, async_client: AsyncStraddle) -> None:
-        response = await async_client.customers.review.with_raw_response.decision(
+        response = await async_client.paykeys.review.with_raw_response.decision(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            status="verified",
+            status="active",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         review = await response.parse()
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     async def test_streaming_response_decision(self, async_client: AsyncStraddle) -> None:
-        async with async_client.customers.review.with_streaming_response.decision(
+        async with async_client.paykeys.review.with_streaming_response.decision(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            status="verified",
+            status="active",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             review = await response.parse()
-            assert_matches_type(CustomerV1, review, path=["response"])
+            assert_matches_type(PaykeyV1, review, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_decision(self, async_client: AsyncStraddle) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.customers.review.with_raw_response.decision(
+            await async_client.paykeys.review.with_raw_response.decision(
                 id="",
-                status="verified",
+                status="active",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncStraddle) -> None:
-        review = await async_client.customers.review.get(
+        review = await async_client.paykeys.review.get(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerReviewV1, review, path=["response"])
+        assert_matches_type(ReviewGetResponse, review, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncStraddle) -> None:
-        review = await async_client.customers.review.get(
+        review = await async_client.paykeys.review.get(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="Correlation-Id",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerReviewV1, review, path=["response"])
+        assert_matches_type(ReviewGetResponse, review, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncStraddle) -> None:
-        response = await async_client.customers.review.with_raw_response.get(
+        response = await async_client.paykeys.review.with_raw_response.get(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         review = await response.parse()
-        assert_matches_type(CustomerReviewV1, review, path=["response"])
+        assert_matches_type(ReviewGetResponse, review, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncStraddle) -> None:
-        async with async_client.customers.review.with_streaming_response.get(
+        async with async_client.paykeys.review.with_streaming_response.get(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             review = await response.parse()
-            assert_matches_type(CustomerReviewV1, review, path=["response"])
+            assert_matches_type(ReviewGetResponse, review, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncStraddle) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.customers.review.with_raw_response.get(
+            await async_client.paykeys.review.with_raw_response.get(
                 id="",
             )
 
     @parametrize
     async def test_method_refresh_review(self, async_client: AsyncStraddle) -> None:
-        review = await async_client.customers.review.refresh_review(
+        review = await async_client.paykeys.review.refresh_review(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     async def test_method_refresh_review_with_all_params(self, async_client: AsyncStraddle) -> None:
-        review = await async_client.customers.review.refresh_review(
+        review = await async_client.paykeys.review.refresh_review(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             correlation_id="Correlation-Id",
             idempotency_key="xxxxxxxxxx",
             request_id="Request-Id",
             straddle_account_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     async def test_raw_response_refresh_review(self, async_client: AsyncStraddle) -> None:
-        response = await async_client.customers.review.with_raw_response.refresh_review(
+        response = await async_client.paykeys.review.with_raw_response.refresh_review(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         review = await response.parse()
-        assert_matches_type(CustomerV1, review, path=["response"])
+        assert_matches_type(PaykeyV1, review, path=["response"])
 
     @parametrize
     async def test_streaming_response_refresh_review(self, async_client: AsyncStraddle) -> None:
-        async with async_client.customers.review.with_streaming_response.refresh_review(
+        async with async_client.paykeys.review.with_streaming_response.refresh_review(
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             review = await response.parse()
-            assert_matches_type(CustomerV1, review, path=["response"])
+            assert_matches_type(PaykeyV1, review, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_refresh_review(self, async_client: AsyncStraddle) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
-            await async_client.customers.review.with_raw_response.refresh_review(
+            await async_client.paykeys.review.with_raw_response.refresh_review(
                 id="",
             )
