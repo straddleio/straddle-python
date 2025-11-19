@@ -145,7 +145,7 @@ class DataPaykeyDetails(BaseModel):
 class DataVerificationDetailsBreakdownAccountValidation(BaseModel):
     codes: List[str]
 
-    decision: Literal["unknown", "accept", "reject", "review"]
+    decision: Literal["accept", "reject", "review"]
 
     reason: Optional[str] = None
 
@@ -153,7 +153,7 @@ class DataVerificationDetailsBreakdownAccountValidation(BaseModel):
 class DataVerificationDetailsBreakdownNameMatch(BaseModel):
     codes: List[str]
 
-    decision: Literal["unknown", "accept", "reject", "review"]
+    decision: Literal["accept", "reject", "review"]
 
     correlation_score: Optional[float] = None
 
@@ -181,7 +181,7 @@ class DataVerificationDetails(BaseModel):
     created_at: datetime
     """Timestamp of when the verification was initiated."""
 
-    decision: Literal["unknown", "accept", "reject", "review"]
+    decision: Literal["accept", "reject", "review"]
 
     messages: Dict[str, str]
     """Dictionary of all messages from the paykey verification process."""
