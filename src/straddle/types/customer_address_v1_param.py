@@ -9,6 +9,11 @@ __all__ = ["CustomerAddressV1Param"]
 
 
 class CustomerAddressV1Param(TypedDict, total=False):
+    """An object containing the customer's address.
+
+    This is optional, but if provided, all required fields must be present.
+    """
+
     address1: Required[str]
     """Primary address line (e.g., street, PO Box)."""
 

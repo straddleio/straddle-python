@@ -21,6 +21,8 @@ __all__ = [
 
 
 class DataComplianceProfileIndividualComplianceProfile(BaseModel):
+    """Individual PII data required to trigger Patriot Act compliant KYC verification."""
+
     dob: Optional[date] = None
     """Date of birth (YYYY-MM-DD).
 
@@ -43,6 +45,10 @@ class DataComplianceProfileBusinessComplianceProfileRepresentative(BaseModel):
 
 
 class DataComplianceProfileBusinessComplianceProfile(BaseModel):
+    """
+    Business registration data required to trigger Patriot Act compliant KYB verification.
+    """
+
     ein: Optional[str] = None
     """Employer Identification Number (format XX-XXXXXXX).
 

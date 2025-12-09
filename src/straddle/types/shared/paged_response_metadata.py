@@ -9,6 +9,10 @@ __all__ = ["PagedResponseMetadata"]
 
 
 class PagedResponseMetadata(BaseModel):
+    """
+    Metadata about the API request, including an identifier, timestamp, and pagination details.
+    """
+
     api_request_id: str
     """Unique identifier for this API request, useful for troubleshooting."""
 

@@ -8,6 +8,8 @@ __all__ = ["ResponseMetadata"]
 
 
 class ResponseMetadata(BaseModel):
+    """Metadata about the API request, including an identifier and timestamp."""
+
     api_request_id: str
     """Unique identifier for this API request, useful for troubleshooting."""
 

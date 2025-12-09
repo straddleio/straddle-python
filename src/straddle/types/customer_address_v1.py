@@ -8,6 +8,11 @@ __all__ = ["CustomerAddressV1"]
 
 
 class CustomerAddressV1(BaseModel):
+    """An object containing the customer's address.
+
+    This is optional, but if provided, all required fields must be present.
+    """
+
     address1: str
     """Primary address line (e.g., street, PO Box)."""
 
