@@ -11,6 +11,8 @@ __all__ = ["LinkedBankAccountUnmaskV1", "Data", "DataBankAccount", "DataStatusDe
 
 
 class DataBankAccount(BaseModel):
+    """The bank account details associated with the linked bank account."""
+
     account_holder: str
 
     account_number: str
@@ -21,6 +23,8 @@ class DataBankAccount(BaseModel):
 
 
 class DataStatusDetail(BaseModel):
+    """Additional details about the current status of the linked bank account."""
+
     code: str
     """
     A machine-readable code for the specific status, useful for programmatic

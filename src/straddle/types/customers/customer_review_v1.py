@@ -32,6 +32,8 @@ __all__ = [
 
 
 class DataCustomerDetailsComplianceProfileIndividualComplianceProfile(BaseModel):
+    """PII required to trigger Patriot Act compliant KYC verification."""
+
     dob: Optional[date] = None
     """Masked date of birth in \\****\\**-**-\\**\\** format."""
 
@@ -48,6 +50,10 @@ class DataCustomerDetailsComplianceProfileBusinessComplianceProfileRepresentativ
 
 
 class DataCustomerDetailsComplianceProfileBusinessComplianceProfile(BaseModel):
+    """
+    Business registration data required to trigger Patriot Act compliant KYB verification.
+    """
+
     ein: Optional[str] = None
     """Masked Employer Identification Number in the format **-**\\******"""
 
@@ -139,6 +145,10 @@ class DataCustomerDetails(BaseModel):
 
 
 class DataIdentityDetailsBreakdown(BaseModel):
+    """
+    Detailed breakdown of the customer verification results, including decisions, risk scores, correlation score, and more.
+    """
+
     address: Optional[IdentityVerificationBreakdownV1] = None
 
     business_evaluation: Optional[IdentityVerificationBreakdownV1] = None
@@ -157,6 +167,8 @@ class DataIdentityDetailsBreakdown(BaseModel):
 
 
 class DataIdentityDetailsKYCValidations(BaseModel):
+    """Boolean values indicating the result of each validation in the KYC process."""
+
     address: Optional[bool] = None
 
     city: Optional[bool] = None

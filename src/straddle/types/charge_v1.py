@@ -15,6 +15,8 @@ __all__ = ["ChargeV1", "Data", "DataConfig", "DataStatusHistory"]
 
 
 class DataConfig(BaseModel):
+    """Configuration options for the charge."""
+
     balance_check: Literal["required", "enabled", "disabled"]
     """Defines whether to check the customer's balance before processing the charge."""
 
@@ -37,6 +39,8 @@ class DataConfig(BaseModel):
 
 
 class DataStatusHistory(BaseModel):
+    """A record of the charge's status changes over time."""
+
     changed_at: datetime
     """The time the status change occurred."""
 
