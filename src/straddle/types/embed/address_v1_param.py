@@ -9,6 +9,8 @@ __all__ = ["AddressV1Param"]
 
 
 class AddressV1Param(TypedDict, total=False):
+    """The address object is optional. If provided, it must be a valid address."""
+
     address1: Required[str]
     """Primary address line (e.g., street, PO Box)."""
 

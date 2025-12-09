@@ -50,10 +50,14 @@ class CapabilityRequestCreateParams(TypedDict, total=False):
 
 
 class Businesses(TypedDict, total=False):
+    """Allows the account to accept payments from businesses."""
+
     enable: Required[bool]
 
 
 class Charges(TypedDict, total=False):
+    """The charges capability settings for the account."""
+
     daily_amount: Required[float]
     """The maximum dollar amount of charges in a calendar day."""
 
@@ -71,14 +75,22 @@ class Charges(TypedDict, total=False):
 
 
 class Individuals(TypedDict, total=False):
+    """Allows the account to accept payments from individuals."""
+
     enable: Required[bool]
 
 
 class Internet(TypedDict, total=False):
+    """
+    Allows the account to accept payments authorized via the internet or mobile applications.
+    """
+
     enable: Required[bool]
 
 
 class Payouts(TypedDict, total=False):
+    """The payouts capability settings for the account."""
+
     daily_amount: Required[float]
     """The maximum dollar amount of payouts in a day."""
 
@@ -96,4 +108,8 @@ class Payouts(TypedDict, total=False):
 
 
 class SignedAgreement(TypedDict, total=False):
+    """
+    Allows the account to accept payments authorized by signed agreements or contracts.
+    """
+
     enable: Required[bool]

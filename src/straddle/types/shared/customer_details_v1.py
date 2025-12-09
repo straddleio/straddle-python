@@ -8,6 +8,8 @@ __all__ = ["CustomerDetailsV1"]
 
 
 class CustomerDetailsV1(BaseModel):
+    """Information about the customer associated with the charge or payout."""
+
     id: str
     """Unique identifier for the customer"""
 

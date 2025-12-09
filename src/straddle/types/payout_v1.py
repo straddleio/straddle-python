@@ -15,6 +15,8 @@ __all__ = ["PayoutV1", "Data", "DataConfig", "DataStatusHistory"]
 
 
 class DataConfig(BaseModel):
+    """Configuration for the payout."""
+
     sandbox_outcome: Optional[
         Literal[
             "standard",

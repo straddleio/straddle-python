@@ -8,6 +8,8 @@ __all__ = ["AddressV1"]
 
 
 class AddressV1(BaseModel):
+    """The address object is optional. If provided, it must be a valid address."""
+
     address1: str
     """Primary address line (e.g., street, PO Box)."""
 
