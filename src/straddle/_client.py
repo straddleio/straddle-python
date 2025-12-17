@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Dict, Mapping, cast
+from typing import TYPE_CHECKING, Any, Dict, Mapping, cast
 from typing_extensions import Self, Literal, override
 
 import httpx
@@ -20,8 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import charges, payouts, reports, payments, funding_events
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import StraddleError, APIStatusError
 from ._base_client import (
@@ -29,10 +29,18 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.embed import embed
-from .resources.bridge import bridge
-from .resources.paykeys import paykeys
-from .resources.customers import customers
+
+if TYPE_CHECKING:
+    from .resources import embed, bridge, charges, paykeys, payouts, reports, payments, customers, funding_events
+    from .resources.charges import ChargesResource, AsyncChargesResource
+    from .resources.payouts import PayoutsResource, AsyncPayoutsResource
+    from .resources.reports import ReportsResource, AsyncReportsResource
+    from .resources.payments import PaymentsResource, AsyncPaymentsResource
+    from .resources.embed.embed import EmbedResource, AsyncEmbedResource
+    from .resources.bridge.bridge import BridgeResource, AsyncBridgeResource
+    from .resources.funding_events import FundingEventsResource, AsyncFundingEventsResource
+    from .resources.paykeys.paykeys import PaykeysResource, AsyncPaykeysResource
+    from .resources.customers.customers import CustomersResource, AsyncCustomersResource
 
 __all__ = [
     "ENVIRONMENTS",
@@ -53,18 +61,6 @@ ENVIRONMENTS: Dict[str, str] = {
 
 
 class Straddle(SyncAPIClient):
-    embed: embed.EmbedResource
-    bridge: bridge.BridgeResource
-    customers: customers.CustomersResource
-    paykeys: paykeys.PaykeysResource
-    charges: charges.ChargesResource
-    funding_events: funding_events.FundingEventsResource
-    payments: payments.PaymentsResource
-    payouts: payouts.PayoutsResource
-    reports: reports.ReportsResource
-    with_raw_response: StraddleWithRawResponse
-    with_streaming_response: StraddleWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -143,17 +139,67 @@ class Straddle(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.embed = embed.EmbedResource(self)
-        self.bridge = bridge.BridgeResource(self)
-        self.customers = customers.CustomersResource(self)
-        self.paykeys = paykeys.PaykeysResource(self)
-        self.charges = charges.ChargesResource(self)
-        self.funding_events = funding_events.FundingEventsResource(self)
-        self.payments = payments.PaymentsResource(self)
-        self.payouts = payouts.PayoutsResource(self)
-        self.reports = reports.ReportsResource(self)
-        self.with_raw_response = StraddleWithRawResponse(self)
-        self.with_streaming_response = StraddleWithStreamedResponse(self)
+    @cached_property
+    def embed(self) -> EmbedResource:
+        from .resources.embed import EmbedResource
+
+        return EmbedResource(self)
+
+    @cached_property
+    def bridge(self) -> BridgeResource:
+        from .resources.bridge import BridgeResource
+
+        return BridgeResource(self)
+
+    @cached_property
+    def customers(self) -> CustomersResource:
+        from .resources.customers import CustomersResource
+
+        return CustomersResource(self)
+
+    @cached_property
+    def paykeys(self) -> PaykeysResource:
+        from .resources.paykeys import PaykeysResource
+
+        return PaykeysResource(self)
+
+    @cached_property
+    def charges(self) -> ChargesResource:
+        from .resources.charges import ChargesResource
+
+        return ChargesResource(self)
+
+    @cached_property
+    def funding_events(self) -> FundingEventsResource:
+        from .resources.funding_events import FundingEventsResource
+
+        return FundingEventsResource(self)
+
+    @cached_property
+    def payments(self) -> PaymentsResource:
+        from .resources.payments import PaymentsResource
+
+        return PaymentsResource(self)
+
+    @cached_property
+    def payouts(self) -> PayoutsResource:
+        from .resources.payouts import PayoutsResource
+
+        return PayoutsResource(self)
+
+    @cached_property
+    def reports(self) -> ReportsResource:
+        from .resources.reports import ReportsResource
+
+        return ReportsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> StraddleWithRawResponse:
+        return StraddleWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> StraddleWithStreamedResponse:
+        return StraddleWithStreamedResponse(self)
 
     @property
     @override
@@ -263,18 +309,6 @@ class Straddle(SyncAPIClient):
 
 
 class AsyncStraddle(AsyncAPIClient):
-    embed: embed.AsyncEmbedResource
-    bridge: bridge.AsyncBridgeResource
-    customers: customers.AsyncCustomersResource
-    paykeys: paykeys.AsyncPaykeysResource
-    charges: charges.AsyncChargesResource
-    funding_events: funding_events.AsyncFundingEventsResource
-    payments: payments.AsyncPaymentsResource
-    payouts: payouts.AsyncPayoutsResource
-    reports: reports.AsyncReportsResource
-    with_raw_response: AsyncStraddleWithRawResponse
-    with_streaming_response: AsyncStraddleWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -353,17 +387,67 @@ class AsyncStraddle(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.embed = embed.AsyncEmbedResource(self)
-        self.bridge = bridge.AsyncBridgeResource(self)
-        self.customers = customers.AsyncCustomersResource(self)
-        self.paykeys = paykeys.AsyncPaykeysResource(self)
-        self.charges = charges.AsyncChargesResource(self)
-        self.funding_events = funding_events.AsyncFundingEventsResource(self)
-        self.payments = payments.AsyncPaymentsResource(self)
-        self.payouts = payouts.AsyncPayoutsResource(self)
-        self.reports = reports.AsyncReportsResource(self)
-        self.with_raw_response = AsyncStraddleWithRawResponse(self)
-        self.with_streaming_response = AsyncStraddleWithStreamedResponse(self)
+    @cached_property
+    def embed(self) -> AsyncEmbedResource:
+        from .resources.embed import AsyncEmbedResource
+
+        return AsyncEmbedResource(self)
+
+    @cached_property
+    def bridge(self) -> AsyncBridgeResource:
+        from .resources.bridge import AsyncBridgeResource
+
+        return AsyncBridgeResource(self)
+
+    @cached_property
+    def customers(self) -> AsyncCustomersResource:
+        from .resources.customers import AsyncCustomersResource
+
+        return AsyncCustomersResource(self)
+
+    @cached_property
+    def paykeys(self) -> AsyncPaykeysResource:
+        from .resources.paykeys import AsyncPaykeysResource
+
+        return AsyncPaykeysResource(self)
+
+    @cached_property
+    def charges(self) -> AsyncChargesResource:
+        from .resources.charges import AsyncChargesResource
+
+        return AsyncChargesResource(self)
+
+    @cached_property
+    def funding_events(self) -> AsyncFundingEventsResource:
+        from .resources.funding_events import AsyncFundingEventsResource
+
+        return AsyncFundingEventsResource(self)
+
+    @cached_property
+    def payments(self) -> AsyncPaymentsResource:
+        from .resources.payments import AsyncPaymentsResource
+
+        return AsyncPaymentsResource(self)
+
+    @cached_property
+    def payouts(self) -> AsyncPayoutsResource:
+        from .resources.payouts import AsyncPayoutsResource
+
+        return AsyncPayoutsResource(self)
+
+    @cached_property
+    def reports(self) -> AsyncReportsResource:
+        from .resources.reports import AsyncReportsResource
+
+        return AsyncReportsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncStraddleWithRawResponse:
+        return AsyncStraddleWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncStraddleWithStreamedResponse:
+        return AsyncStraddleWithStreamedResponse(self)
 
     @property
     @override
@@ -473,55 +557,247 @@ class AsyncStraddle(AsyncAPIClient):
 
 
 class StraddleWithRawResponse:
+    _client: Straddle
+
     def __init__(self, client: Straddle) -> None:
-        self.embed = embed.EmbedResourceWithRawResponse(client.embed)
-        self.bridge = bridge.BridgeResourceWithRawResponse(client.bridge)
-        self.customers = customers.CustomersResourceWithRawResponse(client.customers)
-        self.paykeys = paykeys.PaykeysResourceWithRawResponse(client.paykeys)
-        self.charges = charges.ChargesResourceWithRawResponse(client.charges)
-        self.funding_events = funding_events.FundingEventsResourceWithRawResponse(client.funding_events)
-        self.payments = payments.PaymentsResourceWithRawResponse(client.payments)
-        self.payouts = payouts.PayoutsResourceWithRawResponse(client.payouts)
-        self.reports = reports.ReportsResourceWithRawResponse(client.reports)
+        self._client = client
+
+    @cached_property
+    def embed(self) -> embed.EmbedResourceWithRawResponse:
+        from .resources.embed import EmbedResourceWithRawResponse
+
+        return EmbedResourceWithRawResponse(self._client.embed)
+
+    @cached_property
+    def bridge(self) -> bridge.BridgeResourceWithRawResponse:
+        from .resources.bridge import BridgeResourceWithRawResponse
+
+        return BridgeResourceWithRawResponse(self._client.bridge)
+
+    @cached_property
+    def customers(self) -> customers.CustomersResourceWithRawResponse:
+        from .resources.customers import CustomersResourceWithRawResponse
+
+        return CustomersResourceWithRawResponse(self._client.customers)
+
+    @cached_property
+    def paykeys(self) -> paykeys.PaykeysResourceWithRawResponse:
+        from .resources.paykeys import PaykeysResourceWithRawResponse
+
+        return PaykeysResourceWithRawResponse(self._client.paykeys)
+
+    @cached_property
+    def charges(self) -> charges.ChargesResourceWithRawResponse:
+        from .resources.charges import ChargesResourceWithRawResponse
+
+        return ChargesResourceWithRawResponse(self._client.charges)
+
+    @cached_property
+    def funding_events(self) -> funding_events.FundingEventsResourceWithRawResponse:
+        from .resources.funding_events import FundingEventsResourceWithRawResponse
+
+        return FundingEventsResourceWithRawResponse(self._client.funding_events)
+
+    @cached_property
+    def payments(self) -> payments.PaymentsResourceWithRawResponse:
+        from .resources.payments import PaymentsResourceWithRawResponse
+
+        return PaymentsResourceWithRawResponse(self._client.payments)
+
+    @cached_property
+    def payouts(self) -> payouts.PayoutsResourceWithRawResponse:
+        from .resources.payouts import PayoutsResourceWithRawResponse
+
+        return PayoutsResourceWithRawResponse(self._client.payouts)
+
+    @cached_property
+    def reports(self) -> reports.ReportsResourceWithRawResponse:
+        from .resources.reports import ReportsResourceWithRawResponse
+
+        return ReportsResourceWithRawResponse(self._client.reports)
 
 
 class AsyncStraddleWithRawResponse:
+    _client: AsyncStraddle
+
     def __init__(self, client: AsyncStraddle) -> None:
-        self.embed = embed.AsyncEmbedResourceWithRawResponse(client.embed)
-        self.bridge = bridge.AsyncBridgeResourceWithRawResponse(client.bridge)
-        self.customers = customers.AsyncCustomersResourceWithRawResponse(client.customers)
-        self.paykeys = paykeys.AsyncPaykeysResourceWithRawResponse(client.paykeys)
-        self.charges = charges.AsyncChargesResourceWithRawResponse(client.charges)
-        self.funding_events = funding_events.AsyncFundingEventsResourceWithRawResponse(client.funding_events)
-        self.payments = payments.AsyncPaymentsResourceWithRawResponse(client.payments)
-        self.payouts = payouts.AsyncPayoutsResourceWithRawResponse(client.payouts)
-        self.reports = reports.AsyncReportsResourceWithRawResponse(client.reports)
+        self._client = client
+
+    @cached_property
+    def embed(self) -> embed.AsyncEmbedResourceWithRawResponse:
+        from .resources.embed import AsyncEmbedResourceWithRawResponse
+
+        return AsyncEmbedResourceWithRawResponse(self._client.embed)
+
+    @cached_property
+    def bridge(self) -> bridge.AsyncBridgeResourceWithRawResponse:
+        from .resources.bridge import AsyncBridgeResourceWithRawResponse
+
+        return AsyncBridgeResourceWithRawResponse(self._client.bridge)
+
+    @cached_property
+    def customers(self) -> customers.AsyncCustomersResourceWithRawResponse:
+        from .resources.customers import AsyncCustomersResourceWithRawResponse
+
+        return AsyncCustomersResourceWithRawResponse(self._client.customers)
+
+    @cached_property
+    def paykeys(self) -> paykeys.AsyncPaykeysResourceWithRawResponse:
+        from .resources.paykeys import AsyncPaykeysResourceWithRawResponse
+
+        return AsyncPaykeysResourceWithRawResponse(self._client.paykeys)
+
+    @cached_property
+    def charges(self) -> charges.AsyncChargesResourceWithRawResponse:
+        from .resources.charges import AsyncChargesResourceWithRawResponse
+
+        return AsyncChargesResourceWithRawResponse(self._client.charges)
+
+    @cached_property
+    def funding_events(self) -> funding_events.AsyncFundingEventsResourceWithRawResponse:
+        from .resources.funding_events import AsyncFundingEventsResourceWithRawResponse
+
+        return AsyncFundingEventsResourceWithRawResponse(self._client.funding_events)
+
+    @cached_property
+    def payments(self) -> payments.AsyncPaymentsResourceWithRawResponse:
+        from .resources.payments import AsyncPaymentsResourceWithRawResponse
+
+        return AsyncPaymentsResourceWithRawResponse(self._client.payments)
+
+    @cached_property
+    def payouts(self) -> payouts.AsyncPayoutsResourceWithRawResponse:
+        from .resources.payouts import AsyncPayoutsResourceWithRawResponse
+
+        return AsyncPayoutsResourceWithRawResponse(self._client.payouts)
+
+    @cached_property
+    def reports(self) -> reports.AsyncReportsResourceWithRawResponse:
+        from .resources.reports import AsyncReportsResourceWithRawResponse
+
+        return AsyncReportsResourceWithRawResponse(self._client.reports)
 
 
 class StraddleWithStreamedResponse:
+    _client: Straddle
+
     def __init__(self, client: Straddle) -> None:
-        self.embed = embed.EmbedResourceWithStreamingResponse(client.embed)
-        self.bridge = bridge.BridgeResourceWithStreamingResponse(client.bridge)
-        self.customers = customers.CustomersResourceWithStreamingResponse(client.customers)
-        self.paykeys = paykeys.PaykeysResourceWithStreamingResponse(client.paykeys)
-        self.charges = charges.ChargesResourceWithStreamingResponse(client.charges)
-        self.funding_events = funding_events.FundingEventsResourceWithStreamingResponse(client.funding_events)
-        self.payments = payments.PaymentsResourceWithStreamingResponse(client.payments)
-        self.payouts = payouts.PayoutsResourceWithStreamingResponse(client.payouts)
-        self.reports = reports.ReportsResourceWithStreamingResponse(client.reports)
+        self._client = client
+
+    @cached_property
+    def embed(self) -> embed.EmbedResourceWithStreamingResponse:
+        from .resources.embed import EmbedResourceWithStreamingResponse
+
+        return EmbedResourceWithStreamingResponse(self._client.embed)
+
+    @cached_property
+    def bridge(self) -> bridge.BridgeResourceWithStreamingResponse:
+        from .resources.bridge import BridgeResourceWithStreamingResponse
+
+        return BridgeResourceWithStreamingResponse(self._client.bridge)
+
+    @cached_property
+    def customers(self) -> customers.CustomersResourceWithStreamingResponse:
+        from .resources.customers import CustomersResourceWithStreamingResponse
+
+        return CustomersResourceWithStreamingResponse(self._client.customers)
+
+    @cached_property
+    def paykeys(self) -> paykeys.PaykeysResourceWithStreamingResponse:
+        from .resources.paykeys import PaykeysResourceWithStreamingResponse
+
+        return PaykeysResourceWithStreamingResponse(self._client.paykeys)
+
+    @cached_property
+    def charges(self) -> charges.ChargesResourceWithStreamingResponse:
+        from .resources.charges import ChargesResourceWithStreamingResponse
+
+        return ChargesResourceWithStreamingResponse(self._client.charges)
+
+    @cached_property
+    def funding_events(self) -> funding_events.FundingEventsResourceWithStreamingResponse:
+        from .resources.funding_events import FundingEventsResourceWithStreamingResponse
+
+        return FundingEventsResourceWithStreamingResponse(self._client.funding_events)
+
+    @cached_property
+    def payments(self) -> payments.PaymentsResourceWithStreamingResponse:
+        from .resources.payments import PaymentsResourceWithStreamingResponse
+
+        return PaymentsResourceWithStreamingResponse(self._client.payments)
+
+    @cached_property
+    def payouts(self) -> payouts.PayoutsResourceWithStreamingResponse:
+        from .resources.payouts import PayoutsResourceWithStreamingResponse
+
+        return PayoutsResourceWithStreamingResponse(self._client.payouts)
+
+    @cached_property
+    def reports(self) -> reports.ReportsResourceWithStreamingResponse:
+        from .resources.reports import ReportsResourceWithStreamingResponse
+
+        return ReportsResourceWithStreamingResponse(self._client.reports)
 
 
 class AsyncStraddleWithStreamedResponse:
+    _client: AsyncStraddle
+
     def __init__(self, client: AsyncStraddle) -> None:
-        self.embed = embed.AsyncEmbedResourceWithStreamingResponse(client.embed)
-        self.bridge = bridge.AsyncBridgeResourceWithStreamingResponse(client.bridge)
-        self.customers = customers.AsyncCustomersResourceWithStreamingResponse(client.customers)
-        self.paykeys = paykeys.AsyncPaykeysResourceWithStreamingResponse(client.paykeys)
-        self.charges = charges.AsyncChargesResourceWithStreamingResponse(client.charges)
-        self.funding_events = funding_events.AsyncFundingEventsResourceWithStreamingResponse(client.funding_events)
-        self.payments = payments.AsyncPaymentsResourceWithStreamingResponse(client.payments)
-        self.payouts = payouts.AsyncPayoutsResourceWithStreamingResponse(client.payouts)
-        self.reports = reports.AsyncReportsResourceWithStreamingResponse(client.reports)
+        self._client = client
+
+    @cached_property
+    def embed(self) -> embed.AsyncEmbedResourceWithStreamingResponse:
+        from .resources.embed import AsyncEmbedResourceWithStreamingResponse
+
+        return AsyncEmbedResourceWithStreamingResponse(self._client.embed)
+
+    @cached_property
+    def bridge(self) -> bridge.AsyncBridgeResourceWithStreamingResponse:
+        from .resources.bridge import AsyncBridgeResourceWithStreamingResponse
+
+        return AsyncBridgeResourceWithStreamingResponse(self._client.bridge)
+
+    @cached_property
+    def customers(self) -> customers.AsyncCustomersResourceWithStreamingResponse:
+        from .resources.customers import AsyncCustomersResourceWithStreamingResponse
+
+        return AsyncCustomersResourceWithStreamingResponse(self._client.customers)
+
+    @cached_property
+    def paykeys(self) -> paykeys.AsyncPaykeysResourceWithStreamingResponse:
+        from .resources.paykeys import AsyncPaykeysResourceWithStreamingResponse
+
+        return AsyncPaykeysResourceWithStreamingResponse(self._client.paykeys)
+
+    @cached_property
+    def charges(self) -> charges.AsyncChargesResourceWithStreamingResponse:
+        from .resources.charges import AsyncChargesResourceWithStreamingResponse
+
+        return AsyncChargesResourceWithStreamingResponse(self._client.charges)
+
+    @cached_property
+    def funding_events(self) -> funding_events.AsyncFundingEventsResourceWithStreamingResponse:
+        from .resources.funding_events import AsyncFundingEventsResourceWithStreamingResponse
+
+        return AsyncFundingEventsResourceWithStreamingResponse(self._client.funding_events)
+
+    @cached_property
+    def payments(self) -> payments.AsyncPaymentsResourceWithStreamingResponse:
+        from .resources.payments import AsyncPaymentsResourceWithStreamingResponse
+
+        return AsyncPaymentsResourceWithStreamingResponse(self._client.payments)
+
+    @cached_property
+    def payouts(self) -> payouts.AsyncPayoutsResourceWithStreamingResponse:
+        from .resources.payouts import AsyncPayoutsResourceWithStreamingResponse
+
+        return AsyncPayoutsResourceWithStreamingResponse(self._client.payouts)
+
+    @cached_property
+    def reports(self) -> reports.AsyncReportsResourceWithStreamingResponse:
+        from .resources.reports import AsyncReportsResourceWithStreamingResponse
+
+        return AsyncReportsResourceWithStreamingResponse(self._client.reports)
 
 
 Client = Straddle
