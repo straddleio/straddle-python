@@ -45,30 +45,6 @@ class FundingEventListParams(TypedDict, total=False):
     page_size: int
     """Results page size. Max value: 1000"""
 
-    payment_status: Optional[
-        List[
-            Literal[
-                "created",
-                "scheduled",
-                "failed",
-                "cancelled",
-                "on_hold",
-                "pending",
-                "paid",
-                "reversed",
-                "Created",
-                "Scheduled",
-                "Failed",
-                "Cancelled",
-                "OnHold",
-                "Pending",
-                "Paid",
-                "Reversed",
-            ]
-        ]
-    ]
-    """Payment status."""
-
     search_text: Optional[str]
     """Search text."""
 
