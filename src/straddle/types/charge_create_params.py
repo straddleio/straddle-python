@@ -18,7 +18,7 @@ class ChargeCreateParams(TypedDict, total=False):
 
     config: Required[Config]
 
-    consent_type: Required[Literal["internet", "signed", "Internet", "Signed"]]
+    consent_type: Required[Literal["internet", "signed"]]
     """The channel or mechanism through which the payment was authorized.
 
     Use `internet` for payments made online or through a mobile app and `signed` for
@@ -66,7 +66,7 @@ class ChargeCreateParams(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
-    balance_check: Required[Literal["required", "enabled", "disabled", "Required", "Enabled", "Disabled"]]
+    balance_check: Required[Literal["required", "enabled", "disabled"]]
     """Defines whether to check the customer's balance before processing the charge."""
 
     sandbox_outcome: Literal[
@@ -81,16 +81,5 @@ class Config(TypedDict, total=False):
         "reversed_customer_dispute",
         "failed_closed_bank_account",
         "reversed_closed_bank_account",
-        "Standard",
-        "Paid",
-        "OnHoldDailyLimit",
-        "CancelledForFraudRisk",
-        "CancelledForBalanceCheck",
-        "FailedInsufficientFunds",
-        "ReversedInsufficientFunds",
-        "FailedCustomerDispute",
-        "ReversedCustomerDispute",
-        "FailedClosedBankAccount",
-        "ReversedClosedBankAccount",
     ]
     """Payment will simulate processing if not Standard."""
