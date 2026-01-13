@@ -17,10 +17,21 @@ class PaymentListParams(TypedDict, total=False):
 
     default_page_size: int
 
-    default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"]
+    default_sort: Literal[
+        "created_at",
+        "payment_date",
+        "effective_at",
+        "id",
+        "amount",
+        "CreatedAt",
+        "PaymentDate",
+        "EffectiveAt",
+        "Id",
+        "Amount",
+    ]
     """The field to sort the results by."""
 
-    default_sort_order: Literal["asc", "desc"]
+    default_sort_order: Literal["asc", "desc", "Asc", "Desc"]
 
     external_id: str
     """Search using the `external_id` of a `charge` or `payout`."""
@@ -68,20 +79,48 @@ class PaymentListParams(TypedDict, total=False):
     """Search using the `id` of a `charge` or `payout`."""
 
     payment_status: List[
-        Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+        Literal[
+            "created",
+            "scheduled",
+            "failed",
+            "cancelled",
+            "on_hold",
+            "pending",
+            "paid",
+            "reversed",
+            "Created",
+            "Scheduled",
+            "Failed",
+            "Cancelled",
+            "OnHold",
+            "Pending",
+            "Paid",
+            "Reversed",
+        ]
     ]
     """Search by the status of a `charge` or `payout`."""
 
-    payment_type: List[Literal["charge", "payout"]]
+    payment_type: List[Literal["charge", "payout", "Charge", "Payout"]]
     """Search by the type of a `charge` or `payout`."""
 
     search_text: str
     """Search using a text string associated with a `charge` or `payout`."""
 
-    sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"]
+    sort_by: Literal[
+        "created_at",
+        "payment_date",
+        "effective_at",
+        "id",
+        "amount",
+        "CreatedAt",
+        "PaymentDate",
+        "EffectiveAt",
+        "Id",
+        "Amount",
+    ]
     """The field to sort the results by."""
 
-    sort_order: Literal["asc", "desc"]
+    sort_order: Literal["asc", "desc", "Asc", "Desc"]
 
     status_reason: List[
         Literal[
@@ -110,11 +149,44 @@ class PaymentListParams(TypedDict, total=False):
             "require_review",
             "blocked_by_system",
             "watchtower_review",
+            "InsufficientFunds",
+            "ClosedBankAccount",
+            "InvalidBankAccount",
+            "InvalidRouting",
+            "Disputed",
+            "PaymentStopped",
+            "OwnerDeceased",
+            "FrozenBankAccount",
+            "RiskReview",
+            "Fraudulent",
+            "DuplicateEntry",
+            "InvalidPaykey",
+            "PaymentBlocked",
+            "AmountTooLarge",
+            "TooManyAttempts",
+            "InternalSystemError",
+            "UserRequest",
+            "Ok",
+            "OtherNetworkReturn",
+            "PayoutRefused",
         ]
     ]
     """Reason for latest payment status change."""
 
-    status_source: List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]
+    status_source: List[
+        Literal[
+            "watchtower",
+            "bank_decline",
+            "customer_dispute",
+            "user_action",
+            "system",
+            "Watchtower",
+            "BankDecline",
+            "CustomerDispute",
+            "UserAction",
+            "System",
+        ]
+    ]
     """Source of latest payment status change."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]

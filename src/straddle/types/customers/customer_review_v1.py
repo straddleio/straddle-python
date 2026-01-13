@@ -112,7 +112,7 @@ class DataCustomerDetails(BaseModel):
 
     status: Literal["pending", "review", "verified", "inactive", "rejected"]
 
-    type: Literal["individual", "business"]
+    type: Literal["individual", "business", "Individual", "Business"]
 
     updated_at: datetime
     """Timestamp of the most recent update to the customer record."""
@@ -357,7 +357,7 @@ class CustomerReviewV1(BaseModel):
     meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
-    response_type: Literal["object", "array", "error", "none"]
+    response_type: Literal["object", "array", "error", "none", "Object", "Array", "Error", "None"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.
