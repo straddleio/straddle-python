@@ -15,7 +15,7 @@ class ChargeUpdateParams(TypedDict, total=False):
     amount: Required[int]
     """The amount of the charge in cents."""
 
-    description: Required[str]
+    description: Required[Optional[str]]
     """An arbitrary description for the charge."""
 
     payment_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]

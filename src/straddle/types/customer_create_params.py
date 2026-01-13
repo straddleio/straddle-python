@@ -32,7 +32,7 @@ class CustomerCreateParams(TypedDict, total=False):
     phone: Required[str]
     """The customer's phone number in E.164 format. Mobile number is preferred."""
 
-    type: Required[Literal["individual", "business"]]
+    type: Required[Literal["individual", "business", "Individual", "Business"]]
 
     address: Optional[CustomerAddressV1Param]
     """An object containing the customer's address.

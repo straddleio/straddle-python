@@ -57,9 +57,45 @@ class DataStatusDetails(BaseModel):
         "ok",
         "other_network_return",
         "payout_refused",
+        "cancel_request",
+        "failed_verification",
+        "require_review",
+        "blocked_by_system",
+        "watchtower_review",
+        "InsufficientFunds",
+        "ClosedBankAccount",
+        "InvalidBankAccount",
+        "InvalidRouting",
+        "Disputed",
+        "PaymentStopped",
+        "OwnerDeceased",
+        "FrozenBankAccount",
+        "RiskReview",
+        "Fraudulent",
+        "DuplicateEntry",
+        "InvalidPaykey",
+        "PaymentBlocked",
+        "AmountTooLarge",
+        "TooManyAttempts",
+        "InternalSystemError",
+        "UserRequest",
+        "Ok",
+        "OtherNetworkReturn",
+        "PayoutRefused",
     ]
 
-    source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
+    source: Literal[
+        "watchtower",
+        "bank_decline",
+        "customer_dispute",
+        "user_action",
+        "system",
+        "Watchtower",
+        "BankDecline",
+        "CustomerDispute",
+        "UserAction",
+        "System",
+    ]
 
     code: Optional[str] = None
     """The status code if applicable."""
@@ -88,7 +124,7 @@ class Data(BaseModel):
 
     source: Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]
 
-    status: Literal["pending", "active", "inactive", "rejected", "review"]
+    status: Literal["pending", "active", "inactive", "rejected", "review", "blocked"]
 
     updated_at: datetime
     """Timestamp of the most recent update to the paykey."""
@@ -132,7 +168,7 @@ class Meta(BaseModel):
     sort_by: str
     """The field that the results were sorted by."""
 
-    sort_order: Literal["asc", "desc"]
+    sort_order: Literal["asc", "desc", "Asc", "Desc"]
 
     total_items: int
 
@@ -145,7 +181,7 @@ class PaykeySummaryPagedV1(BaseModel):
 
     meta: Meta
 
-    response_type: Literal["object", "array", "error", "none"]
+    response_type: Literal["object", "array", "error", "none", "Object", "Array", "Error", "None"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.
