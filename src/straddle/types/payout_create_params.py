@@ -72,16 +72,5 @@ class Config(TypedDict, total=False):
         "reversed_customer_dispute",
         "failed_closed_bank_account",
         "reversed_closed_bank_account",
-        "Standard",
-        "Paid",
-        "OnHoldDailyLimit",
-        "CancelledForFraudRisk",
-        "CancelledForBalanceCheck",
-        "FailedInsufficientFunds",
-        "ReversedInsufficientFunds",
-        "FailedCustomerDispute",
-        "ReversedCustomerDispute",
-        "FailedClosedBankAccount",
-        "ReversedClosedBankAccount",
     ]
     """Payment will simulate processing if not Standard."""
