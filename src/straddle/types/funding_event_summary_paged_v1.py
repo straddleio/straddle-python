@@ -42,40 +42,9 @@ class DataStatusDetails(BaseModel):
         "require_review",
         "blocked_by_system",
         "watchtower_review",
-        "InsufficientFunds",
-        "ClosedBankAccount",
-        "InvalidBankAccount",
-        "InvalidRouting",
-        "Disputed",
-        "PaymentStopped",
-        "OwnerDeceased",
-        "FrozenBankAccount",
-        "RiskReview",
-        "Fraudulent",
-        "DuplicateEntry",
-        "InvalidPaykey",
-        "PaymentBlocked",
-        "AmountTooLarge",
-        "TooManyAttempts",
-        "InternalSystemError",
-        "UserRequest",
-        "Ok",
-        "OtherNetworkReturn",
-        "PayoutRefused",
     ]
 
-    source: Literal[
-        "watchtower",
-        "bank_decline",
-        "customer_dispute",
-        "user_action",
-        "system",
-        "Watchtower",
-        "BankDecline",
-        "CustomerDispute",
-        "UserAction",
-        "System",
-    ]
+    source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
 
     code: Optional[str] = None
     """The status code if applicable."""
@@ -97,16 +66,7 @@ class Data(BaseModel):
     `linked_bank_account`.
     """
 
-    event_type: Literal[
-        "charge_deposit",
-        "charge_reversal",
-        "payout_return",
-        "payout_withdrawal",
-        "ChargeDeposit",
-        "ChargeReversal",
-        "PayoutReturn",
-        "PayoutWithdrawal",
-    ]
+    event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"]
     """
     The funding event types describes the direction and reason for the funding
     event.
@@ -133,24 +93,7 @@ class Data(BaseModel):
     """Updated at."""
 
     status: Optional[
-        Literal[
-            "created",
-            "scheduled",
-            "failed",
-            "cancelled",
-            "on_hold",
-            "pending",
-            "paid",
-            "reversed",
-            "Created",
-            "Scheduled",
-            "Failed",
-            "Cancelled",
-            "OnHold",
-            "Pending",
-            "Paid",
-            "Reversed",
-        ]
+        Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
     ] = None
     """The current status of the `charge` or `payout`."""
 
@@ -179,7 +122,7 @@ class Meta(BaseModel):
     sort_by: str
     """The field that the results were sorted by."""
 
-    sort_order: Literal["asc", "desc", "Asc", "Desc"]
+    sort_order: Literal["asc", "desc"]
 
     total_items: int
 
@@ -192,7 +135,7 @@ class FundingEventSummaryPagedV1(BaseModel):
 
     meta: Meta
 
-    response_type: Literal["object", "array", "error", "none", "Object", "Array", "Error", "None"]
+    response_type: Literal["object", "array", "error", "none"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.

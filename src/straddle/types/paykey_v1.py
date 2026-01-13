@@ -73,40 +73,9 @@ class DataStatusDetails(BaseModel):
         "require_review",
         "blocked_by_system",
         "watchtower_review",
-        "InsufficientFunds",
-        "ClosedBankAccount",
-        "InvalidBankAccount",
-        "InvalidRouting",
-        "Disputed",
-        "PaymentStopped",
-        "OwnerDeceased",
-        "FrozenBankAccount",
-        "RiskReview",
-        "Fraudulent",
-        "DuplicateEntry",
-        "InvalidPaykey",
-        "PaymentBlocked",
-        "AmountTooLarge",
-        "TooManyAttempts",
-        "InternalSystemError",
-        "UserRequest",
-        "Ok",
-        "OtherNetworkReturn",
-        "PayoutRefused",
     ]
 
-    source: Literal[
-        "watchtower",
-        "bank_decline",
-        "customer_dispute",
-        "user_action",
-        "system",
-        "Watchtower",
-        "BankDecline",
-        "CustomerDispute",
-        "UserAction",
-        "System",
-    ]
+    source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
 
     code: Optional[str] = None
     """The status code if applicable."""
@@ -133,13 +102,6 @@ class Data(BaseModel):
     source: Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]
 
     status: Literal["pending", "active", "inactive", "rejected", "review", "blocked"]
-
-    unblock_eligible: bool
-    """Indicates whether this paykey is eligible for client-initiated unblocking.
-
-    Only true for paykeys blocked due to R29 returns that have not been previously
-    unblocked.
-    """
 
     updated_at: datetime
     """Timestamp of the most recent update to the paykey."""
@@ -179,7 +141,7 @@ class PaykeyV1(BaseModel):
     meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
-    response_type: Literal["object", "array", "error", "none", "Object", "Array", "Error", "None"]
+    response_type: Literal["object", "array", "error", "none"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.

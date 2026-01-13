@@ -73,40 +73,9 @@ class DataStatusDetails(BaseModel):
         "require_review",
         "blocked_by_system",
         "watchtower_review",
-        "InsufficientFunds",
-        "ClosedBankAccount",
-        "InvalidBankAccount",
-        "InvalidRouting",
-        "Disputed",
-        "PaymentStopped",
-        "OwnerDeceased",
-        "FrozenBankAccount",
-        "RiskReview",
-        "Fraudulent",
-        "DuplicateEntry",
-        "InvalidPaykey",
-        "PaymentBlocked",
-        "AmountTooLarge",
-        "TooManyAttempts",
-        "InternalSystemError",
-        "UserRequest",
-        "Ok",
-        "OtherNetworkReturn",
-        "PayoutRefused",
     ]
 
-    source: Literal[
-        "watchtower",
-        "bank_decline",
-        "customer_dispute",
-        "user_action",
-        "system",
-        "Watchtower",
-        "BankDecline",
-        "CustomerDispute",
-        "UserAction",
-        "System",
-    ]
+    source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
 
     code: Optional[str] = None
     """The status code if applicable."""
@@ -175,7 +144,7 @@ class LinkCreateTanResponse(BaseModel):
     meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
-    response_type: Literal["object", "array", "error", "none", "Object", "Array", "Error", "None"]
+    response_type: Literal["object", "array", "error", "none"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.
