@@ -38,12 +38,12 @@ class CustomerListParams(TypedDict, total=False):
 
     sort_by: Literal["name", "created_at"]
 
-    sort_order: Literal["asc", "desc"]
+    sort_order: Literal["asc", "desc", "Asc", "Desc"]
 
     status: List[Literal["pending", "review", "verified", "inactive", "rejected"]]
     """Filter customers by their current `status`."""
 
-    types: List[Literal["individual", "business"]]
+    types: List[Literal["individual", "business", "Individual", "Business"]]
     """Filter by customer type `individual` or `business`."""
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]

@@ -19,7 +19,7 @@ class PayoutCreateParams(TypedDict, total=False):
     currency: Required[str]
     """The currency of the payout. Only USD is supported."""
 
-    description: Required[str]
+    description: Required[Optional[str]]
     """An arbitrary description for the payout."""
 
     device: Required[DeviceInfoV1]
@@ -72,5 +72,16 @@ class Config(TypedDict, total=False):
         "reversed_customer_dispute",
         "failed_closed_bank_account",
         "reversed_closed_bank_account",
+        "Standard",
+        "Paid",
+        "OnHoldDailyLimit",
+        "CancelledForFraudRisk",
+        "CancelledForBalanceCheck",
+        "FailedInsufficientFunds",
+        "ReversedInsufficientFunds",
+        "FailedCustomerDispute",
+        "ReversedCustomerDispute",
+        "FailedClosedBankAccount",
+        "ReversedClosedBankAccount",
     ]
     """Payment will simulate processing if not Standard."""
