@@ -18,7 +18,7 @@ class ChargeCreateParams(TypedDict, total=False):
 
     config: Required[Config]
 
-    consent_type: Required[Literal["internet", "signed"]]
+    consent_type: Required[Literal["internet", "signed", "Internet", "Signed"]]
     """The channel or mechanism through which the payment was authorized.
 
     Use `internet` for payments made online or through a mobile app and `signed` for
@@ -29,7 +29,7 @@ class ChargeCreateParams(TypedDict, total=False):
     currency: Required[str]
     """The currency of the charge. Only USD is supported."""
 
-    description: Required[str]
+    description: Required[Optional[str]]
     """An arbitrary description for the charge."""
 
     device: Required[DeviceInfoV1]
@@ -66,7 +66,7 @@ class ChargeCreateParams(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
-    balance_check: Required[Literal["required", "enabled", "disabled"]]
+    balance_check: Required[Literal["required", "enabled", "disabled", "Required", "Enabled", "Disabled"]]
     """Defines whether to check the customer's balance before processing the charge."""
 
     sandbox_outcome: Literal[
@@ -81,5 +81,16 @@ class Config(TypedDict, total=False):
         "reversed_customer_dispute",
         "failed_closed_bank_account",
         "reversed_closed_bank_account",
+        "Standard",
+        "Paid",
+        "OnHoldDailyLimit",
+        "CancelledForFraudRisk",
+        "CancelledForBalanceCheck",
+        "FailedInsufficientFunds",
+        "ReversedInsufficientFunds",
+        "FailedCustomerDispute",
+        "ReversedCustomerDispute",
+        "FailedClosedBankAccount",
+        "ReversedClosedBankAccount",
     ]
     """Payment will simulate processing if not Standard."""

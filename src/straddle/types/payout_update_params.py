@@ -15,7 +15,7 @@ class PayoutUpdateParams(TypedDict, total=False):
     amount: Required[int]
     """The amount of the payout in cents."""
 
-    description: Required[str]
+    description: Required[Optional[str]]
     """An arbitrary description for the payout."""
 
     payment_date: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]

@@ -31,7 +31,7 @@ class PagedResponseMetadata(BaseModel):
     sort_by: str
     """The field that the results were sorted by."""
 
-    sort_order: Literal["asc", "desc"]
+    sort_order: Literal["asc", "desc", "Asc", "Desc"]
 
     total_items: int
     """Total number of items returned in this response."""
