@@ -146,6 +146,13 @@ class DataPaykeyDetails(BaseModel):
 
     status: Literal["pending", "active", "inactive", "rejected", "review", "blocked"]
 
+    unblock_eligible: bool
+    """Indicates whether this paykey is eligible for client-initiated unblocking.
+
+    Only true for paykeys blocked due to R29 returns that have not been previously
+    unblocked.
+    """
+
     updated_at: datetime
     """Timestamp of the most recent update to the paykey."""
 

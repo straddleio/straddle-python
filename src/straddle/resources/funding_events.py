@@ -66,29 +66,6 @@ class FundingEventsResource(SyncAPIResource):
         | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        payment_status: Optional[
-            List[
-                Literal[
-                    "created",
-                    "scheduled",
-                    "failed",
-                    "cancelled",
-                    "on_hold",
-                    "pending",
-                    "paid",
-                    "reversed",
-                    "Created",
-                    "Scheduled",
-                    "Failed",
-                    "Cancelled",
-                    "OnHold",
-                    "Pending",
-                    "Paid",
-                    "Reversed",
-                ]
-            ]
-        ]
-        | Omit = omit,
         search_text: Optional[str] | Omit = omit,
         sort_by: Literal["transfer_date", "id", "amount", "TransferDate", "Id", "Amount"] | Omit = omit,
         sort_order: Literal["asc", "desc", "Asc", "Desc"] | Omit = omit,
@@ -216,8 +193,6 @@ class FundingEventsResource(SyncAPIResource):
 
           page_size: Results page size. Max value: 1000
 
-          payment_status: Payment status.
-
           search_text: Search text.
 
           sort_by: The field to sort the results by.
@@ -268,7 +243,6 @@ class FundingEventsResource(SyncAPIResource):
                         "event_type": event_type,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "payment_status": payment_status,
                         "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
@@ -373,29 +347,6 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        payment_status: Optional[
-            List[
-                Literal[
-                    "created",
-                    "scheduled",
-                    "failed",
-                    "cancelled",
-                    "on_hold",
-                    "pending",
-                    "paid",
-                    "reversed",
-                    "Created",
-                    "Scheduled",
-                    "Failed",
-                    "Cancelled",
-                    "OnHold",
-                    "Pending",
-                    "Paid",
-                    "Reversed",
-                ]
-            ]
-        ]
-        | Omit = omit,
         search_text: Optional[str] | Omit = omit,
         sort_by: Literal["transfer_date", "id", "amount", "TransferDate", "Id", "Amount"] | Omit = omit,
         sort_order: Literal["asc", "desc", "Asc", "Desc"] | Omit = omit,
@@ -523,8 +474,6 @@ class AsyncFundingEventsResource(AsyncAPIResource):
 
           page_size: Results page size. Max value: 1000
 
-          payment_status: Payment status.
-
           search_text: Search text.
 
           sort_by: The field to sort the results by.
@@ -575,7 +524,6 @@ class AsyncFundingEventsResource(AsyncAPIResource):
                         "event_type": event_type,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "payment_status": payment_status,
                         "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
