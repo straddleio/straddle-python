@@ -53,45 +53,16 @@ class FundingEventsResource(SyncAPIResource):
         created_from: Union[str, date, None] | Omit = omit,
         created_to: Union[str, date, None] | Omit = omit,
         direction: Literal["deposit", "withdrawal"] | Omit = omit,
-        event_type: Literal[
-            "charge_deposit",
-            "charge_reversal",
-            "payout_return",
-            "payout_withdrawal",
-            "ChargeDeposit",
-            "ChargeReversal",
-            "PayoutReturn",
-            "PayoutWithdrawal",
-        ]
-        | Omit = omit,
+        event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        payment_status: Optional[
-            List[
-                Literal[
-                    "created",
-                    "scheduled",
-                    "failed",
-                    "cancelled",
-                    "on_hold",
-                    "pending",
-                    "paid",
-                    "reversed",
-                    "Created",
-                    "Scheduled",
-                    "Failed",
-                    "Cancelled",
-                    "OnHold",
-                    "Pending",
-                    "Paid",
-                    "Reversed",
-                ]
-            ]
+        search_text: Optional[str] | Omit = omit,
+        sort_by: Literal["transfer_date", "id", "amount"] | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        status: Optional[
+            List[Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]]
         ]
         | Omit = omit,
-        search_text: Optional[str] | Omit = omit,
-        sort_by: Literal["transfer_date", "id", "amount", "TransferDate", "Id", "Amount"] | Omit = omit,
-        sort_order: Literal["asc", "desc", "Asc", "Desc"] | Omit = omit,
         status_reason: Optional[
             List[
                 Literal[
@@ -120,45 +91,12 @@ class FundingEventsResource(SyncAPIResource):
                     "require_review",
                     "blocked_by_system",
                     "watchtower_review",
-                    "InsufficientFunds",
-                    "ClosedBankAccount",
-                    "InvalidBankAccount",
-                    "InvalidRouting",
-                    "Disputed",
-                    "PaymentStopped",
-                    "OwnerDeceased",
-                    "FrozenBankAccount",
-                    "RiskReview",
-                    "Fraudulent",
-                    "DuplicateEntry",
-                    "InvalidPaykey",
-                    "PaymentBlocked",
-                    "AmountTooLarge",
-                    "TooManyAttempts",
-                    "InternalSystemError",
-                    "UserRequest",
-                    "Ok",
-                    "OtherNetworkReturn",
-                    "PayoutRefused",
                 ]
             ]
         ]
         | Omit = omit,
         status_source: Optional[
-            List[
-                Literal[
-                    "watchtower",
-                    "bank_decline",
-                    "customer_dispute",
-                    "user_action",
-                    "system",
-                    "Watchtower",
-                    "BankDecline",
-                    "CustomerDispute",
-                    "UserAction",
-                    "System",
-                ]
-            ]
+            List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]
         ]
         | Omit = omit,
         trace_id: Optional[str] | Omit = omit,
@@ -193,13 +131,13 @@ class FundingEventsResource(SyncAPIResource):
 
           page_size: Results page size. Max value: 1000
 
-          payment_status: Payment status.
-
           search_text: Search text.
 
           sort_by: The field to sort the results by.
 
           sort_order: The order in which to sort the results.
+
+          status: Funding Event status.
 
           status_reason: Reason for latest payment status change.
 
@@ -243,10 +181,10 @@ class FundingEventsResource(SyncAPIResource):
                         "event_type": event_type,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "payment_status": payment_status,
                         "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "status": status,
                         "status_reason": status_reason,
                         "status_source": status_source,
                         "trace_id": trace_id,
@@ -334,45 +272,16 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         created_from: Union[str, date, None] | Omit = omit,
         created_to: Union[str, date, None] | Omit = omit,
         direction: Literal["deposit", "withdrawal"] | Omit = omit,
-        event_type: Literal[
-            "charge_deposit",
-            "charge_reversal",
-            "payout_return",
-            "payout_withdrawal",
-            "ChargeDeposit",
-            "ChargeReversal",
-            "PayoutReturn",
-            "PayoutWithdrawal",
-        ]
-        | Omit = omit,
+        event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        payment_status: Optional[
-            List[
-                Literal[
-                    "created",
-                    "scheduled",
-                    "failed",
-                    "cancelled",
-                    "on_hold",
-                    "pending",
-                    "paid",
-                    "reversed",
-                    "Created",
-                    "Scheduled",
-                    "Failed",
-                    "Cancelled",
-                    "OnHold",
-                    "Pending",
-                    "Paid",
-                    "Reversed",
-                ]
-            ]
+        search_text: Optional[str] | Omit = omit,
+        sort_by: Literal["transfer_date", "id", "amount"] | Omit = omit,
+        sort_order: Literal["asc", "desc"] | Omit = omit,
+        status: Optional[
+            List[Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]]
         ]
         | Omit = omit,
-        search_text: Optional[str] | Omit = omit,
-        sort_by: Literal["transfer_date", "id", "amount", "TransferDate", "Id", "Amount"] | Omit = omit,
-        sort_order: Literal["asc", "desc", "Asc", "Desc"] | Omit = omit,
         status_reason: Optional[
             List[
                 Literal[
@@ -401,45 +310,12 @@ class AsyncFundingEventsResource(AsyncAPIResource):
                     "require_review",
                     "blocked_by_system",
                     "watchtower_review",
-                    "InsufficientFunds",
-                    "ClosedBankAccount",
-                    "InvalidBankAccount",
-                    "InvalidRouting",
-                    "Disputed",
-                    "PaymentStopped",
-                    "OwnerDeceased",
-                    "FrozenBankAccount",
-                    "RiskReview",
-                    "Fraudulent",
-                    "DuplicateEntry",
-                    "InvalidPaykey",
-                    "PaymentBlocked",
-                    "AmountTooLarge",
-                    "TooManyAttempts",
-                    "InternalSystemError",
-                    "UserRequest",
-                    "Ok",
-                    "OtherNetworkReturn",
-                    "PayoutRefused",
                 ]
             ]
         ]
         | Omit = omit,
         status_source: Optional[
-            List[
-                Literal[
-                    "watchtower",
-                    "bank_decline",
-                    "customer_dispute",
-                    "user_action",
-                    "system",
-                    "Watchtower",
-                    "BankDecline",
-                    "CustomerDispute",
-                    "UserAction",
-                    "System",
-                ]
-            ]
+            List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]
         ]
         | Omit = omit,
         trace_id: Optional[str] | Omit = omit,
@@ -474,13 +350,13 @@ class AsyncFundingEventsResource(AsyncAPIResource):
 
           page_size: Results page size. Max value: 1000
 
-          payment_status: Payment status.
-
           search_text: Search text.
 
           sort_by: The field to sort the results by.
 
           sort_order: The order in which to sort the results.
+
+          status: Funding Event status.
 
           status_reason: Reason for latest payment status change.
 
@@ -524,10 +400,10 @@ class AsyncFundingEventsResource(AsyncAPIResource):
                         "event_type": event_type,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "payment_status": payment_status,
                         "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
+                        "status": status,
                         "status_reason": status_reason,
                         "status_source": status_source,
                         "trace_id": trace_id,
