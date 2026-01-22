@@ -30,17 +30,6 @@ class DataConfig(BaseModel):
             "reversed_customer_dispute",
             "failed_closed_bank_account",
             "reversed_closed_bank_account",
-            "Standard",
-            "Paid",
-            "OnHoldDailyLimit",
-            "CancelledForFraudRisk",
-            "CancelledForBalanceCheck",
-            "FailedInsufficientFunds",
-            "ReversedInsufficientFunds",
-            "FailedCustomerDispute",
-            "ReversedCustomerDispute",
-            "FailedClosedBankAccount",
-            "ReversedClosedBankAccount",
         ]
     ] = None
     """Payment will simulate processing if not Standard."""
@@ -79,67 +68,19 @@ class DataStatusHistory(BaseModel):
         "require_review",
         "blocked_by_system",
         "watchtower_review",
-        "InsufficientFunds",
-        "ClosedBankAccount",
-        "InvalidBankAccount",
-        "InvalidRouting",
-        "Disputed",
-        "PaymentStopped",
-        "OwnerDeceased",
-        "FrozenBankAccount",
-        "RiskReview",
-        "Fraudulent",
-        "DuplicateEntry",
-        "InvalidPaykey",
-        "PaymentBlocked",
-        "AmountTooLarge",
-        "TooManyAttempts",
-        "InternalSystemError",
-        "UserRequest",
-        "Ok",
-        "OtherNetworkReturn",
-        "PayoutRefused",
     ]
     """
     A machine-readable identifier for the specific status, useful for programmatic
     handling.
     """
 
-    source: Literal[
-        "watchtower",
-        "bank_decline",
-        "customer_dispute",
-        "user_action",
-        "system",
-        "Watchtower",
-        "BankDecline",
-        "CustomerDispute",
-        "UserAction",
-        "System",
-    ]
+    source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
     """Identifies the origin of the status change (e.g., `bank_decline`, `watchtower`).
 
     This helps in tracking the cause of status updates.
     """
 
-    status: Literal[
-        "created",
-        "scheduled",
-        "failed",
-        "cancelled",
-        "on_hold",
-        "pending",
-        "paid",
-        "reversed",
-        "Created",
-        "Scheduled",
-        "Failed",
-        "Cancelled",
-        "OnHold",
-        "Pending",
-        "Paid",
-        "Reversed",
-    ]
+    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
     """The current status of the `charge` or `payout`."""
 
     code: Optional[str] = None
@@ -184,24 +125,7 @@ class Data(BaseModel):
     account.
     """
 
-    status: Literal[
-        "created",
-        "scheduled",
-        "failed",
-        "cancelled",
-        "on_hold",
-        "pending",
-        "paid",
-        "reversed",
-        "Created",
-        "Scheduled",
-        "Failed",
-        "Cancelled",
-        "OnHold",
-        "Pending",
-        "Paid",
-        "Reversed",
-    ]
+    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
     """The current status of the payout."""
 
     status_details: StatusDetailsV1
@@ -235,7 +159,7 @@ class Data(BaseModel):
     paykey_details: Optional[PaykeyDetailsV1] = None
     """Information about the paykey used for the payout."""
 
-    payment_rail: Optional[Literal["ach", "ACH"]] = None
+    payment_rail: Optional[Literal["ach"]] = None
     """The payment rail used for the payout."""
 
     processed_at: Optional[datetime] = None
@@ -254,7 +178,7 @@ class PayoutV1(BaseModel):
     meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
-    response_type: Literal["object", "array", "error", "none", "Object", "Array", "Error", "None"]
+    response_type: Literal["object", "array", "error", "none"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.
