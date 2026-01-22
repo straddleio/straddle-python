@@ -22,13 +22,21 @@ class PaykeyListParams(TypedDict, total=False):
 
     sort_by: Literal["institution_name", "expires_at", "created_at"]
 
-    sort_order: Literal["asc", "desc"]
+    sort_order: Literal["asc", "desc", "Asc", "Desc"]
 
     source: List[Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]]
     """Filter paykeys by their source."""
 
     status: List[Literal["pending", "active", "inactive", "rejected", "review", "blocked"]]
     """Filter paykeys by their current status."""
+
+    unblock_eligible: bool
+    """Filter paykeys by unblock eligibility.
+
+    When true, returns only blocked paykeys eligible for client-initiated unblocking
+    (blocked due to R29 returns and not previously unblocked). When false, returns
+    only blocked paykeys that are not eligible for unblocking.
+    """
 
     correlation_id: Annotated[str, PropertyInfo(alias="Correlation-Id")]
 

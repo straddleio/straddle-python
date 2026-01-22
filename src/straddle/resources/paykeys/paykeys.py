@@ -67,9 +67,10 @@ class PaykeysResource(SyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort_by: Literal["institution_name", "expires_at", "created_at"] | Omit = omit,
-        sort_order: Literal["asc", "desc"] | Omit = omit,
+        sort_order: Literal["asc", "desc", "Asc", "Desc"] | Omit = omit,
         source: List[Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]] | Omit = omit,
         status: List[Literal["pending", "active", "inactive", "rejected", "review", "blocked"]] | Omit = omit,
+        unblock_eligible: bool | Omit = omit,
         correlation_id: str | Omit = omit,
         request_id: str | Omit = omit,
         straddle_account_id: str | Omit = omit,
@@ -95,6 +96,11 @@ class PaykeysResource(SyncAPIResource):
           source: Filter paykeys by their source.
 
           status: Filter paykeys by their current status.
+
+          unblock_eligible: Filter paykeys by unblock eligibility. When true, returns only blocked paykeys
+              eligible for client-initiated unblocking (blocked due to R29 returns and not
+              previously unblocked). When false, returns only blocked paykeys that are not
+              eligible for unblocking.
 
           extra_headers: Send extra headers
 
@@ -131,6 +137,7 @@ class PaykeysResource(SyncAPIResource):
                         "sort_order": sort_order,
                         "source": source,
                         "status": status,
+                        "unblock_eligible": unblock_eligible,
                     },
                     paykey_list_params.PaykeyListParams,
                 ),
@@ -416,9 +423,10 @@ class AsyncPaykeysResource(AsyncAPIResource):
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         sort_by: Literal["institution_name", "expires_at", "created_at"] | Omit = omit,
-        sort_order: Literal["asc", "desc"] | Omit = omit,
+        sort_order: Literal["asc", "desc", "Asc", "Desc"] | Omit = omit,
         source: List[Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]] | Omit = omit,
         status: List[Literal["pending", "active", "inactive", "rejected", "review", "blocked"]] | Omit = omit,
+        unblock_eligible: bool | Omit = omit,
         correlation_id: str | Omit = omit,
         request_id: str | Omit = omit,
         straddle_account_id: str | Omit = omit,
@@ -444,6 +452,11 @@ class AsyncPaykeysResource(AsyncAPIResource):
           source: Filter paykeys by their source.
 
           status: Filter paykeys by their current status.
+
+          unblock_eligible: Filter paykeys by unblock eligibility. When true, returns only blocked paykeys
+              eligible for client-initiated unblocking (blocked due to R29 returns and not
+              previously unblocked). When false, returns only blocked paykeys that are not
+              eligible for unblocking.
 
           extra_headers: Send extra headers
 
@@ -480,6 +493,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
                         "sort_order": sort_order,
                         "source": source,
                         "status": status,
+                        "unblock_eligible": unblock_eligible,
                     },
                     paykey_list_params.PaykeyListParams,
                 ),
