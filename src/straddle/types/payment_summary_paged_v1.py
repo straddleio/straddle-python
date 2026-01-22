@@ -48,27 +48,10 @@ class Data(BaseModel):
     account.
     """
 
-    payment_type: Literal["charge", "payout", "Charge", "Payout"]
+    payment_type: Literal["charge", "payout"]
     """The type of payment. Valid values are `charge` or `payout`."""
 
-    status: Literal[
-        "created",
-        "scheduled",
-        "failed",
-        "cancelled",
-        "on_hold",
-        "pending",
-        "paid",
-        "reversed",
-        "Created",
-        "Scheduled",
-        "Failed",
-        "Cancelled",
-        "OnHold",
-        "Pending",
-        "Paid",
-        "Reversed",
-    ]
+    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
     """The current status of the `charge` or `payout`."""
 
     status_details: StatusDetailsV1
@@ -119,7 +102,7 @@ class Meta(BaseModel):
     sort_by: str
     """The field that the results were sorted by."""
 
-    sort_order: Literal["asc", "desc", "Asc", "Desc"]
+    sort_order: Literal["asc", "desc"]
 
     total_items: int
 
@@ -132,7 +115,7 @@ class PaymentSummaryPagedV1(BaseModel):
 
     meta: Meta
 
-    response_type: Literal["object", "array", "error", "none", "Object", "Array", "Error", "None"]
+    response_type: Literal["object", "array", "error", "none"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.
