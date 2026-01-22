@@ -14,7 +14,7 @@ __all__ = ["ChargeUnmaskResponse", "Data", "DataConfig", "DataDevice", "DataStat
 
 
 class DataConfig(BaseModel):
-    balance_check: Literal["required", "enabled", "disabled"]
+    balance_check: Literal["required", "enabled", "disabled", "Required", "Enabled", "Disabled"]
     """Defines whether to check the customer's balance before processing the charge."""
 
     sandbox_outcome: Optional[
@@ -30,6 +30,17 @@ class DataConfig(BaseModel):
             "reversed_customer_dispute",
             "failed_closed_bank_account",
             "reversed_closed_bank_account",
+            "Standard",
+            "Paid",
+            "OnHoldDailyLimit",
+            "CancelledForFraudRisk",
+            "CancelledForBalanceCheck",
+            "FailedInsufficientFunds",
+            "ReversedInsufficientFunds",
+            "FailedCustomerDispute",
+            "ReversedCustomerDispute",
+            "FailedClosedBankAccount",
+            "ReversedClosedBankAccount",
         ]
     ] = None
     """Payment will simulate processing if not Standard."""
@@ -73,19 +84,67 @@ class DataStatusHistory(BaseModel):
         "require_review",
         "blocked_by_system",
         "watchtower_review",
+        "InsufficientFunds",
+        "ClosedBankAccount",
+        "InvalidBankAccount",
+        "InvalidRouting",
+        "Disputed",
+        "PaymentStopped",
+        "OwnerDeceased",
+        "FrozenBankAccount",
+        "RiskReview",
+        "Fraudulent",
+        "DuplicateEntry",
+        "InvalidPaykey",
+        "PaymentBlocked",
+        "AmountTooLarge",
+        "TooManyAttempts",
+        "InternalSystemError",
+        "UserRequest",
+        "Ok",
+        "OtherNetworkReturn",
+        "PayoutRefused",
     ]
     """
     A machine-readable identifier for the specific status, useful for programmatic
     handling.
     """
 
-    source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
+    source: Literal[
+        "watchtower",
+        "bank_decline",
+        "customer_dispute",
+        "user_action",
+        "system",
+        "Watchtower",
+        "BankDecline",
+        "CustomerDispute",
+        "UserAction",
+        "System",
+    ]
     """Identifies the origin of the status change (e.g., `bank_decline`, `watchtower`).
 
     This helps in tracking the cause of status updates.
     """
 
-    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+    status: Literal[
+        "created",
+        "scheduled",
+        "failed",
+        "cancelled",
+        "on_hold",
+        "pending",
+        "paid",
+        "reversed",
+        "Created",
+        "Scheduled",
+        "Failed",
+        "Cancelled",
+        "OnHold",
+        "Pending",
+        "Paid",
+        "Reversed",
+    ]
     """The current status of the `charge` or `payout`."""
 
     code: Optional[str] = None
@@ -101,7 +160,7 @@ class Data(BaseModel):
 
     config: DataConfig
 
-    consent_type: Literal["internet", "signed"]
+    consent_type: Literal["internet", "signed", "Internet", "Signed"]
     """The channel or mechanism through which the payment was authorized.
 
     Use `internet` for payments made online or through a mobile app and `signed` for
@@ -132,7 +191,24 @@ class Data(BaseModel):
     payment_date: date
     """Payment date."""
 
-    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+    status: Literal[
+        "created",
+        "scheduled",
+        "failed",
+        "cancelled",
+        "on_hold",
+        "pending",
+        "paid",
+        "reversed",
+        "Created",
+        "Scheduled",
+        "Failed",
+        "Cancelled",
+        "OnHold",
+        "Pending",
+        "Paid",
+        "Reversed",
+    ]
     """The current status of the `charge` or `payout`."""
 
     status_details: StatusDetailsV1
@@ -157,7 +233,7 @@ class Data(BaseModel):
 
     paykey_details: Optional[PaykeyDetailsV1] = None
 
-    payment_rail: Optional[Literal["ach"]] = None
+    payment_rail: Optional[Literal["ach", "ACH"]] = None
     """The payment rail used for the charge or payout."""
 
     processed_at: Optional[datetime] = None
@@ -170,7 +246,7 @@ class ChargeUnmaskResponse(BaseModel):
     meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
-    response_type: Literal["object", "array", "error", "none"]
+    response_type: Literal["object", "array", "error", "none", "Object", "Array", "Error", "None"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.

@@ -24,7 +24,16 @@ class FundingEventListParams(TypedDict, total=False):
     `linked_bank_account`.
     """
 
-    event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"]
+    event_type: Literal[
+        "charge_deposit",
+        "charge_reversal",
+        "payout_return",
+        "payout_withdrawal",
+        "ChargeDeposit",
+        "ChargeReversal",
+        "PayoutReturn",
+        "PayoutWithdrawal",
+    ]
     """
     The funding event types describes the direction and reason for the funding
     event.
@@ -39,14 +48,33 @@ class FundingEventListParams(TypedDict, total=False):
     search_text: Optional[str]
     """Search text."""
 
-    sort_by: Literal["transfer_date", "id", "amount"]
+    sort_by: Literal["transfer_date", "id", "amount", "TransferDate", "Id", "Amount"]
     """The field to sort the results by."""
 
-    sort_order: Literal["asc", "desc"]
+    sort_order: Literal["asc", "desc", "Asc", "Desc"]
     """The order in which to sort the results."""
 
     status: Optional[
-        List[Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]]
+        List[
+            Literal[
+                "created",
+                "scheduled",
+                "failed",
+                "cancelled",
+                "on_hold",
+                "pending",
+                "paid",
+                "reversed",
+                "Created",
+                "Scheduled",
+                "Failed",
+                "Cancelled",
+                "OnHold",
+                "Pending",
+                "Paid",
+                "Reversed",
+            ]
+        ]
     ]
     """Funding Event status."""
 
@@ -78,12 +106,47 @@ class FundingEventListParams(TypedDict, total=False):
                 "require_review",
                 "blocked_by_system",
                 "watchtower_review",
+                "InsufficientFunds",
+                "ClosedBankAccount",
+                "InvalidBankAccount",
+                "InvalidRouting",
+                "Disputed",
+                "PaymentStopped",
+                "OwnerDeceased",
+                "FrozenBankAccount",
+                "RiskReview",
+                "Fraudulent",
+                "DuplicateEntry",
+                "InvalidPaykey",
+                "PaymentBlocked",
+                "AmountTooLarge",
+                "TooManyAttempts",
+                "InternalSystemError",
+                "UserRequest",
+                "Ok",
+                "OtherNetworkReturn",
+                "PayoutRefused",
             ]
         ]
     ]
     """Reason for latest payment status change."""
 
-    status_source: Optional[List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]]
+    status_source: Optional[
+        List[
+            Literal[
+                "watchtower",
+                "bank_decline",
+                "customer_dispute",
+                "user_action",
+                "system",
+                "Watchtower",
+                "BankDecline",
+                "CustomerDispute",
+                "UserAction",
+                "System",
+            ]
+        ]
+    ]
     """Source of latest payment status change."""
 
     trace_id: Optional[str]

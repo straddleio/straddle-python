@@ -19,7 +19,7 @@ class BridgeTokenV1(BaseModel):
     meta: ResponseMetadata
     """Metadata about the API request, including an identifier and timestamp."""
 
-    response_type: Literal["object", "array", "error", "none"]
+    response_type: Literal["object", "array", "error", "none", "Object", "Array", "Error", "None"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.

@@ -53,14 +53,43 @@ class FundingEventsResource(SyncAPIResource):
         created_from: Union[str, date, None] | Omit = omit,
         created_to: Union[str, date, None] | Omit = omit,
         direction: Literal["deposit", "withdrawal"] | Omit = omit,
-        event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"] | Omit = omit,
+        event_type: Literal[
+            "charge_deposit",
+            "charge_reversal",
+            "payout_return",
+            "payout_withdrawal",
+            "ChargeDeposit",
+            "ChargeReversal",
+            "PayoutReturn",
+            "PayoutWithdrawal",
+        ]
+        | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         search_text: Optional[str] | Omit = omit,
-        sort_by: Literal["transfer_date", "id", "amount"] | Omit = omit,
-        sort_order: Literal["asc", "desc"] | Omit = omit,
+        sort_by: Literal["transfer_date", "id", "amount", "TransferDate", "Id", "Amount"] | Omit = omit,
+        sort_order: Literal["asc", "desc", "Asc", "Desc"] | Omit = omit,
         status: Optional[
-            List[Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]]
+            List[
+                Literal[
+                    "created",
+                    "scheduled",
+                    "failed",
+                    "cancelled",
+                    "on_hold",
+                    "pending",
+                    "paid",
+                    "reversed",
+                    "Created",
+                    "Scheduled",
+                    "Failed",
+                    "Cancelled",
+                    "OnHold",
+                    "Pending",
+                    "Paid",
+                    "Reversed",
+                ]
+            ]
         ]
         | Omit = omit,
         status_reason: Optional[
@@ -91,12 +120,45 @@ class FundingEventsResource(SyncAPIResource):
                     "require_review",
                     "blocked_by_system",
                     "watchtower_review",
+                    "InsufficientFunds",
+                    "ClosedBankAccount",
+                    "InvalidBankAccount",
+                    "InvalidRouting",
+                    "Disputed",
+                    "PaymentStopped",
+                    "OwnerDeceased",
+                    "FrozenBankAccount",
+                    "RiskReview",
+                    "Fraudulent",
+                    "DuplicateEntry",
+                    "InvalidPaykey",
+                    "PaymentBlocked",
+                    "AmountTooLarge",
+                    "TooManyAttempts",
+                    "InternalSystemError",
+                    "UserRequest",
+                    "Ok",
+                    "OtherNetworkReturn",
+                    "PayoutRefused",
                 ]
             ]
         ]
         | Omit = omit,
         status_source: Optional[
-            List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]
+            List[
+                Literal[
+                    "watchtower",
+                    "bank_decline",
+                    "customer_dispute",
+                    "user_action",
+                    "system",
+                    "Watchtower",
+                    "BankDecline",
+                    "CustomerDispute",
+                    "UserAction",
+                    "System",
+                ]
+            ]
         ]
         | Omit = omit,
         trace_id: Optional[str] | Omit = omit,
@@ -272,14 +334,43 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         created_from: Union[str, date, None] | Omit = omit,
         created_to: Union[str, date, None] | Omit = omit,
         direction: Literal["deposit", "withdrawal"] | Omit = omit,
-        event_type: Literal["charge_deposit", "charge_reversal", "payout_return", "payout_withdrawal"] | Omit = omit,
+        event_type: Literal[
+            "charge_deposit",
+            "charge_reversal",
+            "payout_return",
+            "payout_withdrawal",
+            "ChargeDeposit",
+            "ChargeReversal",
+            "PayoutReturn",
+            "PayoutWithdrawal",
+        ]
+        | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         search_text: Optional[str] | Omit = omit,
-        sort_by: Literal["transfer_date", "id", "amount"] | Omit = omit,
-        sort_order: Literal["asc", "desc"] | Omit = omit,
+        sort_by: Literal["transfer_date", "id", "amount", "TransferDate", "Id", "Amount"] | Omit = omit,
+        sort_order: Literal["asc", "desc", "Asc", "Desc"] | Omit = omit,
         status: Optional[
-            List[Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]]
+            List[
+                Literal[
+                    "created",
+                    "scheduled",
+                    "failed",
+                    "cancelled",
+                    "on_hold",
+                    "pending",
+                    "paid",
+                    "reversed",
+                    "Created",
+                    "Scheduled",
+                    "Failed",
+                    "Cancelled",
+                    "OnHold",
+                    "Pending",
+                    "Paid",
+                    "Reversed",
+                ]
+            ]
         ]
         | Omit = omit,
         status_reason: Optional[
@@ -310,12 +401,45 @@ class AsyncFundingEventsResource(AsyncAPIResource):
                     "require_review",
                     "blocked_by_system",
                     "watchtower_review",
+                    "InsufficientFunds",
+                    "ClosedBankAccount",
+                    "InvalidBankAccount",
+                    "InvalidRouting",
+                    "Disputed",
+                    "PaymentStopped",
+                    "OwnerDeceased",
+                    "FrozenBankAccount",
+                    "RiskReview",
+                    "Fraudulent",
+                    "DuplicateEntry",
+                    "InvalidPaykey",
+                    "PaymentBlocked",
+                    "AmountTooLarge",
+                    "TooManyAttempts",
+                    "InternalSystemError",
+                    "UserRequest",
+                    "Ok",
+                    "OtherNetworkReturn",
+                    "PayoutRefused",
                 ]
             ]
         ]
         | Omit = omit,
         status_source: Optional[
-            List[Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]]
+            List[
+                Literal[
+                    "watchtower",
+                    "bank_decline",
+                    "customer_dispute",
+                    "user_action",
+                    "system",
+                    "Watchtower",
+                    "BankDecline",
+                    "CustomerDispute",
+                    "UserAction",
+                    "System",
+                ]
+            ]
         ]
         | Omit = omit,
         trace_id: Optional[str] | Omit = omit,
