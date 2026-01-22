@@ -27,7 +27,7 @@ class Data(BaseModel):
 
     status: Literal["pending", "review", "verified", "inactive", "rejected"]
 
-    type: Literal["individual", "business"]
+    type: Literal["individual", "business", "Individual", "Business"]
 
     updated_at: datetime
     """Timestamp of the most recent update to the customer record."""
@@ -58,7 +58,7 @@ class Meta(BaseModel):
     sort_by: str
     """The field that the results were sorted by."""
 
-    sort_order: Literal["asc", "desc"]
+    sort_order: Literal["asc", "desc", "Asc", "Desc"]
 
     total_items: int
 
@@ -71,7 +71,7 @@ class CustomerSummaryPagedV1(BaseModel):
 
     meta: Meta
 
-    response_type: Literal["object", "array", "error", "none"]
+    response_type: Literal["object", "array", "error", "none", "Object", "Array", "Error", "None"]
     """Indicates the structure of the returned content.
 
     - "object" means the `data` field contains a single JSON object.
