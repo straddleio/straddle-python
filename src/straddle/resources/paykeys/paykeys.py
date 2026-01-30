@@ -256,11 +256,11 @@ class PaykeysResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaykeyRevealResponse:
-        """
-        Retrieves the details of a paykey that has previously been created, including
-        unmasked bank account fields. Supply the unique paykey ID that was returned from
-        your previous request, and Straddle will return the corresponding paykey
-        information.
+        """Retrieves the details of a paykey that has previously been created.
+
+        Supply the
+        unique paykey ID that was returned from your previous request, and Straddle will
+        return the corresponding paykey information including the unmasked token.
 
         Args:
           extra_headers: Send extra headers
@@ -612,11 +612,11 @@ class AsyncPaykeysResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PaykeyRevealResponse:
-        """
-        Retrieves the details of a paykey that has previously been created, including
-        unmasked bank account fields. Supply the unique paykey ID that was returned from
-        your previous request, and Straddle will return the corresponding paykey
-        information.
+        """Retrieves the details of a paykey that has previously been created.
+
+        Supply the
+        unique paykey ID that was returned from your previous request, and Straddle will
+        return the corresponding paykey information including the unmasked token.
 
         Args:
           extra_headers: Send extra headers
