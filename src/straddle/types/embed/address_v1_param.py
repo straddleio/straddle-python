@@ -11,29 +11,20 @@ __all__ = ["AddressV1Param"]
 class AddressV1Param(TypedDict, total=False):
     """The address object is optional. If provided, it must be a valid address."""
 
-    address1: Required[str]
-    """Primary address line (e.g., street, PO Box)."""
-
     city: Required[Optional[str]]
     """City, district, suburb, town, or village."""
+
+    line1: Required[Optional[str]]
+    """Primary address line (e.g., street, PO Box)."""
+
+    postal_code: Required[Optional[str]]
+    """Postal or ZIP code."""
 
     state: Required[Optional[str]]
     """Two-letter state code."""
 
-    zip: Required[str]
-    """Zip or postal code."""
-
-    address2: Optional[str]
-    """Secondary address line (e.g., apartment, suite, unit, or building)."""
-
     country: Optional[str]
     """The country of the address, in ISO 3166-1 alpha-2 format."""
 
-    line1: Optional[str]
-    """Primary address line (e.g., street, PO Box)."""
-
     line2: Optional[str]
     """Secondary address line (e.g., apartment, suite, unit, or building)."""
-
-    postal_code: Optional[str]
-    """Postal or ZIP code."""
