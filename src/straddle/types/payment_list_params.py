@@ -28,9 +28,6 @@ class PaymentListParams(TypedDict, total=False):
     funding_id: str
     """Search using the `funding_id` of a `charge` or `payout`."""
 
-    include_metadata: bool
-    """Include the metadata for payments in the returned data."""
-
     max_amount: int
     """Search using a maximum `amount` of a `charge` or `payout`."""
 

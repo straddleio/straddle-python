@@ -79,9 +79,6 @@ class Data(BaseModel):
     `payout`.
     """
 
-    metadata: Optional[Dict[str, str]] = None
-    """Metadata for payment - only included if requested."""
-
     paykey_details: Optional[PaykeyDetailsV1] = None
     """Information about the paykey used for the `charge` or `payout`."""
 
