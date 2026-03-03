@@ -27,6 +27,10 @@ __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
 
 
 class OrganizationsResource(SyncAPIResource):
+    """
+    Organizations are a powerful feature in Straddle that allow you to manage multiple accounts under a single umbrella. This hierarchical structure is particularly useful for businesses with complex operations, multiple departments, or legally related entities.
+    """
+
     @cached_property
     def with_raw_response(self) -> OrganizationsResourceWithRawResponse:
         """
@@ -237,6 +241,10 @@ class OrganizationsResource(SyncAPIResource):
 
 
 class AsyncOrganizationsResource(AsyncAPIResource):
+    """
+    Organizations are a powerful feature in Straddle that allow you to manage multiple accounts under a single umbrella. This hierarchical structure is particularly useful for businesses with complex operations, multiple departments, or legally related entities.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncOrganizationsResourceWithRawResponse:
         """

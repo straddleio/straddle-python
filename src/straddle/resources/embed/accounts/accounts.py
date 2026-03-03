@@ -43,8 +43,17 @@ __all__ = ["AccountsResource", "AsyncAccountsResource"]
 
 
 class AccountsResource(SyncAPIResource):
+    """Accounts represent businesses using Straddle through your platform.
+
+    Each account must complete automated verification before processing payments. Use accounts to manage your users' payment capabilities, track verification status, and control access to features. Accounts can be instantly created in sandbox and require additional verification for production access.
+    """
+
     @cached_property
     def capability_requests(self) -> CapabilityRequestsResource:
+        """Capabilities enable specific features and services for an Account.
+
+        Use capability requests to unlock higher processing limits, new payment types, or additional platform features as your users' businesses grow. Track approval status and manage documentation requirements through a single interface.
+        """
         return CapabilityRequestsResource(self._client)
 
     @cached_property
@@ -437,8 +446,17 @@ class AccountsResource(SyncAPIResource):
 
 
 class AsyncAccountsResource(AsyncAPIResource):
+    """Accounts represent businesses using Straddle through your platform.
+
+    Each account must complete automated verification before processing payments. Use accounts to manage your users' payment capabilities, track verification status, and control access to features. Accounts can be instantly created in sandbox and require additional verification for production access.
+    """
+
     @cached_property
     def capability_requests(self) -> AsyncCapabilityRequestsResource:
+        """Capabilities enable specific features and services for an Account.
+
+        Use capability requests to unlock higher processing limits, new payment types, or additional platform features as your users' businesses grow. Track approval status and manage documentation requirements through a single interface.
+        """
         return AsyncCapabilityRequestsResource(self._client)
 
     @cached_property
@@ -859,6 +877,10 @@ class AccountsResourceWithRawResponse:
 
     @cached_property
     def capability_requests(self) -> CapabilityRequestsResourceWithRawResponse:
+        """Capabilities enable specific features and services for an Account.
+
+        Use capability requests to unlock higher processing limits, new payment types, or additional platform features as your users' businesses grow. Track approval status and manage documentation requirements through a single interface.
+        """
         return CapabilityRequestsResourceWithRawResponse(self._accounts.capability_requests)
 
 
@@ -887,6 +909,10 @@ class AsyncAccountsResourceWithRawResponse:
 
     @cached_property
     def capability_requests(self) -> AsyncCapabilityRequestsResourceWithRawResponse:
+        """Capabilities enable specific features and services for an Account.
+
+        Use capability requests to unlock higher processing limits, new payment types, or additional platform features as your users' businesses grow. Track approval status and manage documentation requirements through a single interface.
+        """
         return AsyncCapabilityRequestsResourceWithRawResponse(self._accounts.capability_requests)
 
 
@@ -915,6 +941,10 @@ class AccountsResourceWithStreamingResponse:
 
     @cached_property
     def capability_requests(self) -> CapabilityRequestsResourceWithStreamingResponse:
+        """Capabilities enable specific features and services for an Account.
+
+        Use capability requests to unlock higher processing limits, new payment types, or additional platform features as your users' businesses grow. Track approval status and manage documentation requirements through a single interface.
+        """
         return CapabilityRequestsResourceWithStreamingResponse(self._accounts.capability_requests)
 
 
@@ -943,4 +973,8 @@ class AsyncAccountsResourceWithStreamingResponse:
 
     @cached_property
     def capability_requests(self) -> AsyncCapabilityRequestsResourceWithStreamingResponse:
+        """Capabilities enable specific features and services for an Account.
+
+        Use capability requests to unlock higher processing limits, new payment types, or additional platform features as your users' businesses grow. Track approval status and manage documentation requirements through a single interface.
+        """
         return AsyncCapabilityRequestsResourceWithStreamingResponse(self._accounts.capability_requests)

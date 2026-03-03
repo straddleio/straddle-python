@@ -43,8 +43,15 @@ __all__ = ["CustomersResource", "AsyncCustomersResource"]
 
 
 class CustomersResource(SyncAPIResource):
+    """
+    Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+    """
+
     @cached_property
     def review(self) -> ReviewResource:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         return ReviewResource(self._client)
 
     @cached_property
@@ -499,8 +506,15 @@ class CustomersResource(SyncAPIResource):
 
 
 class AsyncCustomersResource(AsyncAPIResource):
+    """
+    Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+    """
+
     @cached_property
     def review(self) -> AsyncReviewResource:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         return AsyncReviewResource(self._client)
 
     @cached_property
@@ -979,6 +993,9 @@ class CustomersResourceWithRawResponse:
 
     @cached_property
     def review(self) -> ReviewResourceWithRawResponse:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         return ReviewResourceWithRawResponse(self._customers.review)
 
 
@@ -1007,6 +1024,9 @@ class AsyncCustomersResourceWithRawResponse:
 
     @cached_property
     def review(self) -> AsyncReviewResourceWithRawResponse:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         return AsyncReviewResourceWithRawResponse(self._customers.review)
 
 
@@ -1035,6 +1055,9 @@ class CustomersResourceWithStreamingResponse:
 
     @cached_property
     def review(self) -> ReviewResourceWithStreamingResponse:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         return ReviewResourceWithStreamingResponse(self._customers.review)
 
 
@@ -1063,4 +1086,7 @@ class AsyncCustomersResourceWithStreamingResponse:
 
     @cached_property
     def review(self) -> AsyncReviewResourceWithStreamingResponse:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         return AsyncReviewResourceWithStreamingResponse(self._customers.review)

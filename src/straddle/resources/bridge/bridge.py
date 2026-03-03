@@ -32,8 +32,15 @@ __all__ = ["BridgeResource", "AsyncBridgeResource"]
 
 
 class BridgeResource(SyncAPIResource):
+    """
+    Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+    """
+
     @cached_property
     def link(self) -> LinkResource:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         return LinkResource(self._client)
 
     @cached_property
@@ -119,8 +126,15 @@ class BridgeResource(SyncAPIResource):
 
 
 class AsyncBridgeResource(AsyncAPIResource):
+    """
+    Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+    """
+
     @cached_property
     def link(self) -> AsyncLinkResource:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         return AsyncLinkResource(self._client)
 
     @cached_property
@@ -215,6 +229,9 @@ class BridgeResourceWithRawResponse:
 
     @cached_property
     def link(self) -> LinkResourceWithRawResponse:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         return LinkResourceWithRawResponse(self._bridge.link)
 
 
@@ -228,6 +245,9 @@ class AsyncBridgeResourceWithRawResponse:
 
     @cached_property
     def link(self) -> AsyncLinkResourceWithRawResponse:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         return AsyncLinkResourceWithRawResponse(self._bridge.link)
 
 
@@ -241,6 +261,9 @@ class BridgeResourceWithStreamingResponse:
 
     @cached_property
     def link(self) -> LinkResourceWithStreamingResponse:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         return LinkResourceWithStreamingResponse(self._bridge.link)
 
 
@@ -254,4 +277,7 @@ class AsyncBridgeResourceWithStreamingResponse:
 
     @cached_property
     def link(self) -> AsyncLinkResourceWithStreamingResponse:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         return AsyncLinkResourceWithStreamingResponse(self._bridge.link)
