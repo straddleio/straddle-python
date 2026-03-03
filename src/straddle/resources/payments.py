@@ -27,6 +27,10 @@ __all__ = ["PaymentsResource", "AsyncPaymentsResource"]
 
 
 class PaymentsResource(SyncAPIResource):
+    """
+    Payments provide endpoints to filter both Charges and Payouts with multiple different parameters.
+    """
+
     @cached_property
     def with_raw_response(self) -> PaymentsResourceWithRawResponse:
         """
@@ -232,6 +236,10 @@ class PaymentsResource(SyncAPIResource):
 
 
 class AsyncPaymentsResource(AsyncAPIResource):
+    """
+    Payments provide endpoints to filter both Charges and Payouts with multiple different parameters.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncPaymentsResourceWithRawResponse:
         """

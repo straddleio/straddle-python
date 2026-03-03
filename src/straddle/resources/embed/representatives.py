@@ -28,6 +28,10 @@ __all__ = ["RepresentativesResource", "AsyncRepresentativesResource"]
 
 
 class RepresentativesResource(SyncAPIResource):
+    """
+    Representatives are individuals who have legal authority or significant responsibility within a business entity associated with a Straddle account. Each representative undergoes automated verification as part of KYC/KYB compliance. Use representatives to collect and verify beneficial owners, control persons, and authorized signers required for account onboarding. Representatives also determine who can legally operate the account and make important changes.
+    """
+
     @cached_property
     def with_raw_response(self) -> RepresentativesResourceWithRawResponse:
         """
@@ -403,6 +407,10 @@ class RepresentativesResource(SyncAPIResource):
 
 
 class AsyncRepresentativesResource(AsyncAPIResource):
+    """
+    Representatives are individuals who have legal authority or significant responsibility within a business entity associated with a Straddle account. Each representative undergoes automated verification as part of KYC/KYB compliance. Use representatives to collect and verify beneficial owners, control persons, and authorized signers required for account onboarding. Representatives also determine who can legally operate the account and make important changes.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncRepresentativesResourceWithRawResponse:
         """

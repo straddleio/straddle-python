@@ -25,6 +25,10 @@ __all__ = ["ReviewResource", "AsyncReviewResource"]
 
 
 class ReviewResource(SyncAPIResource):
+    """
+    Paykeys are secure tokens that link verified customer identities to their bank accounts. Each Paykey includes built-in balance checking, fraud detection through LSTM machine learning models, and can be reused for subscriptions and recurring payments without storing sensitive data. Paykeys eliminate fraud by ensuring the person initiating payment owns the funding account.
+    """
+
     @cached_property
     def with_raw_response(self) -> ReviewResourceWithRawResponse:
         """
@@ -193,6 +197,10 @@ class ReviewResource(SyncAPIResource):
 
 
 class AsyncReviewResource(AsyncAPIResource):
+    """
+    Paykeys are secure tokens that link verified customer identities to their bank accounts. Each Paykey includes built-in balance checking, fraud detection through LSTM machine learning models, and can be reused for subscriptions and recurring payments without storing sensitive data. Paykeys eliminate fraud by ensuring the person initiating payment owns the funding account.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncReviewResourceWithRawResponse:
         """

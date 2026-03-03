@@ -32,6 +32,10 @@ __all__ = ["LinkedBankAccountsResource", "AsyncLinkedBankAccountsResource"]
 
 
 class LinkedBankAccountsResource(SyncAPIResource):
+    """
+    Linked bank accounts connect your platform users' external bank accounts to Straddle for settlements and payment funding. Each linked account undergoes automated verification and continuous monitoring. Use linked accounts to manage where clients receive deposits, fund payouts, and track settlement preferences.
+    """
+
     @cached_property
     def with_raw_response(self) -> LinkedBankAccountsResourceWithRawResponse:
         """
@@ -430,6 +434,10 @@ class LinkedBankAccountsResource(SyncAPIResource):
 
 
 class AsyncLinkedBankAccountsResource(AsyncAPIResource):
+    """
+    Linked bank accounts connect your platform users' external bank accounts to Straddle for settlements and payment funding. Each linked account undergoes automated verification and continuous monitoring. Use linked accounts to manage where clients receive deposits, fund payouts, and track settlement preferences.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncLinkedBankAccountsResourceWithRawResponse:
         """

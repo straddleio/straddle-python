@@ -33,6 +33,11 @@ __all__ = ["PayoutsResource", "AsyncPayoutsResource"]
 
 
 class PayoutsResource(SyncAPIResource):
+    """Payouts represent transfers from Straddle to customer bank accounts.
+
+    Create payouts to handle disbursements, process refunds, or manage marketplace settlements. Use payouts to send money quickly and securely with the most cost-effective rail automatically selected.
+    """
+
     @cached_property
     def with_raw_response(self) -> PayoutsResourceWithRawResponse:
         """
@@ -469,6 +474,11 @@ class PayoutsResource(SyncAPIResource):
 
 
 class AsyncPayoutsResource(AsyncAPIResource):
+    """Payouts represent transfers from Straddle to customer bank accounts.
+
+    Create payouts to handle disbursements, process refunds, or manage marketplace settlements. Use payouts to send money quickly and securely with the most cost-effective rail automatically selected.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncPayoutsResourceWithRawResponse:
         """

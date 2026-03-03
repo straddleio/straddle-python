@@ -34,6 +34,10 @@ __all__ = ["ChargesResource", "AsyncChargesResource"]
 
 
 class ChargesResource(SyncAPIResource):
+    """
+    Charges represent attempts to debit money from a customer's bank account using a Paykey. Each charge includes automatic balance verification, real-time fraud screening, and multi-rail optimization and detailed status tracking throughout the payment lifecycle. Use charges to accept bank payments with confidence knowing every transaction is protected.
+    """
+
     @cached_property
     def with_raw_response(self) -> ChargesResourceWithRawResponse:
         """
@@ -474,6 +478,10 @@ class ChargesResource(SyncAPIResource):
 
 
 class AsyncChargesResource(AsyncAPIResource):
+    """
+    Charges represent attempts to debit money from a customer's bank account using a Paykey. Each charge includes automatic balance verification, real-time fraud screening, and multi-rail optimization and detailed status tracking throughout the payment lifecycle. Use charges to accept bank payments with confidence knowing every transaction is protected.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncChargesResourceWithRawResponse:
         """
