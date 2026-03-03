@@ -55,7 +55,6 @@ class PaymentsResource(SyncAPIResource):
         default_sort_order: Literal["asc", "desc"] | Omit = omit,
         external_id: str | Omit = omit,
         funding_id: str | Omit = omit,
-        include_metadata: bool | Omit = omit,
         max_amount: int | Omit = omit,
         max_created_at: Union[str, datetime] | Omit = omit,
         max_effective_at: Union[str, datetime] | Omit = omit,
@@ -132,8 +131,6 @@ class PaymentsResource(SyncAPIResource):
 
           funding_id: Search using the `funding_id` of a `charge` or `payout`.
 
-          include_metadata: Include the metadata for payments in the returned data.
-
           max_amount: Search using a maximum `amount` of a `charge` or `payout`.
 
           max_created_at: Search using the latest `created_at` date of a `charge` or `payout`.
@@ -206,7 +203,6 @@ class PaymentsResource(SyncAPIResource):
                         "default_sort_order": default_sort_order,
                         "external_id": external_id,
                         "funding_id": funding_id,
-                        "include_metadata": include_metadata,
                         "max_amount": max_amount,
                         "max_created_at": max_created_at,
                         "max_effective_at": max_effective_at,
@@ -264,7 +260,6 @@ class AsyncPaymentsResource(AsyncAPIResource):
         default_sort_order: Literal["asc", "desc"] | Omit = omit,
         external_id: str | Omit = omit,
         funding_id: str | Omit = omit,
-        include_metadata: bool | Omit = omit,
         max_amount: int | Omit = omit,
         max_created_at: Union[str, datetime] | Omit = omit,
         max_effective_at: Union[str, datetime] | Omit = omit,
@@ -341,8 +336,6 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           funding_id: Search using the `funding_id` of a `charge` or `payout`.
 
-          include_metadata: Include the metadata for payments in the returned data.
-
           max_amount: Search using a maximum `amount` of a `charge` or `payout`.
 
           max_created_at: Search using the latest `created_at` date of a `charge` or `payout`.
@@ -415,7 +408,6 @@ class AsyncPaymentsResource(AsyncAPIResource):
                         "default_sort_order": default_sort_order,
                         "external_id": external_id,
                         "funding_id": funding_id,
-                        "include_metadata": include_metadata,
                         "max_amount": max_amount,
                         "max_created_at": max_created_at,
                         "max_effective_at": max_effective_at,
