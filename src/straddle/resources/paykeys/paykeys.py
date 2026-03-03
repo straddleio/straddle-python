@@ -66,7 +66,6 @@ class PaykeysResource(SyncAPIResource):
         customer_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        search_text: str | Omit = omit,
         sort_by: Literal["institution_name", "expires_at", "created_at"] | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
         source: List[Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]] | Omit = omit,
@@ -93,8 +92,6 @@ class PaykeysResource(SyncAPIResource):
           page_number: Page number for paginated results. Starts at 1.
 
           page_size: Number of results per page. Maximum: 1000.
-
-          search_text: General search term to filter paykeys.
 
           source: Filter paykeys by their source.
 
@@ -136,7 +133,6 @@ class PaykeysResource(SyncAPIResource):
                         "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
                         "source": source,
@@ -426,7 +422,6 @@ class AsyncPaykeysResource(AsyncAPIResource):
         customer_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
-        search_text: str | Omit = omit,
         sort_by: Literal["institution_name", "expires_at", "created_at"] | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
         source: List[Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]] | Omit = omit,
@@ -453,8 +448,6 @@ class AsyncPaykeysResource(AsyncAPIResource):
           page_number: Page number for paginated results. Starts at 1.
 
           page_size: Number of results per page. Maximum: 1000.
-
-          search_text: General search term to filter paykeys.
 
           source: Filter paykeys by their source.
 
@@ -496,7 +489,6 @@ class AsyncPaykeysResource(AsyncAPIResource):
                         "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
-                        "search_text": search_text,
                         "sort_by": sort_by,
                         "sort_order": sort_order,
                         "source": source,
