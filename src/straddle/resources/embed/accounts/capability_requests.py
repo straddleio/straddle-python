@@ -25,6 +25,11 @@ __all__ = ["CapabilityRequestsResource", "AsyncCapabilityRequestsResource"]
 
 
 class CapabilityRequestsResource(SyncAPIResource):
+    """Capabilities enable specific features and services for an Account.
+
+    Use capability requests to unlock higher processing limits, new payment types, or additional platform features as your users' businesses grow. Track approval status and manage documentation requirements through a single interface.
+    """
+
     @cached_property
     def with_raw_response(self) -> CapabilityRequestsResourceWithRawResponse:
         """
@@ -209,6 +214,11 @@ class CapabilityRequestsResource(SyncAPIResource):
 
 
 class AsyncCapabilityRequestsResource(AsyncAPIResource):
+    """Capabilities enable specific features and services for an Account.
+
+    Use capability requests to unlock higher processing limits, new payment types, or additional platform features as your users' businesses grow. Track approval status and manage documentation requirements through a single interface.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncCapabilityRequestsResourceWithRawResponse:
         """

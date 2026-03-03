@@ -147,42 +147,64 @@ class Straddle(SyncAPIClient):
 
     @cached_property
     def bridge(self) -> BridgeResource:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         from .resources.bridge import BridgeResource
 
         return BridgeResource(self)
 
     @cached_property
     def customers(self) -> CustomersResource:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         from .resources.customers import CustomersResource
 
         return CustomersResource(self)
 
     @cached_property
     def paykeys(self) -> PaykeysResource:
+        """
+        Paykeys are secure tokens that link verified customer identities to their bank accounts. Each Paykey includes built-in balance checking, fraud detection through LSTM machine learning models, and can be reused for subscriptions and recurring payments without storing sensitive data. Paykeys eliminate fraud by ensuring the person initiating payment owns the funding account.
+        """
         from .resources.paykeys import PaykeysResource
 
         return PaykeysResource(self)
 
     @cached_property
     def charges(self) -> ChargesResource:
+        """
+        Charges represent attempts to debit money from a customer's bank account using a Paykey. Each charge includes automatic balance verification, real-time fraud screening, and multi-rail optimization and detailed status tracking throughout the payment lifecycle. Use charges to accept bank payments with confidence knowing every transaction is protected.
+        """
         from .resources.charges import ChargesResource
 
         return ChargesResource(self)
 
     @cached_property
     def funding_events(self) -> FundingEventsResource:
+        """
+        Funding events represent all money movement between Straddle and an Account's external bank accounts. They are automatically generated when charges settle or payouts are initiated. Each event provides detailed tracking of settlement status, fee breakdowns, and reconciliation data across both incoming and outgoing transfers. Use funding events to monitor your platform's entire money movement lifecycle.
+        """
         from .resources.funding_events import FundingEventsResource
 
         return FundingEventsResource(self)
 
     @cached_property
     def payments(self) -> PaymentsResource:
+        """
+        Payments provide endpoints to filter both Charges and Payouts with multiple different parameters.
+        """
         from .resources.payments import PaymentsResource
 
         return PaymentsResource(self)
 
     @cached_property
     def payouts(self) -> PayoutsResource:
+        """Payouts represent transfers from Straddle to customer bank accounts.
+
+        Create payouts to handle disbursements, process refunds, or manage marketplace settlements. Use payouts to send money quickly and securely with the most cost-effective rail automatically selected.
+        """
         from .resources.payouts import PayoutsResource
 
         return PayoutsResource(self)
@@ -395,42 +417,64 @@ class AsyncStraddle(AsyncAPIClient):
 
     @cached_property
     def bridge(self) -> AsyncBridgeResource:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         from .resources.bridge import AsyncBridgeResource
 
         return AsyncBridgeResource(self)
 
     @cached_property
     def customers(self) -> AsyncCustomersResource:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         from .resources.customers import AsyncCustomersResource
 
         return AsyncCustomersResource(self)
 
     @cached_property
     def paykeys(self) -> AsyncPaykeysResource:
+        """
+        Paykeys are secure tokens that link verified customer identities to their bank accounts. Each Paykey includes built-in balance checking, fraud detection through LSTM machine learning models, and can be reused for subscriptions and recurring payments without storing sensitive data. Paykeys eliminate fraud by ensuring the person initiating payment owns the funding account.
+        """
         from .resources.paykeys import AsyncPaykeysResource
 
         return AsyncPaykeysResource(self)
 
     @cached_property
     def charges(self) -> AsyncChargesResource:
+        """
+        Charges represent attempts to debit money from a customer's bank account using a Paykey. Each charge includes automatic balance verification, real-time fraud screening, and multi-rail optimization and detailed status tracking throughout the payment lifecycle. Use charges to accept bank payments with confidence knowing every transaction is protected.
+        """
         from .resources.charges import AsyncChargesResource
 
         return AsyncChargesResource(self)
 
     @cached_property
     def funding_events(self) -> AsyncFundingEventsResource:
+        """
+        Funding events represent all money movement between Straddle and an Account's external bank accounts. They are automatically generated when charges settle or payouts are initiated. Each event provides detailed tracking of settlement status, fee breakdowns, and reconciliation data across both incoming and outgoing transfers. Use funding events to monitor your platform's entire money movement lifecycle.
+        """
         from .resources.funding_events import AsyncFundingEventsResource
 
         return AsyncFundingEventsResource(self)
 
     @cached_property
     def payments(self) -> AsyncPaymentsResource:
+        """
+        Payments provide endpoints to filter both Charges and Payouts with multiple different parameters.
+        """
         from .resources.payments import AsyncPaymentsResource
 
         return AsyncPaymentsResource(self)
 
     @cached_property
     def payouts(self) -> AsyncPayoutsResource:
+        """Payouts represent transfers from Straddle to customer bank accounts.
+
+        Create payouts to handle disbursements, process refunds, or manage marketplace settlements. Use payouts to send money quickly and securely with the most cost-effective rail automatically selected.
+        """
         from .resources.payouts import AsyncPayoutsResource
 
         return AsyncPayoutsResource(self)
@@ -570,42 +614,64 @@ class StraddleWithRawResponse:
 
     @cached_property
     def bridge(self) -> bridge.BridgeResourceWithRawResponse:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         from .resources.bridge import BridgeResourceWithRawResponse
 
         return BridgeResourceWithRawResponse(self._client.bridge)
 
     @cached_property
     def customers(self) -> customers.CustomersResourceWithRawResponse:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         from .resources.customers import CustomersResourceWithRawResponse
 
         return CustomersResourceWithRawResponse(self._client.customers)
 
     @cached_property
     def paykeys(self) -> paykeys.PaykeysResourceWithRawResponse:
+        """
+        Paykeys are secure tokens that link verified customer identities to their bank accounts. Each Paykey includes built-in balance checking, fraud detection through LSTM machine learning models, and can be reused for subscriptions and recurring payments without storing sensitive data. Paykeys eliminate fraud by ensuring the person initiating payment owns the funding account.
+        """
         from .resources.paykeys import PaykeysResourceWithRawResponse
 
         return PaykeysResourceWithRawResponse(self._client.paykeys)
 
     @cached_property
     def charges(self) -> charges.ChargesResourceWithRawResponse:
+        """
+        Charges represent attempts to debit money from a customer's bank account using a Paykey. Each charge includes automatic balance verification, real-time fraud screening, and multi-rail optimization and detailed status tracking throughout the payment lifecycle. Use charges to accept bank payments with confidence knowing every transaction is protected.
+        """
         from .resources.charges import ChargesResourceWithRawResponse
 
         return ChargesResourceWithRawResponse(self._client.charges)
 
     @cached_property
     def funding_events(self) -> funding_events.FundingEventsResourceWithRawResponse:
+        """
+        Funding events represent all money movement between Straddle and an Account's external bank accounts. They are automatically generated when charges settle or payouts are initiated. Each event provides detailed tracking of settlement status, fee breakdowns, and reconciliation data across both incoming and outgoing transfers. Use funding events to monitor your platform's entire money movement lifecycle.
+        """
         from .resources.funding_events import FundingEventsResourceWithRawResponse
 
         return FundingEventsResourceWithRawResponse(self._client.funding_events)
 
     @cached_property
     def payments(self) -> payments.PaymentsResourceWithRawResponse:
+        """
+        Payments provide endpoints to filter both Charges and Payouts with multiple different parameters.
+        """
         from .resources.payments import PaymentsResourceWithRawResponse
 
         return PaymentsResourceWithRawResponse(self._client.payments)
 
     @cached_property
     def payouts(self) -> payouts.PayoutsResourceWithRawResponse:
+        """Payouts represent transfers from Straddle to customer bank accounts.
+
+        Create payouts to handle disbursements, process refunds, or manage marketplace settlements. Use payouts to send money quickly and securely with the most cost-effective rail automatically selected.
+        """
         from .resources.payouts import PayoutsResourceWithRawResponse
 
         return PayoutsResourceWithRawResponse(self._client.payouts)
@@ -631,42 +697,64 @@ class AsyncStraddleWithRawResponse:
 
     @cached_property
     def bridge(self) -> bridge.AsyncBridgeResourceWithRawResponse:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         from .resources.bridge import AsyncBridgeResourceWithRawResponse
 
         return AsyncBridgeResourceWithRawResponse(self._client.bridge)
 
     @cached_property
     def customers(self) -> customers.AsyncCustomersResourceWithRawResponse:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         from .resources.customers import AsyncCustomersResourceWithRawResponse
 
         return AsyncCustomersResourceWithRawResponse(self._client.customers)
 
     @cached_property
     def paykeys(self) -> paykeys.AsyncPaykeysResourceWithRawResponse:
+        """
+        Paykeys are secure tokens that link verified customer identities to their bank accounts. Each Paykey includes built-in balance checking, fraud detection through LSTM machine learning models, and can be reused for subscriptions and recurring payments without storing sensitive data. Paykeys eliminate fraud by ensuring the person initiating payment owns the funding account.
+        """
         from .resources.paykeys import AsyncPaykeysResourceWithRawResponse
 
         return AsyncPaykeysResourceWithRawResponse(self._client.paykeys)
 
     @cached_property
     def charges(self) -> charges.AsyncChargesResourceWithRawResponse:
+        """
+        Charges represent attempts to debit money from a customer's bank account using a Paykey. Each charge includes automatic balance verification, real-time fraud screening, and multi-rail optimization and detailed status tracking throughout the payment lifecycle. Use charges to accept bank payments with confidence knowing every transaction is protected.
+        """
         from .resources.charges import AsyncChargesResourceWithRawResponse
 
         return AsyncChargesResourceWithRawResponse(self._client.charges)
 
     @cached_property
     def funding_events(self) -> funding_events.AsyncFundingEventsResourceWithRawResponse:
+        """
+        Funding events represent all money movement between Straddle and an Account's external bank accounts. They are automatically generated when charges settle or payouts are initiated. Each event provides detailed tracking of settlement status, fee breakdowns, and reconciliation data across both incoming and outgoing transfers. Use funding events to monitor your platform's entire money movement lifecycle.
+        """
         from .resources.funding_events import AsyncFundingEventsResourceWithRawResponse
 
         return AsyncFundingEventsResourceWithRawResponse(self._client.funding_events)
 
     @cached_property
     def payments(self) -> payments.AsyncPaymentsResourceWithRawResponse:
+        """
+        Payments provide endpoints to filter both Charges and Payouts with multiple different parameters.
+        """
         from .resources.payments import AsyncPaymentsResourceWithRawResponse
 
         return AsyncPaymentsResourceWithRawResponse(self._client.payments)
 
     @cached_property
     def payouts(self) -> payouts.AsyncPayoutsResourceWithRawResponse:
+        """Payouts represent transfers from Straddle to customer bank accounts.
+
+        Create payouts to handle disbursements, process refunds, or manage marketplace settlements. Use payouts to send money quickly and securely with the most cost-effective rail automatically selected.
+        """
         from .resources.payouts import AsyncPayoutsResourceWithRawResponse
 
         return AsyncPayoutsResourceWithRawResponse(self._client.payouts)
@@ -692,42 +780,64 @@ class StraddleWithStreamedResponse:
 
     @cached_property
     def bridge(self) -> bridge.BridgeResourceWithStreamingResponse:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         from .resources.bridge import BridgeResourceWithStreamingResponse
 
         return BridgeResourceWithStreamingResponse(self._client.bridge)
 
     @cached_property
     def customers(self) -> customers.CustomersResourceWithStreamingResponse:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         from .resources.customers import CustomersResourceWithStreamingResponse
 
         return CustomersResourceWithStreamingResponse(self._client.customers)
 
     @cached_property
     def paykeys(self) -> paykeys.PaykeysResourceWithStreamingResponse:
+        """
+        Paykeys are secure tokens that link verified customer identities to their bank accounts. Each Paykey includes built-in balance checking, fraud detection through LSTM machine learning models, and can be reused for subscriptions and recurring payments without storing sensitive data. Paykeys eliminate fraud by ensuring the person initiating payment owns the funding account.
+        """
         from .resources.paykeys import PaykeysResourceWithStreamingResponse
 
         return PaykeysResourceWithStreamingResponse(self._client.paykeys)
 
     @cached_property
     def charges(self) -> charges.ChargesResourceWithStreamingResponse:
+        """
+        Charges represent attempts to debit money from a customer's bank account using a Paykey. Each charge includes automatic balance verification, real-time fraud screening, and multi-rail optimization and detailed status tracking throughout the payment lifecycle. Use charges to accept bank payments with confidence knowing every transaction is protected.
+        """
         from .resources.charges import ChargesResourceWithStreamingResponse
 
         return ChargesResourceWithStreamingResponse(self._client.charges)
 
     @cached_property
     def funding_events(self) -> funding_events.FundingEventsResourceWithStreamingResponse:
+        """
+        Funding events represent all money movement between Straddle and an Account's external bank accounts. They are automatically generated when charges settle or payouts are initiated. Each event provides detailed tracking of settlement status, fee breakdowns, and reconciliation data across both incoming and outgoing transfers. Use funding events to monitor your platform's entire money movement lifecycle.
+        """
         from .resources.funding_events import FundingEventsResourceWithStreamingResponse
 
         return FundingEventsResourceWithStreamingResponse(self._client.funding_events)
 
     @cached_property
     def payments(self) -> payments.PaymentsResourceWithStreamingResponse:
+        """
+        Payments provide endpoints to filter both Charges and Payouts with multiple different parameters.
+        """
         from .resources.payments import PaymentsResourceWithStreamingResponse
 
         return PaymentsResourceWithStreamingResponse(self._client.payments)
 
     @cached_property
     def payouts(self) -> payouts.PayoutsResourceWithStreamingResponse:
+        """Payouts represent transfers from Straddle to customer bank accounts.
+
+        Create payouts to handle disbursements, process refunds, or manage marketplace settlements. Use payouts to send money quickly and securely with the most cost-effective rail automatically selected.
+        """
         from .resources.payouts import PayoutsResourceWithStreamingResponse
 
         return PayoutsResourceWithStreamingResponse(self._client.payouts)
@@ -753,42 +863,64 @@ class AsyncStraddleWithStreamedResponse:
 
     @cached_property
     def bridge(self) -> bridge.AsyncBridgeResourceWithStreamingResponse:
+        """
+        Bridge provides a comprehensive suite of tools for connecting customer bank accounts. Use it to generate secure widget sessions for instant account verification, accept tokens from major providers like Plaid and Finicity, or verify accounts directly via our API. Bridge handles all sensitive banking credentials and ensures secure, compliant connections with support for 90% of US bank accounts.
+        """
         from .resources.bridge import AsyncBridgeResourceWithStreamingResponse
 
         return AsyncBridgeResourceWithStreamingResponse(self._client.bridge)
 
     @cached_property
     def customers(self) -> customers.AsyncCustomersResourceWithStreamingResponse:
+        """
+        Customers represent the end users who send or receive payments through your integration. Each customer undergoes automatic identity verification and fraud screening upon creation. Use customers to track payment history, manage bank account connections, and maintain a secure record of all transactions associated with a user. Customers can be either individuals or businesses with appropriate compliance checks for each type.
+        """
         from .resources.customers import AsyncCustomersResourceWithStreamingResponse
 
         return AsyncCustomersResourceWithStreamingResponse(self._client.customers)
 
     @cached_property
     def paykeys(self) -> paykeys.AsyncPaykeysResourceWithStreamingResponse:
+        """
+        Paykeys are secure tokens that link verified customer identities to their bank accounts. Each Paykey includes built-in balance checking, fraud detection through LSTM machine learning models, and can be reused for subscriptions and recurring payments without storing sensitive data. Paykeys eliminate fraud by ensuring the person initiating payment owns the funding account.
+        """
         from .resources.paykeys import AsyncPaykeysResourceWithStreamingResponse
 
         return AsyncPaykeysResourceWithStreamingResponse(self._client.paykeys)
 
     @cached_property
     def charges(self) -> charges.AsyncChargesResourceWithStreamingResponse:
+        """
+        Charges represent attempts to debit money from a customer's bank account using a Paykey. Each charge includes automatic balance verification, real-time fraud screening, and multi-rail optimization and detailed status tracking throughout the payment lifecycle. Use charges to accept bank payments with confidence knowing every transaction is protected.
+        """
         from .resources.charges import AsyncChargesResourceWithStreamingResponse
 
         return AsyncChargesResourceWithStreamingResponse(self._client.charges)
 
     @cached_property
     def funding_events(self) -> funding_events.AsyncFundingEventsResourceWithStreamingResponse:
+        """
+        Funding events represent all money movement between Straddle and an Account's external bank accounts. They are automatically generated when charges settle or payouts are initiated. Each event provides detailed tracking of settlement status, fee breakdowns, and reconciliation data across both incoming and outgoing transfers. Use funding events to monitor your platform's entire money movement lifecycle.
+        """
         from .resources.funding_events import AsyncFundingEventsResourceWithStreamingResponse
 
         return AsyncFundingEventsResourceWithStreamingResponse(self._client.funding_events)
 
     @cached_property
     def payments(self) -> payments.AsyncPaymentsResourceWithStreamingResponse:
+        """
+        Payments provide endpoints to filter both Charges and Payouts with multiple different parameters.
+        """
         from .resources.payments import AsyncPaymentsResourceWithStreamingResponse
 
         return AsyncPaymentsResourceWithStreamingResponse(self._client.payments)
 
     @cached_property
     def payouts(self) -> payouts.AsyncPayoutsResourceWithStreamingResponse:
+        """Payouts represent transfers from Straddle to customer bank accounts.
+
+        Create payouts to handle disbursements, process refunds, or manage marketplace settlements. Use payouts to send money quickly and securely with the most cost-effective rail automatically selected.
+        """
         from .resources.payouts import AsyncPayoutsResourceWithStreamingResponse
 
         return AsyncPayoutsResourceWithStreamingResponse(self._client.payouts)

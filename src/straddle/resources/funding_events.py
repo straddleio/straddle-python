@@ -28,6 +28,10 @@ __all__ = ["FundingEventsResource", "AsyncFundingEventsResource"]
 
 
 class FundingEventsResource(SyncAPIResource):
+    """
+    Funding events represent all money movement between Straddle and an Account's external bank accounts. They are automatically generated when charges settle or payouts are initiated. Each event provides detailed tracking of settlement status, fee breakdowns, and reconciliation data across both incoming and outgoing transfers. Use funding events to monitor your platform's entire money movement lifecycle.
+    """
+
     @cached_property
     def with_raw_response(self) -> FundingEventsResourceWithRawResponse:
         """
@@ -247,6 +251,10 @@ class FundingEventsResource(SyncAPIResource):
 
 
 class AsyncFundingEventsResource(AsyncAPIResource):
+    """
+    Funding events represent all money movement between Straddle and an Account's external bank accounts. They are automatically generated when charges settle or payouts are initiated. Each event provides detailed tracking of settlement status, fee breakdowns, and reconciliation data across both incoming and outgoing transfers. Use funding events to monitor your platform's entire money movement lifecycle.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncFundingEventsResourceWithRawResponse:
         """
