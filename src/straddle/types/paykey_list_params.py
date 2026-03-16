@@ -20,9 +20,6 @@ class PaykeyListParams(TypedDict, total=False):
     page_size: int
     """Number of results per page. Maximum: 1000."""
 
-    search_text: str
-    """General search term to filter paykeys."""
-
     sort_by: Literal["institution_name", "expires_at", "created_at"]
 
     sort_order: Literal["asc", "desc"]
