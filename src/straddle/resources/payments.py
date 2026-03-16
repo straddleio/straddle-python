@@ -59,6 +59,7 @@ class PaymentsResource(SyncAPIResource):
         default_sort_order: Literal["asc", "desc"] | Omit = omit,
         external_id: str | Omit = omit,
         funding_id: str | Omit = omit,
+        include_metadata: bool | Omit = omit,
         max_amount: int | Omit = omit,
         max_created_at: Union[str, datetime] | Omit = omit,
         max_effective_at: Union[str, datetime] | Omit = omit,
@@ -73,7 +74,9 @@ class PaymentsResource(SyncAPIResource):
         paykey_id: str | Omit = omit,
         payment_id: str | Omit = omit,
         payment_status: List[
-            Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+            Literal[
+                "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
+            ]
         ]
         | Omit = omit,
         payment_type: List[Literal["charge", "payout"]] | Omit = omit,
@@ -107,6 +110,7 @@ class PaymentsResource(SyncAPIResource):
                 "require_review",
                 "blocked_by_system",
                 "watchtower_review",
+                "validating",
             ]
         ]
         | Omit = omit,
@@ -134,6 +138,8 @@ class PaymentsResource(SyncAPIResource):
           external_id: Search using the `external_id` of a `charge` or `payout`.
 
           funding_id: Search using the `funding_id` of a `charge` or `payout`.
+
+          include_metadata: Include the metadata for payments in the returned data.
 
           max_amount: Search using a maximum `amount` of a `charge` or `payout`.
 
@@ -207,6 +213,7 @@ class PaymentsResource(SyncAPIResource):
                         "default_sort_order": default_sort_order,
                         "external_id": external_id,
                         "funding_id": funding_id,
+                        "include_metadata": include_metadata,
                         "max_amount": max_amount,
                         "max_created_at": max_created_at,
                         "max_effective_at": max_effective_at,
@@ -268,6 +275,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         default_sort_order: Literal["asc", "desc"] | Omit = omit,
         external_id: str | Omit = omit,
         funding_id: str | Omit = omit,
+        include_metadata: bool | Omit = omit,
         max_amount: int | Omit = omit,
         max_created_at: Union[str, datetime] | Omit = omit,
         max_effective_at: Union[str, datetime] | Omit = omit,
@@ -282,7 +290,9 @@ class AsyncPaymentsResource(AsyncAPIResource):
         paykey_id: str | Omit = omit,
         payment_id: str | Omit = omit,
         payment_status: List[
-            Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+            Literal[
+                "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
+            ]
         ]
         | Omit = omit,
         payment_type: List[Literal["charge", "payout"]] | Omit = omit,
@@ -316,6 +326,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                 "require_review",
                 "blocked_by_system",
                 "watchtower_review",
+                "validating",
             ]
         ]
         | Omit = omit,
@@ -343,6 +354,8 @@ class AsyncPaymentsResource(AsyncAPIResource):
           external_id: Search using the `external_id` of a `charge` or `payout`.
 
           funding_id: Search using the `funding_id` of a `charge` or `payout`.
+
+          include_metadata: Include the metadata for payments in the returned data.
 
           max_amount: Search using a maximum `amount` of a `charge` or `payout`.
 
@@ -416,6 +429,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                         "default_sort_order": default_sort_order,
                         "external_id": external_id,
                         "funding_id": funding_id,
+                        "include_metadata": include_metadata,
                         "max_amount": max_amount,
                         "max_created_at": max_created_at,
                         "max_effective_at": max_effective_at,

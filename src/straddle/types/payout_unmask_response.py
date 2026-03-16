@@ -70,6 +70,7 @@ class DataStatusHistory(BaseModel):
         "require_review",
         "blocked_by_system",
         "watchtower_review",
+        "validating",
     ]
     """
     A machine-readable identifier for the specific status, useful for programmatic
@@ -82,7 +83,9 @@ class DataStatusHistory(BaseModel):
     This helps in tracking the cause of status updates.
     """
 
-    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+    status: Literal[
+        "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
+    ]
     """The current status of the `charge` or `payout`."""
 
     code: Optional[str] = None
@@ -118,7 +121,9 @@ class Data(BaseModel):
     payment_date: date
     """Payment date."""
 
-    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+    status: Literal[
+        "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
+    ]
     """The current status of the `charge` or `payout`."""
 
     status_details: StatusDetailsV1
@@ -148,6 +153,9 @@ class Data(BaseModel):
 
     processed_at: Optional[datetime] = None
     """Processed at."""
+
+    related_payments: Optional[Dict[str, Literal["unknown", "original", "resubmit", "refund"]]] = None
+    """Related payments."""
 
     updated_at: Optional[datetime] = None
     """Updated at."""
