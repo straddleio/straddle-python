@@ -42,6 +42,7 @@ class StatusDetailsV1(BaseModel):
         "require_review",
         "blocked_by_system",
         "watchtower_review",
+        "validating",
     ]
     """
     A machine-readable identifier for the specific status, useful for programmatic
