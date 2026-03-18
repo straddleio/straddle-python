@@ -85,6 +85,8 @@ class DataPaykeyDetailsStatusDetails(BaseModel):
         "require_review",
         "blocked_by_system",
         "watchtower_review",
+        "validating",
+        "auto_hold",
     ]
 
     source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
