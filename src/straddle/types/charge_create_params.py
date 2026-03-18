@@ -69,12 +69,6 @@ class Config(TypedDict, total=False):
     balance_check: Required[Literal["required", "enabled", "disabled"]]
     """Defines whether to check the customer's balance before processing the charge."""
 
-    auto_hold: Optional[bool]
-    """Defines whether to automatically place this charge on hold after being created."""
-
-    auto_hold_message: Optional[str]
-    """The reason the charge is being automatically held on creation."""
-
     sandbox_outcome: Literal[
         "standard",
         "paid",
