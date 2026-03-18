@@ -64,7 +64,19 @@ class FundingEventsResource(SyncAPIResource):
         sort_by: Literal["transfer_date", "id", "amount"] | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
         status: Optional[
-            List[Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]]
+            List[
+                Literal[
+                    "created",
+                    "scheduled",
+                    "failed",
+                    "cancelled",
+                    "on_hold",
+                    "pending",
+                    "paid",
+                    "reversed",
+                    "validating",
+                ]
+            ]
         ]
         | Omit = omit,
         status_reason: Optional[
@@ -95,6 +107,8 @@ class FundingEventsResource(SyncAPIResource):
                     "require_review",
                     "blocked_by_system",
                     "watchtower_review",
+                    "validating",
+                    "auto_hold",
                 ]
             ]
         ]
@@ -287,7 +301,19 @@ class AsyncFundingEventsResource(AsyncAPIResource):
         sort_by: Literal["transfer_date", "id", "amount"] | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
         status: Optional[
-            List[Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]]
+            List[
+                Literal[
+                    "created",
+                    "scheduled",
+                    "failed",
+                    "cancelled",
+                    "on_hold",
+                    "pending",
+                    "paid",
+                    "reversed",
+                    "validating",
+                ]
+            ]
         ]
         | Omit = omit,
         status_reason: Optional[
@@ -318,6 +344,8 @@ class AsyncFundingEventsResource(AsyncAPIResource):
                     "require_review",
                     "blocked_by_system",
                     "watchtower_review",
+                    "validating",
+                    "auto_hold",
                 ]
             ]
         ]
