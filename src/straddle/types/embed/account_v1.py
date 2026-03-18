@@ -95,7 +95,7 @@ class DataSettingsCharges(BaseModel):
     daily_amount: int
     """The maximum dollar amount of charges in a calendar day."""
 
-    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day"]
+    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day", "four_day", "five_day"]
     """The amount of time it takes for a charge to be funded.
 
     This value is defined by Straddle.
@@ -121,7 +121,7 @@ class DataSettingsPayouts(BaseModel):
     daily_amount: int
     """The maximum dollar amount of payouts in a day."""
 
-    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day"]
+    funding_time: Literal["immediate", "next_day", "one_day", "two_day", "three_day", "four_day", "five_day"]
     """The amount of time it takes for a payout to be funded.
 
     This value is defined by Straddle.
