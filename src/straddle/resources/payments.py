@@ -111,6 +111,7 @@ class PaymentsResource(SyncAPIResource):
                 "blocked_by_system",
                 "watchtower_review",
                 "validating",
+                "auto_hold",
             ]
         ]
         | Omit = omit,
@@ -327,6 +328,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
                 "blocked_by_system",
                 "watchtower_review",
                 "validating",
+                "auto_hold",
             ]
         ]
         | Omit = omit,

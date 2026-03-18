@@ -43,6 +43,7 @@ class StatusDetailsV1(BaseModel):
         "blocked_by_system",
         "watchtower_review",
         "validating",
+        "auto_hold",
     ]
     """
     A machine-readable identifier for the specific status, useful for programmatic

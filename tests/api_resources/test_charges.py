@@ -42,6 +42,8 @@ class TestCharges:
             amount=10000,
             config={
                 "balance_check": "required",
+                "auto_hold": True,
+                "auto_hold_message": "auto_hold_message",
                 "sandbox_outcome": "standard",
             },
             consent_type="internet",
@@ -437,6 +439,8 @@ class TestAsyncCharges:
             amount=10000,
             config={
                 "balance_check": "required",
+                "auto_hold": True,
+                "auto_hold_message": "auto_hold_message",
                 "sandbox_outcome": "standard",
             },
             consent_type="internet",
