@@ -51,9 +51,7 @@ class Data(BaseModel):
     payment_type: Literal["charge", "payout"]
     """The type of payment. Valid values are `charge` or `payout`."""
 
-    status: Literal[
-        "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
-    ]
+    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
     """The current status of the `charge` or `payout`."""
 
     status_details: StatusDetailsV1
