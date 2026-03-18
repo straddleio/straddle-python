@@ -28,6 +28,9 @@ class Data(BaseModel):
     created_at: datetime
     """Timestamp of when the capability request was created."""
 
+    enable: bool
+    """Whether this capability request is to enable or disable the capability."""
+
     status: Literal["active", "inactive", "in_review", "rejected", "approved", "reviewing"]
     """The current status of the capability request."""
 

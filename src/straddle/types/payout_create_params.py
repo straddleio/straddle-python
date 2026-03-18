@@ -60,6 +60,12 @@ class PayoutCreateParams(TypedDict, total=False):
 
 
 class Config(TypedDict, total=False):
+    auto_hold: Optional[bool]
+    """Defines whether to automatically place this charge on hold after being created."""
+
+    auto_hold_message: Optional[str]
+    """The reason the payout is being automatically held on creation."""
+
     sandbox_outcome: Literal[
         "standard",
         "paid",

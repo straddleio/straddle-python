@@ -51,7 +51,9 @@ class Data(BaseModel):
     payment_type: Literal["charge", "payout"]
     """The type of payment. Valid values are `charge` or `payout`."""
 
-    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+    status: Literal[
+        "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
+    ]
     """The current status of the `charge` or `payout`."""
 
     status_details: StatusDetailsV1
@@ -78,6 +80,9 @@ class Data(BaseModel):
     Unique identifier for the funding event associated with the `charge` or
     `payout`.
     """
+
+    metadata: Optional[Dict[str, str]] = None
+    """Metadata for payment - only included if requested."""
 
     paykey_details: Optional[PaykeyDetailsV1] = None
     """Information about the paykey used for the `charge` or `payout`."""
