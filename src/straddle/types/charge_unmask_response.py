@@ -17,6 +17,12 @@ class DataConfig(BaseModel):
     balance_check: Literal["required", "enabled", "disabled"]
     """Defines whether to check the customer's balance before processing the charge."""
 
+    auto_hold: Optional[bool] = None
+    """Defines whether to automatically place this charge on hold after being created."""
+
+    auto_hold_message: Optional[str] = None
+    """The reason the charge is being automatically held on creation."""
+
     sandbox_outcome: Optional[
         Literal[
             "standard",
@@ -73,6 +79,8 @@ class DataStatusHistory(BaseModel):
         "require_review",
         "blocked_by_system",
         "watchtower_review",
+        "validating",
+        "auto_hold",
     ]
     """
     A machine-readable identifier for the specific status, useful for programmatic
@@ -85,7 +93,9 @@ class DataStatusHistory(BaseModel):
     This helps in tracking the cause of status updates.
     """
 
-    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+    status: Literal[
+        "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
+    ]
     """The current status of the `charge` or `payout`."""
 
     code: Optional[str] = None
@@ -132,7 +142,9 @@ class Data(BaseModel):
     payment_date: date
     """Payment date."""
 
-    status: Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
+    status: Literal[
+        "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
+    ]
     """The current status of the `charge` or `payout`."""
 
     status_details: StatusDetailsV1
@@ -162,6 +174,9 @@ class Data(BaseModel):
 
     processed_at: Optional[datetime] = None
     """Processed at."""
+
+    related_payments: Optional[Dict[str, Literal["unknown", "original", "resubmit", "refund"]]] = None
+    """Related payments."""
 
 
 class ChargeUnmaskResponse(BaseModel):

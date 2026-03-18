@@ -46,7 +46,11 @@ class FundingEventListParams(TypedDict, total=False):
     """The order in which to sort the results."""
 
     status: Optional[
-        List[Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]]
+        List[
+            Literal[
+                "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
+            ]
+        ]
     ]
     """Funding Event status."""
 
@@ -78,6 +82,8 @@ class FundingEventListParams(TypedDict, total=False):
                 "require_review",
                 "blocked_by_system",
                 "watchtower_review",
+                "validating",
+                "auto_hold",
             ]
         ]
     ]
