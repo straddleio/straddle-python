@@ -28,9 +28,6 @@ class PaymentListParams(TypedDict, total=False):
     funding_id: str
     """Search using the `funding_id` of a `charge` or `payout`."""
 
-    include_metadata: bool
-    """Include the metadata for payments in the returned data."""
-
     max_amount: int
     """Search using a maximum `amount` of a `charge` or `payout`."""
 
@@ -71,7 +68,7 @@ class PaymentListParams(TypedDict, total=False):
     """Search using the `id` of a `charge` or `payout`."""
 
     payment_status: List[
-        Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"]
+        Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
     ]
     """Search by the status of a `charge` or `payout`."""
 
@@ -113,8 +110,6 @@ class PaymentListParams(TypedDict, total=False):
             "require_review",
             "blocked_by_system",
             "watchtower_review",
-            "validating",
-            "auto_hold",
         ]
     ]
     """Reason for latest payment status change."""
