@@ -43,8 +43,6 @@ class DataStatusDetails(BaseModel):
         "require_review",
         "blocked_by_system",
         "watchtower_review",
-        "validating",
-        "auto_hold",
     ]
 
     source: Literal["watchtower", "bank_decline", "customer_dispute", "user_action", "system"]
@@ -96,7 +94,7 @@ class Data(BaseModel):
     """Updated at."""
 
     status: Optional[
-        Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"]
+        Literal["created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed"]
     ] = None
     """The current status of the `charge` or `payout`."""
 
