@@ -17,6 +17,12 @@ __all__ = ["PayoutV1", "Data", "DataConfig", "DataStatusHistory"]
 class DataConfig(BaseModel):
     """Configuration for the payout."""
 
+    auto_hold: Optional[bool] = None
+    """Defines whether to automatically place this charge on hold after being created."""
+
+    auto_hold_message: Optional[str] = None
+    """The reason the payout is being automatically held on creation."""
+
     sandbox_outcome: Optional[
         Literal[
             "standard",
@@ -69,6 +75,7 @@ class DataStatusHistory(BaseModel):
         "blocked_by_system",
         "watchtower_review",
         "validating",
+        "auto_hold",
     ]
     """
     A machine-readable identifier for the specific status, useful for programmatic

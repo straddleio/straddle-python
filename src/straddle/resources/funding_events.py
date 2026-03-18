@@ -108,6 +108,7 @@ class FundingEventsResource(SyncAPIResource):
                     "blocked_by_system",
                     "watchtower_review",
                     "validating",
+                    "auto_hold",
                 ]
             ]
         ]
@@ -344,6 +345,7 @@ class AsyncFundingEventsResource(AsyncAPIResource):
                     "blocked_by_system",
                     "watchtower_review",
                     "validating",
+                    "auto_hold",
                 ]
             ]
         ]

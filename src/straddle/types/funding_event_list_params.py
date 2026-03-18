@@ -83,6 +83,7 @@ class FundingEventListParams(TypedDict, total=False):
                 "blocked_by_system",
                 "watchtower_review",
                 "validating",
+                "auto_hold",
             ]
         ]
     ]

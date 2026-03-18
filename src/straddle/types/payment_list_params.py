@@ -114,6 +114,7 @@ class PaymentListParams(TypedDict, total=False):
             "blocked_by_system",
             "watchtower_review",
             "validating",
+            "auto_hold",
         ]
     ]
     """Reason for latest payment status change."""
