@@ -195,7 +195,7 @@ class Data(BaseModel):
     payment rail.
     """
 
-    related_payments: Optional[Dict[str, Literal["unknown", "original", "resubmit", "refund"]]] = None
+    related_payments: Optional[Dict[str, Literal["original", "resubmit", "refund"]]] = None
     """Related payments."""
 
 

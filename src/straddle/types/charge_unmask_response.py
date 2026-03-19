@@ -175,7 +175,7 @@ class Data(BaseModel):
     processed_at: Optional[datetime] = None
     """Processed at."""
 
-    related_payments: Optional[Dict[str, Literal["unknown", "original", "resubmit", "refund"]]] = None
+    related_payments: Optional[Dict[str, Literal["original", "resubmit", "refund"]]] = None
     """Related payments."""
 
 
