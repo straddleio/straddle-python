@@ -10,7 +10,7 @@ import httpx
 
 from ..types import funding_event_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, strip_not_given
+from .._utils import path_template, maybe_transform, strip_not_given
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -256,7 +256,7 @@ class FundingEventsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/funding_events/{id}",
+            path_template("/v1/funding_events/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -493,7 +493,7 @@ class AsyncFundingEventsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/funding_events/{id}",
+            path_template("/v1/funding_events/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

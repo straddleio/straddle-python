@@ -16,7 +16,7 @@ from ..types import (
     charge_release_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, strip_not_given, async_maybe_transform
+from .._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -205,7 +205,7 @@ class ChargesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/charges/{id}",
+            path_template("/v1/charges/{id}", id=id),
             body=maybe_transform(
                 {
                     "amount": amount,
@@ -267,7 +267,7 @@ class ChargesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/charges/{id}/cancel",
+            path_template("/v1/charges/{id}/cancel", id=id),
             body=maybe_transform({"reason": reason}, charge_cancel_params.ChargeCancelParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -316,7 +316,7 @@ class ChargesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/charges/{id}",
+            path_template("/v1/charges/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -369,7 +369,7 @@ class ChargesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/charges/{id}/hold",
+            path_template("/v1/charges/{id}/hold", id=id),
             body=maybe_transform({"reason": reason}, charge_hold_params.ChargeHoldParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -422,7 +422,7 @@ class ChargesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/charges/{id}/release",
+            path_template("/v1/charges/{id}/release", id=id),
             body=maybe_transform({"reason": reason}, charge_release_params.ChargeReleaseParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -469,7 +469,7 @@ class ChargesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/charges/{id}/unmask",
+            path_template("/v1/charges/{id}/unmask", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -649,7 +649,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/charges/{id}",
+            path_template("/v1/charges/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "amount": amount,
@@ -711,7 +711,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/charges/{id}/cancel",
+            path_template("/v1/charges/{id}/cancel", id=id),
             body=await async_maybe_transform({"reason": reason}, charge_cancel_params.ChargeCancelParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -760,7 +760,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/charges/{id}",
+            path_template("/v1/charges/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -813,7 +813,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/charges/{id}/hold",
+            path_template("/v1/charges/{id}/hold", id=id),
             body=await async_maybe_transform({"reason": reason}, charge_hold_params.ChargeHoldParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -866,7 +866,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/charges/{id}/release",
+            path_template("/v1/charges/{id}/release", id=id),
             body=await async_maybe_transform({"reason": reason}, charge_release_params.ChargeReleaseParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -913,7 +913,7 @@ class AsyncChargesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/charges/{id}/unmask",
+            path_template("/v1/charges/{id}/unmask", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

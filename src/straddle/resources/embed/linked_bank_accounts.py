@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -182,7 +182,9 @@ class LinkedBankAccountsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/linked_bank_accounts/{linked_bank_account_id}",
+            path_template(
+                "/v1/linked_bank_accounts/{linked_bank_account_id}", linked_bank_account_id=linked_bank_account_id
+            ),
             body=maybe_transform(
                 {
                     "bank_account": bank_account,
@@ -326,7 +328,10 @@ class LinkedBankAccountsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._patch(
-            f"/v1/linked_bank_accounts/{linked_bank_account_id}/cancel",
+            path_template(
+                "/v1/linked_bank_accounts/{linked_bank_account_id}/cancel",
+                linked_bank_account_id=linked_bank_account_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -375,7 +380,9 @@ class LinkedBankAccountsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/linked_bank_accounts/{linked_bank_account_id}",
+            path_template(
+                "/v1/linked_bank_accounts/{linked_bank_account_id}", linked_bank_account_id=linked_bank_account_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -425,7 +432,10 @@ class LinkedBankAccountsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/linked_bank_accounts/{linked_bank_account_id}/unmask",
+            path_template(
+                "/v1/linked_bank_accounts/{linked_bank_account_id}/unmask",
+                linked_bank_account_id=linked_bank_account_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -584,7 +594,9 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/linked_bank_accounts/{linked_bank_account_id}",
+            path_template(
+                "/v1/linked_bank_accounts/{linked_bank_account_id}", linked_bank_account_id=linked_bank_account_id
+            ),
             body=await async_maybe_transform(
                 {
                     "bank_account": bank_account,
@@ -728,7 +740,10 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._patch(
-            f"/v1/linked_bank_accounts/{linked_bank_account_id}/cancel",
+            path_template(
+                "/v1/linked_bank_accounts/{linked_bank_account_id}/cancel",
+                linked_bank_account_id=linked_bank_account_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -777,7 +792,9 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/linked_bank_accounts/{linked_bank_account_id}",
+            path_template(
+                "/v1/linked_bank_accounts/{linked_bank_account_id}", linked_bank_account_id=linked_bank_account_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -827,7 +844,10 @@ class AsyncLinkedBankAccountsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/linked_bank_accounts/{linked_bank_account_id}/unmask",
+            path_template(
+                "/v1/linked_bank_accounts/{linked_bank_account_id}/unmask",
+                linked_bank_account_id=linked_bank_account_id,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
