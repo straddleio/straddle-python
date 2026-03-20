@@ -15,7 +15,7 @@ from ..types import (
     payout_release_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, strip_not_given, async_maybe_transform
+from .._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -201,7 +201,7 @@ class PayoutsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/payouts/{id}",
+            path_template("/v1/payouts/{id}", id=id),
             body=maybe_transform(
                 {
                     "amount": amount,
@@ -263,7 +263,7 @@ class PayoutsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/payouts/{id}/cancel",
+            path_template("/v1/payouts/{id}/cancel", id=id),
             body=maybe_transform({"reason": reason}, payout_cancel_params.PayoutCancelParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -312,7 +312,7 @@ class PayoutsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/payouts/{id}",
+            path_template("/v1/payouts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -365,7 +365,7 @@ class PayoutsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/payouts/{id}/hold",
+            path_template("/v1/payouts/{id}/hold", id=id),
             body=maybe_transform({"reason": reason}, payout_hold_params.PayoutHoldParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -418,7 +418,7 @@ class PayoutsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/payouts/{id}/release",
+            path_template("/v1/payouts/{id}/release", id=id),
             body=maybe_transform({"reason": reason}, payout_release_params.PayoutReleaseParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -465,7 +465,7 @@ class PayoutsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/payouts/{id}/unmask",
+            path_template("/v1/payouts/{id}/unmask", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -642,7 +642,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/payouts/{id}",
+            path_template("/v1/payouts/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "amount": amount,
@@ -704,7 +704,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/payouts/{id}/cancel",
+            path_template("/v1/payouts/{id}/cancel", id=id),
             body=await async_maybe_transform({"reason": reason}, payout_cancel_params.PayoutCancelParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -753,7 +753,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/payouts/{id}",
+            path_template("/v1/payouts/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -806,7 +806,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/payouts/{id}/hold",
+            path_template("/v1/payouts/{id}/hold", id=id),
             body=await async_maybe_transform({"reason": reason}, payout_hold_params.PayoutHoldParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -859,7 +859,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/payouts/{id}/release",
+            path_template("/v1/payouts/{id}/release", id=id),
             body=await async_maybe_transform({"reason": reason}, payout_release_params.PayoutReleaseParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -906,7 +906,7 @@ class AsyncPayoutsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/payouts/{id}/unmask",
+            path_template("/v1/payouts/{id}/unmask", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

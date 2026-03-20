@@ -22,7 +22,7 @@ from ...types import (
     customer_update_params,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -232,7 +232,7 @@ class CustomersResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/customers/{id}",
+            path_template("/v1/customers/{id}", id=id),
             body=maybe_transform(
                 {
                     "device": device,
@@ -397,7 +397,7 @@ class CustomersResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._delete(
-            f"/v1/customers/{id}",
+            path_template("/v1/customers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -446,7 +446,7 @@ class CustomersResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/customers/{id}",
+            path_template("/v1/customers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -497,7 +497,7 @@ class CustomersResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/customers/{id}/unmasked",
+            path_template("/v1/customers/{id}/unmasked", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -695,7 +695,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/customers/{id}",
+            path_template("/v1/customers/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "device": device,
@@ -860,7 +860,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._delete(
-            f"/v1/customers/{id}",
+            path_template("/v1/customers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -909,7 +909,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/customers/{id}",
+            path_template("/v1/customers/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -960,7 +960,7 @@ class AsyncCustomersResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/customers/{id}/unmasked",
+            path_template("/v1/customers/{id}/unmasked", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
