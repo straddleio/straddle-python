@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -232,7 +232,7 @@ class OrganizationsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/organizations/{organization_id}",
+            path_template("/v1/organizations/{organization_id}", organization_id=organization_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -446,7 +446,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/organizations/{organization_id}",
+            path_template("/v1/organizations/{organization_id}", organization_id=organization_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

@@ -17,7 +17,7 @@ from .review import (
 )
 from ...types import paykey_list_params, paykey_cancel_params
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -196,7 +196,7 @@ class PaykeysResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/paykeys/{id}/cancel",
+            path_template("/v1/paykeys/{id}/cancel", id=id),
             body=maybe_transform({"reason": reason}, paykey_cancel_params.PaykeyCancelParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -246,7 +246,7 @@ class PaykeysResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/paykeys/{id}",
+            path_template("/v1/paykeys/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -295,7 +295,7 @@ class PaykeysResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/paykeys/{id}/reveal",
+            path_template("/v1/paykeys/{id}/reveal", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -345,7 +345,7 @@ class PaykeysResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/paykeys/{id}/unmasked",
+            path_template("/v1/paykeys/{id}/unmasked", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -395,7 +395,7 @@ class PaykeysResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/paykeys/{id}/refresh_balance",
+            path_template("/v1/paykeys/{id}/refresh_balance", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -563,7 +563,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/paykeys/{id}/cancel",
+            path_template("/v1/paykeys/{id}/cancel", id=id),
             body=await async_maybe_transform({"reason": reason}, paykey_cancel_params.PaykeyCancelParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -613,7 +613,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/paykeys/{id}",
+            path_template("/v1/paykeys/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -662,7 +662,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/paykeys/{id}/reveal",
+            path_template("/v1/paykeys/{id}/reveal", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -712,7 +712,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/paykeys/{id}/unmasked",
+            path_template("/v1/paykeys/{id}/unmasked", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -762,7 +762,7 @@ class AsyncPaykeysResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/paykeys/{id}/refresh_balance",
+            path_template("/v1/paykeys/{id}/refresh_balance", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

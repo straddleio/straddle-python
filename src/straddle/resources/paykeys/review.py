@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -90,7 +90,7 @@ class ReviewResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._patch(
-            f"/v1/paykeys/{id}/review",
+            path_template("/v1/paykeys/{id}/review", id=id),
             body=maybe_transform({"status": status}, review_decision_params.ReviewDecisionParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -137,7 +137,7 @@ class ReviewResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/paykeys/{id}/review",
+            path_template("/v1/paykeys/{id}/review", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -188,7 +188,7 @@ class ReviewResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._put(
-            f"/v1/paykeys/{id}/refresh_review",
+            path_template("/v1/paykeys/{id}/refresh_review", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -262,7 +262,7 @@ class AsyncReviewResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._patch(
-            f"/v1/paykeys/{id}/review",
+            path_template("/v1/paykeys/{id}/review", id=id),
             body=await async_maybe_transform({"status": status}, review_decision_params.ReviewDecisionParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -309,7 +309,7 @@ class AsyncReviewResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/paykeys/{id}/review",
+            path_template("/v1/paykeys/{id}/review", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -360,7 +360,7 @@ class AsyncReviewResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/v1/paykeys/{id}/refresh_review",
+            path_template("/v1/paykeys/{id}/refresh_review", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
