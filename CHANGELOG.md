@@ -1,5 +1,91 @@
 # Changelog
 
+## 0.4.0 (2026-03-25)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/straddleio/straddle-python/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **client:** add custom JSON encoder for extended type support ([35e386e](https://github.com/straddleio/straddle-python/commit/35e386e4b04a34cf5fa9088f2ae396786798344a))
+* **client:** add support for binary request streaming ([33d56ef](https://github.com/straddleio/straddle-python/commit/33d56efe049cb6adc8423f782201ffa4bbce256f))
+* **docs:** Preliminary update to SDK Spec ([c5bc1a5](https://github.com/straddleio/straddle-python/commit/c5bc1a56311873d8e608e9a8c2f6b72760613a27))
+* **docs:** Preliminary update to SDK Spec ([48f52f6](https://github.com/straddleio/straddle-python/commit/48f52f60f2a0285c10bc03b462f3869da4d1ab9a))
+* **docs:** Preliminary update to SDK Spec ([0affbff](https://github.com/straddleio/straddle-python/commit/0affbffd0f2b8be0e64270ffab092028d89c7cb1))
+* **docs:** Preliminary update to SDK Spec ([53ff5b6](https://github.com/straddleio/straddle-python/commit/53ff5b6b74e9e8dcfd68e784542fe4896997f9b5))
+* **docs:** Preliminary update to SDK Spec ([77f93bd](https://github.com/straddleio/straddle-python/commit/77f93bd484fd05b289b9febf5517f023092eecd6))
+* **docs:** Preliminary update to SDK Spec ([d61f96a](https://github.com/straddleio/straddle-python/commit/d61f96aabbd7d9c7a6331fda1bccf7f2e1ad7e1f))
+* **docs:** Preliminary update to SDK Spec ([78d331b](https://github.com/straddleio/straddle-python/commit/78d331b860c551fec3625037b3554854cda47b39))
+* **docs:** Preliminary update to SDK Spec ([3e3deef](https://github.com/straddleio/straddle-python/commit/3e3deef23cf292a9175a897378462d9e0478198e))
+* **docs:** Preliminary update to SDK Spec ([37f40f4](https://github.com/straddleio/straddle-python/commit/37f40f4add89241165980d4769c89f1752886b9e))
+* **docs:** Preliminary update to SDK Spec ([a9a8169](https://github.com/straddleio/straddle-python/commit/a9a8169f6b5dd5005d73fe111bdca6c6bae35e6e))
+* **docs:** Preliminary update to SDK Spec ([3a4c9bc](https://github.com/straddleio/straddle-python/commit/3a4c9bc3e1192e50e97b641913cbf2b50c0d3486))
+* **docs:** Preliminary update to SDK Spec ([4e9e7e9](https://github.com/straddleio/straddle-python/commit/4e9e7e97e689dcfd475468a579982554261579fb))
+* **docs:** Preliminary update to SDK Spec ([47f325a](https://github.com/straddleio/straddle-python/commit/47f325ab51a724dc4d4b0d4423a21f1b5ec98ccf))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([cf9ac43](https://github.com/straddleio/straddle-python/commit/cf9ac4300b6d491154ce37dfdb3115dd605da7ed))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([66b1d4f](https://github.com/straddleio/straddle-python/commit/66b1d4f4e6eaf85be1df075233f3a3bf287fa1f6))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([9c87322](https://github.com/straddleio/straddle-python/commit/9c87322e21f8a615e5e135e5f446543fffa712a0))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([34c98a2](https://github.com/straddleio/straddle-python/commit/34c98a27fa4d27d577ad4b8d575b43cbb65d31c1))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([f62a270](https://github.com/straddleio/straddle-python/commit/f62a270adacccb0795e7e240dfe6d4f4ff743c33))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([fc39059](https://github.com/straddleio/straddle-python/commit/fc39059b2f236a4e198d72f9f4b0c6dc718cf475))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([62d5d5a](https://github.com/straddleio/straddle-python/commit/62d5d5a7d130e96a43c255d1a5086f87887992fe))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([3e1723e](https://github.com/straddleio/straddle-python/commit/3e1723e71d3b8618154cba564355ad24fdf994c9))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([fe57836](https://github.com/straddleio/straddle-python/commit/fe5783614747600de358d6a96d60a297baaf975d))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([65e8fb0](https://github.com/straddleio/straddle-python/commit/65e8fb03251a896e9a12d6f454b4674d0d77964d))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([545065e](https://github.com/straddleio/straddle-python/commit/545065eb5434a2f69b0a9df6af66400da2201f10))
+
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([5bdc45f](https://github.com/straddleio/straddle-python/commit/5bdc45f19f590823104219d92ae5f2fab9b8a4b2))
+* **docs:** fix mcp installation instructions for remote servers ([712c92d](https://github.com/straddleio/straddle-python/commit/712c92dbca1ac1c125a7b033ea15effa4c03925e))
+* ensure streams are always closed ([4b7f560](https://github.com/straddleio/straddle-python/commit/4b7f56077fe7865bb11d26f9ea4f3858db6067b4))
+* **pydantic:** do not pass `by_alias` unless set ([ff3349b](https://github.com/straddleio/straddle-python/commit/ff3349b980c84a199822909da147a4a8cc26eeed))
+* sanitize endpoint path params ([9423b35](https://github.com/straddleio/straddle-python/commit/9423b359a1176df7b6b03e43da21dd7ec7e18143))
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([15f5c46](https://github.com/straddleio/straddle-python/commit/15f5c46e6e3248626db9271d0752124499aec1d2))
+* use async_to_httpx_files in patch method ([ef95c26](https://github.com/straddleio/straddle-python/commit/ef95c26f0f170f71f970f1cb85a1081877fe527a))
+
+
+### Chores
+
+* add missing docstrings ([c957454](https://github.com/straddleio/straddle-python/commit/c957454f5405be448876640ca4f31fa36acd7a75))
+* add Python 3.14 classifier and testing ([7f8e975](https://github.com/straddleio/straddle-python/commit/7f8e9758ba8affc8cd7597e3635e42dff5ba7d88))
+* **ci:** skip lint on metadata-only changes ([bbbdb31](https://github.com/straddleio/straddle-python/commit/bbbdb31dda777c8f0a6c1e776abb8144db90b44e))
+* **ci:** skip uploading artifacts on stainless-internal branches ([cd7dff3](https://github.com/straddleio/straddle-python/commit/cd7dff35764c4555b5d975b29da4900a3d2490cd))
+* **ci:** upgrade `actions/github-script` ([efd4aef](https://github.com/straddleio/straddle-python/commit/efd4aef10c93fd6f8a4647da35877fed44d67053))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([7246cad](https://github.com/straddleio/straddle-python/commit/7246cad77ba5434aea76c2ee337127bcd5c2fb37))
+* **docs:** use environment variables for authentication in code snippets ([7cb1573](https://github.com/straddleio/straddle-python/commit/7cb1573aaec3d669e9ec646d93fc0caa8a4056af))
+* format all `api.md` files ([a73df38](https://github.com/straddleio/straddle-python/commit/a73df3861ab26cc3ee9fb4f9e178e57070c8a4d4))
+* **internal:** add `--fix` argument to lint script ([44a562c](https://github.com/straddleio/straddle-python/commit/44a562c170c249ee6d129ec6f6c7e966c440e570))
+* **internal:** add missing files argument to base client ([f947b33](https://github.com/straddleio/straddle-python/commit/f947b33a4526e02661bcd7b46940e5313bcfc600))
+* **internal:** add request options to SSE classes ([9aa8a18](https://github.com/straddleio/straddle-python/commit/9aa8a1896cd59dcf162092da7f58d77bdb5eda93))
+* **internal:** bump dependencies ([4115f11](https://github.com/straddleio/straddle-python/commit/4115f119f7e8f9235ad42af602b3828918751549))
+* **internal:** codegen related update ([8134a37](https://github.com/straddleio/straddle-python/commit/8134a37d884c8eed5ec05e6ca797743106a5144e))
+* **internal:** codegen related update ([4623b80](https://github.com/straddleio/straddle-python/commit/4623b8082d64d9e34c9a3bd88cefac753bda809c))
+* **internal:** fix lint error on Python 3.14 ([8494ddf](https://github.com/straddleio/straddle-python/commit/8494ddfcb42539095f88dc4879955417bc1fe266))
+* **internal:** make `test_proxy_environment_variables` more resilient ([aa7cd79](https://github.com/straddleio/straddle-python/commit/aa7cd79e4f8b5dbe11dabd28e9caa8ae1086592b))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([9761e1c](https://github.com/straddleio/straddle-python/commit/9761e1c3fda1317b3012b060e103419ce59c2e15))
+* **internal:** tweak CI branches ([fac2170](https://github.com/straddleio/straddle-python/commit/fac21706e919231e56e773f0f87218837a008fc8))
+* **internal:** update `actions/checkout` version ([2f8f4b3](https://github.com/straddleio/straddle-python/commit/2f8f4b3e04f72d170a1f3b2bcfae636554f530f5))
+* **internal:** update gitignore ([6902c7b](https://github.com/straddleio/straddle-python/commit/6902c7bbd386c2afc02f0792c0d35f64217f162a))
+* speedup initial import ([8189cac](https://github.com/straddleio/straddle-python/commit/8189cac3dd702152f47c7555c15130b364fdbeb8))
+* **test:** do not count install time for mock server timeout ([0720f65](https://github.com/straddleio/straddle-python/commit/0720f6552e23fa22aa0a621f40b2a49a9363d353))
+* **tests:** bump steady to v0.19.4 ([6a61333](https://github.com/straddleio/straddle-python/commit/6a61333d4d754adc9525223a436567a4aa53b9ce))
+* **tests:** bump steady to v0.19.5 ([1ffc49a](https://github.com/straddleio/straddle-python/commit/1ffc49a8c0dc326930bf9d1a393121476767625b))
+* **tests:** bump steady to v0.19.6 ([0470ca0](https://github.com/straddleio/straddle-python/commit/0470ca08cbe5136a7702c5593ca4594614e119d8))
+* **tests:** bump steady to v0.19.7 ([66002d8](https://github.com/straddleio/straddle-python/commit/66002d8c316a77abb2f394fa5955b0caacba037b))
+* update lockfile ([4a66bf3](https://github.com/straddleio/straddle-python/commit/4a66bf3fd6bad3dcb18137f6b8bd3253a36d42ae))
+* update mock server docs ([1bf9c30](https://github.com/straddleio/straddle-python/commit/1bf9c3051ae73bd10f8db2fcd8dc963aeacb9d99))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([fe63375](https://github.com/straddleio/straddle-python/commit/fe63375444da7df22d0b343d1e6fc55cd3d9026e))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([4465ecc](https://github.com/straddleio/straddle-python/commit/4465ecc0f33492eaae1d0d6f88e1f67d968310da))
+
 ## 0.3.0 (2025-11-16)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/straddleio/straddle-python/compare/v0.2.0...v0.3.0)
