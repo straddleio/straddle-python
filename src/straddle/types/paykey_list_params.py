@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Union
+from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -11,6 +12,12 @@ __all__ = ["PaykeyListParams"]
 
 
 class PaykeyListParams(TypedDict, total=False):
+    created_from: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Start date for filtering by creation date."""
+
+    created_to: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """End date for filtering by creation date."""
+
     customer_id: str
     """Filter paykeys by related customer ID."""
 
