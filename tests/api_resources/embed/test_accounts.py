@@ -44,13 +44,10 @@ class TestAccounts:
                 "name": "name",
                 "website": "https://example.com",
                 "address": {
-                    "address1": "address1",
                     "city": "city",
                     "line1": "line1",
                     "postal_code": "21029-1360",
                     "state": "SE",
-                    "zip": "zip",
-                    "address2": "address2",
                     "country": "country",
                     "line2": "line2",
                 },
@@ -134,13 +131,10 @@ class TestAccounts:
                 "name": "name",
                 "website": "https://example.com",
                 "address": {
-                    "address1": "address1",
                     "city": "city",
                     "line1": "line1",
                     "postal_code": "21029-1360",
                     "state": "SE",
-                    "zip": "zip",
-                    "address2": "address2",
                     "country": "country",
                     "line2": "line2",
                 },
@@ -219,7 +213,6 @@ class TestAccounts:
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
         account = client.embed.accounts.list(
-            external_id="external_id",
             page_number=0,
             page_size=0,
             search_text="search_text",
@@ -451,13 +444,10 @@ class TestAsyncAccounts:
                 "name": "name",
                 "website": "https://example.com",
                 "address": {
-                    "address1": "address1",
                     "city": "city",
                     "line1": "line1",
                     "postal_code": "21029-1360",
                     "state": "SE",
-                    "zip": "zip",
-                    "address2": "address2",
                     "country": "country",
                     "line2": "line2",
                 },
@@ -541,13 +531,10 @@ class TestAsyncAccounts:
                 "name": "name",
                 "website": "https://example.com",
                 "address": {
-                    "address1": "address1",
                     "city": "city",
                     "line1": "line1",
                     "postal_code": "21029-1360",
                     "state": "SE",
-                    "zip": "zip",
-                    "address2": "address2",
                     "country": "country",
                     "line2": "line2",
                 },
@@ -626,7 +613,6 @@ class TestAsyncAccounts:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
         account = await async_client.embed.accounts.list(
-            external_id="external_id",
             page_number=0,
             page_size=0,
             search_text="search_text",
