@@ -135,9 +135,6 @@ class Data(BaseModel):
     account.
     """
 
-    refund: bool
-    """Is the payout a refund."""
-
     status: Literal[
         "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
     ]
