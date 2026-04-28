@@ -75,7 +75,7 @@ class PaymentListParams(TypedDict, total=False):
     ]
     """Search by the status of a `charge` or `payout`."""
 
-    payment_type: List[Literal["charge", "payout", "refund"]]
+    payment_type: List[Literal["charge", "payout"]]
     """Search by the type of a `charge` or `payout`."""
 
     search_text: str

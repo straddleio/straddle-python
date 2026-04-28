@@ -128,9 +128,6 @@ class Data(BaseModel):
     payment_date: date
     """Payment date."""
 
-    refund: bool
-    """Is the payout a refund."""
-
     status: Literal[
         "created", "scheduled", "failed", "cancelled", "on_hold", "pending", "paid", "reversed", "validating"
     ]

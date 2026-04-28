@@ -79,7 +79,7 @@ class PaymentsResource(SyncAPIResource):
             ]
         ]
         | Omit = omit,
-        payment_type: List[Literal["charge", "payout", "refund"]] | Omit = omit,
+        payment_type: List[Literal["charge", "payout"]] | Omit = omit,
         search_text: str | Omit = omit,
         sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
@@ -296,7 +296,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
             ]
         ]
         | Omit = omit,
-        payment_type: List[Literal["charge", "payout", "refund"]] | Omit = omit,
+        payment_type: List[Literal["charge", "payout"]] | Omit = omit,
         search_text: str | Omit = omit,
         sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
