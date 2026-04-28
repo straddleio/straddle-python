@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -70,6 +71,8 @@ class PaykeysResource(SyncAPIResource):
     def list(
         self,
         *,
+        created_from: Union[str, datetime] | Omit = omit,
+        created_to: Union[str, datetime] | Omit = omit,
         customer_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -95,6 +98,10 @@ class PaykeysResource(SyncAPIResource):
         supports advanced sorting and filtering options.
 
         Args:
+          created_from: Start date for filtering by creation date.
+
+          created_to: End date for filtering by creation date.
+
           customer_id: Filter paykeys by related customer ID.
 
           page_number: Page number for paginated results. Starts at 1.
@@ -140,6 +147,8 @@ class PaykeysResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_from": created_from,
+                        "created_to": created_to,
                         "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
@@ -437,6 +446,8 @@ class AsyncPaykeysResource(AsyncAPIResource):
     def list(
         self,
         *,
+        created_from: Union[str, datetime] | Omit = omit,
+        created_to: Union[str, datetime] | Omit = omit,
         customer_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
@@ -462,6 +473,10 @@ class AsyncPaykeysResource(AsyncAPIResource):
         supports advanced sorting and filtering options.
 
         Args:
+          created_from: Start date for filtering by creation date.
+
+          created_to: End date for filtering by creation date.
+
           customer_id: Filter paykeys by related customer ID.
 
           page_number: Page number for paginated results. Starts at 1.
@@ -507,6 +522,8 @@ class AsyncPaykeysResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "created_from": created_from,
+                        "created_to": created_to,
                         "customer_id": customer_id,
                         "page_number": page_number,
                         "page_size": page_size,
