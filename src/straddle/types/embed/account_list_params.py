@@ -10,8 +10,6 @@ __all__ = ["AccountListParams"]
 
 
 class AccountListParams(TypedDict, total=False):
-    external_id: str
-
     page_number: int
     """Results page number. Starts at page 1. Default value: 1"""
 

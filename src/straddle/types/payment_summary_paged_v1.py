@@ -87,9 +87,6 @@ class Data(BaseModel):
     paykey_details: Optional[PaykeyDetailsV1] = None
     """Information about the paykey used for the `charge` or `payout`."""
 
-    related_payments: Optional[Dict[str, Literal["original", "resubmit", "refund"]]] = None
-    """Related payments."""
-
 
 class Meta(BaseModel):
     api_request_id: str
