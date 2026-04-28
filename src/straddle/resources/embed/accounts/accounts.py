@@ -219,6 +219,7 @@ class AccountsResource(SyncAPIResource):
     def list(
         self,
         *,
+        external_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         search_text: str | Omit = omit,
@@ -277,6 +278,7 @@ class AccountsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "external_id": external_id,
                         "page_number": page_number,
                         "page_size": page_size,
                         "search_text": search_text,
@@ -622,6 +624,7 @@ class AsyncAccountsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        external_id: str | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         search_text: str | Omit = omit,
@@ -680,6 +683,7 @@ class AsyncAccountsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "external_id": external_id,
                         "page_number": page_number,
                         "page_size": page_size,
                         "search_text": search_text,
