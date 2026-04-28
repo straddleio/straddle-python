@@ -10,7 +10,6 @@ import pytest
 from straddle import Straddle, AsyncStraddle
 from tests.utils import assert_matches_type
 from straddle.types import PaykeyV1, PaykeyUnmaskedV1, PaykeyRevealResponse
-from straddle._utils import parse_datetime
 from straddle.pagination import SyncPageNumberSchema, AsyncPageNumberSchema
 from straddle.types.paykey_summary_paged_v1 import Data
 
@@ -28,8 +27,6 @@ class TestPaykeys:
     @parametrize
     def test_method_list_with_all_params(self, client: Straddle) -> None:
         paykey = client.paykeys.list(
-            created_from=parse_datetime("2019-12-27T18:11:19.117Z"),
-            created_to=parse_datetime("2019-12-27T18:11:19.117Z"),
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page_number=0,
             page_size=0,
@@ -322,8 +319,6 @@ class TestAsyncPaykeys:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncStraddle) -> None:
         paykey = await async_client.paykeys.list(
-            created_from=parse_datetime("2019-12-27T18:11:19.117Z"),
-            created_to=parse_datetime("2019-12-27T18:11:19.117Z"),
             customer_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             page_number=0,
             page_size=0,
