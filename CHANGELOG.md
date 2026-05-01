@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.5.0 (2026-05-01)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/straddleio/straddle-python/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* **docs:** Preliminary update to SDK Spec ([c52fa4e](https://github.com/straddleio/straddle-python/commit/c52fa4eab6e1fdbbd480a2879418220da1538976))
+* **docs:** Preliminary update to SDK Spec ([b2660e6](https://github.com/straddleio/straddle-python/commit/b2660e6ab48c07d251026ad4dfaa90a86eb4ae4f))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([b0533f8](https://github.com/straddleio/straddle-python/commit/b0533f85a8982f5ada9619c4c7e43bc44e6eb7aa))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([a61f8a3](https://github.com/straddleio/straddle-python/commit/a61f8a3af950101fba42505c4a13f04bbcd4f6ec))
+* **internal:** implement indices array format for query and form serialization ([22a8387](https://github.com/straddleio/straddle-python/commit/22a8387990dd08f19b7a55a7c3b19e8c10179c8d))
+* support setting headers via env ([7fbe74f](https://github.com/straddleio/straddle-python/commit/7fbe74f7d748897bad7e9eb88682dd463f1a5b27))
+
+
+### Bug Fixes
+
+* **client:** preserve hardcoded query params when merging with user params ([a95cb2f](https://github.com/straddleio/straddle-python/commit/a95cb2fa569a05c6bcd855231dd513885476928d))
+* ensure file data are only sent as 1 parameter ([a8da5a4](https://github.com/straddleio/straddle-python/commit/a8da5a446928168150ce1b57200b83aae157d795))
+* use correct field name format for multipart file arrays ([aa7af89](https://github.com/straddleio/straddle-python/commit/aa7af893d50d1298995a519c0921f8070de0e60c))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([391c3a1](https://github.com/straddleio/straddle-python/commit/391c3a1a0bcf6f6d57eb977600020b96f258cea9))
+
+
+### Chores
+
+* **internal:** more robust bootstrap script ([bc0bc45](https://github.com/straddleio/straddle-python/commit/bc0bc4586e2e16921b3436d4b134f20b2233badd))
+* **internal:** reformat pyproject.toml ([e474f04](https://github.com/straddleio/straddle-python/commit/e474f040ac94084f82f301a991688a6a9a63f76c))
+* **tests:** bump steady to v0.20.1 ([fe60bf7](https://github.com/straddleio/straddle-python/commit/fe60bf7403128ac57a5c6376c18912ac17d19960))
+* **tests:** bump steady to v0.20.2 ([8c2020a](https://github.com/straddleio/straddle-python/commit/8c2020a790d4211235b0aab07fc8263651cc70b0))
+* **tests:** bump steady to v0.22.1 ([3e62647](https://github.com/straddleio/straddle-python/commit/3e62647c078ecdb02a3651c8d22abee503f06dd6))
+
 ## 0.4.0 (2026-03-25)
 
 Full Changelog: [v0.3.0...v0.4.0](https://github.com/straddleio/straddle-python/compare/v0.3.0...v0.4.0)
