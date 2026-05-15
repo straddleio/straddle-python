@@ -59,7 +59,11 @@ class PaymentsResource(SyncAPIResource):
         default_sort_order: Literal["asc", "desc"] | Omit = omit,
         external_id: str | Omit = omit,
         funding_id: str | Omit = omit,
+        has_refund: bool | Omit = omit,
+        has_resubmit: bool | Omit = omit,
         include_metadata: bool | Omit = omit,
+        is_refund: bool | Omit = omit,
+        is_resubmit: bool | Omit = omit,
         max_amount: int | Omit = omit,
         max_created_at: Union[str, datetime] | Omit = omit,
         max_effective_at: Union[str, datetime] | Omit = omit,
@@ -140,7 +144,16 @@ class PaymentsResource(SyncAPIResource):
 
           funding_id: Search using the `funding_id` of a `charge` or `payout`.
 
+          has_refund: Has the payment been refunded by an associated payout (only applicable to
+              charges).
+
+          has_resubmit: Has the payment been resubmitted.
+
           include_metadata: Include the metadata for payments in the returned data.
+
+          is_refund: Is the payment a refund of an original charge (only applicable to payouts).
+
+          is_resubmit: Is the payment a resubmit of an original payment.
 
           max_amount: Search using a maximum `amount` of a `charge` or `payout`.
 
@@ -214,7 +227,11 @@ class PaymentsResource(SyncAPIResource):
                         "default_sort_order": default_sort_order,
                         "external_id": external_id,
                         "funding_id": funding_id,
+                        "has_refund": has_refund,
+                        "has_resubmit": has_resubmit,
                         "include_metadata": include_metadata,
+                        "is_refund": is_refund,
+                        "is_resubmit": is_resubmit,
                         "max_amount": max_amount,
                         "max_created_at": max_created_at,
                         "max_effective_at": max_effective_at,
@@ -276,7 +293,11 @@ class AsyncPaymentsResource(AsyncAPIResource):
         default_sort_order: Literal["asc", "desc"] | Omit = omit,
         external_id: str | Omit = omit,
         funding_id: str | Omit = omit,
+        has_refund: bool | Omit = omit,
+        has_resubmit: bool | Omit = omit,
         include_metadata: bool | Omit = omit,
+        is_refund: bool | Omit = omit,
+        is_resubmit: bool | Omit = omit,
         max_amount: int | Omit = omit,
         max_created_at: Union[str, datetime] | Omit = omit,
         max_effective_at: Union[str, datetime] | Omit = omit,
@@ -357,7 +378,16 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           funding_id: Search using the `funding_id` of a `charge` or `payout`.
 
+          has_refund: Has the payment been refunded by an associated payout (only applicable to
+              charges).
+
+          has_resubmit: Has the payment been resubmitted.
+
           include_metadata: Include the metadata for payments in the returned data.
+
+          is_refund: Is the payment a refund of an original charge (only applicable to payouts).
+
+          is_resubmit: Is the payment a resubmit of an original payment.
 
           max_amount: Search using a maximum `amount` of a `charge` or `payout`.
 
@@ -431,7 +461,11 @@ class AsyncPaymentsResource(AsyncAPIResource):
                         "default_sort_order": default_sort_order,
                         "external_id": external_id,
                         "funding_id": funding_id,
+                        "has_refund": has_refund,
+                        "has_resubmit": has_resubmit,
                         "include_metadata": include_metadata,
+                        "is_refund": is_refund,
+                        "is_resubmit": is_resubmit,
                         "max_amount": max_amount,
                         "max_created_at": max_created_at,
                         "max_effective_at": max_effective_at,
