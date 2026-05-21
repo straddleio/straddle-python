@@ -10,7 +10,7 @@ from .shared.response_metadata import ResponseMetadata
 from .shared.status_details_v1 import StatusDetailsV1
 from .shared.customer_details_v1 import CustomerDetailsV1
 
-__all__ = ["PayoutUnmaskResponse", "Data", "DataConfig", "DataDevice", "DataStatusHistory"]
+__all__ = ["PayoutUnmaskResponse", "Data", "DataConfig", "DataDevice", "DataStatusHistory", "DataRelatedPayment"]
 
 
 class DataConfig(BaseModel):
@@ -99,6 +99,16 @@ class DataStatusHistory(BaseModel):
     """The status code if applicable."""
 
 
+class DataRelatedPayment(BaseModel):
+    id: str
+    """The ID of the related payment."""
+
+    payment_type: Literal["charge", "payout"]
+    """The type of payment."""
+
+    relationship: Literal["original", "resubmit", "refund"]
+
+
 class Data(BaseModel):
     id: str
     """Id."""
@@ -121,15 +131,6 @@ class Data(BaseModel):
 
     funding_ids: List[str]
     """Funding Ids"""
-
-    has_resubmit: bool
-    """Has the payout been resubmitted."""
-
-    is_refund: bool
-    """Is the payout a refund of an original charge."""
-
-    is_resubmit: bool
-    """Is the payout a resubmit of an original payout."""
 
     paykey: str
     """Paykey."""
@@ -170,7 +171,7 @@ class Data(BaseModel):
     processed_at: Optional[datetime] = None
     """Processed at."""
 
-    related_payments: Optional[Dict[str, Literal["original", "resubmit", "refund"]]] = None
+    related_payments: Optional[List[DataRelatedPayment]] = None
     """Related payments."""
 
     updated_at: Optional[datetime] = None
