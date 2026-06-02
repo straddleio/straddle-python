@@ -9,7 +9,17 @@ from .shared.paykey_details_v1 import PaykeyDetailsV1
 from .shared.status_details_v1 import StatusDetailsV1
 from .shared.customer_details_v1 import CustomerDetailsV1
 
-__all__ = ["PaymentSummaryPagedV1", "Data", "Meta"]
+__all__ = ["PaymentSummaryPagedV1", "Data", "DataRelatedPayment", "Meta"]
+
+
+class DataRelatedPayment(BaseModel):
+    id: str
+    """The ID of the related payment."""
+
+    payment_type: Literal["charge", "payout"]
+    """The type of payment."""
+
+    relationship: Literal["original", "resubmit", "refund"]
 
 
 class Data(BaseModel):
@@ -36,6 +46,21 @@ class Data(BaseModel):
 
     funding_ids: List[str]
     """Funding ids."""
+
+    has_refund: bool
+    """
+    Has the payment been refunded by an associated payout (only applicable to
+    charges).
+    """
+
+    has_resubmit: bool
+    """Has the payment been resubmitted."""
+
+    is_refund: bool
+    """Is the payment a refund of an original charge (only applicable to payouts)."""
+
+    is_resubmit: bool
+    """Is the payment a resubmit of an original payment."""
 
     paykey: str
     """Value of the `paykey` used for the `charge` or `payout`."""
@@ -86,6 +111,12 @@ class Data(BaseModel):
 
     paykey_details: Optional[PaykeyDetailsV1] = None
     """Information about the paykey used for the `charge` or `payout`."""
+
+    related_payments: Optional[List[DataRelatedPayment]] = None
+    """Payments related to this one (e.g.
+
+    refunds, resubmissions), mapped by payment ID to relationship type.
+    """
 
 
 class Meta(BaseModel):
