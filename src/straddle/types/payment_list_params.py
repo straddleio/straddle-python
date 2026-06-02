@@ -28,23 +28,8 @@ class PaymentListParams(TypedDict, total=False):
     funding_id: str
     """Search using the `funding_id` of a `charge` or `payout`."""
 
-    has_refund: bool
-    """
-    Has the payment been refunded by an associated payout (only applicable to
-    charges).
-    """
-
-    has_resubmit: bool
-    """Has the payment been resubmitted."""
-
     include_metadata: bool
     """Include the metadata for payments in the returned data."""
-
-    is_refund: bool
-    """Is the payment a refund of an original charge (only applicable to payouts)."""
-
-    is_resubmit: bool
-    """Is the payment a resubmit of an original payment."""
 
     max_amount: int
     """Search using a maximum `amount` of a `charge` or `payout`."""
