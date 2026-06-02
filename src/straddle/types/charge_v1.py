@@ -151,15 +151,6 @@ class Data(BaseModel):
     funding_ids: List[str]
     """Funding Ids"""
 
-    has_refund: bool
-    """Has the charge been refunded by an associated payout."""
-
-    has_resubmit: bool
-    """Has the charge been resubmitted."""
-
-    is_resubmit: bool
-    """Is the charge a resubmit of an original charge."""
-
     paykey: str
     """Value of the `paykey` used for the charge."""
 
