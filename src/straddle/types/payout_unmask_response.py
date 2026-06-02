@@ -132,6 +132,15 @@ class Data(BaseModel):
     funding_ids: List[str]
     """Funding Ids"""
 
+    has_resubmit: bool
+    """Has the payout been resubmitted."""
+
+    is_refund: bool
+    """Is the payout a refund of an original charge."""
+
+    is_resubmit: bool
+    """Is the payout a resubmit of an original payout."""
+
     paykey: str
     """Paykey."""
 
