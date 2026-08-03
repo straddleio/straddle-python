@@ -11,7 +11,7 @@ from .shared.response_metadata import ResponseMetadata
 from .shared.status_details_v1 import StatusDetailsV1
 from .shared.customer_details_v1 import CustomerDetailsV1
 
-__all__ = ["PayoutV1", "Data", "DataConfig", "DataStatusHistory", "DataDocument", "DataRelatedPayment"]
+__all__ = ["PayoutV1", "Data", "DataConfig", "DataStatusHistory", "DataRelatedPayment"]
 
 
 class DataConfig(BaseModel):
@@ -97,22 +97,6 @@ class DataStatusHistory(BaseModel):
     """The status code if applicable."""
 
 
-class DataDocument(BaseModel):
-    document_id: str
-    """Unique identifier for this document."""
-
-    document_name: str
-    """The file name of this document as uploaded."""
-
-    document_size: int
-    """The size of this document in bytes."""
-
-    document_type: Literal["payment_authorization"]
-
-    uploaded_at: datetime
-    """The UTC timestamp when this document was uploaded."""
-
-
 class DataRelatedPayment(BaseModel):
     id: str
     """The ID of the related payment."""
@@ -189,12 +173,6 @@ class Data(BaseModel):
 
     customer_details: Optional[CustomerDetailsV1] = None
     """Information about the customer associated with the payout."""
-
-    documents: Optional[List[DataDocument]] = None
-    """Documents uploaded for this payout (e.g.
-
-    proof of authorization), in the order they were uploaded.
-    """
 
     effective_at: Optional[datetime] = None
     """The actual date on which the payment occurred.
