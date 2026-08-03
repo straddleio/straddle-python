@@ -258,6 +258,7 @@ Methods:
 - <code title="put /v1/payouts/{id}/hold">client.payouts.<a href="./src/straddle/resources/payouts.py">hold</a>(id, \*\*<a href="src/straddle/types/payout_hold_params.py">params</a>) -> <a href="./src/straddle/types/payout_v1.py">PayoutV1</a></code>
 - <code title="put /v1/payouts/{id}/release">client.payouts.<a href="./src/straddle/resources/payouts.py">release</a>(id, \*\*<a href="src/straddle/types/payout_release_params.py">params</a>) -> <a href="./src/straddle/types/payout_v1.py">PayoutV1</a></code>
 - <code title="get /v1/payouts/{id}/unmask">client.payouts.<a href="./src/straddle/resources/payouts.py">unmask</a>(id) -> <a href="./src/straddle/types/payout_unmask_response.py">PayoutUnmaskResponse</a></code>
+- <code title="post /v1/payouts/{id}/authorization">client.payouts.<a href="./src/straddle/resources/payouts.py">upload_authorization_document</a>(id, \*\*<a href="src/straddle/types/payout_upload_authorization_document_params.py">params</a>) -> <a href="./src/straddle/types/payout_v1.py">PayoutV1</a></code>
 
 # Reports
 
