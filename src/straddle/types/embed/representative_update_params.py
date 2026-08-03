@@ -62,7 +62,7 @@ class Relationship(TypedDict, total=False):
 
     owner: Required[bool]
     """
-    Whether the representative owns any percentage of of the equity interests of the
+    Whether the representative owns any percentage of the equity interests of the
     legal entity.
     """
 
