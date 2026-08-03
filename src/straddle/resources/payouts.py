@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
+from typing import Dict, Union, Mapping, Optional, cast
 from datetime import date
 
 import httpx
@@ -13,9 +13,11 @@ from ..types import (
     payout_create_params,
     payout_update_params,
     payout_release_params,
+    payout_upload_authorization_document_params,
 )
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
+from .._files import deepcopy_with_paths
+from .._types import Body, Omit, Query, Headers, NotGiven, FileTypes, omit, not_given
+from .._utils import extract_files, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -472,6 +474,69 @@ class PayoutsResource(SyncAPIResource):
             cast_to=PayoutUnmaskResponse,
         )
 
+    def upload_authorization_document(
+        self,
+        id: str,
+        *,
+        file: FileTypes,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PayoutV1:
+        """Uploads a document as proof of authorization for a payout.
+
+        Uploading again adds
+        another entry to documents rather than replacing the previous one.
+
+        Args:
+          file: The document file to upload as proof of authorization for this payout.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        body = deepcopy_with_paths({"file": file}, [["File"]])
+        files = extract_files(cast(Mapping[str, object], body), paths=[["File"]])
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        return self._post(
+            path_template("/v1/payouts/{id}/authorization", id=id),
+            body=maybe_transform(
+                body, payout_upload_authorization_document_params.PayoutUploadAuthorizationDocumentParams
+            ),
+            files=files,
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PayoutV1,
+        )
+
 
 class AsyncPayoutsResource(AsyncAPIResource):
     """Payouts represent transfers from Straddle to customer bank accounts.
@@ -913,6 +978,69 @@ class AsyncPayoutsResource(AsyncAPIResource):
             cast_to=PayoutUnmaskResponse,
         )
 
+    async def upload_authorization_document(
+        self,
+        id: str,
+        *,
+        file: FileTypes,
+        correlation_id: str | Omit = omit,
+        idempotency_key: str | Omit = omit,
+        request_id: str | Omit = omit,
+        straddle_account_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PayoutV1:
+        """Uploads a document as proof of authorization for a payout.
+
+        Uploading again adds
+        another entry to documents rather than replacing the previous one.
+
+        Args:
+          file: The document file to upload as proof of authorization for this payout.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Correlation-Id": correlation_id,
+                    "Idempotency-Key": idempotency_key,
+                    "Request-Id": request_id,
+                    "Straddle-Account-Id": straddle_account_id,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        body = deepcopy_with_paths({"file": file}, [["File"]])
+        files = extract_files(cast(Mapping[str, object], body), paths=[["File"]])
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        return await self._post(
+            path_template("/v1/payouts/{id}/authorization", id=id),
+            body=await async_maybe_transform(
+                body, payout_upload_authorization_document_params.PayoutUploadAuthorizationDocumentParams
+            ),
+            files=files,
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=PayoutV1,
+        )
+
 
 class PayoutsResourceWithRawResponse:
     def __init__(self, payouts: PayoutsResource) -> None:
@@ -938,6 +1066,9 @@ class PayoutsResourceWithRawResponse:
         )
         self.unmask = to_raw_response_wrapper(
             payouts.unmask,
+        )
+        self.upload_authorization_document = to_raw_response_wrapper(
+            payouts.upload_authorization_document,
         )
 
 
@@ -966,6 +1097,9 @@ class AsyncPayoutsResourceWithRawResponse:
         self.unmask = async_to_raw_response_wrapper(
             payouts.unmask,
         )
+        self.upload_authorization_document = async_to_raw_response_wrapper(
+            payouts.upload_authorization_document,
+        )
 
 
 class PayoutsResourceWithStreamingResponse:
@@ -993,6 +1127,9 @@ class PayoutsResourceWithStreamingResponse:
         self.unmask = to_streamed_response_wrapper(
             payouts.unmask,
         )
+        self.upload_authorization_document = to_streamed_response_wrapper(
+            payouts.upload_authorization_document,
+        )
 
 
 class AsyncPayoutsResourceWithStreamingResponse:
@@ -1019,4 +1156,7 @@ class AsyncPayoutsResourceWithStreamingResponse:
         )
         self.unmask = async_to_streamed_response_wrapper(
             payouts.unmask,
+        )
+        self.upload_authorization_document = async_to_streamed_response_wrapper(
+            payouts.upload_authorization_document,
         )
