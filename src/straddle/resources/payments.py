@@ -55,7 +55,7 @@ class PaymentsResource(SyncAPIResource):
         *,
         customer_id: str | Omit = omit,
         default_page_size: int | Omit = omit,
-        default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount", "updated_at"] | Omit = omit,
+        default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | Omit = omit,
         default_sort_order: Literal["asc", "desc"] | Omit = omit,
         external_id: str | Omit = omit,
         funding_id: str | Omit = omit,
@@ -68,12 +68,10 @@ class PaymentsResource(SyncAPIResource):
         max_created_at: Union[str, datetime] | Omit = omit,
         max_effective_at: Union[str, datetime] | Omit = omit,
         max_payment_date: Union[str, date] | Omit = omit,
-        max_updated_at: Union[str, datetime] | Omit = omit,
         min_amount: int | Omit = omit,
         min_created_at: Union[str, datetime] | Omit = omit,
         min_effective_at: Union[str, datetime] | Omit = omit,
         min_payment_date: Union[str, date] | Omit = omit,
-        min_updated_at: Union[str, datetime] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         paykey: str | Omit = omit,
@@ -87,7 +85,7 @@ class PaymentsResource(SyncAPIResource):
         | Omit = omit,
         payment_type: List[Literal["charge", "payout"]] | Omit = omit,
         search_text: str | Omit = omit,
-        sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount", "updated_at"] | Omit = omit,
+        sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
         status_reason: List[
             Literal[
@@ -165,8 +163,6 @@ class PaymentsResource(SyncAPIResource):
 
           max_payment_date: Search using the latest `payment_date` of a `charge` or `payout`.
 
-          max_updated_at: Filter to payments last updated on or before this timestamp.
-
           min_amount: Search using the minimum `amount of a `charge`or`payout`.
 
           min_created_at: Search using the earliest `created_at` date of a `charge` or `payout`.
@@ -174,8 +170,6 @@ class PaymentsResource(SyncAPIResource):
           min_effective_at: Search using the earliest `effective_date` of a `charge` or `payout`.
 
           min_payment_date: Search using the earliest ` `of a `charge` or `payout`.
-
-          min_updated_at: Filter to payments last updated on or after this timestamp.
 
           page_number: Results page number. Starts at page 1.
 
@@ -242,12 +236,10 @@ class PaymentsResource(SyncAPIResource):
                         "max_created_at": max_created_at,
                         "max_effective_at": max_effective_at,
                         "max_payment_date": max_payment_date,
-                        "max_updated_at": max_updated_at,
                         "min_amount": min_amount,
                         "min_created_at": min_created_at,
                         "min_effective_at": min_effective_at,
                         "min_payment_date": min_payment_date,
-                        "min_updated_at": min_updated_at,
                         "page_number": page_number,
                         "page_size": page_size,
                         "paykey": paykey,
@@ -297,7 +289,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         *,
         customer_id: str | Omit = omit,
         default_page_size: int | Omit = omit,
-        default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount", "updated_at"] | Omit = omit,
+        default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | Omit = omit,
         default_sort_order: Literal["asc", "desc"] | Omit = omit,
         external_id: str | Omit = omit,
         funding_id: str | Omit = omit,
@@ -310,12 +302,10 @@ class AsyncPaymentsResource(AsyncAPIResource):
         max_created_at: Union[str, datetime] | Omit = omit,
         max_effective_at: Union[str, datetime] | Omit = omit,
         max_payment_date: Union[str, date] | Omit = omit,
-        max_updated_at: Union[str, datetime] | Omit = omit,
         min_amount: int | Omit = omit,
         min_created_at: Union[str, datetime] | Omit = omit,
         min_effective_at: Union[str, datetime] | Omit = omit,
         min_payment_date: Union[str, date] | Omit = omit,
-        min_updated_at: Union[str, datetime] | Omit = omit,
         page_number: int | Omit = omit,
         page_size: int | Omit = omit,
         paykey: str | Omit = omit,
@@ -329,7 +319,7 @@ class AsyncPaymentsResource(AsyncAPIResource):
         | Omit = omit,
         payment_type: List[Literal["charge", "payout"]] | Omit = omit,
         search_text: str | Omit = omit,
-        sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount", "updated_at"] | Omit = omit,
+        sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"] | Omit = omit,
         sort_order: Literal["asc", "desc"] | Omit = omit,
         status_reason: List[
             Literal[
@@ -407,8 +397,6 @@ class AsyncPaymentsResource(AsyncAPIResource):
 
           max_payment_date: Search using the latest `payment_date` of a `charge` or `payout`.
 
-          max_updated_at: Filter to payments last updated on or before this timestamp.
-
           min_amount: Search using the minimum `amount of a `charge`or`payout`.
 
           min_created_at: Search using the earliest `created_at` date of a `charge` or `payout`.
@@ -416,8 +404,6 @@ class AsyncPaymentsResource(AsyncAPIResource):
           min_effective_at: Search using the earliest `effective_date` of a `charge` or `payout`.
 
           min_payment_date: Search using the earliest ` `of a `charge` or `payout`.
-
-          min_updated_at: Filter to payments last updated on or after this timestamp.
 
           page_number: Results page number. Starts at page 1.
 
@@ -484,12 +470,10 @@ class AsyncPaymentsResource(AsyncAPIResource):
                         "max_created_at": max_created_at,
                         "max_effective_at": max_effective_at,
                         "max_payment_date": max_payment_date,
-                        "max_updated_at": max_updated_at,
                         "min_amount": min_amount,
                         "min_created_at": min_created_at,
                         "min_effective_at": min_effective_at,
                         "min_payment_date": min_payment_date,
-                        "min_updated_at": min_updated_at,
                         "page_number": page_number,
                         "page_size": page_size,
                         "paykey": paykey,
