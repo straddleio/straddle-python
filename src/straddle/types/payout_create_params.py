@@ -78,7 +78,5 @@ class Config(TypedDict, total=False):
         "reversed_customer_dispute",
         "failed_closed_bank_account",
         "reversed_closed_bank_account",
-        "failed_not_authorized",
-        "reversed_not_authorized",
     ]
     """Payment will simulate processing if not Standard."""
