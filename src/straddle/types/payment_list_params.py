@@ -17,7 +17,7 @@ class PaymentListParams(TypedDict, total=False):
 
     default_page_size: int
 
-    default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount"]
+    default_sort: Literal["created_at", "payment_date", "effective_at", "id", "amount", "updated_at"]
     """The field to sort the results by."""
 
     default_sort_order: Literal["asc", "desc"]
@@ -58,6 +58,9 @@ class PaymentListParams(TypedDict, total=False):
     max_payment_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """Search using the latest `payment_date` of a `charge` or `payout`."""
 
+    max_updated_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Filter to payments last updated on or before this timestamp."""
+
     min_amount: int
     """Search using the minimum `amount of a `charge`or`payout`."""
 
@@ -69,6 +72,9 @@ class PaymentListParams(TypedDict, total=False):
 
     min_payment_date: Annotated[Union[str, date], PropertyInfo(format="iso8601")]
     """Search using the earliest ` `of a `charge` or `payout`."""
+
+    min_updated_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Filter to payments last updated on or after this timestamp."""
 
     page_number: int
     """Results page number. Starts at page 1."""
@@ -96,7 +102,7 @@ class PaymentListParams(TypedDict, total=False):
     search_text: str
     """Search using a text string associated with a `charge` or `payout`."""
 
-    sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount"]
+    sort_by: Literal["created_at", "payment_date", "effective_at", "id", "amount", "updated_at"]
     """The field to sort the results by."""
 
     sort_order: Literal["asc", "desc"]
