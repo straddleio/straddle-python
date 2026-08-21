@@ -188,9 +188,6 @@ class Data(BaseModel):
     format.
     """
 
-    plan_id: Optional[str] = None
-    """The unique identifier of the pricing plan currently assigned to this account."""
-
     settings: Optional[DataSettings] = None
 
     terms_of_service: Optional[TermsOfServiceV1] = None
