@@ -113,7 +113,7 @@ class DataPaykeyDetails(BaseModel):
     This value is used to create payments and should be stored securely.
     """
 
-    source: Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]
+    source: Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt", "mastercard"]
 
     status: Literal["pending", "active", "inactive", "rejected", "review", "blocked"]
 
