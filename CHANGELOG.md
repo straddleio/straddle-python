@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.6.0 (2026-08-31)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/straddleio/straddle-python/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* **docs:** Preliminary update to SDK Spec ([649adc8](https://github.com/straddleio/straddle-python/commit/649adc8fa75e3c6e10d62056137b0a76352b8704))
+* **docs:** Preliminary update to SDK Spec ([6ba38ab](https://github.com/straddleio/straddle-python/commit/6ba38ab77797d1e176648f9434a337469c8e2fcc))
+* **docs:** Preliminary update to SDK Spec ([84f4363](https://github.com/straddleio/straddle-python/commit/84f43631a3bd9eae5bf7c7c955ce2a2643b5f145))
+* **docs:** Preliminary update to SDK Spec ([e093149](https://github.com/straddleio/straddle-python/commit/e0931495d4fccb2ba9e082e167d9629646b04a9d))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([c75f63f](https://github.com/straddleio/straddle-python/commit/c75f63fbee21179b02e57e3698725c67cbeb46fe))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([3cb0971](https://github.com/straddleio/straddle-python/commit/3cb0971abcb27f531af0444253bc851b0c6665a9))
+* **docs:** Release Updates to SDK based on Open API Spec (Final) ([fcd315a](https://github.com/straddleio/straddle-python/commit/fcd315acade534f86c85419f6259d0026023b661))
+
 ## 0.5.0 (2026-08-20)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/straddleio/straddle-python/compare/v0.4.0...v0.5.0)
