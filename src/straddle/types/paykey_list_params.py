@@ -34,7 +34,7 @@ class PaykeyListParams(TypedDict, total=False):
 
     sort_order: Literal["asc", "desc"]
 
-    source: List[Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt"]]
+    source: List[Literal["bank_account", "straddle", "mx", "plaid", "tan", "quiltt", "mastercard"]]
     """Filter paykeys by their source."""
 
     status: List[Literal["pending", "active", "inactive", "rejected", "review", "blocked"]]
